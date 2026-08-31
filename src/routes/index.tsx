@@ -1,15 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import heroPort from "@/assets/hero-port.jpg";
+import onTheGround from "@/assets/on-the-ground.jpg";
 import qualityControl from "@/assets/quality-control.jpg";
 import worldMap from "@/assets/world-map.jpg";
 import { ContactForm } from "@/components/namar/contact-form";
+import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
 import { SiteHeader } from "@/components/namar/site-header";
 
-const title = "Importar desde China | Sourcing y proveedores — NAMAR Global";
+const title = "Importar desde China a España y Colombia | NAMAR Global";
 const description =
-  "Agente de compras en China para España y Colombia: búsqueda y verificación de proveedores, control de calidad, logística y aduanas. 8 años sobre el terreno.";
+  "Gestionamos tu importación desde China de principio a fin: búsqueda y verificación de proveedores, negociación, control de calidad, logística y aduanas. 8 años sobre el terreno.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,58 +21,100 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "importar desde China, proveedores de China, sourcing China, agente de compras China, control de calidad China, importación China España, importación China Colombia",
+          "importar desde China, proveedores de China, sourcing China, agente de compras China, control de calidad China, búsqueda de proveedores China, importación China España, importación China Colombia, gestión de importaciones",
       },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "es_ES" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
 });
 
+const clarity = [
+  {
+    label: "Qué hacemos",
+    text: "Gestionamos importaciones desde China: buscamos y verificamos la fábrica, negociamos, controlamos la calidad y movemos tu mercancía hasta tu almacén.",
+  },
+  {
+    label: "Para quién",
+    text: "Para PYMEs, emprendedores y empresas de España y Colombia que compran en China, ya sea por primera vez o desde hace años.",
+  },
+  {
+    label: "Cómo lo hacemos",
+    text: "Con presencia física en China. Vamos a la fábrica, hablamos el idioma y resolvemos en origen, antes de que el problema viaje en el contenedor.",
+  },
+];
+
 const problems = [
-  "Riesgo de recibir productos con calidad inferior a la acordada.",
-  "Barreras de idioma y malentendidos en la negociación técnica.",
-  "Errores críticos en documentación aduanera y certificaciones.",
+  "No saber si el proveedor que has encontrado existe realmente o solo es un intermediario.",
+  "Pagar un pedido y descubrir en destino que la calidad no es la acordada.",
+  "Malentendidos técnicos por idioma, husos horarios y cultura empresarial distinta.",
+  "Documentación incompleta, aranceles mal calculados y mercancía retenida en aduanas.",
+  "Certificaciones que nadie te pidió hasta que era tarde.",
+  "No tener a nadie en China que pueda ir, mirar y resolver.",
 ];
 
 const services = [
   {
     n: "01",
     title: "Búsqueda de proveedores",
-    text: "Encontramos y analizamos proveedores en China adaptados a las necesidades de cada proyecto.",
+    text: "Encontramos y analizamos proveedores en China adaptados a tu producto, tu volumen y tu presupuesto. No te damos una lista: te damos opciones contrastadas.",
   },
   {
     n: "02",
     title: "Verificación de fábricas",
-    text: "Comprobamos quién está realmente detrás del proveedor y evaluamos su capacidad y fiabilidad.",
+    text: "Comprobamos quién está realmente detrás del proveedor, si es fabricante o intermediario, y evaluamos su capacidad y fiabilidad.",
   },
   {
     n: "03",
     title: "Negociación",
-    text: "Negociamos condiciones, precios, cantidades y términos comerciales buscando las mejores condiciones posibles.",
+    text: "Negociamos precios, cantidades, plazos y condiciones comerciales en el idioma y los códigos del mercado local.",
   },
   {
     n: "04",
     title: "Control de calidad",
-    text: "Supervisamos que la mercancía cumpla con las especificaciones acordadas antes de que salga de China.",
+    text: "Supervisamos que la mercancía cumpla con las especificaciones acordadas antes de que salga de China, cuando todavía se puede corregir.",
   },
   {
     n: "05",
     title: "Logística internacional",
-    text: "Coordinamos el transporte desde China hasta el destino final.",
+    text: "Coordinamos el transporte desde la fábrica hasta el destino final, eligiendo la operativa que mejor encaja con tu producto.",
   },
   {
     n: "06",
     title: "Aduanas y cumplimiento",
-    text: "Ayudamos a gestionar documentación, despacho aduanero, requisitos y certificaciones necesarias.",
+    text: "Gestionamos o coordinamos documentación, despacho aduanero, requisitos y certificaciones necesarias para tu operación.",
   },
   {
     n: "07",
     title: "Seguimiento de la operación",
-    text: "Acompañamos el proceso para detectar problemas y resolverlos antes de que se conviertan en costes para el cliente.",
+    text: "Acompañamos el proceso completo para detectar problemas y resolverlos antes de que se conviertan en costes para ti.",
+  },
+];
+
+const objections = [
+  {
+    q: "“He encontrado un proveedor, pero no sé si fiarme.”",
+    a: "Verificamos quién es realmente: si fabrica o subcontrata, qué capacidad tiene y con qué clientes trabaja. Si hace falta, vamos a la fábrica y te contamos lo que hemos visto.",
+  },
+  {
+    q: "“No sé qué documentación necesita mi producto.”",
+    a: "Revisamos contigo los requisitos de tu producto antes de comprar: documentación comercial, certificaciones y requisitos de entrada en España o Colombia. Es mucho más barato saberlo antes que con la mercancía parada.",
+  },
+  {
+    q: "“Tengo miedo a que la calidad no sea la acordada.”",
+    a: "Definimos con el proveedor unas especificaciones claras y las comprobamos en origen. Un defecto detectado en China se corrige; detectado en tu almacén, se paga.",
+  },
+  {
+    q: "“No sé qué opción de transporte me conviene.”",
+    a: "Según producto, volumen, peso y urgencia, la operativa cambia y el margen también. Te proponemos la ruta y el incoterm que tienen sentido para tu caso, no el estándar.",
+  },
+  {
+    q: "“Ya importo, pero quiero dejar de improvisar.”",
+    a: "Revisamos tu operativa actual, tus proveedores y tus costes, y profesionalizamos el proceso con un único interlocutor en origen.",
   },
 ];
 
@@ -83,17 +127,17 @@ const steps = [
   {
     n: "02",
     title: "Buscamos proveedores",
-    text: "Localizamos proveedores adecuados en China.",
+    text: "Localizamos proveedores adecuados en China y descartamos los que no encajan.",
   },
   {
     n: "03",
     title: "Verificamos y negociamos",
-    text: "Comprobamos el proveedor y negociamos las condiciones.",
+    text: "Comprobamos el proveedor sobre el terreno y negociamos las condiciones.",
   },
   {
     n: "04",
     title: "Controlamos la producción",
-    text: "Supervisamos la calidad y el cumplimiento de lo acordado.",
+    text: "Supervisamos la calidad y el cumplimiento de lo acordado antes del embarque.",
   },
   {
     n: "05",
@@ -103,7 +147,7 @@ const steps = [
   {
     n: "06",
     title: "Recibes tu mercancía",
-    text: "Tu producto llega a destino con el proceso controlado.",
+    text: "Tu producto llega a destino con el proceso controlado de principio a fin.",
   },
 ];
 
@@ -113,10 +157,13 @@ const differentiators = [
     title: "Presencia local",
     text: "Estamos físicamente en China para comprobar, negociar y resolver.",
   },
-  { title: "Comunicación directa", text: "Idioma, cultura y conocimiento del mercado local." },
+  {
+    title: "Comunicación directa",
+    text: "Idioma, cultura y conocimiento del mercado local, sin intermediarios.",
+  },
   {
     title: "Menos riesgos",
-    text: "Reducimos la incertidumbre asociada a trabajar con proveedores desconocidos.",
+    text: "Reducimos la incertidumbre de trabajar con proveedores desconocidos.",
   },
   {
     title: "Control de principio a fin",
@@ -124,7 +171,7 @@ const differentiators = [
   },
   {
     title: "Un único interlocutor",
-    text: "Centralizamos la operación para que no tengas que coordinar múltiples agentes.",
+    text: "Centralizamos la operación: no coordinas agentes, proveedores y transitarios por tu cuenta.",
   },
 ];
 
@@ -132,7 +179,7 @@ const profiles = [
   { title: "PYMEs", text: "Empresas que quieren empezar o mejorar sus importaciones desde China." },
   {
     title: "Emprendedores",
-    text: "Personas que tienen un producto o proyecto y necesitan ayuda para hacerlo realidad.",
+    text: "Personas con un producto o proyecto que necesitan ayuda para hacerlo realidad.",
   },
   {
     title: "Empresas que ya importan",
@@ -149,6 +196,24 @@ const stats = [
   { value: "3", label: "Mercados conectados" },
   { value: "360°", label: "Gestión integral" },
   { value: "1", label: "Único interlocutor" },
+];
+
+const startSteps = [
+  {
+    n: "01",
+    title: "Nos escribes",
+    text: "Cuéntanos qué quieres importar, en qué cantidad y en qué punto estás. Por formulario o por WhatsApp.",
+  },
+  {
+    n: "02",
+    title: "Analizamos tu caso",
+    text: "Revisamos tu proyecto y te decimos con claridad qué es viable, qué riesgos hay y qué haría falta.",
+  },
+  {
+    n: "03",
+    title: "Empezamos a operar",
+    text: "Definimos el alcance del trabajo y arrancamos en China. Tú sigues la operación con un único interlocutor.",
+  },
 ];
 
 const faqs = [
@@ -186,12 +251,42 @@ const faqs = [
   },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      name: "NAMAR Global",
+      description,
+      areaServed: ["ES", "CO", "CN"],
+      knowsLanguage: ["es", "zh", "en"],
+      serviceType: [
+        "Sourcing en China",
+        "Búsqueda y verificación de proveedores",
+        "Control de calidad",
+        "Logística internacional",
+        "Aduanas y cumplimiento",
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+      })),
+    },
+  ],
+};
+
 function Index() {
   return (
     <div className="bg-background font-sans text-navy">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <SiteHeader />
+      <MobileCta />
 
-      <main>
+      <main className="pb-16 sm:pb-0">
         {/* HERO */}
         <section id="inicio" className="px-6 pb-20 pt-32 lg:pt-40">
           <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
@@ -248,6 +343,20 @@ function Index() {
           </div>
         </section>
 
+        {/* CLARIDAD: qué, para quién, cómo */}
+        <section className="border-y border-border bg-sand px-6 py-16">
+          <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-3">
+            {clarity.map((item, i) => (
+              <Reveal key={item.label} delay={i * 60}>
+                <p className="text-[11px] font-bold uppercase tracking-widest text-gold">
+                  {item.label}
+                </p>
+                <p className="mt-4 leading-relaxed text-slate">{item.text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
         {/* PROBLEMA */}
         <section className="overflow-hidden bg-navy px-6 py-24 text-navy-foreground lg:py-32">
           <div className="mx-auto grid max-w-7xl gap-20 lg:grid-cols-2">
@@ -256,21 +365,20 @@ function Index() {
                 Importar desde China no debería ser un salto de fe.
               </h2>
               <p className="text-lg text-navy-foreground/60">
-                Encontrar un proveedor realmente fiable, saber si la fábrica cumple lo acordado,
-                lidiar con el idioma, la logística, los aranceles y los costes inesperados. Y, sobre
-                todo, no tener a nadie en China que resuelva cuando algo se tuerce.
+                La mayoría de los problemas de una importación no aparecen en destino: aparecen en
+                origen, meses antes, cuando nadie está mirando.
               </p>
-              <div className="space-y-6">
+              <ul className="space-y-5">
                 {problems.map((problem, i) => (
-                  <div
+                  <li
                     key={problem}
-                    className="flex items-start gap-4 border-l-2 border-gold/30 py-2 pl-6"
+                    className="flex items-start gap-4 border-l-2 border-gold/30 py-1 pl-6"
                   >
-                    <span className="font-bold text-gold">{`0${i + 1}`}</span>
+                    <span className="pt-0.5 text-sm font-bold text-gold">{`0${i + 1}`}</span>
                     <p className="text-navy-foreground/80">{problem}</p>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
               <p className="pt-4 font-serif text-2xl italic text-gold">
                 Ahí es donde entra NAMAR Global.
               </p>
@@ -314,8 +422,35 @@ function Index() {
           </div>
         </section>
 
+        {/* OBJECIONES */}
+        <section className="bg-sand px-6 py-24 lg:py-32">
+          <div className="mx-auto max-w-4xl">
+            <Reveal>
+              <h2 className="text-4xl font-bold lg:text-5xl">Importar desde China, simple.</h2>
+              <p className="mt-6 text-lg text-slate">
+                Estas son las dudas que nos llegan cada semana. Así las resolvemos.
+              </p>
+            </Reveal>
+            <div className="mt-14 divide-y divide-border border-y border-border">
+              {objections.map((item, i) => (
+                <Reveal key={item.q} delay={i * 40}>
+                  <details className="group">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-semibold">
+                      {item.q}
+                      <span className="text-xl text-gold transition-transform group-open:rotate-45">
+                        +
+                      </span>
+                    </summary>
+                    <p className="pb-6 leading-relaxed text-slate">{item.a}</p>
+                  </details>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* PROCESO */}
-        <section id="proceso" className="bg-sand px-6 py-24 lg:py-32">
+        <section id="proceso" className="px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-4xl">
             <Reveal>
               <h2 className="text-center text-4xl font-bold lg:text-5xl">
@@ -340,6 +475,38 @@ function Index() {
                 Tú te ocupas de hacer crecer tu negocio. Nosotros nos ocupamos de China.
               </p>
             </Reveal>
+          </div>
+        </section>
+
+        {/* SOBRE EL TERRENO */}
+        <section className="relative">
+          <img
+            src={onTheGround}
+            width={1600}
+            height={1008}
+            loading="lazy"
+            alt="Responsable de NAMAR Global recorriendo una fábrica en China junto al gerente de producción"
+            className="h-[520px] w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-navy/70" />
+          <div className="absolute inset-0 flex items-center px-6">
+            <div className="mx-auto w-full max-w-7xl">
+              <div className="max-w-2xl text-navy-foreground">
+                <h2 className="text-4xl font-bold lg:text-5xl">
+                  No necesitas viajar a China. Nosotros ya estamos allí.
+                </h2>
+                <p className="mt-6 text-lg text-navy-foreground/70">
+                  Ir a la fábrica, mirar la producción, hablar con el responsable y decir que algo
+                  no está bien. Eso no se hace por correo: se hace estando.
+                </p>
+                <a
+                  href="#contacto"
+                  className="mt-10 inline-block bg-gold px-8 py-4 text-xs font-bold uppercase tracking-widest text-gold-foreground transition-colors hover:bg-navy-foreground"
+                >
+                  Habla con un experto
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -450,7 +617,7 @@ function Index() {
               <h2 className="text-4xl font-bold lg:text-5xl">Empresas que confían en nosotros</h2>
               <p className="mt-4 max-w-2xl text-slate">
                 Estamos recopilando las experiencias de nuestros clientes en España y Colombia.
-                Pronto publicaremos aquí sus testimonios reales.
+                Publicaremos aquí sus testimonios reales, con nombre, empresa, país y proyecto.
               </p>
             </Reveal>
             <div className="mt-14 grid gap-px border border-border bg-border md:grid-cols-3">
@@ -471,8 +638,30 @@ function Index() {
           </div>
         </section>
 
+        {/* CÓMO EMPEZAR */}
+        <section className="bg-sand px-6 py-24 lg:py-32">
+          <div className="mx-auto max-w-7xl">
+            <Reveal>
+              <h2 className="text-4xl font-bold lg:text-5xl">Empezar es simple.</h2>
+              <p className="mt-6 max-w-2xl text-lg text-slate">
+                No necesitas tenerlo todo decidido para hablar con nosotros. Con saber qué producto
+                te interesa, es suficiente para empezar.
+              </p>
+            </Reveal>
+            <div className="mt-16 grid gap-px border border-border bg-border md:grid-cols-3">
+              {startSteps.map((step, i) => (
+                <Reveal key={step.n} delay={i * 60} className="bg-background p-10">
+                  <span className="text-sm font-bold text-gold">{step.n}</span>
+                  <h3 className="mt-6 text-2xl font-bold">{step.title}</h3>
+                  <p className="mt-4 leading-relaxed text-slate">{step.text}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* FAQ */}
-        <section id="faq" className="bg-sand px-6 py-24 lg:py-32">
+        <section id="faq" className="px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-3xl">
             <Reveal>
               <h2 className="text-center text-4xl font-bold lg:text-5xl">Preguntas frecuentes</h2>
@@ -496,7 +685,7 @@ function Index() {
         </section>
 
         {/* CTA FINAL */}
-        <section className="px-6 py-24 lg:py-32">
+        <section className="px-6 pb-24">
           <Reveal className="relative mx-auto max-w-5xl overflow-hidden border border-border p-10 text-center sm:p-16">
             <div className="pointer-events-none absolute -right-32 -top-32 size-64 rounded-full bg-gold/5" />
             <h2 className="relative z-10 text-4xl font-bold lg:text-5xl">
@@ -554,7 +743,7 @@ function Index() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-sand-strong px-6 py-12">
+      <footer className="border-t border-border bg-sand-strong px-6 py-12 pb-24 sm:pb-12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row">
           <div className="flex items-center gap-2">
             <span className="grid size-6 place-items-center bg-navy text-[10px] font-bold tracking-tighter text-navy-foreground">

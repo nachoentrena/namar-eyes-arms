@@ -408,7 +408,7 @@ function Index() {
         </section>
 
         {/* SERVICIOS */}
-        <section id="servicios" className="bg-sand px-6 py-24 lg:py-32">
+        <section id="servicios" className="px-6 py-24 lg:py-32">
           <Reveal className="mx-auto mb-16 max-w-7xl text-center">
             <h2 className="text-4xl font-bold lg:text-6xl">
               Gestionamos tu importación de principio a fin.

@@ -8,8 +8,8 @@ import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
 import { ServicesCarousel } from "@/components/namar/services-carousel";
-
 import { SiteHeader } from "@/components/namar/site-header";
+import { WhatsAppFloat } from "@/components/namar/whatsapp-float";
 
 const title = "Importar desde China a España y Colombia | NAMAR Global";
 const description =
@@ -296,6 +296,7 @@ function Index() {
       
       <SiteHeader />
       <MobileCta />
+      <WhatsAppFloat />
 
       <main className="pb-16 sm:pb-0">
         {/* HERO */}
@@ -726,7 +727,7 @@ function Index() {
                   ¿Prefieres hablar directamente?
                 </p>
                 <a
-                  href="https://wa.me/"
+                  href="https://wa.me/8618217760619?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 inline-flex items-center gap-3 text-lg font-semibold transition-colors hover:text-gold"

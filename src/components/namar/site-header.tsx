@@ -1,19 +1,23 @@
+import { Globe } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
 
-const links = [
-  { href: "#inicio", label: "Inicio" },
-  { href: "#servicios", label: "Servicios" },
-  { href: "#proceso", label: "Cómo trabajamos" },
-  { href: "#nosotros", label: "Por qué NAMAR" },
-  { href: "#perfiles", label: "Para quién" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contacto", label: "Contacto" },
-];
-
 export function SiteHeader() {
+  const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [languageOpen, setLanguageOpen] = useState(false);
+
+  const links = [
+    { href: "#inicio", label: t("nav.home") },
+    { href: "#servicios", label: t("nav.services") },
+    { href: "#proceso", label: t("nav.process") },
+    { href: "#nosotros", label: t("nav.about") },
+    { href: "#perfiles", label: t("nav.profiles") },
+    { href: "#faq", label: t("nav.faq") },
+    { href: "#contacto", label: t("nav.contact") },
+  ];
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -21,6 +25,11 @@ export function SiteHeader() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const handleChangeLanguage = (language: "es" | "en") => {
+    void i18n.changeLanguage(language);
+    setLanguageOpen(false);
+  };
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
@@ -43,15 +52,46 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <div className="relative hidden sm:block">
+            <button
+              type="button"
+              aria-label={t("header.language")}
+              onClick={() => setLanguageOpen((value) => !value)}
+              className="inline-flex items-center gap-2 border border-border bg-background px-3 py-2 text-xs font-semibold uppercase tracking-widest text-navy"
+            >
+              <Globe className="size-4" />
+              {i18n.language.startsWith("en") ? "EN" : "ES"}
+            </button>
+
+            {languageOpen ? (
+              <div className="absolute right-0 top-full z-10 mt-2 min-w-32 border border-border bg-background shadow-panel">
+                <button
+                  type="button"
+                  onClick={() => handleChangeLanguage("es")}
+                  className="block w-full border-b border-border px-4 py-2 text-left text-sm hover:bg-sand"
+                >
+                  {t("header.languageEs")}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleChangeLanguage("en")}
+                  className="block w-full px-4 py-2 text-left text-sm hover:bg-sand"
+                >
+                  {t("header.languageEn")}
+                </button>
+              </div>
+            ) : null}
+          </div>
+
           <a
             href="#contacto"
             className="hidden bg-navy px-6 py-3 text-xs font-semibold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:inline-block"
           >
-            Habla con un experto
+            {t("header.cta")}
           </a>
           <button
             type="button"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-label={open ? t("header.menuClose") : t("header.menuOpen")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className="flex size-10 flex-col items-center justify-center gap-1.5 border border-border lg:hidden"
@@ -86,13 +126,38 @@ export function SiteHeader() {
                 </a>
               </li>
             ))}
+            <li className="flex items-center justify-between gap-3 border-t border-border pt-4">
+              <span className="text-sm font-medium text-slate">{t("header.language")}</span>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleChangeLanguage("es")}
+                  className={cn(
+                    "border px-3 py-2 text-xs font-semibold uppercase tracking-widest",
+                    i18n.language === "es" ? "border-navy bg-navy text-navy-foreground" : "border-border",
+                  )}
+                >
+                  ES
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleChangeLanguage("en")}
+                  className={cn(
+                    "border px-3 py-2 text-xs font-semibold uppercase tracking-widest",
+                    i18n.language === "en" ? "border-navy bg-navy text-navy-foreground" : "border-border",
+                  )}
+                >
+                  EN
+                </button>
+              </div>
+            </li>
             <li>
               <a
                 href="#contacto"
                 onClick={() => setOpen(false)}
                 className="mt-2 block bg-navy px-6 py-4 text-center text-xs font-semibold uppercase tracking-widest text-navy-foreground"
               >
-                Habla con un experto
+                {t("header.cta")}
               </a>
             </li>
           </ul>

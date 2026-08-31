@@ -7,6 +7,8 @@ import worldMap from "@/assets/world-map.jpg";
 import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
+import { ServicesCarousel } from "@/components/namar/services-carousel";
+
 import { SiteHeader } from "@/components/namar/site-header";
 
 const title = "Importar desde China a España y Colombia | NAMAR Global";

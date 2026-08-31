@@ -406,29 +406,18 @@ function Index() {
         </section>
 
         {/* SERVICIOS */}
-        <section id="servicios" className="px-6 py-24 lg:py-32">
-          <Reveal className="mx-auto mb-20 max-w-7xl text-center">
+        <section id="servicios" className="bg-sand px-6 py-24 lg:py-32">
+          <Reveal className="mx-auto mb-16 max-w-7xl text-center">
             <h2 className="text-4xl font-bold lg:text-6xl">
               Gestionamos tu importación de principio a fin.
             </h2>
             <div className="mx-auto mt-6 h-1 w-24 bg-gold" />
           </Reveal>
 
-          <div className="mx-auto grid max-w-7xl gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, i) => (
-              <Reveal
-                key={service.n}
-                delay={i * 60}
-                className="group bg-background p-10 transition-all duration-500 hover:bg-navy hover:text-navy-foreground"
-              >
-                <span className="mb-6 block text-sm font-bold text-gold">{service.n}</span>
-                <h3 className="mb-4 text-2xl font-bold">{service.title}</h3>
-                <p className="leading-relaxed text-slate group-hover:text-navy-foreground/70">
-                  {service.text}
-                </p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <ServicesCarousel items={services} />
+          </Reveal>
+
         </section>
 
         {/* OBJECIONES */}

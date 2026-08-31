@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 import heroPort from "@/assets/hero-port.jpg";
 import onTheGround from "@/assets/on-the-ground.jpg";
@@ -33,273 +34,63 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://namar-eyes-arms.lovable.app/" }],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }],
   }),
   component: Index,
 });
 
-const clarity = [
-  {
-    label: "Qué hacemos",
-    text: "Gestionamos importaciones desde China: buscamos y verificamos la fábrica, negociamos, controlamos la calidad y movemos tu mercancía hasta tu almacén.",
-  },
-  {
-    label: "Para quién",
-    text: "Para PYMEs, emprendedores y empresas de España y Colombia que compran en China, ya sea por primera vez o desde hace años.",
-  },
-  {
-    label: "Cómo lo hacemos",
-    text: "Con presencia física en China. Vamos a la fábrica, hablamos el idioma y resolvemos en origen, antes de que el problema viaje en el contenedor.",
-  },
-];
-
-const problems = [
-  "No saber si el proveedor que has encontrado existe realmente o solo es un intermediario.",
-  "Pagar un pedido y descubrir en destino que la calidad no es la acordada.",
-  "Malentendidos técnicos por idioma, husos horarios y cultura empresarial distinta.",
-  "Documentación incompleta, aranceles mal calculados y mercancía retenida en aduanas.",
-  "Certificaciones que nadie te pidió hasta que era tarde.",
-  "No tener a nadie en China que pueda ir, mirar y resolver.",
-];
-
-const services = [
-  {
-    n: "01",
-    title: "Búsqueda de proveedores",
-    text: "Encontramos y analizamos proveedores en China adaptados a tu producto, tu volumen y tu presupuesto. No te damos una lista: te damos opciones contrastadas.",
-  },
-  {
-    n: "02",
-    title: "Verificación de fábricas",
-    text: "Comprobamos quién está realmente detrás del proveedor, si es fabricante o intermediario, y evaluamos su capacidad y fiabilidad.",
-  },
-  {
-    n: "03",
-    title: "Negociación",
-    text: "Negociamos precios, cantidades, plazos y condiciones comerciales en el idioma y los códigos del mercado local.",
-  },
-  {
-    n: "04",
-    title: "Control de calidad",
-    text: "Supervisamos que la mercancía cumpla con las especificaciones acordadas antes de que salga de China, cuando todavía se puede corregir.",
-  },
-  {
-    n: "05",
-    title: "Logística internacional",
-    text: "Coordinamos el transporte desde la fábrica hasta el destino final, eligiendo la operativa que mejor encaja con tu producto.",
-  },
-  {
-    n: "06",
-    title: "Aduanas y cumplimiento",
-    text: "Gestionamos o coordinamos documentación, despacho aduanero, requisitos y certificaciones necesarias para tu operación.",
-  },
-  {
-    n: "07",
-    title: "Seguimiento de la operación",
-    text: "Acompañamos el proceso completo para detectar problemas y resolverlos antes de que se conviertan en costes para ti.",
-  },
-  {
-    n: "08",
-    title: "Cálculo de costes",
-    text: "En menos de 48 horas te entregamos un informe con la simulación del coste total de tu importación: producto, arancel, IVA, transporte, despacho aduanero, documentación, seguro y entrega final. Sabrás el precio real en tu almacén antes de comprometer un solo euro.",
-  },
-];
-
-
-const objections = [
-  {
-    q: "“He encontrado un proveedor, pero no sé si fiarme.”",
-    a: "Verificamos quién es realmente: si fabrica o subcontrata, qué capacidad tiene y con qué clientes trabaja. Si hace falta, vamos a la fábrica y te contamos lo que hemos visto.",
-  },
-  {
-    q: "“No sé qué documentación necesita mi producto.”",
-    a: "Revisamos contigo los requisitos de tu producto antes de comprar: documentación comercial, certificaciones y requisitos de entrada en España o Colombia. Es mucho más barato saberlo antes que con la mercancía parada.",
-  },
-  {
-    q: "“Tengo miedo a que la calidad no sea la acordada.”",
-    a: "Definimos con el proveedor unas especificaciones claras y las comprobamos en origen. Un defecto detectado en China se corrige; detectado en tu almacén, se paga.",
-  },
-  {
-    q: "“No sé qué opción de transporte me conviene.”",
-    a: "Según producto, volumen, peso y urgencia, la operativa cambia y el margen también. Te proponemos la ruta y el incoterm que tienen sentido para tu caso, no el estándar.",
-  },
-  {
-    q: "“Ya importo, pero quiero dejar de improvisar.”",
-    a: "Revisamos tu operativa actual, tus proveedores y tus costes, y profesionalizamos el proceso con un único interlocutor en origen.",
-  },
-];
-
-const steps = [
-  {
-    n: "01",
-    title: "Entendemos tu proyecto",
-    text: "Analizamos qué quieres comprar, cantidades, presupuesto y necesidades.",
-  },
-  {
-    n: "02",
-    title: "Buscamos proveedores",
-    text: "Localizamos proveedores adecuados en China y descartamos los que no encajan.",
-  },
-  {
-    n: "03",
-    title: "Verificamos y negociamos",
-    text: "Comprobamos el proveedor sobre el terreno y negociamos las condiciones.",
-  },
-  {
-    n: "04",
-    title: "Controlamos la producción",
-    text: "Supervisamos la calidad y el cumplimiento de lo acordado antes del embarque.",
-  },
-  {
-    n: "05",
-    title: "Gestionamos la logística",
-    text: "Coordinamos transporte, documentación y proceso aduanero.",
-  },
-  {
-    n: "06",
-    title: "Recibes tu mercancía",
-    text: "Tu producto llega a destino con el proceso controlado de principio a fin.",
-  },
-];
-
-const differentiators = [
-  { title: "8 años en China", text: "Experiencia real trabajando y operando sobre el terreno." },
-  {
-    title: "Presencia local",
-    text: "Estamos físicamente en China para comprobar, negociar y resolver.",
-  },
-  {
-    title: "Comunicación directa",
-    text: "Idioma, cultura y conocimiento del mercado local, sin intermediarios.",
-  },
-  {
-    title: "Menos riesgos",
-    text: "Reducimos la incertidumbre de trabajar con proveedores desconocidos.",
-  },
-  {
-    title: "Control de principio a fin",
-    text: "No desaparecemos después de encontrar al proveedor.",
-  },
-  {
-    title: "Un único interlocutor",
-    text: "Centralizamos la operación: no coordinas agentes, proveedores y transitarios por tu cuenta.",
-  },
-];
-
-const profiles = [
-  { title: "PYMEs", text: "Empresas que quieren empezar o mejorar sus importaciones desde China." },
-  {
-    title: "Emprendedores",
-    text: "Personas con un producto o proyecto que necesitan ayuda para hacerlo realidad.",
-  },
-  {
-    title: "Empresas que ya importan",
-    text: "Negocios que quieren reducir riesgos, optimizar costes o profesionalizar su proceso.",
-  },
-  {
-    title: "Empresas que quieren empezar en China",
-    text: "Negocios que necesitan un socio local para dar sus primeros pasos.",
-  },
-];
-
-const stats = [
-  { value: "8+", label: "Años en China" },
-  { value: "3", label: "Mercados conectados" },
-  { value: "360°", label: "Gestión integral" },
-  { value: "1", label: "Único interlocutor" },
-];
-
-const startSteps = [
-  {
-    n: "01",
-    title: "Nos escribes",
-    text: "Cuéntanos qué quieres importar, en qué cantidad y en qué punto estás. Por formulario o por WhatsApp.",
-  },
-  {
-    n: "02",
-    title: "Analizamos tu caso",
-    text: "Revisamos tu proyecto y te decimos con claridad qué es viable, qué riesgos hay y qué haría falta.",
-  },
-  {
-    n: "03",
-    title: "Empezamos a operar",
-    text: "Definimos el alcance del trabajo y arrancamos en China. Tú sigues la operación con un único interlocutor.",
-  },
-];
-
-const faqs = [
-  {
-    q: "¿Trabajáis únicamente con empresas que ya importan desde China?",
-    a: "No. También ayudamos a empresas y emprendedores que quieren realizar su primera importación.",
-  },
-  {
-    q: "¿Podéis buscar proveedores?",
-    a: "Sí. La búsqueda y evaluación de proveedores forma parte de nuestros servicios.",
-  },
-  {
-    q: "¿Podéis verificar una fábrica en China?",
-    a: "Sí. Podemos realizar procesos de verificación y control directamente sobre el terreno.",
-  },
-  {
-    q: "¿Os encargáis del control de calidad?",
-    a: "Sí. Podemos coordinar controles para comprobar que la mercancía cumple con las especificaciones acordadas.",
-  },
-  {
-    q: "¿Gestionáis el transporte?",
-    a: "Sí. Coordinamos la logística internacional desde China hasta el destino.",
-  },
-  {
-    q: "¿Ayudáis con las aduanas y certificaciones?",
-    a: "Sí. Gestionamos o coordinamos los procesos necesarios según las características de cada operación.",
-  },
-  {
-    q: "¿Tengo que viajar a China?",
-    a: "No necesariamente. NAMAR puede actuar como tu representación sobre el terreno.",
-  },
-  {
-    q: "¿Trabajáis con España y Colombia?",
-    a: "Sí. Actualmente nuestros mercados principales son España y Colombia.",
-  },
-];
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ProfessionalService",
-      name: "NAMAR Global",
-      description,
-      areaServed: ["ES", "CO", "CN"],
-      knowsLanguage: ["es", "zh", "en"],
-      serviceType: [
-        "Sourcing en China",
-        "Búsqueda y verificación de proveedores",
-        "Control de calidad",
-        "Logística internacional",
-        "Aduanas y cumplimiento",
-      ],
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.q,
-        acceptedAnswer: { "@type": "Answer", text: faq.a },
-      })),
-    },
-  ],
-};
-
 function Index() {
+  const { t } = useTranslation();
+
+  const clarity = t("landing.clarity", { returnObjects: true }) as Array<{
+    label: string;
+    text: string;
+  }>;
+  const problems = t("landing.problems", { returnObjects: true }) as string[];
+  const services = t("landing.services", { returnObjects: true }) as Array<{
+    n: string;
+    title: string;
+    text: string;
+  }>;
+  const objections = t("landing.objections", { returnObjects: true }) as Array<{
+    q: string;
+    a: string;
+  }>;
+  const steps = t("landing.steps", { returnObjects: true }) as Array<{
+    n: string;
+    title: string;
+    text: string;
+  }>;
+  const differentiators = t("landing.differentiators", { returnObjects: true }) as Array<{
+    title: string;
+    text: string;
+  }>;
+  const profiles = t("landing.profiles", { returnObjects: true }) as Array<{
+    title: string;
+    text: string;
+  }>;
+  const stats = t("landing.stats", { returnObjects: true }) as Array<{
+    value: string;
+    label: string;
+  }>;
+  const startSteps = t("landing.startSteps", { returnObjects: true }) as Array<{
+    n: string;
+    title: string;
+    text: string;
+  }>;
+  const faqs = t("landing.faqs", { returnObjects: true }) as Array<{
+    q: string;
+    a: string;
+  }>;
+  const testimonialFields = t("landing.testimonialsFields", { returnObjects: true }) as string[];
+  const footerCountries = t("landing.footerCountries", { returnObjects: true }) as string[];
+
   return (
     <div className="bg-background font-sans text-navy">
-      
       <SiteHeader />
       <MobileCta />
       <WhatsAppFloat />
 
       <main className="pb-16 sm:pb-0">
-        {/* HERO */}
         <section id="inicio" className="px-6 pb-20 pt-32 lg:pt-40">
           <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
             <div className="space-y-8">
@@ -308,31 +99,29 @@ function Index() {
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-gold opacity-75" />
                   <span className="relative inline-flex size-2 rounded-full bg-gold" />
                 </span>
-                8 años sobre el terreno en China
+                {t("landing.heroBadge")}
               </div>
               <h1 className="font-serif text-5xl italic leading-[0.95] sm:text-6xl lg:text-8xl">
-                Importa desde China.
+                {t("landing.heroTitle")}
                 <span className="mt-4 block font-sans text-4xl font-bold not-italic sm:text-5xl lg:text-7xl">
-                  Nosotros nos encargamos del resto.
+                  {t("landing.heroSubtitle")}
                 </span>
               </h1>
               <p className="max-w-xl text-lg leading-relaxed text-slate sm:text-xl">
-                Conectamos empresas de España y Colombia con proveedores fiables en China y
-                gestionamos todo el proceso de importación, desde el sourcing y el control de
-                calidad hasta la logística y las aduanas.
+                {t("landing.heroDescription")}
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
                   href="#contacto"
                   className="bg-navy px-8 py-4 text-xs font-bold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground"
                 >
-                  Quiero importar desde China
+                  {t("landing.heroPrimaryCta")}
                 </a>
                 <a
                   href="#proceso"
                   className="border border-border px-8 py-4 text-xs font-bold uppercase tracking-widest transition-colors hover:bg-navy hover:text-navy-foreground"
                 >
-                  Descubre cómo trabajamos
+                  {t("landing.heroSecondaryCta")}
                 </a>
               </div>
             </div>
@@ -355,7 +144,6 @@ function Index() {
           </div>
         </section>
 
-        {/* CLARIDAD: qué, para quién, cómo */}
         <section className="border-y border-border bg-sand px-6 py-16">
           <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-3">
             {clarity.map((item, i) => (
@@ -369,17 +157,11 @@ function Index() {
           </div>
         </section>
 
-        {/* PROBLEMA */}
         <section className="overflow-hidden bg-navy px-6 py-24 text-navy-foreground lg:py-32">
           <div className="mx-auto grid max-w-7xl gap-20 lg:grid-cols-2">
             <Reveal className="space-y-8">
-              <h2 className="text-4xl font-bold lg:text-5xl">
-                Importar desde China no debería ser un salto de fe.
-              </h2>
-              <p className="text-lg text-navy-foreground/60">
-                La mayoría de los problemas de una importación no aparecen en destino: aparecen en
-                origen, meses antes, cuando nadie está mirando.
-              </p>
+              <h2 className="text-4xl font-bold lg:text-5xl">{t("landing.problemTitle")}</h2>
+              <p className="text-lg text-navy-foreground/60">{t("landing.problemIntro")}</p>
               <ul className="space-y-5">
                 {problems.map((problem, i) => (
                   <li
@@ -391,9 +173,7 @@ function Index() {
                   </li>
                 ))}
               </ul>
-              <p className="pt-4 font-serif text-2xl italic text-gold">
-                Ahí es donde entra NAMAR Global.
-              </p>
+              <p className="pt-4 font-serif text-2xl italic text-gold">{t("landing.problemQuote")}</p>
             </Reveal>
             <Reveal delay={120}>
               <img
@@ -408,29 +188,22 @@ function Index() {
           </div>
         </section>
 
-        {/* SERVICIOS */}
         <section id="servicios" className="px-6 py-24 lg:py-32">
           <Reveal className="mx-auto mb-16 max-w-7xl text-center">
-            <h2 className="text-4xl font-bold lg:text-6xl">
-              Gestionamos tu importación de principio a fin.
-            </h2>
+            <h2 className="text-4xl font-bold lg:text-6xl">{t("landing.servicesTitle")}</h2>
             <div className="mx-auto mt-6 h-1 w-24 bg-gold" />
           </Reveal>
 
           <Reveal>
             <ServicesCarousel items={services} />
           </Reveal>
-
         </section>
 
-        {/* OBJECIONES */}
         <section className="bg-sand px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-4xl">
             <Reveal>
-              <h2 className="text-4xl font-bold lg:text-5xl">Importar desde China, simple.</h2>
-              <p className="mt-6 text-lg text-slate">
-                Estas son las dudas que nos llegan cada semana. Así las resolvemos.
-              </p>
+              <h2 className="text-4xl font-bold lg:text-5xl">{t("landing.objectionsTitle")}</h2>
+              <p className="mt-6 text-lg text-slate">{t("landing.objectionsIntro")}</p>
             </Reveal>
             <div className="mt-14 divide-y divide-border border-y border-border">
               {objections.map((item, i) => (
@@ -450,12 +223,11 @@ function Index() {
           </div>
         </section>
 
-        {/* PROCESO */}
         <section id="proceso" className="px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-4xl">
             <Reveal>
               <h2 className="text-center text-4xl font-bold lg:text-5xl">
-                Así convertimos una importación compleja en un proceso sencillo.
+                {t("landing.processTitle")}
               </h2>
             </Reveal>
             <ol className="relative mt-20 space-y-12 before:absolute before:bottom-2 before:left-6 before:top-2 before:w-px before:bg-border">
@@ -473,13 +245,12 @@ function Index() {
             </ol>
             <Reveal>
               <p className="mt-20 text-center font-serif text-2xl italic text-slate lg:text-3xl">
-                Tú te ocupas de hacer crecer tu negocio. Nosotros nos ocupamos de China.
+                {t("landing.processQuote")}
               </p>
             </Reveal>
           </div>
         </section>
 
-        {/* SOBRE EL TERRENO */}
         <section className="relative">
           <img
             src={onTheGround}
@@ -493,31 +264,23 @@ function Index() {
           <div className="absolute inset-0 flex items-center px-6">
             <div className="mx-auto w-full max-w-7xl">
               <div className="max-w-2xl text-navy-foreground">
-                <h2 className="text-4xl font-bold lg:text-5xl">
-                  No necesitas viajar a China. Nosotros ya estamos allí.
-                </h2>
-                <p className="mt-6 text-lg text-navy-foreground/70">
-                  Ir a la fábrica, mirar la producción, hablar con el responsable y decir que algo
-                  no está bien. Eso no se hace por correo: se hace estando.
-                </p>
+                <h2 className="text-4xl font-bold lg:text-5xl">{t("landing.onTheGroundTitle")}</h2>
+                <p className="mt-6 text-lg text-navy-foreground/70">{t("landing.onTheGroundText")}</p>
                 <a
                   href="#contacto"
                   className="mt-10 inline-block bg-gold px-8 py-4 text-xs font-bold uppercase tracking-widest text-gold-foreground transition-colors hover:bg-navy-foreground"
                 >
-                  Habla con un experto
+                  {t("landing.onTheGroundCta")}
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* POR QUÉ NAMAR */}
         <section id="nosotros" className="px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
-              <h2 className="text-4xl font-bold lg:text-6xl">
-                Tu equipo en China, sin necesidad de estar en China.
-              </h2>
+              <h2 className="text-4xl font-bold lg:text-6xl">{t("landing.whyTitle")}</h2>
             </Reveal>
             <div className="mt-16 grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
               {differentiators.map((item, i) => (
@@ -528,18 +291,15 @@ function Index() {
               ))}
             </div>
             <Reveal className="mt-20 text-center">
-              <p className="font-serif text-4xl italic lg:text-6xl">
-                “Somos tus ojos y brazos en China.”
-              </p>
+              <p className="font-serif text-4xl italic lg:text-6xl">{t("landing.quote")}</p>
             </Reveal>
           </div>
         </section>
 
-        {/* PARA QUIÉN */}
         <section id="perfiles" className="bg-sand px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-7xl">
             <Reveal>
-              <h2 className="text-4xl font-bold lg:text-5xl">¿Es para ti?</h2>
+              <h2 className="text-4xl font-bold lg:text-5xl">{t("landing.profilesTitle")}</h2>
             </Reveal>
             <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {profiles.map((profile, i) => (
@@ -555,32 +315,35 @@ function Index() {
             </div>
             <Reveal>
               <p className="mt-16 max-w-3xl font-serif text-2xl italic text-slate">
-                No necesitas tener experiencia importando desde China. Necesitas tener a alguien que
-                sí la tenga.
+                {t("landing.profilesQuote")}
               </p>
             </Reveal>
           </div>
         </section>
 
-        {/* MAPA */}
         <section className="px-6 py-24 lg:py-32">
           <div className="mx-auto flex max-w-7xl flex-col items-center gap-16 lg:flex-row">
             <Reveal className="flex-1">
-              <h2 className="text-4xl font-bold">Conectamos mercados.</h2>
-              <p className="mt-6 text-lg text-slate">
-                Trabajamos entre China y los mercados de España y Colombia, conectando empresas con
-                proveedores y coordinando las operaciones desde origen.
-              </p>
+              <h2 className="text-4xl font-bold">{t("landing.mapTitle")}</h2>
+              <p className="mt-6 text-lg text-slate">{t("landing.mapText")}</p>
               <div className="mt-10 flex flex-col gap-4">
                 <div className="flex items-center gap-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-gold">China</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-gold">
+                    {t("landing.mapChinaSpain")}
+                  </span>
                   <div className="h-px flex-1 bg-border" />
-                  <span className="text-xs font-bold uppercase tracking-widest">España</span>
+                  <span className="text-xs font-bold uppercase tracking-widest">
+                    {t("landing.mapSpain")}
+                  </span>
                 </div>
                 <div className="flex items-center gap-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-gold">China</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-gold">
+                    {t("landing.mapChinaColombia")}
+                  </span>
                   <div className="h-px flex-1 bg-border" />
-                  <span className="text-xs font-bold uppercase tracking-widest">Colombia</span>
+                  <span className="text-xs font-bold uppercase tracking-widest">
+                    {t("landing.mapColombia")}
+                  </span>
                 </div>
               </div>
             </Reveal>
@@ -597,7 +360,6 @@ function Index() {
           </div>
         </section>
 
-        {/* ESTADÍSTICAS */}
         <section className="bg-navy px-6 py-20 text-navy-foreground">
           <div className="mx-auto grid max-w-7xl grid-cols-2 gap-12 text-center md:grid-cols-4">
             {stats.map((stat, i) => (
@@ -611,27 +373,22 @@ function Index() {
           </div>
         </section>
 
-        {/* TESTIMONIOS */}
         <section className="px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-7xl">
             <Reveal>
-              <h2 className="text-4xl font-bold lg:text-5xl">Empresas que confían en nosotros</h2>
-              <p className="mt-4 max-w-2xl text-slate">
-                Estamos recopilando las experiencias de nuestros clientes en España y Colombia.
-                Publicaremos aquí sus testimonios reales, con nombre, empresa, país y proyecto.
-              </p>
+              <h2 className="text-4xl font-bold lg:text-5xl">{t("landing.testimonialsTitle")}</h2>
+              <p className="mt-4 max-w-2xl text-slate">{t("landing.testimonialsIntro")}</p>
             </Reveal>
             <div className="mt-14 grid gap-px border border-border bg-border md:grid-cols-3">
               {[0, 1, 2].map((slot) => (
                 <Reveal key={slot} delay={slot * 60} className="bg-background p-10">
                   <div className="space-y-3 text-xs uppercase tracking-widest text-slate/60">
-                    <p>Nombre</p>
-                    <p>Empresa</p>
-                    <p>País</p>
-                    <p>Proyecto</p>
+                    {testimonialFields.map((field) => (
+                      <p key={field}>{field}</p>
+                    ))}
                   </div>
                   <p className="mt-6 font-serif text-lg italic text-slate/50">
-                    Espacio reservado para el testimonio.
+                    {t("landing.testimonialsPlaceholder")}
                   </p>
                 </Reveal>
               ))}
@@ -639,15 +396,11 @@ function Index() {
           </div>
         </section>
 
-        {/* CÓMO EMPEZAR */}
         <section className="bg-sand px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-7xl">
             <Reveal>
-              <h2 className="text-4xl font-bold lg:text-5xl">Empezar es simple.</h2>
-              <p className="mt-6 max-w-2xl text-lg text-slate">
-                No necesitas tenerlo todo decidido para hablar con nosotros. Con saber qué producto
-                te interesa, es suficiente para empezar.
-              </p>
+              <h2 className="text-4xl font-bold lg:text-5xl">{t("landing.startTitle")}</h2>
+              <p className="mt-6 max-w-2xl text-lg text-slate">{t("landing.startIntro")}</p>
             </Reveal>
             <div className="mt-16 grid gap-px border border-border bg-border md:grid-cols-3">
               {startSteps.map((step, i) => (
@@ -661,11 +414,10 @@ function Index() {
           </div>
         </section>
 
-        {/* FAQ */}
         <section id="faq" className="px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-3xl">
             <Reveal>
-              <h2 className="text-center text-4xl font-bold lg:text-5xl">Preguntas frecuentes</h2>
+              <h2 className="text-center text-4xl font-bold lg:text-5xl">{t("landing.faqTitle")}</h2>
             </Reveal>
             <div className="mt-16 divide-y divide-border border-y border-border">
               {faqs.map((faq, i) => (
@@ -685,46 +437,40 @@ function Index() {
           </div>
         </section>
 
-        {/* CTA FINAL */}
         <section className="px-6 pb-24">
           <Reveal className="relative mx-auto max-w-5xl overflow-hidden border border-border p-10 text-center sm:p-16">
             <div className="pointer-events-none absolute -right-32 -top-32 size-64 rounded-full bg-gold/5" />
             <h2 className="relative z-10 text-4xl font-bold lg:text-5xl">
-              ¿Quieres importar desde China sin hacerlo solo?
+              {t("landing.ctaFinalTitle")}
             </h2>
             <p className="relative z-10 mx-auto mt-8 max-w-2xl text-lg text-slate sm:text-xl">
-              Cuéntanos qué quieres importar y analizaremos cómo podemos ayudarte a convertirlo en
-              una operación segura y controlada.
+              {t("landing.ctaFinalText")}
             </p>
             <div className="relative z-10 mt-12 flex flex-wrap justify-center gap-4">
               <a
                 href="#contacto"
                 className="bg-navy px-10 py-5 text-xs font-bold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground"
               >
-                Habla con NAMAR Global
+                {t("landing.ctaFinalPrimary")}
               </a>
               <a
                 href="#contacto"
                 className="border border-border px-10 py-5 text-xs font-bold uppercase tracking-widest transition-colors hover:bg-navy hover:text-navy-foreground"
               >
-                Solicitar una consulta
+                {t("landing.ctaFinalSecondary")}
               </a>
             </div>
           </Reveal>
         </section>
 
-        {/* CONTACTO */}
         <section id="contacto" className="bg-sand px-6 py-24 lg:py-32">
           <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
             <Reveal>
-              <h2 className="text-4xl font-bold lg:text-5xl">Cuéntanos tu proyecto</h2>
-              <p className="mt-6 max-w-md text-lg text-slate">
-                Escríbenos con los detalles de lo que quieres importar. Te responderemos con una
-                valoración clara de cómo podemos ayudarte desde origen.
-              </p>
+              <h2 className="text-4xl font-bold lg:text-5xl">{t("contact.title")}</h2>
+              <p className="mt-6 max-w-md text-lg text-slate">{t("contact.description")}</p>
               <div className="mt-12 border-t border-border pt-8">
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate">
-                  ¿Prefieres hablar directamente?
+                  {t("contact.prefer")}
                 </p>
                 <a
                   href="https://wa.me/8618217760619?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n"
@@ -732,7 +478,7 @@ function Index() {
                   rel="noopener noreferrer"
                   className="mt-4 inline-flex items-center gap-3 text-lg font-semibold transition-colors hover:text-gold"
                 >
-                  Escríbenos por WhatsApp
+                  {t("contact.chat")}
                   <span aria-hidden="true">→</span>
                 </a>
               </div>
@@ -755,12 +501,12 @@ function Index() {
             </span>
           </div>
           <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-slate">
-            <span>España</span>
-            <span>China</span>
-            <span>Colombia</span>
+            {footerCountries.map((country) => (
+              <span key={country}>{country}</span>
+            ))}
           </div>
           <div className="text-xs text-slate/60">
-            © {new Date().getFullYear()} NAMAR Global. Gestión estratégica de importaciones.
+            {t("landing.footerText", { year: new Date().getFullYear() })}
           </div>
         </div>
       </footer>

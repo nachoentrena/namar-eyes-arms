@@ -7,6 +7,8 @@ import worldMap from "@/assets/world-map.jpg";
 import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
+import { ServicesCarousel } from "@/components/namar/services-carousel";
+
 import { SiteHeader } from "@/components/namar/site-header";
 
 const title = "Importar desde China a España y Colombia | NAMAR Global";
@@ -96,7 +98,13 @@ const services = [
     title: "Seguimiento de la operación",
     text: "Acompañamos el proceso completo para detectar problemas y resolverlos antes de que se conviertan en costes para ti.",
   },
+  {
+    n: "08",
+    title: "Cálculo de costes",
+    text: "En menos de 48 horas te entregamos un informe con la simulación del coste total de tu importación: producto, arancel, IVA, transporte, despacho aduanero, documentación, seguro y entrega final. Sabrás el precio real en tu almacén antes de comprometer un solo euro.",
+  },
 ];
+
 
 const objections = [
   {
@@ -401,28 +409,17 @@ function Index() {
 
         {/* SERVICIOS */}
         <section id="servicios" className="px-6 py-24 lg:py-32">
-          <Reveal className="mx-auto mb-20 max-w-7xl text-center">
+          <Reveal className="mx-auto mb-16 max-w-7xl text-center">
             <h2 className="text-4xl font-bold lg:text-6xl">
               Gestionamos tu importación de principio a fin.
             </h2>
             <div className="mx-auto mt-6 h-1 w-24 bg-gold" />
           </Reveal>
 
-          <div className="mx-auto grid max-w-7xl gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, i) => (
-              <Reveal
-                key={service.n}
-                delay={i * 60}
-                className="group bg-background p-10 transition-all duration-500 hover:bg-navy hover:text-navy-foreground"
-              >
-                <span className="mb-6 block text-sm font-bold text-gold">{service.n}</span>
-                <h3 className="mb-4 text-2xl font-bold">{service.title}</h3>
-                <p className="leading-relaxed text-slate group-hover:text-navy-foreground/70">
-                  {service.text}
-                </p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <ServicesCarousel items={services} />
+          </Reveal>
+
         </section>
 
         {/* OBJECIONES */}

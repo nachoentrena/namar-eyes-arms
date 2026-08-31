@@ -96,7 +96,13 @@ const services = [
     title: "Seguimiento de la operación",
     text: "Acompañamos el proceso completo para detectar problemas y resolverlos antes de que se conviertan en costes para ti.",
   },
+  {
+    n: "08",
+    title: "Cálculo de costes",
+    text: "En menos de 48 horas te entregamos un informe con la simulación del coste total de tu importación: producto, arancel, IVA, transporte, despacho aduanero, documentación, seguro y entrega final. Sabrás el precio real en tu almacén antes de comprometer un solo euro.",
+  },
 ];
+
 
 const objections = [
   {

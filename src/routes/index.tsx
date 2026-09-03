@@ -260,11 +260,11 @@ function Index() {
               <Reveal delay={120} className="hidden lg:col-span-4 lg:block">
                 <img
                   src={qualityControl}
-                  width={1008}
-                  height={1264}
+                  width={886}
+                  height={1575}
                   loading="lazy"
-                  alt="Inspectora de calidad midiendo una pieza mecánica en una fábrica china"
-                  className="aspect-3/2 w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+                  alt="Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica"
+                  className="aspect-4/5 w-full object-cover object-[50%_35%] grayscale transition-all duration-700 hover:grayscale-0"
                 />
               </Reveal>
             </div>

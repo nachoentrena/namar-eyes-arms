@@ -63,21 +63,21 @@ const resources = {
         heroTitle: "Tu proveedor está en China.",
         heroSubtitle: "Tu tranquilidad también.",
         heroDescription:
-          "NAMAR Global representa tus intereses directamente sobre el terreno. Encontramos proveedores, negociamos, verificamos, controlamos y coordinamos tu importación desde China a España o Colombia.",
+          "NAMAR Global representa tus intereses directamente sobre el terreno. Encontramos proveedores, negociamos, verificamos, controlamos y coordinamos tu importación hasta España o Colombia.",
         heroPrimaryCta: "Quiero analizar mi importación",
         heroSecondaryCta: "Cómo trabajamos",
         heroMicro: "Simulamos los costes de tu importación en 24 horas.",
         heroQuote:
-          "“Somos los ojos y brazos de nuestros clientes en China. Protegemos su compra y reducimos el riesgo de importar.”",
+          "“Somos los ojos y brazos de nuestros clientes en origen. Protegemos su compra y reducimos el riesgo de importar.”",
 
-        authorityLabel: "Por qué NAMAR es distinto",
+        authorityLabel: "Tu equipo en origen",
         authorityTitle: "8 años sobre el terreno cambian la forma de importar.",
         authorityText:
-          "NAMAR no gestiona China desde un despacho en Europa. Estamos físicamente aquí: hablando con proveedores en su idioma, visitando fábricas, revisando producción y resolviendo incidencias en el momento en que ocurren, no semanas después por correo.",
+          "No gestionamos tu importación desde un despacho en Europa. Estamos físicamente aquí: hablando con los proveedores en su idioma, visitando fábricas, revisando producción y resolviendo incidencias en el momento en que ocurren, no semanas después por correo.",
         authorityPoints: [
           {
             label: "Qué hacemos",
-            text: "Gestionamos tu importación desde China de principio a fin: buscamos y verificamos la fábrica, negociamos, controlamos la calidad y coordinamos el envío hasta España o Colombia.",
+            text: "Gestionamos tu importación de principio a fin: buscamos y verificamos la fábrica, negociamos, controlamos la calidad y coordinamos el envío hasta España o Colombia.",
           },
           {
             label: "Para quién",
@@ -85,12 +85,12 @@ const resources = {
           },
           {
             label: "Cómo lo hacemos",
-            text: "Con presencia física en China. Vamos a la fábrica, hablamos el idioma y resolvemos en origen, antes de que el problema viaje en el contenedor.",
+            text: "Con presencia física en origen. Vamos a la fábrica, hablamos el idioma y resolvemos allí, antes de que el problema viaje en el contenedor.",
           },
         ],
         authorityLink: "Descubre cómo trabajamos",
 
-        problemTitle: "Importar desde China no debería ser un salto de fe.",
+        problemTitle: "Importar no debería ser una cuestión de suerte.",
         problemIntro:
           "La mayoría de los problemas de una importación no aparecen en destino: aparecen en origen, meses antes, cuando nadie está mirando. Así los convertimos en decisiones controladas.",
         problemColumns: { risk: "Riesgo", action: "Qué hacemos", result: "Resultado" },
@@ -159,12 +159,12 @@ const resources = {
         costCta: "Quiero calcular mi importación",
         costNote: "Recibes un informe claro con el coste estimado puesto en destino.",
 
-        objectionsTitle: "Importar desde China, simple.",
+        objectionsTitle: "Importar, sin sobresaltos.",
         objectionsIntro: "Estas son las dudas que nos llegan cada semana. Así las resolvemos.",
         objections: [
           { q: "“He encontrado un proveedor, pero no sé si fiarme.”", a: "Verificamos quién es realmente: si fabrica o subcontrata, qué capacidad tiene y con qué clientes trabaja. Si hace falta, vamos a la fábrica y te contamos lo que hemos visto." },
           { q: "“No sé qué documentación necesita mi producto.”", a: "Revisamos contigo los requisitos de tu producto antes de comprar: documentación comercial, certificaciones y requisitos de entrada en España o Colombia. Es mucho más barato saberlo antes que con la mercancía parada." },
-          { q: "“Tengo miedo a que la calidad no sea la acordada.”", a: "Definimos con el proveedor unas especificaciones claras y las comprobamos en origen. Un defecto detectado en China se corrige; detectado en tu almacén, se paga." },
+          { q: "“Tengo miedo a que la calidad no sea la acordada.”", a: "Definimos con el proveedor unas especificaciones claras y las comprobamos en origen. Un defecto detectado en fábrica se corrige; detectado en tu almacén, se paga." },
           { q: "“No sé qué opción de transporte me conviene.”", a: "Según producto, volumen, peso y urgencia, la operativa cambia y el margen también. Te proponemos la ruta y el incoterm que tienen sentido para tu caso, no el estándar." },
           { q: "“Ya importo, pero quiero dejar de improvisar.”", a: "Revisamos tu operativa actual, tus proveedores y tus costes, y profesionalizamos el proceso con un único interlocutor en origen." },
         ],
@@ -174,7 +174,7 @@ const resources = {
         processCta: "Quiero analizar mi importación",
         steps: [
           { n: "01", title: "Entendemos tu proyecto", text: "Analizamos qué quieres comprar, cantidades, presupuesto, destino y en qué punto estás." },
-          { n: "02", title: "Buscamos proveedores", text: "Localizamos proveedores adecuados en China y descartamos los que no encajan." },
+          { n: "02", title: "Buscamos proveedores", text: "Localizamos fabricantes adecuados en origen y descartamos los que no encajan." },
           { n: "03", title: "Verificamos y negociamos", text: "Comprobamos el proveedor sobre el terreno y negociamos las condiciones." },
           { n: "04", title: "Controlamos la producción", text: "Supervisamos la calidad y el cumplimiento de lo acordado antes del embarque." },
           { n: "05", title: "Gestionamos la logística", text: "Coordinamos transporte, documentación y proceso aduanero hasta España o Colombia." },
@@ -187,64 +187,55 @@ const resources = {
         onTheGroundCta: "Quiero analizar mi importación",
 
         teamLabel: "Las personas detrás de NAMAR",
-        teamTitle: "No gestionamos China desde un despacho en Europa. Vivimos aquí.",
+        teamTitle: "Cuando nos escribes, hablas con quien va a la fábrica.",
         teamText:
-          "Detrás de NAMAR Global hay personas con nombre que llevan años viviendo y trabajando en China. Cuando hablas con nosotros, hablas con quien va a la fábrica, negocia con el proveedor y sigue tu operación de cerca.",
+          "Detrás de NAMAR Global hay personas con nombre que llevan años viviendo y trabajando sobre el terreno. Quien negocia con el proveedor y sigue tu operación de cerca es la misma persona que te responde.",
         team: [
-          { name: "Nacho", role: "NAMAR Global · Sobre el terreno en China", initials: "N" },
-          { name: "María", role: "NAMAR Global · Sobre el terreno en China", initials: "M" },
+          { name: "Nacho", role: "NAMAR Global · Operaciones en origen", initials: "N" },
+          { name: "María", role: "NAMAR Global · Operaciones en origen", initials: "M" },
         ],
-        teamPhotoPlaceholder: "Foto real en China",
+        teamPhotoPlaceholder: "Foto real en fábrica",
         teamNote: "Hablas directamente con nosotros. Sin call centers ni intermediarios.",
 
-        whyTitle: "Tu equipo en China, sin necesidad de estar en China.",
+        whyTitle: "Lo que cambia cuando tienes un equipo en origen.",
         differentiators: [
-          { title: "8 años en China", text: "Experiencia real viviendo, trabajando y operando sobre el terreno." },
-          { title: "Presencia física", text: "Estamos en China para comprobar, negociar y resolver en persona." },
-          { title: "Comunicación directa", text: "Idioma, cultura y conocimiento del mercado local, sin intermediarios." },
-          { title: "Menos riesgo", text: "Reducimos la incertidumbre de comprar a proveedores desconocidos." },
-          { title: "Control de principio a fin", text: "No desaparecemos después de encontrar al proveedor." },
-          { title: "Un único interlocutor", text: "Centralizamos la operación: no coordinas agentes, proveedores y transitarios por tu cuenta." },
+          { title: "Verificación real", text: "Comprobamos quién fabrica, con qué capacidad y qué historial, antes de que pagues un solo anticipo." },
+          { title: "Comunicación directa", text: "Hablamos con el proveedor en su idioma y sus códigos. Tú recibes la información clara, sin capas intermedias." },
+          { title: "Menos riesgo", text: "Cada fase está pensada para detectar el problema cuando todavía es barato corregirlo." },
+          { title: "Costes claros desde el principio", text: "Conoces el coste puesto en tu almacén antes de comprometer dinero, no al recibir la factura del transitario." },
+          { title: "Control integral", text: "De la búsqueda del proveedor a la entrega: la misma operación, el mismo criterio, sin huecos entre fases." },
+          { title: "Un único interlocutor", text: "No coordinas agentes, fábricas y transitarios por tu cuenta. Nos coordinas a nosotros." },
         ],
         quote: "“Somos tus ojos y brazos en China.”",
-
-        profilesTitle: "¿Es para ti?",
-        profiles: [
-          { title: "PYMEs", text: "Empresas que quieren empezar o mejorar sus importaciones desde China con menos riesgo." },
-          { title: "Emprendedores", text: "Personas con un producto o proyecto que necesitan un equipo en origen para hacerlo realidad." },
-          { title: "Empresas que ya importan", text: "Negocios que quieren reducir riesgos, conocer sus costes reales y profesionalizar su proceso." },
-          { title: "Empresas que quieren empezar en China", text: "Negocios que necesitan un socio local para dar sus primeros pasos con garantías." },
-        ],
-        profilesQuote: "No necesitas tener experiencia importando desde China. Necesitas tener a alguien que sí la tenga.",
 
         routesLabel: "Rutas en las que trabajamos",
         routesTitle: "Importar desde China a España y a Colombia.",
         routesText:
-          "No trabajamos “el mundo”. Trabajamos dos rutas que conocemos bien, con sus aduanas, sus requisitos y su operativa logística. Eso nos permite anticipar problemas en lugar de descubrirlos.",
+          "Dos rutas que conocemos bien, con sus aduanas, sus requisitos y su operativa logística. Eso nos permite anticipar problemas en lugar de descubrirlos.",
         routes: [
           {
             from: "China",
             to: "España",
             title: "Importar desde China a España",
-            text: "Búsqueda de proveedores, control de calidad en origen y coordinación logística y aduanera hasta tu almacén en España, con los requisitos de entrada en la UE revisados antes de comprar.",
+            text: "Búsqueda y verificación de proveedores, control de calidad en origen y coordinación logística y aduanera hasta tu almacén, con los requisitos de entrada en la UE revisados antes de comprar.",
             tags: ["Proveedores verificados", "Requisitos UE", "Aduanas España"],
           },
           {
             from: "China",
             to: "Colombia",
             title: "Importar desde China a Colombia",
-            text: "Representación en origen para empresas colombianas: verificación de fábricas, negociación, control de calidad y coordinación del envío y la documentación hasta Colombia.",
+            text: "Representación en origen para empresas colombianas: verificación de fábricas, negociación, control de calidad y coordinación del envío y la documentación hasta destino.",
             tags: ["Proveedores verificados", "Documentación de importación", "Aduanas Colombia"],
           },
         ],
         routesNote: "¿Otro destino? Cuéntanoslo y valoramos si podemos ayudarte.",
 
         proofLabel: "Prueba operativa",
-        proofTitle: "Lo que puedes esperar de trabajar con NAMAR.",
+        proofTitle: "Lo que puedes exigirnos en cada operación.",
         proofIntro:
-          "Publicaremos aquí testimonios reales de clientes cuando podamos hacerlo con nombre y empresa. Mientras tanto, esto es lo que sí podemos prometerte.",
+          "Así trabajamos, con cada cliente y en cada importación. Son compromisos concretos, no promesas de catálogo.",
         proof: [
-          { title: "Presencia real sobre el terreno", text: "8 años viviendo y trabajando en China. Visitamos fábricas y hablamos con proveedores en persona, no solo por correo." },
+          { title: "Presencia real sobre el terreno", text: "Visitamos fábricas y hablamos con los proveedores en persona, no solo por correo. Si hay que ir, vamos." },
           { title: "Proceso definido y documentado", text: "Cada operación sigue las mismas fases: encontrar, verificar, negociar, controlar y enviar. Sabes en qué punto está tu importación." },
           { title: "Cobertura España y Colombia", text: "Conocemos los requisitos, la documentación y la operativa logística de las dos rutas en las que trabajamos." },
           { title: "Acompañamiento de principio a fin", text: "No desaparecemos tras presentarte un proveedor. Seguimos la operación hasta que la mercancía llega a tu almacén." },

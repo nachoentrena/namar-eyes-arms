@@ -250,10 +250,10 @@ function Index() {
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
         <section className={`overflow-hidden bg-navy text-navy-foreground ${section}`}>
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
+            <div className="grid gap-4 lg:grid-cols-12 lg:items-end lg:gap-8">
               <Reveal className="lg:col-span-8">
                 <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
-                <p className="mt-4 max-w-2xl text-base text-navy-foreground/60 sm:text-lg">
+                <p className="mt-3 max-w-2xl text-base text-navy-foreground/60 sm:mt-4 sm:text-lg">
                   {t("landing.problemIntro")}
                 </p>
               </Reveal>
@@ -269,7 +269,7 @@ function Index() {
               </Reveal>
             </div>
 
-            <Reveal className="mt-6 sm:mt-8">
+            <Reveal className="mt-4 sm:mt-6">
               <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-3 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
                 <span className="col-span-3">{problemColumns.risk}</span>
                 <span className="col-span-6">{problemColumns.action}</span>
@@ -298,7 +298,7 @@ function Index() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 font-serif text-xl italic text-gold sm:mt-8 sm:text-2xl lg:text-3xl">
+              <p className="mt-5 font-serif text-xl italic text-gold sm:mt-6 sm:text-2xl lg:text-3xl">
                 {t("landing.problemQuote")}
               </p>
             </Reveal>
@@ -559,11 +559,11 @@ function Index() {
                   <p className="mt-3 flex-1 text-[15px] leading-relaxed text-slate sm:text-base">
                     {route.text}
                   </p>
-                  <ul className="mt-4 flex flex-wrap gap-2 sm:mt-6">
+                  <ul className="mt-4 flex flex-nowrap gap-1.5 sm:mt-6 sm:gap-2">
                     {route.tags.map((tag) => (
                       <li
                         key={tag}
-                        className="border border-border bg-sand px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate sm:px-3 sm:py-1.5 sm:text-[11px]"
+                        className="flex-1 border border-border bg-sand px-1.5 py-1 text-center text-[9px] font-semibold uppercase tracking-wide text-slate sm:px-2 sm:py-1.5 sm:text-[11px] sm:tracking-wider"
                       >
                         {tag}
                       </li>

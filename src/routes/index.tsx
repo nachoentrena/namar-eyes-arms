@@ -3,8 +3,10 @@ import { ArrowRight, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import heroPort from "@/assets/hero-port.jpg";
-import onTheGround from "@/assets/on-the-ground.jpg";
-import qualityControl from "@/assets/quality-control.jpg";
+import onTheGroundAsset from "@/assets/nacho-feria.jpg.asset.json";
+import qualityControlAsset from "@/assets/ana-maria-fabrica.jpg.asset.json";
+const onTheGround = onTheGroundAsset.url;
+const qualityControl = qualityControlAsset.url;
 import worldMap from "@/assets/world-map.jpg";
 import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";

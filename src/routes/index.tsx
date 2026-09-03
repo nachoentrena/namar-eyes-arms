@@ -448,7 +448,7 @@ function Index() {
             height={1575}
             loading="lazy"
             alt="Nacho, de NAMAR Global, revisando productos con un proveedor en una feria en China"
-            className="absolute inset-0 h-full w-full object-cover object-[50%_25%] lg:static lg:order-2 lg:h-[560px] lg:object-[50%_30%]"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_25%] lg:static lg:order-2 lg:h-[560px] lg:object-[50%_12%]"
           />
           <div className="absolute inset-0 bg-navy/75 lg:hidden" />
           <div className="relative flex min-h-[400px] items-center px-5 py-14 sm:min-h-[460px] sm:px-6 lg:order-1 lg:min-h-0 lg:py-0">

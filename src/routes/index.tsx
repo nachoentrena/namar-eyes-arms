@@ -5,9 +5,11 @@ import { useTranslation } from "react-i18next";
 import heroPort from "@/assets/hero-port.jpg";
 import onTheGroundAsset from "@/assets/nacho-feria.jpg.asset.json";
 import qualityControlAsset from "@/assets/ana-maria-fabrica.jpg.asset.json";
+import teamPhotoAsset from "@/assets/equipo-canton-fair.jpg.asset.json";
+import worldMap from "@/assets/world-map.jpg";
 const onTheGround = onTheGroundAsset.url;
 const qualityControl = qualityControlAsset.url;
-import worldMap from "@/assets/world-map.jpg";
+const teamPhoto = teamPhotoAsset.url;
 import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
@@ -248,60 +250,63 @@ function Index() {
         </section>
 
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
-        <section className="overflow-hidden bg-navy px-5 pb-14 pt-4 text-navy-foreground sm:px-6 sm:pb-20 sm:pt-6 lg:pb-28 lg:pt-8">
+        <section className="overflow-hidden bg-navy px-5 py-14 text-navy-foreground sm:px-6 sm:py-18 lg:py-24">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-4 lg:grid-cols-12 lg:items-start lg:gap-8">
-              <Reveal className="lg:col-span-8">
-                <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
-                <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
-                  {t("landing.problemIntro")}
-                </p>
-              </Reveal>
-              <Reveal delay={120} className="hidden lg:col-span-4 lg:block">
-                <img
-                  src={qualityControl}
-                  width={886}
-                  height={1575}
-                  loading="lazy"
-                  alt="Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica"
-                  className="aspect-4/5 w-full object-cover object-[50%_30%] grayscale transition-all duration-700 hover:grayscale-0"
-                />
-              </Reveal>
-            </div>
-
-            <Reveal className="mt-2 sm:mt-3">
-              <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-2 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
-                <span className="col-span-3">{problemColumns.risk}</span>
-                <span className="col-span-6">{problemColumns.action}</span>
-                <span className="col-span-3">{problemColumns.result}</span>
-              </div>
-              <ul className="divide-y divide-navy-foreground/10 border-t border-navy-foreground/15 md:border-t-0">
-                {problems.map((row, i) => (
-                  <li
-                    key={row.risk}
-                    className="grid gap-1 py-3 md:grid-cols-12 md:items-start md:gap-6 md:py-4"
-                  >
-                    <div className="flex items-baseline gap-3 md:col-span-3">
-                      <span className="text-xs font-bold text-gold">{`0${i + 1}`}</span>
-                      <h3 className="text-base font-bold leading-snug sm:text-lg">{row.risk}</h3>
-                    </div>
-                    <p className="pl-7 text-[15px] leading-relaxed text-navy-foreground/75 sm:text-base md:col-span-6 md:pl-0">
-                      <span className="mr-2 text-[10px] font-bold uppercase tracking-widest text-gold md:hidden">
-                        {problemColumns.action} →
-                      </span>
-                      {row.action}
-                    </p>
-                    <p className="flex items-start gap-2 pl-7 text-[15px] font-semibold text-navy-foreground sm:text-base md:col-span-3 md:pl-0">
-                      <Check className="mt-1 size-4 shrink-0 text-gold" strokeWidth={3} />
-                      {row.result}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 font-serif text-xl italic text-gold sm:mt-5 sm:text-2xl lg:text-3xl">
-                {t("landing.problemQuote")}
+            <Reveal className="max-w-3xl">
+              <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
+              <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
+                {t("landing.problemIntro")}
               </p>
             </Reveal>
+
+            <div className="mt-5 grid gap-5 sm:mt-6 lg:grid-cols-12 lg:gap-10">
+              <Reveal delay={80} className="lg:order-2 lg:col-span-4">
+                <div className="relative overflow-hidden lg:h-full lg:min-h-[420px]">
+                  <img
+                    src={qualityControl}
+                    width={886}
+                    height={1575}
+                    loading="lazy"
+                    alt="Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica"
+                    className="aspect-[16/10] w-full object-cover object-[50%_28%] grayscale transition-all duration-700 hover:grayscale-0 sm:aspect-[2/1] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+                  />
+                </div>
+              </Reveal>
+
+              <Reveal className="lg:order-1 lg:col-span-8">
+                <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-2 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
+                  <span className="col-span-3">{problemColumns.risk}</span>
+                  <span className="col-span-6">{problemColumns.action}</span>
+                  <span className="col-span-3">{problemColumns.result}</span>
+                </div>
+                <ul className="divide-y divide-navy-foreground/10 border-t border-navy-foreground/15 md:border-t-0">
+                  {problems.map((row, i) => (
+                    <li
+                      key={row.risk}
+                      className="grid gap-1 py-3 md:grid-cols-12 md:items-start md:gap-6 md:py-4"
+                    >
+                      <div className="flex items-baseline gap-3 md:col-span-3">
+                        <span className="text-xs font-bold text-gold">{`0${i + 1}`}</span>
+                        <h3 className="text-base font-bold leading-snug sm:text-lg">{row.risk}</h3>
+                      </div>
+                      <p className="pl-7 text-[15px] leading-relaxed text-navy-foreground/75 sm:text-base md:col-span-6 md:pl-0">
+                        <span className="mr-2 text-[10px] font-bold uppercase tracking-widest text-gold md:hidden">
+                          {problemColumns.action} →
+                        </span>
+                        {row.action}
+                      </p>
+                      <p className="flex items-start gap-2 pl-7 text-[15px] font-semibold text-navy-foreground sm:text-base md:col-span-3 md:pl-0">
+                        <Check className="mt-1 size-4 shrink-0 text-gold" strokeWidth={3} />
+                        {row.result}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 font-serif text-xl italic text-gold sm:mt-5 sm:text-2xl lg:text-3xl">
+                  {t("landing.problemQuote")}
+                </p>
+              </Reveal>
+            </div>
           </div>
         </section>
 
@@ -448,7 +453,7 @@ function Index() {
             height={1575}
             loading="lazy"
             alt="Nacho, de NAMAR Global, revisando productos con un proveedor en una feria en China"
-            className="absolute inset-0 h-full w-full object-cover object-[50%_10%] lg:static lg:order-2 lg:h-[720px] lg:object-[50%_12%]"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_10%] lg:static lg:order-2 lg:h-[600px] lg:object-top"
           />
           <div className="absolute inset-0 bg-navy/75 lg:hidden" />
           <div className="relative flex min-h-[400px] items-center px-5 py-14 sm:min-h-[460px] sm:px-6 lg:order-1 lg:min-h-0 lg:py-0">
@@ -468,35 +473,36 @@ function Index() {
 
         {/* ─── PERSONAS ─────────────────────────────────────────── */}
         <section id="equipo" className={section}>
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-12 lg:gap-16">
-            <Reveal className="lg:col-span-5">
+          <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-12 lg:items-center lg:gap-16">
+            <Reveal className="lg:order-2 lg:col-span-6">
               <p className={eyebrow}>{t("landing.teamLabel")}</p>
               <h2 className={`mt-3 ${h2Serif}`}>{t("landing.teamTitle")}</h2>
-              <p className={`mt-5 ${lead}`}>{t("landing.teamText")}</p>
+              <p className={`mt-4 ${lead}`}>{t("landing.teamText")}</p>
               <p className="mt-5 border-l-2 border-gold pl-4 text-sm font-semibold">
                 {t("landing.teamNote")}
               </p>
+              <ul className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-5 sm:mt-8 sm:gap-6">
+                {team.map((person) => (
+                  <li key={person.name}>
+                    <h3 className="text-lg font-bold sm:text-xl">{person.name}</h3>
+                    <p className="mt-1 text-xs text-slate sm:text-sm">{person.role}</p>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:col-span-7">
-              {team.map((person, i) => (
-                <Reveal key={person.name} delay={i * 80} className="group">
-                  <div className="relative aspect-4/5 w-full overflow-hidden border border-border bg-sand">
-                    {/* Replace this block with <img src=... alt=... /> when real photos are available */}
-                    <div className="absolute inset-0 m-3 flex flex-col items-center justify-center gap-3 border border-dashed border-navy/15 sm:m-4 sm:gap-4">
-                      <span className="grid size-14 place-items-center border border-navy bg-background font-serif text-3xl italic sm:size-20 sm:text-4xl">
-                        {person.initials}
-                      </span>
-                      <span className="px-2 text-center text-[10px] font-bold uppercase tracking-widest text-slate/60">
-                        {t("landing.teamPhotoPlaceholder")}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-0 left-0 h-1 w-0 bg-gold transition-all duration-500 group-hover:w-full" />
-                  </div>
-                  <h3 className="mt-3 text-xl font-bold sm:mt-5 sm:text-2xl">{person.name}</h3>
-                  <p className="mt-1 text-xs text-slate sm:text-sm">{person.role}</p>
-                </Reveal>
-              ))}
-            </div>
+            <Reveal delay={100} className="group lg:order-1 lg:col-span-6">
+              <div className="relative overflow-hidden border border-border bg-sand">
+                <img
+                  src={teamPhoto}
+                  width={1600}
+                  height={2133}
+                  loading="lazy"
+                  alt="Nacho y Ana María, de NAMAR Global, en la entrada de la Feria de Cantón (China Import and Export Fair)"
+                  className="aspect-4/5 w-full object-cover object-[50%_45%] sm:aspect-square lg:aspect-4/5"
+                />
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gold transition-all duration-500 group-hover:w-full" />
+              </div>
+            </Reveal>
           </div>
         </section>
 

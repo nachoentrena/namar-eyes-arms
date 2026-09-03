@@ -1,11 +1,9 @@
 import { useTranslation } from "react-i18next";
 
-const WHATSAPP_NUMBER = "8618217760619";
-const WHATSAPP_MESSAGE = "Hola, me gustaría recibir más información";
+import { whatsappHref } from "@/lib/site-config";
 
 export function MobileCta() {
   const { t } = useTranslation();
-  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-background/95 backdrop-blur-md sm:hidden">
@@ -16,7 +14,7 @@ export function MobileCta() {
         {t("landing.mobileCta")}
       </a>
       <a
-        href={whatsappHref}
+        href={whatsappHref(t("whatsapp.message"))}
         target="_blank"
         rel="noopener noreferrer"
         className="px-6 py-4 text-center text-[11px] font-bold uppercase tracking-widest text-navy"

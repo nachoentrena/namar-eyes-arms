@@ -2,6 +2,7 @@ import { Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { getPreferredLanguage } from "@/i18n";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -10,14 +11,23 @@ export function SiteHeader() {
   const [languageOpen, setLanguageOpen] = useState(false);
 
   const links = [
-    { href: "#inicio", label: t("nav.home") },
     { href: "#servicios", label: t("nav.services") },
+    { href: "#costes", label: t("nav.costs") },
     { href: "#proceso", label: t("nav.process") },
-    { href: "#nosotros", label: t("nav.about") },
-    { href: "#perfiles", label: t("nav.profiles") },
+    { href: "#equipo", label: t("nav.team") },
+    { href: "#rutas", label: t("nav.routes") },
     { href: "#faq", label: t("nav.faq") },
     { href: "#contacto", label: t("nav.contact") },
   ];
+
+  // Switch to the visitor's preferred language only after the page has
+  // hydrated, so server HTML (always "es") matches the first client render.
+  useEffect(() => {
+    const preferred = getPreferredLanguage();
+    if (preferred !== i18n.language) {
+      void i18n.changeLanguage(preferred);
+    }
+  }, [i18n]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -85,7 +95,7 @@ export function SiteHeader() {
 
           <a
             href="#contacto"
-            className="hidden bg-navy px-6 py-3 text-xs font-semibold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:inline-block"
+            className="hidden bg-navy px-5 py-3 text-xs font-semibold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground md:inline-block"
           >
             {t("header.cta")}
           </a>

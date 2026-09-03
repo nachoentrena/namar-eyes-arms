@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 export type ServiceItem = {
   n: string;
+  phase?: string;
   title: string;
   text: string;
 };
@@ -12,7 +13,8 @@ function usePerView() {
   useEffect(() => {
     const compute = () => {
       const w = window.innerWidth;
-      if (w < 768) setPerView(2);
+      if (w < 480) setPerView(1);
+      else if (w < 768) setPerView(2);
       else if (w < 1024) setPerView(3);
       else setPerView(4);
     };
@@ -58,6 +60,8 @@ export function ServicesCarousel({ items }: { items: ServiceItem[] }) {
       className="relative mx-auto max-w-7xl"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
     >
       <div className="overflow-hidden px-1 py-2">
         <div
@@ -66,14 +70,17 @@ export function ServicesCarousel({ items }: { items: ServiceItem[] }) {
           style={{ transform: `translateX(-${index * (100 / perView)}%)` }}
         >
           {items.map((service) => (
-            <div
-              key={service.n}
-              className="shrink-0 px-2"
-              style={{ width: `${100 / perView}%` }}
-            >
-              <article className="group h-full rounded-2xl border border-border bg-card p-7 shadow-panel transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-elevated">
-                <span className="mb-5 block text-sm font-bold text-gold">{service.n}</span>
-                <h3 className="mb-3 text-xl font-bold">{service.title}</h3>
+            <div key={service.n} className="shrink-0 px-2" style={{ width: `${100 / perView}%` }}>
+              <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-panel transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-elevated">
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <span className="text-sm font-bold text-gold">{service.n}</span>
+                  {service.phase ? (
+                    <span className="border border-border bg-sand px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-slate">
+                      {service.phase}
+                    </span>
+                  ) : null}
+                </div>
+                <h3 className="mb-3 text-lg font-bold leading-snug">{service.title}</h3>
                 <p className="text-sm leading-relaxed text-slate">{service.text}</p>
               </article>
             </div>

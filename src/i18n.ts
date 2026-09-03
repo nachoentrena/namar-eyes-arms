@@ -265,7 +265,7 @@ const resources = {
 
         footerTagline: "Tu equipo en China. Importación desde China a España y Colombia.",
         footerCountries: ["España", "China", "Colombia"],
-        footerText: "© {year} NAMAR Global. Gestión de importaciones desde China.",
+        footerText: "© {{year}} NAMAR Global. Gestión de importaciones desde China.",
         mobileCta: "Analizar mi importación",
       },
     },
@@ -513,7 +513,7 @@ const resources = {
 
         footerTagline: "Your team in China. Imports from China to Spain and Colombia.",
         footerCountries: ["Spain", "China", "Colombia"],
-        footerText: "© {year} NAMAR Global. Import management from China.",
+        footerText: "© {{year}} NAMAR Global. Import management from China.",
         mobileCta: "Analyze my import",
       },
     },

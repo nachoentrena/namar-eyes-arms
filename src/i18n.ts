@@ -331,21 +331,21 @@ const resources = {
         heroTitle: "Your supplier is in China.",
         heroSubtitle: "So is your peace of mind.",
         heroDescription:
-          "NAMAR Global represents your interests directly on the ground. We find suppliers, negotiate, verify, control, and coordinate your import from China to Spain or Colombia.",
+          "NAMAR Global represents your interests directly on the ground. We find suppliers, negotiate, verify, control, and coordinate your import all the way to Spain or Colombia.",
         heroPrimaryCta: "Analyze my import",
         heroSecondaryCta: "How we work",
         heroMicro: "We simulate your import costs within 24 hours.",
         heroQuote:
-          "“We are our clients' eyes and arms in China. We protect their purchase and reduce the risk of importing.”",
+          "“We are our clients' eyes and arms at origin. We protect their purchase and reduce the risk of importing.”",
 
-        authorityLabel: "Why NAMAR is different",
+        authorityLabel: "Your team at origin",
         authorityTitle: "8 years on the ground change the way you import.",
         authorityText:
-          "NAMAR does not manage China from an office in Europe. We are physically here: speaking with suppliers in their language, visiting factories, reviewing production, and solving issues the moment they happen, not weeks later by email.",
+          "We don't manage your import from an office in Europe. We are physically here: speaking with suppliers in their language, visiting factories, reviewing production, and solving issues the moment they happen, not weeks later by email.",
         authorityPoints: [
           {
             label: "What we do",
-            text: "We manage your import from China end to end: we find and verify the factory, negotiate, control quality, and coordinate shipping to Spain or Colombia.",
+            text: "We manage your import end to end: we find and verify the factory, negotiate, control quality, and coordinate shipping to Spain or Colombia.",
           },
           {
             label: "For whom",
@@ -353,12 +353,12 @@ const resources = {
           },
           {
             label: "How we do it",
-            text: "With a physical presence in China. We go to the factory, speak the language, and solve issues at the source before the problem travels in the container.",
+            text: "With a physical presence at origin. We go to the factory, speak the language, and solve issues there before the problem travels in the container.",
           },
         ],
         authorityLink: "See how we work",
 
-        problemTitle: "Importing from China should not be a leap of faith.",
+        problemTitle: "Importing should not be a matter of luck.",
         problemIntro:
           "Most import problems do not show up at destination: they appear at the source, months earlier, when nobody is looking. This is how we turn them into controlled decisions.",
         problemColumns: { risk: "Risk", action: "What we do", result: "Result" },
@@ -407,12 +407,12 @@ const resources = {
         costCta: "Calculate my import",
         costNote: "You receive a clear report with the estimated landed cost.",
 
-        objectionsTitle: "Importing from China, simplified.",
+        objectionsTitle: "Importing, without surprises.",
         objectionsIntro: "These are the doubts we receive every week. This is how we solve them.",
         objections: [
           { q: "“I found a supplier, but I don't know whether to trust them.”", a: "We verify who they truly are: whether they manufacture or subcontract, what capacity they have, and which clients they work with. If necessary, we go to the factory and tell you what we saw." },
           { q: "“I don't know what documentation my product needs.”", a: "We review your product requirements with you before buying: commercial documentation, certifications, and entry requirements for Spain or Colombia. It is much cheaper to know beforehand than with goods stuck in customs." },
-          { q: "“I'm afraid the quality won't match what was agreed.”", a: "We define clear specifications with the supplier and verify them at the source. A defect detected in China is corrected; one detected at your warehouse is paid for." },
+          { q: "“I'm afraid the quality won't match what was agreed.”", a: "We define clear specifications with the supplier and verify them at the source. A defect detected at the factory is corrected; one detected at your warehouse is paid for." },
           { q: "“I don't know which shipping option suits me.”", a: "Depending on product, volume, weight, and urgency, the operation changes and so does the margin. We propose the route and incoterm that make sense for your case, not the default." },
           { q: "“I already import, but I want to stop improvising.”", a: "We review your current operations, suppliers, and costs and professionalize the process with a single point of contact at origin." },
         ],
@@ -422,7 +422,7 @@ const resources = {
         processCta: "Analyze my import",
         steps: [
           { n: "01", title: "We understand your project", text: "We analyze what you want to buy, quantities, budget, destination, and where you stand." },
-          { n: "02", title: "We source suppliers", text: "We find suitable suppliers in China and discard those that do not fit." },
+          { n: "02", title: "We source suppliers", text: "We find suitable manufacturers at origin and discard those that do not fit." },
           { n: "03", title: "We verify and negotiate", text: "We check the supplier on the ground and negotiate the terms." },
           { n: "04", title: "We control production", text: "We monitor quality and compliance with what was agreed before shipment." },
           { n: "05", title: "We manage logistics", text: "We coordinate transport, documentation, and customs to Spain or Colombia." },
@@ -435,64 +435,55 @@ const resources = {
         onTheGroundCta: "Analyze my import",
 
         teamLabel: "The people behind NAMAR",
-        teamTitle: "We don't manage China from an office in Europe. We live here.",
+        teamTitle: "When you write to us, you talk to the person who goes to the factory.",
         teamText:
-          "Behind NAMAR Global are people with names who have spent years living and working in China. When you talk to us, you talk to the person who goes to the factory, negotiates with the supplier, and follows your operation closely.",
+          "Behind NAMAR Global are people with names who have spent years living and working on the ground. The person who negotiates with the supplier and follows your operation closely is the same one who answers you.",
         team: [
-          { name: "Nacho", role: "NAMAR Global · On the ground in China", initials: "N" },
-          { name: "María", role: "NAMAR Global · On the ground in China", initials: "M" },
+          { name: "Nacho", role: "NAMAR Global · Operations at origin", initials: "N" },
+          { name: "María", role: "NAMAR Global · Operations at origin", initials: "M" },
         ],
-        teamPhotoPlaceholder: "Real photo in China",
+        teamPhotoPlaceholder: "Real factory photo",
         teamNote: "You speak directly with us. No call centers, no intermediaries.",
 
-        whyTitle: "Your team in China, without needing to be in China.",
+        whyTitle: "What changes when you have a team at origin.",
         differentiators: [
-          { title: "8 years in China", text: "Real experience living, working, and operating on the ground." },
-          { title: "Physical presence", text: "We are in China to verify, negotiate, and solve issues in person." },
-          { title: "Direct communication", text: "Language, culture, and local market knowledge, without intermediaries." },
-          { title: "Lower risk", text: "We reduce the uncertainty of buying from unknown suppliers." },
-          { title: "Control from start to finish", text: "We don't disappear after finding the supplier." },
-          { title: "A single point of contact", text: "We centralize the operation: you don't coordinate agents, suppliers, and forwarders on your own." },
+          { title: "Real verification", text: "We check who manufactures, with what capacity and track record, before you pay a single deposit." },
+          { title: "Direct communication", text: "We speak with the supplier in their language and codes. You receive clear information, with no layers in between." },
+          { title: "Lower risk", text: "Every phase is designed to catch the problem while it is still cheap to fix." },
+          { title: "Clear costs from the start", text: "You know the landed cost before committing money, not when the forwarder's invoice arrives." },
+          { title: "End-to-end control", text: "From supplier search to delivery: one operation, one standard, no gaps between phases." },
+          { title: "A single point of contact", text: "You don't coordinate agents, factories, and forwarders on your own. You coordinate us." },
         ],
         quote: "“We are your eyes and arms in China.”",
-
-        profilesTitle: "Is it for you?",
-        profiles: [
-          { title: "SMEs", text: "Companies that want to start or improve their imports from China with less risk." },
-          { title: "Entrepreneurs", text: "People with a product or project who need a team at origin to make it happen." },
-          { title: "Businesses already importing", text: "Companies that want to reduce risk, know their real costs, and professionalize their process." },
-          { title: "Businesses starting in China", text: "Companies that need a local partner to take their first steps safely." },
-        ],
-        profilesQuote: "You don't need experience importing from China. You need someone who has it.",
 
         routesLabel: "Routes we work",
         routesTitle: "Importing from China to Spain and to Colombia.",
         routesText:
-          "We don't work “the world”. We work two routes we know well, with their customs, requirements, and logistics. That lets us anticipate problems instead of discovering them.",
+          "Two routes we know well, with their customs, requirements, and logistics. That lets us anticipate problems instead of discovering them.",
         routes: [
           {
             from: "China",
             to: "Spain",
             title: "Importing from China to Spain",
-            text: "Supplier sourcing, quality control at origin, and logistics and customs coordination to your warehouse in Spain, with EU entry requirements reviewed before you buy.",
+            text: "Supplier sourcing and verification, quality control at origin, and logistics and customs coordination to your warehouse, with EU entry requirements reviewed before you buy.",
             tags: ["Verified suppliers", "EU requirements", "Spanish customs"],
           },
           {
             from: "China",
             to: "Colombia",
             title: "Importing from China to Colombia",
-            text: "Representation at origin for Colombian companies: factory verification, negotiation, quality control, and coordination of shipping and documentation to Colombia.",
+            text: "Representation at origin for Colombian companies: factory verification, negotiation, quality control, and coordination of shipping and documentation to destination.",
             tags: ["Verified suppliers", "Import documentation", "Colombian customs"],
           },
         ],
         routesNote: "Another destination? Tell us and we will assess whether we can help.",
 
         proofLabel: "Operational proof",
-        proofTitle: "What you can expect from working with NAMAR.",
+        proofTitle: "What you can hold us to on every operation.",
         proofIntro:
-          "We will publish real client testimonials here once we can do so with name and company. In the meantime, this is what we can promise you.",
+          "This is how we work, with every client and every import. Concrete commitments, not catalogue promises.",
         proof: [
-          { title: "Real presence on the ground", text: "8 years living and working in China. We visit factories and speak with suppliers in person, not only by email." },
+          { title: "Real presence on the ground", text: "We visit factories and speak with suppliers in person, not only by email. If someone needs to go, we go." },
           { title: "Defined, documented process", text: "Every operation follows the same phases: find, verify, negotiate, control, and ship. You know where your import stands." },
           { title: "Spain and Colombia coverage", text: "We know the requirements, documentation, and logistics of the two routes we work." },
           { title: "Support from start to finish", text: "We don't disappear after introducing a supplier. We follow the operation until the goods reach your warehouse." },

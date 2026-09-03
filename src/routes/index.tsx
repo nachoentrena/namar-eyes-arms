@@ -248,12 +248,12 @@ function Index() {
         </section>
 
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
-        <section className={`overflow-hidden bg-navy text-navy-foreground ${section}`}>
+        <section className="overflow-hidden bg-navy px-5 pb-14 pt-10 text-navy-foreground sm:px-6 sm:pb-20 sm:pt-14 lg:pb-28 lg:pt-16">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-4 lg:grid-cols-12 lg:items-end lg:gap-8">
+            <div className="grid gap-3 lg:grid-cols-12 lg:items-end lg:gap-8">
               <Reveal className="lg:col-span-8">
                 <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
-                <p className="mt-3 max-w-2xl text-base text-navy-foreground/60 sm:mt-4 sm:text-lg">
+                <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
                   {t("landing.problemIntro")}
                 </p>
               </Reveal>
@@ -269,8 +269,8 @@ function Index() {
               </Reveal>
             </div>
 
-            <Reveal className="mt-4 sm:mt-6">
-              <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-3 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
+            <Reveal className="mt-3 sm:mt-4">
+              <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-2 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
                 <span className="col-span-3">{problemColumns.risk}</span>
                 <span className="col-span-6">{problemColumns.action}</span>
                 <span className="col-span-3">{problemColumns.result}</span>
@@ -279,7 +279,7 @@ function Index() {
                 {problems.map((row, i) => (
                   <li
                     key={row.risk}
-                    className="grid gap-1.5 py-4 md:grid-cols-12 md:items-start md:gap-6 md:py-5"
+                    className="grid gap-1 py-3 md:grid-cols-12 md:items-start md:gap-6 md:py-4"
                   >
                     <div className="flex items-baseline gap-3 md:col-span-3">
                       <span className="text-xs font-bold text-gold">{`0${i + 1}`}</span>
@@ -298,7 +298,7 @@ function Index() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 font-serif text-xl italic text-gold sm:mt-6 sm:text-2xl lg:text-3xl">
+              <p className="mt-4 font-serif text-xl italic text-gold sm:mt-5 sm:text-2xl lg:text-3xl">
                 {t("landing.problemQuote")}
               </p>
             </Reveal>

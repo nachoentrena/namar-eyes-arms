@@ -3,8 +3,10 @@ import { ArrowRight, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import heroPort from "@/assets/hero-port.jpg";
-import onTheGround from "@/assets/on-the-ground.jpg";
-import qualityControl from "@/assets/quality-control.jpg";
+import onTheGroundAsset from "@/assets/nacho-feria.jpg.asset.json";
+import qualityControlAsset from "@/assets/ana-maria-fabrica.jpg.asset.json";
+const onTheGround = onTheGroundAsset.url;
+const qualityControl = qualityControlAsset.url;
 import worldMap from "@/assets/world-map.jpg";
 import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";
@@ -258,11 +260,11 @@ function Index() {
               <Reveal delay={120} className="hidden lg:col-span-4 lg:block">
                 <img
                   src={qualityControl}
-                  width={1008}
-                  height={1264}
+                  width={886}
+                  height={1575}
                   loading="lazy"
-                  alt="Inspectora de calidad midiendo una pieza mecánica en una fábrica china"
-                  className="aspect-3/2 w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+                  alt="Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica"
+                  className="aspect-4/5 w-full object-cover object-[50%_35%] grayscale transition-all duration-700 hover:grayscale-0"
                 />
               </Reveal>
             </div>
@@ -439,18 +441,18 @@ function Index() {
         </section>
 
         {/* ─── SOBRE EL TERRENO ─────────────────────────────────── */}
-        <section className="relative">
+        <section className="relative bg-navy lg:grid lg:grid-cols-2">
           <img
             src={onTheGround}
-            width={1600}
-            height={1008}
+            width={886}
+            height={1575}
             loading="lazy"
-            alt="Responsable de NAMAR Global recorriendo una fábrica en China junto al gerente de producción"
-            className="h-[400px] w-full object-cover sm:h-[460px] lg:h-[560px]"
+            alt="Nacho, de NAMAR Global, revisando productos con un proveedor en una feria en China"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_25%] lg:static lg:order-2 lg:h-[560px] lg:object-top"
           />
-          <div className="absolute inset-0 bg-navy/75" />
-          <div className="absolute inset-0 flex items-center px-5 sm:px-6">
-            <div className="mx-auto w-full max-w-7xl">
+          <div className="absolute inset-0 bg-navy/75 lg:hidden" />
+          <div className="relative flex min-h-[400px] items-center px-5 py-14 sm:min-h-[460px] sm:px-6 lg:order-1 lg:min-h-0 lg:py-0">
+            <div className="ml-auto w-full max-w-[40rem] lg:pr-12">
               <div className="max-w-2xl text-navy-foreground">
                 <h2 className={h2Sans}>{t("landing.onTheGroundTitle")}</h2>
                 <p className="mt-4 text-base text-navy-foreground/70 sm:text-lg">

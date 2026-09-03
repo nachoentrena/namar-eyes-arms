@@ -43,12 +43,12 @@ export function SiteHeader() {
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-6 lg:h-20">
         <a href="#inicio" className="flex items-center gap-2">
-          <span className="grid size-8 place-items-center bg-navy text-sm font-bold tracking-tighter text-navy-foreground">
+          <span className="grid size-7 place-items-center bg-navy text-xs font-bold tracking-tighter text-navy-foreground sm:size-8 sm:text-sm">
             N
           </span>
-          <span className="text-xl font-bold uppercase tracking-tight">
+          <span className="text-base font-bold uppercase tracking-tight sm:text-xl">
             Namar <span className="text-gold">Global</span>
           </span>
         </a>
@@ -123,14 +123,14 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <nav className="border-t border-border bg-background px-6 py-6 lg:hidden">
-          <ul className="flex flex-col gap-5">
+        <nav className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background px-5 py-5 sm:px-6 lg:hidden">
+          <ul className="flex flex-col gap-3.5">
             {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="text-base font-medium text-slate transition-colors hover:text-navy"
+                  className="block py-0.5 text-base font-medium text-slate transition-colors hover:text-navy"
                 >
                   {link.label}
                 </a>
@@ -165,7 +165,7 @@ export function SiteHeader() {
               <a
                 href="#contacto"
                 onClick={() => setOpen(false)}
-                className="mt-2 block bg-navy px-6 py-4 text-center text-xs font-semibold uppercase tracking-widest text-navy-foreground"
+                className="mt-1 block bg-navy px-6 py-3.5 text-center text-xs font-semibold uppercase tracking-widest text-navy-foreground"
               >
                 {t("header.cta")}
               </a>

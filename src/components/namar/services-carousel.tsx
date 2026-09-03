@@ -51,9 +51,12 @@ export function ServicesCarousel({ items }: { items: ServiceItem[] }) {
     if (paused) return;
     const id = window.setInterval(() => {
       setIndex((i) => (i + 1) % pages);
-    }, 1000);
+    }, 5000);
     return () => window.clearInterval(id);
   }, [paused, pages, tick]);
+
+  const arrowClass =
+    "grid h-10 w-10 place-items-center rounded-full border border-border bg-background text-navy shadow-panel transition-colors hover:bg-navy hover:text-navy-foreground sm:h-11 sm:w-11";
 
   return (
     <div
@@ -70,9 +73,9 @@ export function ServicesCarousel({ items }: { items: ServiceItem[] }) {
           style={{ transform: `translateX(-${index * (100 / perView)}%)` }}
         >
           {items.map((service) => (
-            <div key={service.n} className="shrink-0 px-2" style={{ width: `${100 / perView}%` }}>
-              <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-panel transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-elevated">
-                <div className="mb-5 flex items-center justify-between gap-3">
+            <div key={service.n} className="shrink-0 px-1.5 sm:px-2" style={{ width: `${100 / perView}%` }}>
+              <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-panel transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-elevated sm:p-7">
+                <div className="mb-4 flex items-center justify-between gap-3 sm:mb-5">
                   <span className="text-sm font-bold text-gold">{service.n}</span>
                   {service.phase ? (
                     <span className="border border-border bg-sand px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-slate">
@@ -80,7 +83,7 @@ export function ServicesCarousel({ items }: { items: ServiceItem[] }) {
                     </span>
                   ) : null}
                 </div>
-                <h3 className="mb-3 text-lg font-bold leading-snug">{service.title}</h3>
+                <h3 className="mb-2 text-base font-bold leading-snug sm:mb-3 sm:text-lg">{service.title}</h3>
                 <p className="text-sm leading-relaxed text-slate">{service.text}</p>
               </article>
             </div>
@@ -88,11 +91,12 @@ export function ServicesCarousel({ items }: { items: ServiceItem[] }) {
         </div>
       </div>
 
+      {/* Desktop/tablet arrows: outside the cards */}
       <button
         type="button"
         aria-label="Servicio anterior"
         onClick={() => go(index - 1)}
-        className="absolute -left-2 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-border bg-background text-navy shadow-panel transition-colors hover:bg-navy hover:text-navy-foreground lg:-left-6"
+        className={`${arrowClass} absolute -left-2 top-1/2 hidden -translate-y-1/2 md:grid lg:-left-6`}
       >
         &#8249;
       </button>
@@ -100,24 +104,43 @@ export function ServicesCarousel({ items }: { items: ServiceItem[] }) {
         type="button"
         aria-label="Servicio siguiente"
         onClick={() => go(index + 1)}
-        className="absolute -right-2 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-border bg-background text-navy shadow-panel transition-colors hover:bg-navy hover:text-navy-foreground lg:-right-6"
+        className={`${arrowClass} absolute -right-2 top-1/2 hidden -translate-y-1/2 md:grid lg:-right-6`}
       >
         &#8250;
       </button>
 
-      <div className="mt-10 flex items-center justify-center gap-2">
-        {Array.from({ length: pages }).map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            aria-label={`Ir a la vista ${i + 1}`}
-            aria-current={i === index}
-            onClick={() => go(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              i === index ? "w-8 bg-gold" : "w-2 bg-border hover:bg-slate"
-            }`}
-          />
-        ))}
+      {/* Controls row: arrows inline on mobile, dots everywhere */}
+      <div className="mt-6 flex items-center justify-center gap-4 sm:mt-8">
+        <button
+          type="button"
+          aria-label="Servicio anterior"
+          onClick={() => go(index - 1)}
+          className={`${arrowClass} md:hidden`}
+        >
+          &#8249;
+        </button>
+        <div className="flex items-center gap-2">
+          {Array.from({ length: pages }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Ir a la vista ${i + 1}`}
+              aria-current={i === index}
+              onClick={() => go(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === index ? "w-8 bg-gold" : "w-2 bg-border hover:bg-slate"
+              }`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          aria-label="Servicio siguiente"
+          onClick={() => go(index + 1)}
+          className={`${arrowClass} md:hidden`}
+        >
+          &#8250;
+        </button>
       </div>
     </div>
   );

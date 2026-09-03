@@ -30,7 +30,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5 md:grid-cols-2">
+    <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
       <div className="flex flex-col gap-2">
         <label htmlFor="nombre" className="text-[11px] font-bold uppercase tracking-widest text-slate">
           {t("contact.form.name")}
@@ -131,7 +131,7 @@ export function ContactForm() {
       </div>
       <button
         type="submit"
-        className="bg-navy px-8 py-4 text-xs font-bold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground md:col-span-2"
+        className="mt-1 bg-navy px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:py-4 md:col-span-2"
       >
         {t("contact.form.submit")}
       </button>

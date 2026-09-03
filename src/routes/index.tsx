@@ -250,10 +250,10 @@ function Index() {
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
         <section className={`overflow-hidden bg-navy text-navy-foreground ${section}`}>
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
+            <div className="grid gap-4 lg:grid-cols-12 lg:items-end lg:gap-8">
               <Reveal className="lg:col-span-8">
                 <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
-                <p className="mt-4 max-w-2xl text-base text-navy-foreground/60 sm:text-lg">
+                <p className="mt-3 max-w-2xl text-base text-navy-foreground/60 sm:mt-4 sm:text-lg">
                   {t("landing.problemIntro")}
                 </p>
               </Reveal>
@@ -269,7 +269,7 @@ function Index() {
               </Reveal>
             </div>
 
-            <Reveal className="mt-6 sm:mt-8">
+            <Reveal className="mt-4 sm:mt-6">
               <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-3 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
                 <span className="col-span-3">{problemColumns.risk}</span>
                 <span className="col-span-6">{problemColumns.action}</span>

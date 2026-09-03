@@ -2,6 +2,7 @@ import { Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { getPreferredLanguage } from "@/i18n";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -18,6 +19,15 @@ export function SiteHeader() {
     { href: "#faq", label: t("nav.faq") },
     { href: "#contacto", label: t("nav.contact") },
   ];
+
+  // Switch to the visitor's preferred language only after the page has
+  // hydrated, so server HTML (always "es") matches the first client render.
+  useEffect(() => {
+    const preferred = getPreferredLanguage();
+    if (preferred !== i18n.language) {
+      void i18n.changeLanguage(preferred);
+    }
+  }, [i18n]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";

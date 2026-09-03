@@ -248,9 +248,9 @@ function Index() {
         </section>
 
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
-        <section className="overflow-hidden bg-navy px-5 pb-14 pt-6 text-navy-foreground sm:px-6 sm:pb-20 sm:pt-8 lg:pb-28 lg:pt-10">
+        <section className="overflow-hidden bg-navy px-5 pb-14 pt-4 text-navy-foreground sm:px-6 sm:pb-20 sm:pt-6 lg:pb-28 lg:pt-8">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-3 lg:grid-cols-12 lg:items-end lg:gap-8">
+            <div className="grid gap-4 lg:grid-cols-12 lg:items-start lg:gap-8">
               <Reveal className="lg:col-span-8">
                 <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
                 <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
@@ -264,12 +264,12 @@ function Index() {
                   height={1575}
                   loading="lazy"
                   alt="Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica"
-                  className="aspect-4/5 w-full object-cover object-[50%_35%] grayscale transition-all duration-700 hover:grayscale-0"
+                  className="aspect-4/5 w-full object-cover object-[50%_30%] grayscale transition-all duration-700 hover:grayscale-0"
                 />
               </Reveal>
             </div>
 
-            <Reveal className="mt-3 sm:mt-4">
+            <Reveal className="mt-2 sm:mt-3">
               <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-2 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
                 <span className="col-span-3">{problemColumns.risk}</span>
                 <span className="col-span-6">{problemColumns.action}</span>

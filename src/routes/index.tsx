@@ -444,11 +444,11 @@ function Index() {
         <section className="relative">
           <img
             src={onTheGround}
-            width={1600}
-            height={1008}
+            width={886}
+            height={1575}
             loading="lazy"
-            alt="Responsable de NAMAR Global recorriendo una fábrica en China junto al gerente de producción"
-            className="h-[400px] w-full object-cover sm:h-[460px] lg:h-[560px]"
+            alt="Nacho, de NAMAR Global, revisando productos con un proveedor en una feria en China"
+            className="h-[400px] w-full object-cover object-[50%_30%] sm:h-[460px] lg:h-[560px]"
           />
           <div className="absolute inset-0 bg-navy/75" />
           <div className="absolute inset-0 flex items-center px-5 sm:px-6">

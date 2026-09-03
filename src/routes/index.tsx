@@ -468,35 +468,36 @@ function Index() {
 
         {/* ─── PERSONAS ─────────────────────────────────────────── */}
         <section id="equipo" className={section}>
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-12 lg:gap-16">
-            <Reveal className="lg:col-span-5">
+          <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-12 lg:items-center lg:gap-16">
+            <Reveal className="lg:order-2 lg:col-span-6">
               <p className={eyebrow}>{t("landing.teamLabel")}</p>
               <h2 className={`mt-3 ${h2Serif}`}>{t("landing.teamTitle")}</h2>
-              <p className={`mt-5 ${lead}`}>{t("landing.teamText")}</p>
+              <p className={`mt-4 ${lead}`}>{t("landing.teamText")}</p>
               <p className="mt-5 border-l-2 border-gold pl-4 text-sm font-semibold">
                 {t("landing.teamNote")}
               </p>
+              <ul className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-5 sm:mt-8 sm:gap-6">
+                {team.map((person) => (
+                  <li key={person.name}>
+                    <h3 className="text-lg font-bold sm:text-xl">{person.name}</h3>
+                    <p className="mt-1 text-xs text-slate sm:text-sm">{person.role}</p>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:col-span-7">
-              {team.map((person, i) => (
-                <Reveal key={person.name} delay={i * 80} className="group">
-                  <div className="relative aspect-4/5 w-full overflow-hidden border border-border bg-sand">
-                    {/* Replace this block with <img src=... alt=... /> when real photos are available */}
-                    <div className="absolute inset-0 m-3 flex flex-col items-center justify-center gap-3 border border-dashed border-navy/15 sm:m-4 sm:gap-4">
-                      <span className="grid size-14 place-items-center border border-navy bg-background font-serif text-3xl italic sm:size-20 sm:text-4xl">
-                        {person.initials}
-                      </span>
-                      <span className="px-2 text-center text-[10px] font-bold uppercase tracking-widest text-slate/60">
-                        {t("landing.teamPhotoPlaceholder")}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-0 left-0 h-1 w-0 bg-gold transition-all duration-500 group-hover:w-full" />
-                  </div>
-                  <h3 className="mt-3 text-xl font-bold sm:mt-5 sm:text-2xl">{person.name}</h3>
-                  <p className="mt-1 text-xs text-slate sm:text-sm">{person.role}</p>
-                </Reveal>
-              ))}
-            </div>
+            <Reveal delay={100} className="group lg:order-1 lg:col-span-6">
+              <div className="relative overflow-hidden border border-border bg-sand">
+                <img
+                  src={teamPhoto}
+                  width={1600}
+                  height={2133}
+                  loading="lazy"
+                  alt="Nacho y Ana María, de NAMAR Global, en la entrada de la Feria de Cantón (China Import and Export Fair)"
+                  className="aspect-4/5 w-full object-cover object-[50%_45%] sm:aspect-square lg:aspect-4/5"
+                />
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gold transition-all duration-500 group-hover:w-full" />
+              </div>
+            </Reveal>
           </div>
         </section>
 

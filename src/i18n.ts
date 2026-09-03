@@ -538,7 +538,12 @@ const resources = {
   },
 } as const;
 
-const getInitialLanguage = () => {
+/**
+ * Preferred language for the visitor. Always initialise with "es" so the
+ * server-rendered HTML matches the first client render; switch to the
+ * preferred language after hydration (see __root.tsx).
+ */
+export const getPreferredLanguage = (): "es" | "en" => {
   if (typeof window === "undefined") {
     return "es";
   }
@@ -554,7 +559,7 @@ const getInitialLanguage = () => {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: getInitialLanguage(),
+  lng: "es",
   fallbackLng: "es",
   interpolation: {
     escapeValue: false,

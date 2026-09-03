@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import { I18nextProvider } from "react-i18next";
 
-import i18n from "../i18n";
+import i18n, { getPreferredLanguage } from "../i18n";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -127,6 +127,14 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    const preferred = getPreferredLanguage();
+    if (preferred !== i18n.language) {
+      void i18n.changeLanguage(preferred);
+    }
+  }, []);
+
 
   return (
     <QueryClientProvider client={queryClient}>

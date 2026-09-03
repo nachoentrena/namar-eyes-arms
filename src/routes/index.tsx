@@ -248,7 +248,7 @@ function Index() {
         </section>
 
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
-        <section className="overflow-hidden bg-navy px-5 pb-14 pt-10 text-navy-foreground sm:px-6 sm:pb-20 sm:pt-14 lg:pb-28 lg:pt-16">
+        <section className="overflow-hidden bg-navy px-5 pb-14 pt-6 text-navy-foreground sm:px-6 sm:pb-20 sm:pt-8 lg:pb-28 lg:pt-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-3 lg:grid-cols-12 lg:items-end lg:gap-8">
               <Reveal className="lg:col-span-8">

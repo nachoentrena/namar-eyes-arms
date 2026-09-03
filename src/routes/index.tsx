@@ -248,60 +248,63 @@ function Index() {
         </section>
 
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
-        <section className="overflow-hidden bg-navy px-5 pb-14 pt-4 text-navy-foreground sm:px-6 sm:pb-20 sm:pt-6 lg:pb-28 lg:pt-8">
+        <section className="overflow-hidden bg-navy px-5 py-14 text-navy-foreground sm:px-6 sm:py-18 lg:py-24">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-4 lg:grid-cols-12 lg:items-start lg:gap-8">
-              <Reveal className="lg:col-span-8">
-                <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
-                <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
-                  {t("landing.problemIntro")}
-                </p>
-              </Reveal>
-              <Reveal delay={120} className="hidden lg:col-span-4 lg:block">
-                <img
-                  src={qualityControl}
-                  width={886}
-                  height={1575}
-                  loading="lazy"
-                  alt="Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica"
-                  className="aspect-4/5 w-full object-cover object-[50%_30%] grayscale transition-all duration-700 hover:grayscale-0"
-                />
-              </Reveal>
-            </div>
-
-            <Reveal className="mt-2 sm:mt-3">
-              <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-2 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
-                <span className="col-span-3">{problemColumns.risk}</span>
-                <span className="col-span-6">{problemColumns.action}</span>
-                <span className="col-span-3">{problemColumns.result}</span>
-              </div>
-              <ul className="divide-y divide-navy-foreground/10 border-t border-navy-foreground/15 md:border-t-0">
-                {problems.map((row, i) => (
-                  <li
-                    key={row.risk}
-                    className="grid gap-1 py-3 md:grid-cols-12 md:items-start md:gap-6 md:py-4"
-                  >
-                    <div className="flex items-baseline gap-3 md:col-span-3">
-                      <span className="text-xs font-bold text-gold">{`0${i + 1}`}</span>
-                      <h3 className="text-base font-bold leading-snug sm:text-lg">{row.risk}</h3>
-                    </div>
-                    <p className="pl-7 text-[15px] leading-relaxed text-navy-foreground/75 sm:text-base md:col-span-6 md:pl-0">
-                      <span className="mr-2 text-[10px] font-bold uppercase tracking-widest text-gold md:hidden">
-                        {problemColumns.action} →
-                      </span>
-                      {row.action}
-                    </p>
-                    <p className="flex items-start gap-2 pl-7 text-[15px] font-semibold text-navy-foreground sm:text-base md:col-span-3 md:pl-0">
-                      <Check className="mt-1 size-4 shrink-0 text-gold" strokeWidth={3} />
-                      {row.result}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 font-serif text-xl italic text-gold sm:mt-5 sm:text-2xl lg:text-3xl">
-                {t("landing.problemQuote")}
+            <Reveal className="max-w-3xl">
+              <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
+              <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
+                {t("landing.problemIntro")}
               </p>
             </Reveal>
+
+            <div className="mt-5 grid gap-5 sm:mt-6 lg:grid-cols-12 lg:gap-10">
+              <Reveal delay={80} className="lg:order-2 lg:col-span-4">
+                <div className="relative overflow-hidden lg:h-full lg:min-h-[420px]">
+                  <img
+                    src={qualityControl}
+                    width={886}
+                    height={1575}
+                    loading="lazy"
+                    alt="Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica"
+                    className="aspect-[16/10] w-full object-cover object-[50%_28%] grayscale transition-all duration-700 hover:grayscale-0 sm:aspect-[2/1] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+                  />
+                </div>
+              </Reveal>
+
+              <Reveal className="lg:order-1 lg:col-span-8">
+                <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-2 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
+                  <span className="col-span-3">{problemColumns.risk}</span>
+                  <span className="col-span-6">{problemColumns.action}</span>
+                  <span className="col-span-3">{problemColumns.result}</span>
+                </div>
+                <ul className="divide-y divide-navy-foreground/10 border-t border-navy-foreground/15 md:border-t-0">
+                  {problems.map((row, i) => (
+                    <li
+                      key={row.risk}
+                      className="grid gap-1 py-3 md:grid-cols-12 md:items-start md:gap-6 md:py-4"
+                    >
+                      <div className="flex items-baseline gap-3 md:col-span-3">
+                        <span className="text-xs font-bold text-gold">{`0${i + 1}`}</span>
+                        <h3 className="text-base font-bold leading-snug sm:text-lg">{row.risk}</h3>
+                      </div>
+                      <p className="pl-7 text-[15px] leading-relaxed text-navy-foreground/75 sm:text-base md:col-span-6 md:pl-0">
+                        <span className="mr-2 text-[10px] font-bold uppercase tracking-widest text-gold md:hidden">
+                          {problemColumns.action} →
+                        </span>
+                        {row.action}
+                      </p>
+                      <p className="flex items-start gap-2 pl-7 text-[15px] font-semibold text-navy-foreground sm:text-base md:col-span-3 md:pl-0">
+                        <Check className="mt-1 size-4 shrink-0 text-gold" strokeWidth={3} />
+                        {row.result}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 font-serif text-xl italic text-gold sm:mt-5 sm:text-2xl lg:text-3xl">
+                  {t("landing.problemQuote")}
+                </p>
+              </Reveal>
+            </div>
           </div>
         </section>
 

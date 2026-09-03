@@ -13,7 +13,7 @@ function usePerView() {
   useEffect(() => {
     const compute = () => {
       const w = window.innerWidth;
-      if (w < 640) setPerView(1);
+      if (w < 480) setPerView(1);
       else if (w < 768) setPerView(2);
       else if (w < 1024) setPerView(3);
       else setPerView(4);

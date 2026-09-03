@@ -317,16 +317,16 @@ function Index() {
             </Reveal>
 
             <Reveal className="mt-14">
-              <ol className="grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3 lg:grid-cols-5">
+              <ol className="flex flex-wrap gap-2 lg:grid lg:grid-cols-5 lg:gap-px lg:border lg:border-border lg:bg-border">
                 {phases.map((phase, i) => (
                   <li
                     key={phase.key}
-                    className="relative flex items-center gap-3 bg-background px-5 py-5 lg:px-6"
+                    className="relative flex flex-1 items-center gap-3 border border-border bg-background px-4 py-3 lg:border-0 lg:px-6 lg:py-5"
                   >
-                    <span className="grid size-8 shrink-0 place-items-center bg-navy text-xs font-bold text-navy-foreground">
+                    <span className="grid size-7 shrink-0 place-items-center bg-navy text-xs font-bold text-navy-foreground lg:size-8">
                       {i + 1}
                     </span>
-                    <span className="text-xs font-bold uppercase tracking-widest lg:text-sm">
+                    <span className="whitespace-nowrap text-xs font-bold uppercase tracking-widest lg:text-sm">
                       {phase.label}
                     </span>
                     {i < phases.length - 1 ? (

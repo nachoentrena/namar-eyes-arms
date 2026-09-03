@@ -441,18 +441,18 @@ function Index() {
         </section>
 
         {/* ─── SOBRE EL TERRENO ─────────────────────────────────── */}
-        <section className="relative">
+        <section className="relative bg-navy lg:grid lg:grid-cols-2">
           <img
             src={onTheGround}
             width={886}
             height={1575}
             loading="lazy"
             alt="Nacho, de NAMAR Global, revisando productos con un proveedor en una feria en China"
-            className="h-[400px] w-full object-cover object-[50%_30%] sm:h-[460px] lg:h-[560px]"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_25%] lg:static lg:order-2 lg:h-[560px] lg:object-[50%_30%]"
           />
-          <div className="absolute inset-0 bg-navy/75" />
-          <div className="absolute inset-0 flex items-center px-5 sm:px-6">
-            <div className="mx-auto w-full max-w-7xl">
+          <div className="absolute inset-0 bg-navy/75 lg:hidden" />
+          <div className="relative flex min-h-[400px] items-center px-5 py-14 sm:min-h-[460px] sm:px-6 lg:order-1 lg:min-h-0 lg:py-0">
+            <div className="ml-auto w-full max-w-[40rem] lg:pr-12">
               <div className="max-w-2xl text-navy-foreground">
                 <h2 className={h2Sans}>{t("landing.onTheGroundTitle")}</h2>
                 <p className="mt-4 text-base text-navy-foreground/70 sm:text-lg">

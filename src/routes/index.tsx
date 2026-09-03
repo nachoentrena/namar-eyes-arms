@@ -65,12 +65,18 @@ export const Route = createFileRoute("/")({
 });
 
 const primaryBtn =
-  "inline-flex items-center justify-center gap-2 bg-navy px-8 py-4 text-xs font-bold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground";
+  "inline-flex items-center justify-center gap-2 bg-navy px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:px-8 sm:py-4";
 const secondaryBtn =
-  "inline-flex items-center justify-center gap-2 border border-border px-8 py-4 text-xs font-bold uppercase tracking-widest transition-colors hover:bg-navy hover:text-navy-foreground";
+  "inline-flex items-center justify-center gap-2 border border-border px-6 py-3.5 text-xs font-bold uppercase tracking-widest transition-colors hover:bg-navy hover:text-navy-foreground sm:px-8 sm:py-4";
 const goldBtn =
-  "inline-flex items-center justify-center gap-2 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-widest text-gold-foreground transition-colors hover:bg-navy-foreground";
+  "inline-flex items-center justify-center gap-2 bg-gold px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8 sm:py-4";
 const eyebrow = "text-[11px] font-bold uppercase tracking-widest text-gold";
+
+/* Shared responsive rhythm */
+const section = "px-5 py-14 sm:px-6 sm:py-20 lg:py-28";
+const h2Sans = "text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl";
+const h2Serif = "font-serif text-4xl italic leading-[1.02] sm:text-5xl lg:text-6xl";
+const lead = "text-base leading-relaxed text-slate sm:text-lg";
 
 function Index() {
   const { t } = useTranslation();
@@ -118,10 +124,6 @@ function Index() {
     title: string;
     text: string;
   }>;
-  const profiles = t("landing.profiles", { returnObjects: true }) as Array<{
-    title: string;
-    text: string;
-  }>;
   const routes = t("landing.routes", { returnObjects: true }) as Array<{
     from: string;
     to: string;
@@ -152,28 +154,28 @@ function Index() {
       <MobileCta />
       <WhatsAppFloat />
 
-      <main className="pb-16 sm:pb-0">
+      <main className="pb-14 sm:pb-0">
         {/* ─── HERO ─────────────────────────────────────────────── */}
-        <section id="inicio" className="px-6 pb-20 pt-28 lg:pt-40">
-          <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-3 border border-gold/25 bg-gold/10 px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-gold">
+        <section id="inicio" className="px-5 pb-14 pt-24 sm:px-6 sm:pb-20 sm:pt-32 lg:pt-40">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div className="space-y-5 sm:space-y-7">
+              <div className="inline-flex items-center gap-3 border border-gold/25 bg-gold/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-gold sm:px-4 sm:py-2 sm:text-[11px]">
                 <span className="relative flex size-2">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-gold opacity-75" />
                   <span className="relative inline-flex size-2 rounded-full bg-gold" />
                 </span>
                 {t("landing.heroBadge")}
               </div>
-              <h1 className="font-serif text-5xl italic leading-[0.98] sm:text-6xl lg:text-7xl xl:text-8xl">
+              <h1 className="font-serif text-[2.625rem] italic leading-[1] sm:text-6xl lg:text-7xl xl:text-8xl">
                 {t("landing.heroTitle")}
-                <span className="mt-3 block font-sans text-3xl font-bold not-italic leading-tight sm:text-4xl lg:text-5xl xl:text-6xl">
+                <span className="mt-2 block font-sans text-[1.625rem] font-bold not-italic leading-tight sm:mt-3 sm:text-4xl lg:text-5xl xl:text-6xl">
                   {t("landing.heroSubtitle")}
                 </span>
               </h1>
-              <p className="max-w-xl text-lg leading-relaxed text-slate sm:text-xl">
+              <p className="max-w-xl text-base leading-relaxed text-slate sm:text-lg lg:text-xl">
                 {t("landing.heroDescription")}
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a href="#contacto" className={primaryBtn}>
                   {t("landing.heroPrimaryCta")}
                 </a>
@@ -188,21 +190,21 @@ function Index() {
                 <span className="grid size-6 shrink-0 place-items-center bg-gold/15 text-gold">
                   <Check className="size-3.5" strokeWidth={3} />
                 </span>
-                {t("landing.heroMicro")}
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                <span className="min-w-0">{t("landing.heroMicro")}</span>
+                <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
 
-            <div className="relative mb-10 lg:mb-0">
+            <div className="relative mb-8 lg:mb-0">
               <img
                 src={heroPort}
                 width={1200}
                 height={1504}
                 alt="Puerto de contenedores en China al atardecer con grúas portuarias"
-                className="aspect-4/5 w-full object-cover shadow-elevated"
+                className="aspect-4/3 w-full object-cover shadow-elevated sm:aspect-4/5"
               />
-              <div className="absolute -bottom-8 left-0 max-w-xs border border-border bg-background p-6 shadow-panel sm:-left-8 sm:p-8">
-                <p className="font-serif text-base italic leading-relaxed text-slate">
+              <div className="absolute -bottom-6 left-0 max-w-[85%] border border-border bg-background p-4 shadow-panel sm:-bottom-8 sm:-left-8 sm:max-w-xs sm:p-8">
+                <p className="font-serif text-sm italic leading-relaxed text-slate sm:text-base">
                   {t("landing.heroQuote")}
                 </p>
               </div>
@@ -211,22 +213,18 @@ function Index() {
         </section>
 
         {/* ─── AUTORIDAD: 8 AÑOS ────────────────────────────────── */}
-        <section className="border-y border-border bg-sand px-6 py-20 lg:py-28">
+        <section className={`border-y border-border bg-sand ${section}`}>
           <div className="mx-auto max-w-7xl">
-            <Reveal className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="grid gap-6 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-5">
                 <p className={eyebrow}>{t("landing.authorityLabel")}</p>
-                <h2 className="mt-5 font-serif text-4xl italic leading-[1.05] lg:text-6xl">
-                  {t("landing.authorityTitle")}
-                </h2>
+                <h2 className={`mt-3 ${h2Serif}`}>{t("landing.authorityTitle")}</h2>
               </div>
-              <div className="lg:col-span-7 lg:pt-12">
-                <p className="text-lg leading-relaxed text-slate lg:text-xl">
-                  {t("landing.authorityText")}
-                </p>
+              <div className="lg:col-span-7 lg:pt-10">
+                <p className={`${lead} lg:text-xl`}>{t("landing.authorityText")}</p>
                 <a
                   href="#proceso"
-                  className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors hover:text-gold"
+                  className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors hover:text-gold"
                 >
                   {t("landing.authorityLink")}
                   <ArrowRight className="size-4" />
@@ -234,11 +232,13 @@ function Index() {
               </div>
             </Reveal>
 
-            <div className="mt-16 grid gap-px border border-border bg-border md:grid-cols-3">
+            <div className="mt-8 grid gap-px border border-border bg-border sm:mt-12 md:grid-cols-3">
               {authorityPoints.map((item, i) => (
-                <Reveal key={item.label} delay={i * 60} className="bg-background p-8 lg:p-10">
+                <Reveal key={item.label} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
                   <p className={eyebrow}>{item.label}</p>
-                  <p className="mt-4 leading-relaxed text-slate">{item.text}</p>
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-slate sm:text-base">
+                    {item.text}
+                  </p>
                 </Reveal>
               ))}
             </div>
@@ -246,14 +246,12 @@ function Index() {
         </section>
 
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
-        <section className="overflow-hidden bg-navy px-6 py-24 text-navy-foreground lg:py-32">
+        <section className={`overflow-hidden bg-navy text-navy-foreground ${section}`}>
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
               <Reveal className="lg:col-span-8">
-                <h2 className="text-4xl font-bold leading-tight lg:text-5xl">
-                  {t("landing.problemTitle")}
-                </h2>
-                <p className="mt-6 max-w-2xl text-lg text-navy-foreground/60">
+                <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
+                <p className="mt-4 max-w-2xl text-base text-navy-foreground/60 sm:text-lg">
                   {t("landing.problemIntro")}
                 </p>
               </Reveal>
@@ -264,41 +262,41 @@ function Index() {
                   height={1264}
                   loading="lazy"
                   alt="Inspectora de calidad midiendo una pieza mecánica en una fábrica china"
-                  className="aspect-4/5 w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+                  className="aspect-3/2 w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
                 />
               </Reveal>
             </div>
 
-            <Reveal className="mt-14">
-              <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-4 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
+            <Reveal className="mt-6 sm:mt-8">
+              <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-3 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
                 <span className="col-span-3">{problemColumns.risk}</span>
                 <span className="col-span-6">{problemColumns.action}</span>
                 <span className="col-span-3">{problemColumns.result}</span>
               </div>
-              <ul className="divide-y divide-navy-foreground/10">
+              <ul className="divide-y divide-navy-foreground/10 border-t border-navy-foreground/15 md:border-t-0">
                 {problems.map((row, i) => (
                   <li
                     key={row.risk}
-                    className="grid gap-3 py-6 md:grid-cols-12 md:items-start md:gap-6 md:py-7"
+                    className="grid gap-1.5 py-4 md:grid-cols-12 md:items-start md:gap-6 md:py-5"
                   >
                     <div className="flex items-baseline gap-3 md:col-span-3">
                       <span className="text-xs font-bold text-gold">{`0${i + 1}`}</span>
-                      <h3 className="text-lg font-bold leading-snug">{row.risk}</h3>
+                      <h3 className="text-base font-bold leading-snug sm:text-lg">{row.risk}</h3>
                     </div>
-                    <p className="text-navy-foreground/75 md:col-span-6">
+                    <p className="pl-7 text-[15px] leading-relaxed text-navy-foreground/75 sm:text-base md:col-span-6 md:pl-0">
                       <span className="mr-2 text-[10px] font-bold uppercase tracking-widest text-gold md:hidden">
                         {problemColumns.action} →
                       </span>
                       {row.action}
                     </p>
-                    <p className="flex items-start gap-2 font-semibold text-navy-foreground md:col-span-3">
+                    <p className="flex items-start gap-2 pl-7 text-[15px] font-semibold text-navy-foreground sm:text-base md:col-span-3 md:pl-0">
                       <Check className="mt-1 size-4 shrink-0 text-gold" strokeWidth={3} />
                       {row.result}
                     </p>
                   </li>
                 ))}
               </ul>
-              <p className="mt-10 font-serif text-2xl italic text-gold lg:text-3xl">
+              <p className="mt-6 font-serif text-xl italic text-gold sm:mt-8 sm:text-2xl lg:text-3xl">
                 {t("landing.problemQuote")}
               </p>
             </Reveal>
@@ -306,27 +304,25 @@ function Index() {
         </section>
 
         {/* ─── SERVICIOS COMO PROCESO DE CONTROL ────────────────── */}
-        <section id="servicios" className="px-6 py-24 lg:py-32">
+        <section id="servicios" className={section}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <p className={eyebrow}>{t("landing.servicesLabel")}</p>
-              <h2 className="mt-5 text-4xl font-bold leading-tight lg:text-5xl">
-                {t("landing.servicesTitle")}
-              </h2>
-              <p className="mt-6 text-lg text-slate">{t("landing.servicesIntro")}</p>
+              <h2 className={`mt-3 ${h2Sans}`}>{t("landing.servicesTitle")}</h2>
+              <p className={`mt-4 ${lead}`}>{t("landing.servicesIntro")}</p>
             </Reveal>
 
-            <Reveal className="mt-14">
+            <Reveal className="mt-8 sm:mt-10">
               <ol className="flex flex-wrap gap-2 lg:grid lg:grid-cols-5 lg:gap-px lg:border lg:border-border lg:bg-border">
                 {phases.map((phase, i) => (
                   <li
                     key={phase.key}
-                    className="relative flex flex-1 items-center gap-3 border border-border bg-background px-4 py-3 lg:border-0 lg:px-6 lg:py-5"
+                    className="relative flex flex-1 items-center gap-2.5 border border-border bg-background px-3 py-2.5 lg:border-0 lg:px-6 lg:py-5"
                   >
-                    <span className="grid size-7 shrink-0 place-items-center bg-navy text-xs font-bold text-navy-foreground lg:size-8">
+                    <span className="grid size-6 shrink-0 place-items-center bg-navy text-[11px] font-bold text-navy-foreground lg:size-8 lg:text-xs">
                       {i + 1}
                     </span>
-                    <span className="whitespace-nowrap text-xs font-bold uppercase tracking-widest lg:text-sm">
+                    <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-widest lg:text-sm">
                       {phase.label}
                     </span>
                     {i < phases.length - 1 ? (
@@ -338,25 +334,23 @@ function Index() {
             </Reveal>
           </div>
 
-          <Reveal className="mt-12">
+          <Reveal className="mt-8 sm:mt-10">
             <ServicesCarousel items={services} />
           </Reveal>
         </section>
 
         {/* ─── SIMULACIÓN DE COSTES ─────────────────────────────── */}
-        <section id="costes" className="px-6 pb-24 lg:pb-32">
+        <section id="costes" className="px-5 pb-14 sm:px-6 sm:pb-20 lg:pb-28">
           <Reveal className="relative mx-auto max-w-7xl overflow-hidden border border-navy bg-navy text-navy-foreground">
             <div className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-gold/10" />
-            <div className="grid gap-10 p-8 sm:p-12 lg:grid-cols-12 lg:gap-16 lg:p-16">
+            <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-12 lg:gap-16 lg:p-16">
               <div className="lg:col-span-7">
                 <p className={eyebrow}>{t("landing.costLabel")}</p>
-                <h2 className="mt-5 font-serif text-4xl italic leading-[1.05] lg:text-6xl">
-                  {t("landing.costTitle")}
-                </h2>
-                <p className="mt-6 max-w-xl text-lg text-navy-foreground/70">
+                <h2 className={`mt-3 ${h2Serif}`}>{t("landing.costTitle")}</h2>
+                <p className="mt-4 max-w-xl text-base text-navy-foreground/70 sm:text-lg">
                   {t("landing.costText")}
                 </p>
-                <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-4">
                   <a
                     href={siteConfig.costCalculatorHref}
                     {...(siteConfig.costCalculatorExternal
@@ -371,11 +365,11 @@ function Index() {
                 </div>
               </div>
               <div className="lg:col-span-5">
-                <div className="border border-navy-foreground/15 bg-navy-foreground/5 p-6 sm:p-8">
+                <div className="border border-navy-foreground/15 bg-navy-foreground/5 p-5 sm:p-8">
                   <p className="text-[11px] font-bold uppercase tracking-widest text-navy-foreground/50">
                     24 h
                   </p>
-                  <ul className="mt-5 space-y-4">
+                  <ul className="mt-4 space-y-3">
                     {costItems.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm">
                         <Check className="mt-0.5 size-4 shrink-0 text-gold" strokeWidth={3} />
@@ -390,23 +384,23 @@ function Index() {
         </section>
 
         {/* ─── OBJECIONES ───────────────────────────────────────── */}
-        <section className="bg-sand px-6 py-24 lg:py-32">
+        <section className={`bg-sand ${section}`}>
           <div className="mx-auto max-w-4xl">
             <Reveal>
-              <h2 className="text-4xl font-bold lg:text-5xl">{t("landing.objectionsTitle")}</h2>
-              <p className="mt-6 text-lg text-slate">{t("landing.objectionsIntro")}</p>
+              <h2 className={h2Sans}>{t("landing.objectionsTitle")}</h2>
+              <p className={`mt-3 ${lead}`}>{t("landing.objectionsIntro")}</p>
             </Reveal>
-            <div className="mt-14 divide-y divide-border border-y border-border">
+            <div className="mt-8 divide-y divide-border border-y border-border sm:mt-10">
               {objections.map((item, i) => (
                 <Reveal key={item.q} delay={i * 40}>
                   <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-semibold">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold sm:py-5 sm:text-lg">
                       {item.q}
                       <span className="text-xl text-gold transition-transform group-open:rotate-45">
                         +
                       </span>
                     </summary>
-                    <p className="pb-6 leading-relaxed text-slate">{item.a}</p>
+                    <p className="pb-5 text-[15px] leading-relaxed text-slate sm:text-base">{item.a}</p>
                   </details>
                 </Reveal>
               ))}
@@ -415,31 +409,29 @@ function Index() {
         </section>
 
         {/* ─── PROCESO ──────────────────────────────────────────── */}
-        <section id="proceso" className="px-6 py-24 lg:py-32">
+        <section id="proceso" className={section}>
           <div className="mx-auto max-w-4xl">
             <Reveal>
-              <h2 className="text-center text-4xl font-bold leading-tight lg:text-5xl">
-                {t("landing.processTitle")}
-              </h2>
+              <h2 className={`text-center ${h2Sans}`}>{t("landing.processTitle")}</h2>
             </Reveal>
-            <ol className="relative mt-20 space-y-12 before:absolute before:bottom-2 before:left-6 before:top-2 before:w-px before:bg-border">
+            <ol className="relative mt-10 space-y-7 before:absolute before:bottom-2 before:left-5 before:top-2 before:w-px before:bg-border sm:mt-14 sm:space-y-10 sm:before:left-6">
               {steps.map((step, i) => (
-                <Reveal as="li" key={step.n} delay={i * 60} className="relative flex gap-6 sm:gap-8">
-                  <span className="z-10 grid size-12 shrink-0 place-items-center border border-navy bg-background text-sm font-bold">
+                <Reveal as="li" key={step.n} delay={i * 60} className="relative flex gap-4 sm:gap-8">
+                  <span className="z-10 grid size-10 shrink-0 place-items-center border border-navy bg-background text-xs font-bold sm:size-12 sm:text-sm">
                     {step.n}
                   </span>
-                  <div className="pt-2">
-                    <h3 className="text-xl font-bold">{step.title}</h3>
-                    <p className="mt-2 text-slate">{step.text}</p>
+                  <div className="pt-1.5 sm:pt-2">
+                    <h3 className="text-lg font-bold sm:text-xl">{step.title}</h3>
+                    <p className="mt-1.5 text-[15px] text-slate sm:text-base">{step.text}</p>
                   </div>
                 </Reveal>
               ))}
             </ol>
-            <Reveal className="mt-20 text-center">
-              <p className="font-serif text-2xl italic text-slate lg:text-3xl">
+            <Reveal className="mt-10 text-center sm:mt-14">
+              <p className="font-serif text-xl italic text-slate sm:text-2xl lg:text-3xl">
                 {t("landing.processQuote")}
               </p>
-              <a href="#contacto" className={`${primaryBtn} mt-10`}>
+              <a href="#contacto" className={`${primaryBtn} mt-6 sm:mt-8`}>
                 {t("landing.processCta")}
               </a>
             </Reveal>
@@ -454,17 +446,17 @@ function Index() {
             height={1008}
             loading="lazy"
             alt="Responsable de NAMAR Global recorriendo una fábrica en China junto al gerente de producción"
-            className="h-[560px] w-full object-cover sm:h-[520px]"
+            className="h-[400px] w-full object-cover sm:h-[460px] lg:h-[560px]"
           />
           <div className="absolute inset-0 bg-navy/75" />
-          <div className="absolute inset-0 flex items-center px-6">
+          <div className="absolute inset-0 flex items-center px-5 sm:px-6">
             <div className="mx-auto w-full max-w-7xl">
               <div className="max-w-2xl text-navy-foreground">
-                <h2 className="text-4xl font-bold leading-tight lg:text-5xl">
-                  {t("landing.onTheGroundTitle")}
-                </h2>
-                <p className="mt-6 text-lg text-navy-foreground/70">{t("landing.onTheGroundText")}</p>
-                <a href="#contacto" className={`${goldBtn} mt-10`}>
+                <h2 className={h2Sans}>{t("landing.onTheGroundTitle")}</h2>
+                <p className="mt-4 text-base text-navy-foreground/70 sm:text-lg">
+                  {t("landing.onTheGroundText")}
+                </p>
+                <a href="#contacto" className={`${goldBtn} mt-6 sm:mt-8`}>
                   {t("landing.onTheGroundCta")}
                 </a>
               </div>
@@ -473,35 +465,33 @@ function Index() {
         </section>
 
         {/* ─── PERSONAS ─────────────────────────────────────────── */}
-        <section id="equipo" className="px-6 py-24 lg:py-32">
-          <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-12 lg:gap-16">
+        <section id="equipo" className={section}>
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
               <p className={eyebrow}>{t("landing.teamLabel")}</p>
-              <h2 className="mt-5 font-serif text-4xl italic leading-[1.05] lg:text-6xl">
-                {t("landing.teamTitle")}
-              </h2>
-              <p className="mt-8 text-lg leading-relaxed text-slate">{t("landing.teamText")}</p>
-              <p className="mt-8 border-l-2 border-gold pl-4 text-sm font-semibold">
+              <h2 className={`mt-3 ${h2Serif}`}>{t("landing.teamTitle")}</h2>
+              <p className={`mt-5 ${lead}`}>{t("landing.teamText")}</p>
+              <p className="mt-5 border-l-2 border-gold pl-4 text-sm font-semibold">
                 {t("landing.teamNote")}
               </p>
             </Reveal>
-            <div className="grid gap-6 sm:grid-cols-2 lg:col-span-7">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:col-span-7">
               {team.map((person, i) => (
                 <Reveal key={person.name} delay={i * 80} className="group">
                   <div className="relative aspect-4/5 w-full overflow-hidden border border-border bg-sand">
                     {/* Replace this block with <img src=... alt=... /> when real photos are available */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 border border-dashed border-navy/15 m-4">
-                      <span className="grid size-20 place-items-center border border-navy bg-background font-serif text-4xl italic">
+                    <div className="absolute inset-0 m-3 flex flex-col items-center justify-center gap-3 border border-dashed border-navy/15 sm:m-4 sm:gap-4">
+                      <span className="grid size-14 place-items-center border border-navy bg-background font-serif text-3xl italic sm:size-20 sm:text-4xl">
                         {person.initials}
                       </span>
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-slate/60">
+                      <span className="px-2 text-center text-[10px] font-bold uppercase tracking-widest text-slate/60">
                         {t("landing.teamPhotoPlaceholder")}
                       </span>
                     </div>
                     <div className="absolute bottom-0 left-0 h-1 w-0 bg-gold transition-all duration-500 group-hover:w-full" />
                   </div>
-                  <h3 className="mt-5 text-2xl font-bold">{person.name}</h3>
-                  <p className="mt-1 text-sm text-slate">{person.role}</p>
+                  <h3 className="mt-3 text-xl font-bold sm:mt-5 sm:text-2xl">{person.name}</h3>
+                  <p className="mt-1 text-xs text-slate sm:text-sm">{person.role}</p>
                 </Reveal>
               ))}
             </div>
@@ -509,61 +499,33 @@ function Index() {
         </section>
 
         {/* ─── POR QUÉ NAMAR ────────────────────────────────────── */}
-        <section id="nosotros" className="bg-sand px-6 py-24 lg:py-32">
+        <section id="nosotros" className={`bg-sand ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
-              <h2 className="text-4xl font-bold leading-tight lg:text-5xl">{t("landing.whyTitle")}</h2>
+              <h2 className={h2Sans}>{t("landing.whyTitle")}</h2>
             </Reveal>
-            <div className="mt-16 grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid gap-px border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-3">
               {differentiators.map((item, i) => (
-                <Reveal key={item.title} delay={i * 60} className="bg-background p-8 lg:p-10">
-                  <h3 className="text-lg font-bold">{item.title}</h3>
-                  <p className="mt-3 leading-relaxed text-slate">{item.text}</p>
+                <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
+                  <h3 className="text-base font-bold sm:text-lg">{item.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-slate sm:text-base">{item.text}</p>
                 </Reveal>
               ))}
             </div>
-            <Reveal className="mt-20 text-center">
-              <p className="font-serif text-4xl italic lg:text-6xl">{t("landing.quote")}</p>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* ─── PERFILES ─────────────────────────────────────────── */}
-        <section id="perfiles" className="px-6 py-24 lg:py-32">
-          <div className="mx-auto max-w-7xl">
-            <Reveal>
-              <h2 className="text-4xl font-bold lg:text-5xl">{t("landing.profilesTitle")}</h2>
-            </Reveal>
-            <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {profiles.map((profile, i) => (
-                <Reveal
-                  key={profile.title}
-                  delay={i * 60}
-                  className="border-t-2 border-gold bg-background p-8 shadow-panel"
-                >
-                  <h3 className="text-xl font-bold">{profile.title}</h3>
-                  <p className="mt-4 leading-relaxed text-slate">{profile.text}</p>
-                </Reveal>
-              ))}
-            </div>
-            <Reveal>
-              <p className="mt-16 max-w-3xl font-serif text-2xl italic text-slate">
-                {t("landing.profilesQuote")}
-              </p>
+            <Reveal className="mt-10 text-center sm:mt-14">
+              <p className="font-serif text-3xl italic sm:text-4xl lg:text-6xl">{t("landing.quote")}</p>
             </Reveal>
           </div>
         </section>
 
         {/* ─── RUTAS: ESPAÑA + COLOMBIA ─────────────────────────── */}
-        <section id="rutas" className="border-y border-border bg-sand px-6 py-24 lg:py-32">
+        <section id="rutas" className={`border-y border-border bg-background ${section}`}>
           <div className="mx-auto max-w-7xl">
-            <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="grid items-center gap-6 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-6">
                 <p className={eyebrow}>{t("landing.routesLabel")}</p>
-                <h2 className="mt-5 text-4xl font-bold leading-tight lg:text-5xl">
-                  {t("landing.routesTitle")}
-                </h2>
-                <p className="mt-6 text-lg leading-relaxed text-slate">{t("landing.routesText")}</p>
+                <h2 className={`mt-3 ${h2Sans}`}>{t("landing.routesTitle")}</h2>
+                <p className={`mt-4 ${lead}`}>{t("landing.routesText")}</p>
               </Reveal>
               <Reveal delay={120} className="lg:col-span-6">
                 <img
@@ -572,17 +534,17 @@ function Index() {
                   height={800}
                   loading="lazy"
                   alt="Mapa mundial minimalista con las rutas de importación desde China a España y Colombia"
-                  className="aspect-video w-full object-contain mix-blend-multiply"
+                  className="mx-auto aspect-video w-full max-w-md object-contain mix-blend-multiply lg:max-w-none"
                 />
               </Reveal>
             </div>
 
-            <div className="mt-14 grid gap-6 md:grid-cols-2">
+            <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2">
               {routes.map((route, i) => (
                 <Reveal
                   key={route.to}
                   delay={i * 80}
-                  className="flex flex-col border border-border bg-background p-8 shadow-panel lg:p-10"
+                  className="flex flex-col border border-border bg-background p-5 shadow-panel sm:p-8 lg:p-10"
                 >
                   <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
                     <span className="text-gold">{route.from}</span>
@@ -591,13 +553,15 @@ function Index() {
                     <span className="h-px flex-1 bg-border" />
                     <span>{route.to}</span>
                   </div>
-                  <h3 className="mt-6 text-2xl font-bold">{route.title}</h3>
-                  <p className="mt-4 flex-1 leading-relaxed text-slate">{route.text}</p>
-                  <ul className="mt-6 flex flex-wrap gap-2">
+                  <h3 className="mt-4 text-xl font-bold sm:mt-6 sm:text-2xl">{route.title}</h3>
+                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-slate sm:text-base">
+                    {route.text}
+                  </p>
+                  <ul className="mt-4 flex flex-wrap gap-2 sm:mt-6">
                     {route.tags.map((tag) => (
                       <li
                         key={tag}
-                        className="border border-border bg-sand px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate"
+                        className="border border-border bg-sand px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate sm:px-3 sm:py-1.5 sm:text-[11px]"
                       >
                         {tag}
                       </li>
@@ -607,27 +571,25 @@ function Index() {
               ))}
             </div>
             <Reveal>
-              <p className="mt-8 text-sm text-slate">{t("landing.routesNote")}</p>
+              <p className="mt-5 text-sm text-slate sm:mt-8">{t("landing.routesNote")}</p>
             </Reveal>
           </div>
         </section>
 
         {/* ─── PRUEBA OPERATIVA (sustituye testimonios) ─────────── */}
-        <section className="px-6 py-24 lg:py-32">
+        <section className={`bg-sand ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <p className={eyebrow}>{t("landing.proofLabel")}</p>
-              <h2 className="mt-5 text-4xl font-bold leading-tight lg:text-5xl">
-                {t("landing.proofTitle")}
-              </h2>
-              <p className="mt-6 text-slate">{t("landing.proofIntro")}</p>
+              <h2 className={`mt-3 ${h2Sans}`}>{t("landing.proofTitle")}</h2>
+              <p className={`mt-4 ${lead}`}>{t("landing.proofIntro")}</p>
             </Reveal>
-            <div className="mt-14 grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-px border border-border bg-border sm:mt-10 md:grid-cols-2 lg:grid-cols-4">
               {proof.map((item, i) => (
-                <Reveal key={item.title} delay={i * 60} className="bg-background p-8 lg:p-10">
+                <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
                   <span className="text-sm font-bold text-gold">{`0${i + 1}`}</span>
-                  <h3 className="mt-5 text-lg font-bold">{item.title}</h3>
-                  <p className="mt-3 leading-relaxed text-slate">{item.text}</p>
+                  <h3 className="mt-3 text-base font-bold sm:mt-4 sm:text-lg">{item.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-slate sm:text-base">{item.text}</p>
                 </Reveal>
               ))}
             </div>
@@ -635,20 +597,22 @@ function Index() {
         </section>
 
         {/* ─── EMPEZAR ──────────────────────────────────────────── */}
-        <section className="bg-navy px-6 py-24 text-navy-foreground lg:py-32">
+        <section className={`bg-navy text-navy-foreground ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal>
-              <h2 className="text-4xl font-bold lg:text-5xl">{t("landing.startTitle")}</h2>
-              <p className="mt-6 max-w-2xl text-lg text-navy-foreground/60">
+              <h2 className={h2Sans}>{t("landing.startTitle")}</h2>
+              <p className="mt-3 max-w-2xl text-base text-navy-foreground/60 sm:text-lg">
                 {t("landing.startIntro")}
               </p>
             </Reveal>
-            <div className="mt-16 grid gap-px border border-navy-foreground/15 bg-navy-foreground/15 md:grid-cols-3">
+            <div className="mt-8 grid gap-px border border-navy-foreground/15 bg-navy-foreground/15 sm:mt-12 md:grid-cols-3">
               {startSteps.map((step, i) => (
-                <Reveal key={step.n} delay={i * 60} className="bg-navy p-8 lg:p-10">
+                <Reveal key={step.n} delay={i * 60} className="bg-navy p-5 sm:p-7 lg:p-9">
                   <span className="text-sm font-bold text-gold">{step.n}</span>
-                  <h3 className="mt-6 text-2xl font-bold">{step.title}</h3>
-                  <p className="mt-4 leading-relaxed text-navy-foreground/65">{step.text}</p>
+                  <h3 className="mt-3 text-xl font-bold sm:mt-5 sm:text-2xl">{step.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-navy-foreground/65 sm:mt-3 sm:text-base">
+                    {step.text}
+                  </p>
                 </Reveal>
               ))}
             </div>
@@ -656,24 +620,22 @@ function Index() {
         </section>
 
         {/* ─── FAQ ──────────────────────────────────────────────── */}
-        <section id="faq" className="px-6 py-24 lg:py-32">
+        <section id="faq" className={section}>
           <div className="mx-auto max-w-3xl">
             <Reveal>
-              <h2 className="text-center text-4xl font-bold leading-tight lg:text-5xl">
-                {t("landing.faqTitle")}
-              </h2>
+              <h2 className={`text-center ${h2Sans}`}>{t("landing.faqTitle")}</h2>
             </Reveal>
-            <div className="mt-16 divide-y divide-border border-y border-border">
+            <div className="mt-8 divide-y divide-border border-y border-border sm:mt-12">
               {faqs.map((faq, i) => (
                 <Reveal key={faq.q} delay={i * 30}>
                   <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-semibold">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[15px] font-semibold sm:py-5 sm:text-base">
                       {faq.q}
                       <span className="text-xl text-gold transition-transform group-open:rotate-45">
                         +
                       </span>
                     </summary>
-                    <p className="pb-6 leading-relaxed text-slate">{faq.a}</p>
+                    <p className="pb-5 text-[15px] leading-relaxed text-slate sm:text-base">{faq.a}</p>
                   </details>
                 </Reveal>
               ))}
@@ -682,19 +644,15 @@ function Index() {
         </section>
 
         {/* ─── CONTACTO (CTA final) ─────────────────────────────── */}
-        <section id="contacto" className="border-t border-border bg-sand px-6 py-24 lg:py-32">
-          <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
+        <section id="contacto" className={`border-t border-border bg-sand ${section}`}>
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2 lg:gap-16">
             <Reveal>
-              <h2 className="font-serif text-4xl italic leading-[1.05] lg:text-6xl">
-                {t("contact.title")}
-              </h2>
-              <p className="mt-8 max-w-lg text-lg leading-relaxed text-slate">
-                {t("contact.description")}
-              </p>
-              <p className="mt-6 border-l-2 border-gold pl-4 text-sm font-semibold">
+              <h2 className={h2Serif}>{t("contact.title")}</h2>
+              <p className={`mt-5 max-w-lg ${lead}`}>{t("contact.description")}</p>
+              <p className="mt-4 border-l-2 border-gold pl-4 text-sm font-semibold">
                 {t("contact.promise")}
               </p>
-              <div className="mt-12 border-t border-border pt-8">
+              <div className="mt-6 border-t border-border pt-5 sm:mt-10 sm:pt-8">
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate">
                   {t("contact.prefer")}
                 </p>
@@ -702,22 +660,22 @@ function Index() {
                   href={waHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-3 text-lg font-semibold transition-colors hover:text-gold"
+                  className="mt-3 inline-flex items-center gap-3 text-base font-semibold transition-colors hover:text-gold sm:text-lg"
                 >
                   {t("contact.chat")}
                   <ArrowRight className="size-5" />
                 </a>
               </div>
             </Reveal>
-            <Reveal delay={120} className="border border-border bg-background p-6 sm:p-10">
+            <Reveal delay={120} className="border border-border bg-background p-5 sm:p-8 lg:p-10">
               <ContactForm />
             </Reveal>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-border bg-sand-strong px-6 py-12 pb-28 sm:pb-12">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
+      <footer className="border-t border-border bg-sand-strong px-5 py-10 pb-24 sm:px-6 sm:py-12 sm:pb-12">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
           <div>
             <div className="flex items-center justify-center gap-2 md:justify-start">
               <span className="grid size-6 place-items-center bg-navy text-[10px] font-bold tracking-tighter text-navy-foreground">
@@ -729,7 +687,7 @@ function Index() {
             </div>
             <p className="mt-2 text-xs text-slate">{t("landing.footerTagline")}</p>
           </div>
-          <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-slate">
+          <div className="flex gap-6 text-xs font-bold uppercase tracking-widest text-slate sm:gap-8">
             {footerCountries.map((country) => (
               <span key={country}>{country}</span>
             ))}

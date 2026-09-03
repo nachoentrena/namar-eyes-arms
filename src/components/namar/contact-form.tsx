@@ -101,6 +101,7 @@ export function ContactForm() {
         <input
           id="producto"
           name="producto"
+          required
           className={fieldClass}
           placeholder={t("contact.form.productPlaceholder")}
         />

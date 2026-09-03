@@ -10,11 +10,11 @@ export function SiteHeader() {
   const [languageOpen, setLanguageOpen] = useState(false);
 
   const links = [
-    { href: "#inicio", label: t("nav.home") },
     { href: "#servicios", label: t("nav.services") },
+    { href: "#costes", label: t("nav.costs") },
     { href: "#proceso", label: t("nav.process") },
-    { href: "#nosotros", label: t("nav.about") },
-    { href: "#perfiles", label: t("nav.profiles") },
+    { href: "#equipo", label: t("nav.team") },
+    { href: "#rutas", label: t("nav.routes") },
     { href: "#faq", label: t("nav.faq") },
     { href: "#contacto", label: t("nav.contact") },
   ];
@@ -85,7 +85,7 @@ export function SiteHeader() {
 
           <a
             href="#contacto"
-            className="hidden bg-navy px-6 py-3 text-xs font-semibold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:inline-block"
+            className="hidden bg-navy px-5 py-3 text-xs font-semibold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground md:inline-block"
           >
             {t("header.cta")}
           </a>

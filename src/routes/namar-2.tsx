@@ -153,10 +153,21 @@ function Index() {
 
       <main className="pb-14 sm:pb-0">
         {/* ─── HERO ─────────────────────────────────────────────── */}
-        <section id="inicio" className="px-5 pb-14 pt-24 sm:px-6 sm:pb-20 sm:pt-32 lg:pt-40">
-          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div className="space-y-5 sm:space-y-7">
-              <div className="inline-flex items-center gap-3 border border-gold/25 bg-gold/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-gold sm:px-4 sm:py-2 sm:text-[11px]">
+        <section
+          id="inicio"
+          className="relative flex min-h-[650px] overflow-hidden px-5 pb-12 pt-24 sm:min-h-[680px] sm:px-6 sm:pb-16 sm:pt-32 lg:min-h-[700px] lg:items-center lg:py-32"
+        >
+          <img
+            src={heroPort}
+            width={1200}
+            height={1504}
+            alt="Puerto de contenedores en China al atardecer con grúas portuarias"
+            className="absolute inset-0 size-full object-cover object-[62%_center] sm:object-center"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-navy via-navy/75 to-navy/20 lg:bg-linear-to-r lg:from-navy lg:via-navy/80 lg:to-navy/10" />
+          <div className="relative mx-auto flex w-full max-w-7xl flex-col justify-between gap-10">
+            <div className="max-w-3xl space-y-5 text-navy-foreground sm:space-y-7">
+              <div className="inline-flex items-center gap-3 border border-gold/50 bg-navy/55 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-gold backdrop-blur-sm sm:px-4 sm:py-2 sm:text-[11px]">
                 <span className="relative flex size-2">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-gold opacity-75" />
                   <span className="relative inline-flex size-2 rounded-full bg-gold" />
@@ -169,20 +180,26 @@ function Index() {
                   {t("landing.heroSubtitle")}
                 </span>
               </h1>
-              <p className="max-w-xl text-base leading-relaxed text-slate sm:text-lg lg:text-xl">
+              <p className="max-w-xl text-base leading-relaxed text-navy-foreground/80 sm:text-lg lg:text-xl">
                 {t("landing.heroDescription")}
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-                <a href="#contacto" className={primaryBtn}>
+                <a
+                  href="#contacto"
+                  className="inline-flex items-center justify-center gap-2 bg-gold px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8 sm:py-4"
+                >
                   {t("landing.heroPrimaryCta")}
                 </a>
-                <a href="#proceso" className={secondaryBtn}>
+                <a
+                  href="#proceso"
+                  className="inline-flex items-center justify-center gap-2 border border-navy-foreground/55 bg-navy/25 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-navy-foreground backdrop-blur-sm transition-colors hover:border-gold hover:text-gold sm:px-8 sm:py-4"
+                >
                   {t("landing.heroSecondaryCta")}
                 </a>
               </div>
               <a
                 href="#costes"
-                className="group inline-flex items-center gap-3 border-l-2 border-gold pl-4 text-sm font-semibold text-navy transition-colors hover:text-gold"
+                className="group inline-flex items-center gap-3 border-l-2 border-gold pl-4 text-sm font-semibold text-navy-foreground transition-colors hover:text-gold"
               >
                 <span className="grid size-6 shrink-0 place-items-center bg-gold/15 text-gold">
                   <Check className="size-3.5" strokeWidth={3} />
@@ -190,18 +207,8 @@ function Index() {
                 <span className="min-w-0">{t("landing.heroMicro")}</span>
                 <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
               </a>
-            </div>
-
-            <div className="relative mb-8 lg:mb-0">
-              <img
-                src={heroPort}
-                width={1200}
-                height={1504}
-                alt="Puerto de contenedores en China al atardecer con grúas portuarias"
-                className="aspect-4/3 w-full object-cover shadow-elevated sm:aspect-4/5"
-              />
-              <div className="absolute -bottom-6 left-0 max-w-[85%] border border-border bg-background p-4 shadow-panel sm:-bottom-8 sm:-left-8 sm:max-w-xs sm:p-8">
-                <p className="font-serif text-sm italic leading-relaxed text-slate sm:text-base">
+              <div className="max-w-sm border-l border-gold/70 pl-4 sm:pl-5">
+                <p className="font-serif text-sm italic leading-relaxed text-navy-foreground/75 sm:text-base">
                   {t("landing.heroQuote")}
                 </p>
               </div>

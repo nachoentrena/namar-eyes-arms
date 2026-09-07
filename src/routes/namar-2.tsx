@@ -9,12 +9,12 @@ import teamPhotoAsset from "@/assets/equipo-canton-fair.jpg.asset.json";
 const onTheGround = onTheGroundAsset.url;
 const qualityControl = qualityControlAsset.url;
 const teamPhoto = teamPhotoAsset.url;
-import { ContactForm } from "@/components/namar/contact-form";
-import { MobileCta } from "@/components/namar/mobile-cta";
-import { Reveal } from "@/components/namar/reveal";
-import { ServicesCarousel } from "@/components/namar/services-carousel";
-import { SiteHeader } from "@/components/namar/site-header";
-import { WhatsAppFloat } from "@/components/namar/whatsapp-float";
+import { ContactForm } from "@/components/namar2/contact-form";
+import { MobileCta } from "@/components/namar2/mobile-cta";
+import { Reveal } from "@/components/namar2/reveal";
+import { ServicesCarousel } from "@/components/namar2/services-carousel";
+import { SiteHeader } from "@/components/namar2/site-header";
+import { WhatsAppFloat } from "@/components/namar2/whatsapp-float";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 const title = "Importar desde China a España y Colombia | NAMAR Global";
@@ -25,6 +25,7 @@ export const Route = createFileRoute("/namar-2")({
   head: () => ({
     meta: [
       { title },
+      { name: "robots", content: "noindex" },
       { name: "description", content: description },
       {
         name: "keywords",
@@ -35,10 +36,10 @@ export const Route = createFileRoute("/namar-2")({
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "es_ES" },
-      { property: "og:url", content: `${siteConfig.siteUrl}/` },
+      { property: "og:url", content: `${siteConfig.siteUrl}/namar-2` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: `${siteConfig.siteUrl}/` }],
+    links: [{ rel: "canonical", href: `${siteConfig.siteUrl}/namar-2` }],
     scripts: [
       {
         type: "application/ld+json",

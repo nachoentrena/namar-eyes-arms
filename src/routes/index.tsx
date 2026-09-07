@@ -6,7 +6,6 @@ import heroPort from "@/assets/hero-port.jpg";
 import onTheGroundAsset from "@/assets/nacho-feria.jpg.asset.json";
 import qualityControlAsset from "@/assets/ana-maria-fabrica.jpg.asset.json";
 import teamPhotoAsset from "@/assets/equipo-canton-fair.jpg.asset.json";
-import worldMap from "@/assets/world-map.jpg";
 const onTheGround = onTheGroundAsset.url;
 const qualityControl = qualityControlAsset.url;
 const teamPhoto = teamPhotoAsset.url;

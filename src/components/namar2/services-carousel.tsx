@@ -1,0 +1,147 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+
+export type ServiceItem = {
+  n: string;
+  phase?: string;
+  title: string;
+  text: string;
+};
+
+function usePerView() {
+  const [perView, setPerView] = useState(4);
+
+  useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth;
+      if (w < 480) setPerView(1);
+      else if (w < 768) setPerView(2);
+      else if (w < 1024) setPerView(3);
+      else setPerView(4);
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
+
+  return perView;
+}
+
+export function ServicesCarousel({ items }: { items: ServiceItem[] }) {
+  const perView = usePerView();
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [tick, setTick] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const pages = Math.max(1, items.length - perView + 1);
+
+  useEffect(() => {
+    setIndex((i) => Math.min(i, pages - 1));
+  }, [pages]);
+
+  const go = useCallback(
+    (next: number) => {
+      setIndex(((next % pages) + pages) % pages);
+      setTick((t) => t + 1);
+    },
+    [pages],
+  );
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % pages);
+    }, 5000);
+    return () => window.clearInterval(id);
+  }, [paused, pages, tick]);
+
+  const arrowClass =
+    "grid h-10 w-10 place-items-center rounded-full border border-border bg-background text-navy shadow-panel transition-colors hover:bg-navy hover:text-navy-foreground sm:h-11 sm:w-11";
+
+  return (
+    <div
+      className="relative mx-auto max-w-7xl"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
+      <div className="overflow-hidden px-1 py-2">
+        <div
+          ref={trackRef}
+          className="flex transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]"
+          style={{ transform: `translateX(-${index * (100 / perView)}%)` }}
+        >
+          {items.map((service) => (
+            <div key={service.n} className="shrink-0 px-1.5 sm:px-2" style={{ width: `${100 / perView}%` }}>
+              <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-panel transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-elevated sm:p-7">
+                <div className="mb-4 flex items-center justify-between gap-3 sm:mb-5">
+                  <span className="text-sm font-bold text-gold">{service.n}</span>
+                  {service.phase ? (
+                    <span className="border border-border bg-sand px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-slate">
+                      {service.phase}
+                    </span>
+                  ) : null}
+                </div>
+                <h3 className="mb-2 text-base font-bold leading-snug sm:mb-3 sm:text-lg">{service.title}</h3>
+                <p className="text-sm leading-relaxed text-slate">{service.text}</p>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop/tablet arrows: outside the cards */}
+      <button
+        type="button"
+        aria-label="Servicio anterior"
+        onClick={() => go(index - 1)}
+        className={`${arrowClass} absolute -left-2 top-1/2 hidden -translate-y-1/2 md:grid lg:-left-6`}
+      >
+        &#8249;
+      </button>
+      <button
+        type="button"
+        aria-label="Servicio siguiente"
+        onClick={() => go(index + 1)}
+        className={`${arrowClass} absolute -right-2 top-1/2 hidden -translate-y-1/2 md:grid lg:-right-6`}
+      >
+        &#8250;
+      </button>
+
+      {/* Controls row: arrows inline on mobile, dots everywhere */}
+      <div className="mt-6 flex items-center justify-center gap-4 sm:mt-8">
+        <button
+          type="button"
+          aria-label="Servicio anterior"
+          onClick={() => go(index - 1)}
+          className={`${arrowClass} md:hidden`}
+        >
+          &#8249;
+        </button>
+        <div className="flex items-center gap-2">
+          {Array.from({ length: pages }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Ir a la vista ${i + 1}`}
+              aria-current={i === index}
+              onClick={() => go(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === index ? "w-8 bg-gold" : "w-2 bg-border hover:bg-slate"
+              }`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          aria-label="Servicio siguiente"
+          onClick={() => go(index + 1)}
+          className={`${arrowClass} md:hidden`}
+        >
+          &#8250;
+        </button>
+      </div>
+    </div>
+  );
+}

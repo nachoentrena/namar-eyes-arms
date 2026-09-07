@@ -21,7 +21,7 @@ const title = "Importar desde China a España y Colombia | NAMAR Global";
 const description =
   "Tu equipo en China: búsqueda y verificación de proveedores, negociación, control de calidad, logística y aduanas. 8 años sobre el terreno. Simulamos los costes de tu importación en 24 h.";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/namar-2")({
   head: () => ({
     meta: [
       { title },

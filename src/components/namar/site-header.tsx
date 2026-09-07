@@ -15,7 +15,7 @@ export function SiteHeader() {
     { href: "#costes", label: t("nav.costs") },
     { href: "#proceso", label: t("nav.process") },
     { href: "#equipo", label: t("nav.team") },
-    { href: "#rutas", label: t("nav.routes") },
+    
     { href: "#faq", label: t("nav.faq") },
     { href: "#contacto", label: t("nav.contact") },
   ];

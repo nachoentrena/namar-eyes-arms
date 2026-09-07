@@ -6,7 +6,6 @@ import heroPort from "@/assets/hero-port.jpg";
 import onTheGroundAsset from "@/assets/nacho-feria.jpg.asset.json";
 import qualityControlAsset from "@/assets/ana-maria-fabrica.jpg.asset.json";
 import teamPhotoAsset from "@/assets/equipo-canton-fair.jpg.asset.json";
-import worldMap from "@/assets/world-map.jpg";
 const onTheGround = onTheGroundAsset.url;
 const qualityControl = qualityControlAsset.url;
 const teamPhoto = teamPhotoAsset.url;
@@ -127,13 +126,6 @@ function Index() {
   const differentiators = t("landing.differentiators", { returnObjects: true }) as Array<{
     title: string;
     text: string;
-  }>;
-  const routes = t("landing.routes", { returnObjects: true }) as Array<{
-    from: string;
-    to: string;
-    title: string;
-    text: string;
-    tags: string[];
   }>;
   const proof = t("landing.proof", { returnObjects: true }) as Array<{
     title: string;
@@ -526,63 +518,8 @@ function Index() {
           </div>
         </section>
 
-        {/* ─── RUTAS: ESPAÑA + COLOMBIA ─────────────────────────── */}
-        <section id="rutas" className={`border-y border-border bg-background ${section}`}>
-          <div className="mx-auto max-w-7xl">
-            <div className="grid items-center gap-6 lg:grid-cols-12 lg:gap-16">
-              <Reveal className="lg:col-span-6">
-                <p className={eyebrow}>{t("landing.routesLabel")}</p>
-                <h2 className={`mt-3 ${h2Sans}`}>{t("landing.routesTitle")}</h2>
-                <p className={`mt-4 ${lead}`}>{t("landing.routesText")}</p>
-              </Reveal>
-              <Reveal delay={120} className="lg:col-span-6">
-                <img
-                  src={worldMap}
-                  width={1200}
-                  height={800}
-                  loading="lazy"
-                  alt="Mapa mundial minimalista con las rutas de importación desde China a España y Colombia"
-                  className="mx-auto aspect-video w-full max-w-md object-contain mix-blend-multiply lg:max-w-none"
-                />
-              </Reveal>
-            </div>
 
-            <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2">
-              {routes.map((route, i) => (
-                <Reveal
-                  key={route.to}
-                  delay={i * 80}
-                  className="flex flex-col border border-border bg-background p-5 shadow-panel sm:p-8 lg:p-10"
-                >
-                  <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
-                    <span className="text-gold">{route.from}</span>
-                    <span className="h-px flex-1 bg-border" />
-                    <ArrowRight className="size-4 text-gold" />
-                    <span className="h-px flex-1 bg-border" />
-                    <span>{route.to}</span>
-                  </div>
-                  <h3 className="mt-4 text-xl font-bold sm:mt-6 sm:text-2xl">{route.title}</h3>
-                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-slate sm:text-base">
-                    {route.text}
-                  </p>
-                  <ul className="mt-4 flex flex-nowrap gap-1.5 sm:mt-6 sm:gap-2">
-                    {route.tags.map((tag) => (
-                      <li
-                        key={tag}
-                        className="flex-1 border border-border bg-sand px-1.5 py-1 text-center text-[9px] font-semibold uppercase tracking-wide text-slate sm:px-2 sm:py-1.5 sm:text-[11px] sm:tracking-wider"
-                      >
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
-                </Reveal>
-              ))}
-            </div>
-            <Reveal>
-              <p className="mt-5 text-sm text-slate sm:mt-8">{t("landing.routesNote")}</p>
-            </Reveal>
-          </div>
-        </section>
+
 
         {/* ─── PRUEBA OPERATIVA (sustituye testimonios) ─────────── */}
         <section className={`bg-sand ${section}`}>

@@ -309,7 +309,7 @@ const resources = {
           namePlaceholder: "Your name",
           companyPlaceholder: "Your company or project name",
           emailPlaceholder: "name@company.com",
-          phonePlaceholder: "+34 / +57 ...",
+          phonePlaceholder: "Your number",
           productPlaceholder: "e.g. machinery, textiles, components",
           volumePlaceholder: "e.g. 1 container / 500 units",
           messagePlaceholder:

@@ -1,6 +1,7 @@
-import { useState, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { siteConfig } from "@/lib/site-config";
+import { countries, defaultCountry } from "@/lib/countries";
 
 const fieldClass =
   "w-full border border-border bg-sand px-4 py-3 text-sm text-navy outline-none transition-colors placeholder:text-slate/70 focus:border-gold";
@@ -8,6 +9,15 @@ const fieldClass =
 export function ContactForm() {
   const { t } = useTranslation();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [country, setCountry] = useState(defaultCountry.name);
+  const [dialCode, setDialCode] = useState(defaultCountry.dial);
+
+  function handleCountryChange(event: ChangeEvent<HTMLSelectElement>) {
+    const selected = event.target.value;
+    setCountry(selected);
+    const match = countries.find((c) => c.name === selected);
+    setDialCode(match?.dial ?? "");
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -15,6 +25,10 @@ export function ContactForm() {
     setStatus("sending");
 
     const data = Object.fromEntries(new FormData(form));
+    const digits = String(data.whatsapp ?? "").trim();
+    if (digits) {
+      data.whatsapp = `${dialCode} ${digits}`;
+    }
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -25,6 +39,8 @@ export function ContactForm() {
       const result = (await response.json()) as { success?: boolean };
       if (response.ok && result.success) {
         form.reset();
+        setCountry(defaultCountry.name);
+        setDialCode(defaultCountry.dial);
         setStatus("sent");
       } else {
         setStatus("error");
@@ -97,13 +113,18 @@ export function ContactForm() {
         <label htmlFor="telefono" className="text-[11px] font-bold uppercase tracking-widest text-slate">
           {t("contact.form.phone")}
         </label>
-        <input
-          id="telefono"
-          name="whatsapp"
-          type="tel"
-          className={fieldClass}
-          placeholder={t("contact.form.phonePlaceholder")}
-        />
+        <div className="flex gap-2">
+          <span className="flex w-20 shrink-0 items-center justify-center border border-border bg-sand px-2 text-sm font-semibold text-navy">
+            {dialCode || "—"}
+          </span>
+          <input
+            id="telefono"
+            name="whatsapp"
+            type="tel"
+            className={fieldClass}
+            placeholder={t("contact.form.phonePlaceholder")}
+          />
+        </div>
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="pais" className="text-[11px] font-bold uppercase tracking-widest text-slate">
@@ -113,11 +134,14 @@ export function ContactForm() {
           id="pais"
           name="pais_destino"
           className={fieldClass}
-          defaultValue={t("contact.form.countrySpain")}
+          value={country}
+          onChange={handleCountryChange}
         >
-          <option>{t("contact.form.countrySpain")}</option>
-          <option>{t("contact.form.countryColombia")}</option>
-          <option>{t("contact.form.countryOther")}</option>
+          {countries.map((c) => (
+            <option key={c.name} value={c.name}>
+              {c.name}
+            </option>
+          ))}
         </select>
       </div>
       <div className="flex flex-col gap-2">

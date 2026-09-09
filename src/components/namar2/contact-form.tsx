@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { siteConfig } from "@/lib/site-config";
-import { countries, defaultCountry } from "@/lib/countries";
+import { countries } from "@/lib/countries";
 
 const fieldClass =
   "w-full border border-border bg-sand px-4 py-3 text-sm text-navy outline-none transition-colors placeholder:text-slate/70 focus:border-gold";
@@ -9,8 +9,8 @@ const fieldClass =
 export function ContactForm() {
   const { t } = useTranslation();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [country, setCountry] = useState(defaultCountry.name);
-  const [dialCode, setDialCode] = useState(defaultCountry.dial);
+  const [country, setCountry] = useState("");
+  const [dialCode, setDialCode] = useState("");
 
   function handleCountryChange(event: ChangeEvent<HTMLSelectElement>) {
     const selected = event.target.value;
@@ -39,8 +39,8 @@ export function ContactForm() {
       const result = (await response.json()) as { success?: boolean };
       if (response.ok && result.success) {
         form.reset();
-        setCountry(defaultCountry.name);
-        setDialCode(defaultCountry.dial);
+        setCountry("");
+        setDialCode("");
         setStatus("sent");
       } else {
         setStatus("error");
@@ -120,6 +120,9 @@ export function ContactForm() {
           value={country}
           onChange={handleCountryChange}
         >
+          <option value="" disabled>
+            Selecciona un país
+          </option>
           {countries.map((c) => (
             <option key={c.name} value={c.name}>
               {c.name}

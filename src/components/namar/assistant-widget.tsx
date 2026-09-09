@@ -81,8 +81,8 @@ export function AssistantWidget() {
             const text = m.parts
               .map((p) => (p.type === "text" ? p.text : ""))
               .join("");
-            if (!text && m.role === "assistant") return null;
             const isUser = m.role === "user";
+            if (!text && !isUser) return null;
             return (
               <div key={m.id} className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
                 <div

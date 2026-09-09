@@ -208,4 +208,4 @@ export const countries: Country[] = [
   { name: "Zimbabue", dial: "+263" },
 ];
 
-export const defaultCountry = countries[0]; // España (+34)
+export const defaultCountry: Country = { name: "España", dial: "+34" };

@@ -120,6 +120,9 @@ export function ContactForm() {
           value={country}
           onChange={handleCountryChange}
         >
+          <option value="" disabled>
+            Selecciona un país
+          </option>
           {countries.map((c) => (
             <option key={c.name} value={c.name}>
               {c.name}

@@ -110,23 +110,6 @@ export function ContactForm() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="telefono" className="text-[11px] font-bold uppercase tracking-widest text-slate">
-          {t("contact.form.phone")}
-        </label>
-        <div className="flex gap-2">
-          <span className="flex w-20 shrink-0 items-center justify-center border border-border bg-sand px-2 text-sm font-semibold text-navy">
-            {dialCode || "—"}
-          </span>
-          <input
-            id="telefono"
-            name="whatsapp"
-            type="tel"
-            className={fieldClass}
-            placeholder={t("contact.form.phonePlaceholder")}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col gap-2">
         <label htmlFor="pais" className="text-[11px] font-bold uppercase tracking-widest text-slate">
           {t("contact.form.country")}
         </label>
@@ -143,6 +126,23 @@ export function ContactForm() {
             </option>
           ))}
         </select>
+      </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="telefono" className="text-[11px] font-bold uppercase tracking-widest text-slate">
+          {t("contact.form.phone")}
+        </label>
+        <div className="flex gap-2">
+          <span className="flex w-20 shrink-0 items-center justify-center border border-border bg-sand px-2 text-sm font-semibold text-navy">
+            {dialCode || "—"}
+          </span>
+          <input
+            id="telefono"
+            name="whatsapp"
+            type="tel"
+            className={fieldClass}
+            placeholder={t("contact.form.phonePlaceholder")}
+          />
+        </div>
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="producto" className="text-[11px] font-bold uppercase tracking-widest text-slate">

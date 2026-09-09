@@ -14,7 +14,6 @@ import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
 import { ServicesCarousel } from "@/components/namar/services-carousel";
 import { SiteHeader } from "@/components/namar/site-header";
-import { AssistantWidget } from "@/components/namar/assistant-widget";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 const title = "Importar desde China a España y Colombia | NAMAR Global";
@@ -148,7 +147,6 @@ function Index() {
     <div className="bg-background font-sans text-navy">
       <SiteHeader />
       <MobileCta />
-      <AssistantWidget />
 
       <main className="pb-14 sm:pb-0">
         {/* ─── HERO ─────────────────────────────────────────────── */}

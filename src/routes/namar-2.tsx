@@ -14,7 +14,6 @@ import { MobileCta } from "@/components/namar2/mobile-cta";
 import { Reveal } from "@/components/namar2/reveal";
 import { ServicesCarousel } from "@/components/namar2/services-carousel";
 import { SiteHeader } from "@/components/namar2/site-header";
-import { AssistantWidget } from "@/components/namar/assistant-widget";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 const title = "NAMAR 2 | Versión alternativa | NAMAR Global";
@@ -149,7 +148,6 @@ function Index() {
     <div className="bg-background font-sans text-navy">
       <SiteHeader />
       <MobileCta />
-      <AssistantWidget />
 
       <main className="pb-14 sm:pb-0">
         {/* ─── HERO ─────────────────────────────────────────────── */}

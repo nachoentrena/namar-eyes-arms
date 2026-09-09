@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport } from "ai";
+import { DefaultChatTransport, type UIMessage } from "ai";
 import { Bot, SendHorizonal, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
@@ -23,7 +23,7 @@ export function AssistantWidget() {
         role: "assistant",
         parts: [{ type: "text", text: GREETING }],
       },
-    ],
+    ] as UIMessage[],
   });
 
   const busy = status === "submitted" || status === "streaming";

@@ -25,9 +25,9 @@ export function ContactForm() {
     setStatus("sending");
 
     const data = Object.fromEntries(new FormData(form));
-    const digits = String(data.whatsapp ?? "").trim();
+    const digits = String(data["whatsapp"] ?? "").trim();
     if (digits) {
-      data.whatsapp = `${dialCode} ${digits}`;
+      data["whatsapp"] = `${dialCode} ${digits}`;
     }
 
     try {

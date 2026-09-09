@@ -120,6 +120,15 @@
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
   }
+
+  /* Chatbase bubble: keep clear of the mobile bottom bar */
+  @media (max-width: 639px) {
+    #chatbase-bubble-button,
+    #chatbase-bubble-window {
+      bottom: calc(4.5rem + env(safe-area-inset-bottom)) !important;
+      right: 1rem !important;
+    }
+  }
 }
 
 @utility reveal {

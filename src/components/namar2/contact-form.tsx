@@ -1,26 +1,49 @@
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { siteConfig } from "@/lib/site-config";
 
 const fieldClass =
   "w-full border border-border bg-sand px-4 py-3 text-sm text-navy outline-none transition-colors placeholder:text-slate/70 focus:border-gold";
 
 export function ContactForm() {
   const { t } = useTranslation();
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
+    const form = event.currentTarget;
+    setStatus("sending");
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = (await response.json()) as { success?: boolean };
+      if (response.ok && result.success) {
+        form.reset();
+        setStatus("sent");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
-  if (sent) {
+  if (status === "sent") {
     return (
       <div className="border border-border bg-sand p-10 text-center">
         <p className="font-serif text-3xl italic text-navy">{t("contact.form.sentTitle")}</p>
-        <p className="mt-4 text-sm leading-relaxed text-slate">{t("contact.form.sentText")}</p>
+        <p className="mt-4 text-sm leading-relaxed text-slate">
+          ¡Gracias! Hemos recibido tu solicitud de importación y te contactaremos pronto.
+        </p>
         <button
           type="button"
-          onClick={() => setSent(false)}
+          onClick={() => setStatus("idle")}
           className="mt-8 border border-border px-6 py-3 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-navy hover:text-navy-foreground"
         >
           {t("contact.form.sentButton")}
@@ -31,6 +54,9 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+      <input type="hidden" name="access_key" value={siteConfig.web3formsAccessKey} />
+      <input type="hidden" name="subject" value="Nueva solicitud de importación — NAMAR Global" />
+      <input type="hidden" name="from_name" value="Web NAMAR Global" />
       <div className="flex flex-col gap-2">
         <label htmlFor="nombre" className="text-[11px] font-bold uppercase tracking-widest text-slate">
           {t("contact.form.name")}
@@ -73,7 +99,7 @@ export function ContactForm() {
         </label>
         <input
           id="telefono"
-          name="telefono"
+          name="whatsapp"
           type="tel"
           className={fieldClass}
           placeholder={t("contact.form.phonePlaceholder")}
@@ -85,7 +111,7 @@ export function ContactForm() {
         </label>
         <select
           id="pais"
-          name="pais"
+          name="pais_destino"
           className={fieldClass}
           defaultValue={t("contact.form.countrySpain")}
         >
@@ -112,7 +138,7 @@ export function ContactForm() {
         </label>
         <input
           id="volumen"
-          name="volumen"
+          name="cantidad_aproximada"
           className={fieldClass}
           placeholder={t("contact.form.volumePlaceholder")}
         />
@@ -129,11 +155,17 @@ export function ContactForm() {
           placeholder={t("contact.form.messagePlaceholder")}
         />
       </div>
+      {status === "error" && (
+        <p className="text-sm font-medium text-red-700 md:col-span-2">
+          Ocurrió un error al enviar el mensaje. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.
+        </p>
+      )}
       <button
         type="submit"
-        className="mt-1 bg-navy px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:py-4 md:col-span-2"
+        disabled={status === "sending"}
+        className="mt-1 bg-navy px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground disabled:cursor-not-allowed disabled:opacity-60 sm:py-4 md:col-span-2"
       >
-        {t("contact.form.submit")}
+        {status === "sending" ? "Enviando..." : t("contact.form.submit")}
       </button>
     </form>
   );

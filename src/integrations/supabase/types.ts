@@ -46,7 +46,7 @@ export type Database = {
           categoria?: string | null
           ciudad?: string | null
           clasificacion?: string
-          codigo: string
+          codigo?: string
           created_at?: string
           email: string
           empresa?: string | null
@@ -94,7 +94,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      diagnostico_codigo: { Args: never; Returns: string }
     }
     Enums: {
       [_ in never]: never

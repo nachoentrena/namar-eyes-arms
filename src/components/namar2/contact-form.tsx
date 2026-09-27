@@ -136,7 +136,7 @@ export function ContactForm() {
         </label>
         <div className="flex gap-2">
           <span className="flex w-20 shrink-0 items-center justify-center border border-border bg-sand px-2 text-sm font-semibold text-navy">
-            {dialCode || "—"}
+            {dialCode || "+"}
           </span>
           <input
             id="telefono"

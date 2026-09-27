@@ -14,7 +14,81 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      diagnosticos: {
+        Row: {
+          alerta: string | null
+          archivos: Json
+          banderas: Json
+          categoria: string | null
+          ciudad: string | null
+          clasificacion: string
+          codigo: string
+          created_at: string
+          email: string
+          empresa: string | null
+          estado: string
+          etapa: string | null
+          id: string
+          nombre: string
+          notas_internas: string | null
+          pais: string | null
+          paquete_sugerido: string | null
+          presupuesto: string | null
+          producto: string
+          puntuacion: number
+          respuestas: Json
+          whatsapp: string | null
+        }
+        Insert: {
+          alerta?: string | null
+          archivos?: Json
+          banderas?: Json
+          categoria?: string | null
+          ciudad?: string | null
+          clasificacion?: string
+          codigo: string
+          created_at?: string
+          email: string
+          empresa?: string | null
+          estado?: string
+          etapa?: string | null
+          id?: string
+          nombre: string
+          notas_internas?: string | null
+          pais?: string | null
+          paquete_sugerido?: string | null
+          presupuesto?: string | null
+          producto: string
+          puntuacion?: number
+          respuestas?: Json
+          whatsapp?: string | null
+        }
+        Update: {
+          alerta?: string | null
+          archivos?: Json
+          banderas?: Json
+          categoria?: string | null
+          ciudad?: string | null
+          clasificacion?: string
+          codigo?: string
+          created_at?: string
+          email?: string
+          empresa?: string | null
+          estado?: string
+          etapa?: string | null
+          id?: string
+          nombre?: string
+          notas_internas?: string | null
+          pais?: string | null
+          paquete_sugerido?: string | null
+          presupuesto?: string | null
+          producto?: string
+          puntuacion?: number
+          respuestas?: Json
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

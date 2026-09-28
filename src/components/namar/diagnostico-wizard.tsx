@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Loader2, Upload, X } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
-import { countries } from "@/lib/countries";
 import {
   attachDiagnosticoArchivos,
   submitDiagnostico,
@@ -33,12 +32,12 @@ const inputCls =
 const STEPS = [
   "Sus datos",
   "Su experiencia",
-  "Su producto",
-  "Requisitos",
-  "Su proveedor",
-  "Cantidades y plazos",
+  "El producto",
+  "Requisitos especiales",
+  "Proveedor",
+  "Cantidad y plazos",
   "Marca y logística",
-  "Su proyecto",
+  "Su proyecto con NAMAR",
 ];
 
 function Field({
@@ -133,31 +132,41 @@ function Chips({
 }
 
 const CATEGORIAS = [
-  "Electrónica y tecnología",
-  "Textil y calzado",
   "Hogar y decoración",
-  "Maquinaria industrial",
-  "Automoción y repuestos",
-  "Juguetes y artículos infantiles",
-  "Cosmética y cuidado personal",
-  "Alimentación y bebidas",
-  "Deporte y ocio",
-  "Bisutería y accesorios",
+  "Menaje y cocina",
+  "Alimentos y bebidas",
+  "Textil y calzado",
+  "Cosmética e higiene",
+  "Salud",
+  "Juguetes e infantil",
+  "Electrónica y electrodomésticos",
+  "Iluminación",
+  "Maquinaria y herramientas",
+  "Construcción",
+  "Mobiliario",
+  "Packaging",
+  "Automoción",
+  "Deporte",
+  "Mascotas",
   "Otro",
 ];
 
 const MATERIALES = [
   "Plástico",
   "Metal",
-  "Madera",
   "Vidrio o cerámica",
-  "Tela o piel",
-  "Cartón o papel",
+  "Madera o bambú",
+  "Textil",
+  "Piel o cuero",
+  "Silicona o caucho",
+  "Papel o cartón",
+  "Electrónica",
   "No lo sé",
+  "Otro",
 ];
 
 const REQUISITOS = [
-  "Tiene enchufe o cable (electricidad)",
+  "Funciona con electricidad",
   "Tiene batería",
   "Tiene Wi-Fi o Bluetooth",
   "Contacto con alimentos o bebidas",
@@ -165,17 +174,27 @@ const REQUISITOS = [
   "Uso médico, sanitario o de protección",
   "Para niños menores de 14 años",
   "Contiene químicos, líquidos, gases, polvos, imanes, madera o materiales de origen animal",
-  "Ninguna de las anteriores",
+  "Ninguna",
   "No lo sé",
 ];
 
+const CERTIFICADOS_COND =
+  ["Contacto con alimentos o bebidas", "Se aplica sobre la piel o es cosmético", "Uso médico, sanitario o de protección", "Para niños menores de 14 años", "Contiene químicos, líquidos, gases, polvos, imanes, madera o materiales de origen animal"];
+
 const SERVICIOS = [
-  "Encontrar proveedores",
-  "Verificar proveedores",
-  "Negociar precios",
+  "Búsqueda de proveedores",
+  "Evaluación y verificación de fábrica",
+  "Negociación",
+  "Muestras",
+  "Personalización",
   "Control de calidad",
-  "Logística y aduanas",
-  "Gestión completa",
+  "Certificaciones y pruebas",
+  "Logística internacional",
+  "Consolidación de mercancía",
+  "Coordinación aduanera",
+  "Transporte hasta mi bodega",
+  "Gestión integral de la importación",
+  "No estoy seguro, necesito asesoría",
 ];
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -249,12 +268,12 @@ export function DiagnosticoWizard() {
     setAnswers((prev) => {
       const current = Array.isArray(prev[key]) ? (prev[key] as string[]) : [];
       let next: string[];
-      if (option === "Ninguna de las anteriores" || option === "No lo sé") {
+      if (option === "Ninguna" || option === "No lo sé") {
         next = current.includes(option) ? [] : [option];
       } else {
         next = current.includes(option)
           ? current.filter((o) => o !== option)
-          : [...current.filter((o) => o !== "Ninguna de las anteriores" && o !== "No lo sé"), option];
+          : [...current.filter((o) => o !== "Ninguna" && o !== "No lo sé"), option];
       }
       const result = { ...prev };
       if (next.length > 0) result[key] = next;
@@ -292,22 +311,20 @@ export function DiagnosticoWizard() {
       }
       return combined;
     });
-    if (rejected.length > 0) {
-      setErrors((prev) => ({ ...prev, archivos: rejected.join(" · ") }));
-    } else {
-      setErrors((prev) => {
-        const next = { ...prev };
-        delete next.archivos;
-        return next;
-      });
-    }
+    setErrors((prev) => {
+      const next = { ...prev };
+      if (rejected.length > 0) next["archivos"] = rejected.join(" · ");
+      else delete next["archivos"];
+      return next;
+    });
   };
 
   const validateStep = (target: number): boolean => {
     const e: Record<string, string> = {};
     const req = (key: string, message: string) => {
       const value = answers[key];
-      const empty = value === undefined || value === "" || (Array.isArray(value) && value.length === 0);
+      const empty =
+        value === undefined || value === "" || (Array.isArray(value) && value.length === 0);
       if (empty) e[key] = message;
     };
 
@@ -317,57 +334,42 @@ export function DiagnosticoWizard() {
       if (get("whatsapp").replace(/\D/g, "").length < 6)
         e["whatsapp"] = "Por favor indíquenos un número de WhatsApp válido.";
       req("pais", "Por favor seleccione el país de importación.");
-      if (!get("ciudad").trim()) e["ciudad"] = "Por favor indíquenos su ciudad.";
+      if (!get("ciudad").trim()) e["ciudad"] = "Por favor indíquenos la ciudad donde recibirá la mercancía.";
       req("perfil", "Por favor seleccione una opción.");
       if (get("perfil") && get("perfil") !== "Emprendedor, aún sin empresa") {
         if (!get("empresa_cargo").trim())
-          e["empresa_cargo"] = "Por favor indíquenos la empresa y su cargo.";
+          e["empresa_cargo"] = "Por favor indíquenos el nombre de la empresa y su cargo.";
       }
     }
     if (target === 2) {
       req("experiencia", "Por favor seleccione una opción.");
       req("habilitado", "Por favor seleccione una opción.");
       req("agencia", "Por favor seleccione una opción.");
-etiqueta: ;
+      if (get("agencia") === "Sí") req("coordinar_agencia", "Por favor seleccione una opción.");
     }
     if (target === 3) {
-      if (!get("producto").trim()) e["producto"] = "Por favor indíquenos el producto.";
-      if (!get("producto_desc").trim()) e["producto_desc"] = "Por favor descríbanos brevemente el producto.";
+      if (!get("producto").trim()) e["producto"] = "Por favor indíquenos el nombre del producto.";
+      if (!get("producto_desc").trim()) e["producto_desc"] = "Por favor descríbanos el producto.";
       req("categoria", "Por favor seleccione una categoría.");
-      if (getArr("materiales").length === 0) e["materiales"] = "Por favor seleccione al menos un material.";
+      if (getArr("materiales").length === 0)
+        e["materiales"] = "Por favor seleccione al menos un material.";
     }
     if (target === 4) {
       if (getArr("requisitos").length === 0)
-        e["requisitos"] = "Por favor seleccione una opción (si no aplica, marque “Ninguna de las anteriores”).";
+        e["requisitos"] = "Por favor seleccione una opción (si no aplica ninguna, marque “Ninguna”).";
       const r = getArr("requisitos");
-      if (r.includes("Tiene enchufe o cable (electricidad)")) req("voltaje", "Por favor seleccione el voltaje.");
+      if (r.includes("Funciona con electricidad")) req("voltaje", "Por favor seleccione el voltaje.");
       if (r.includes("Tiene batería")) {
         req("tipo_bateria", "Por favor seleccione el tipo de batería.");
         req("viaje_bateria", "Por favor indíquenos cómo viaja la batería.");
-        if (getArr("docs_bateria").length === 0)
-          e["docs_bateria"] = "Por favor seleccione al menos una opción.";
       }
-      if (
-        r.some(
-          (x) =>
-            [
-              "Contacto con alimentos o bebidas",
-              "Se aplica sobre la piel o es cosmético",
-              "Uso médico, sanitario o de protección",
-              "Para niños menores de 14 años",
-              "Contiene químicos, líquidos, gases, polvos, imanes, madera o materiales de origen animal",
-            ].includes(x),
-        ) &&
-        getArr("certificados").length === 0
-      ) {
+      if (r.some((x) => CERTIFICADOS_COND.includes(x)) && getArr("certificados").length === 0) {
         e["certificados"] = "Por favor seleccione al menos una opción.";
       }
     }
     if (target === 5) {
       req("proveedor", "Por favor seleccione una opción.");
-      if (get("proveedor") === "Sí, ya tengo proveedor") {
-        if (!get("proveedor_info").trim())
-          e["proveedor_info"] = "Por favor indíquenos el nombre o enlace del proveedor.";
+      if (get("proveedor") && get("proveedor") !== "No, necesito que NAMAR lo busque") {
         req("tipo_proveedor", "Por favor seleccione una opción.");
         req("pagado", "Por favor seleccione una opción.");
       }
@@ -381,13 +383,12 @@ etiqueta: ;
       req("disponibilidad", "Por favor seleccione una opción.");
       req("compras12", "Por favor seleccione una opción.");
       req("cuando", "Por favor seleccione una opción.");
+      if (getArr("venta").length === 0)
+        e["venta"] = "Por favor seleccione al menos una opción.";
     }
     if (target === 7) {
       req("marca", "Por favor seleccione una opción.");
-      if (
-        get("marca") === "Tengo marca y quiero productos propios" ||
-        get("marca") === "Tengo marca y quiero personalizar un producto existente"
-      ) {
+      if (get("marca") === "Con mi marca (logo y packaging)" || get("marca") === "Personalizado o diseño propio") {
         if (getArr("personalizar").length === 0)
           e["personalizar"] = "Por favor seleccione al menos una opción.";
       }
@@ -397,10 +398,10 @@ etiqueta: ;
     if (target === 8) {
       req("etapa", "Por favor seleccione la etapa de su proyecto.");
       if (getArr("servicios").length === 0)
-        e["servicios"] = "Por favor seleccione al menos un servicio.";
-      if (!get("como_conocio")) e["como_conocio"] = "Por favor seleccione una opción.";
-      if (!get("acepta1")) e["acepta1"] = "Necesitamos su confirmación para enviar la evaluación.";
-      if (!get("acepta2")) e["acepta2"] = "Debe aceptar la autorización de tratamiento de datos.";
+        e["servicios"] = "Por favor seleccione al menos una opción.";
+      req("como_conocio", "Por favor seleccione una opción.");
+      if (!get("acepta1")) e["acepta1"] = "Debe marcar esta casilla para enviar el diagnóstico.";
+      if (!get("acepta2")) e["acepta2"] = "Debe autorizar el tratamiento de sus datos.";
     }
 
     setErrors(e);
@@ -474,25 +475,28 @@ etiqueta: ;
           Diagnóstico enviado
         </p>
         <h2 className="mt-3 font-serif text-3xl text-navy sm:text-4xl">
-          ¡Gracias! Hemos recibido su solicitud.
+          Gracias. Hemos recibido su diagnóstico
+          {codigo ? (
+            <>
+              {" "}
+              (referencia <span className="font-bold text-navy">{codigo}</span>)
+            </>
+          ) : null}
+          .
         </h2>
-        {codigo ? (
-          <p className="mt-4 text-base text-slate">
-            Su referencia es{" "}
-            <span className="font-bold text-navy">{codigo}</span>. El equipo de NAMAR GLOBAL le
-            enviará una evaluación preliminar de viabilidad en 24–48 horas hábiles al correo que nos
-            indicó.
-          </p>
-        ) : (
-          <p className="mt-4 text-base text-slate">
-            El equipo de NAMAR GLOBAL le enviará una evaluación preliminar de viabilidad en 24–48
-            horas hábiles.
-          </p>
-        )}
+        <p className="mt-4 text-base text-slate">
+          El equipo de NAMAR GLOBAL revisará su proyecto y le contactará en 24–48 horas hábiles con
+          los siguientes pasos.
+        </p>
+        <p className="mt-3 text-sm text-slate">
+          Importante: esta es una evaluación preliminar. La viabilidad, los costes, aranceles,
+          impuestos, plazos, certificaciones y el despacho aduanero dependen de autoridades,
+          proveedores y terceros especialistas, y solo pueden confirmarse tras un análisis
+          detallado. NAMAR no actúa como agencia de aduanas: coordinamos con agencias y
+          representantes aduaneros colaboradores en su país.
+        </p>
         <a
-          href={whatsappHref(
-            `Hola, acabo de enviar el diagnóstico ${codigo ?? ""}`.trim(),
-          )}
+          href={whatsappHref(`Hola, acabo de enviar el diagnóstico ${codigo ?? ""}`.trim())}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 inline-block bg-navy px-6 py-3.5 text-xs font-semibold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground"
@@ -513,7 +517,9 @@ etiqueta: ;
           <p className="text-xs font-semibold uppercase tracking-widest text-navy">
             Paso {step} de 8
           </p>
-          <p className="text-xs font-medium uppercase tracking-widest text-slate">{STEPS[step - 1]}</p>
+          <p className="text-right text-xs font-medium uppercase tracking-widest text-slate">
+            {STEPS[step - 1]}
+          </p>
         </div>
         <div className="mt-3 h-1 w-full bg-sand-strong">
           <div
@@ -557,7 +563,7 @@ etiqueta: ;
                 label="WhatsApp / Teléfono"
                 required
                 error={errors["whatsapp"]}
-                hint="Con su prefijo de país, por ejemplo +34 600 000 000"
+                hint="Con su prefijo, por ejemplo +57 o +34"
               >
                 <input
                   type="tel"
@@ -567,57 +573,55 @@ etiqueta: ;
                   placeholder="+34 600 000 000"
                 />
               </Field>
-              <Field label="País de importación" required error={errors["pais"]}>
-                <select
-                  className={inputCls}
+              <Field label="¿A qué país se importará la mercancía?" required error={errors["pais"]}>
+                <Options
+                  options={[
+                    "Colombia",
+                    "España",
+                    "Otro país de la UE",
+                    "Otro país de Latinoamérica",
+                    "Otro",
+                  ]}
                   value={get("pais")}
-                  onChange={(e) => set("pais", e.target.value)}
-                >
-                  <option value="" disabled>
-                    Seleccione un país
-                  </option>
-                  {countries.map((c) => (
-                    <option key={c.name} value={c.name}>
-                      {c.name}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-            </div>
-            <div className="grid gap-6 sm:grid-cols-2">
-              <Field label="Ciudad" required error={errors["ciudad"]}>
-                <input
-                  className={inputCls}
-                  value={get("ciudad")}
-                  onChange={(e) => set("ciudad", e.target.value)}
-                  placeholder="Su ciudad"
+                  onSelect={(o) => set("pais", o)}
                 />
               </Field>
-              <Field label="¿Cómo va a importar?" required error={errors["perfil"]}>
-                <select
-                  className={inputCls}
-                  value={get("perfil")}
-                  onChange={(e) =>
-                    set(
-                      "perfil",
-                      e.target.value,
-                      e.target.value === "Emprendedor, aún sin empresa" ? ["empresa_cargo"] : [],
-                    )
-                  }
-                >
-                  <option value="" disabled>
-                    Seleccione una opción
-                  </option>
-                  <option>Emprendedor, aún sin empresa</option>
-                  <option>Tengo una empresa propia</option>
-                  <option>Compro para una empresa (empleado / representante)</option>
-                  <option>Compro para revender</option>
-                  <option>Otro</option>
-                </select>
-              </Field>
             </div>
+            <Field
+              label="Ciudad donde recibirá la mercancía"
+              required
+              error={errors["ciudad"]}
+            >
+              <input
+                className={inputCls}
+                value={get("ciudad")}
+                onChange={(e) => set("ciudad", e.target.value)}
+                placeholder="Su ciudad"
+              />
+            </Field>
+            <Field label="¿Cómo va a importar?" required error={errors["perfil"]}>
+              <Options
+                options={[
+                  "Emprendedor, aún sin empresa",
+                  "Autónomo o persona natural con actividad registrada",
+                  "Empresa constituida",
+                ]}
+                value={get("perfil")}
+                onSelect={(o) =>
+                  set(
+                    "perfil",
+                    o,
+                    o === "Emprendedor, aún sin empresa" ? ["empresa_cargo"] : [],
+                  )
+                }
+              />
+            </Field>
             {get("perfil") && get("perfil") !== "Emprendedor, aún sin empresa" ? (
-              <Field label="Empresa y cargo" required error={errors["empresa_cargo"]}>
+              <Field
+                label="Nombre de la empresa y su cargo"
+                required
+                error={errors["empresa_cargo"]}
+              >
                 <input
                   className={inputCls}
                   value={get("empresa_cargo")}
@@ -626,11 +630,15 @@ etiqueta: ;
                 />
               </Field>
             ) : null}
-            <Field label="¿Por dónde prefiere que le contactemos?" error={errors["contacto_pref"]}>
+            <Field
+              label="¿Por dónde prefiere que le contactemos?"
+              error={errors["contacto_pref"]}
+            >
               <Options
-                options={["WhatsApp", "Correo electrónico", "Llamada telefónica"]}
+                options={["WhatsApp", "Correo", "Videollamada"]}
                 value={get("contacto_pref")}
                 onSelect={(o) => set("contacto_pref", o)}
+                cols="sm:grid-cols-3"
               />
             </Field>
           </div>
@@ -639,7 +647,7 @@ etiqueta: ;
         {/* ─── PASO 2 ─────────────────────────────────────────── */}
         {step === 2 ? (
           <div className="space-y-8">
-            <Field label="¿Qué experiencia tiene importando?" required error={errors["experiencia"]}>
+            <Field label="¿Ha importado anteriormente?" required error={errors["experiencia"]}>
               <Options
                 options={[
                   "Nunca he importado",
@@ -652,37 +660,50 @@ etiqueta: ;
               />
             </Field>
             <Field
-              label="¿Está dado de alta o habilitado para importar en su país?"
+              label="¿Está habilitado como importador en su país?"
               required
               error={errors["habilitado"]}
+              hint="Colombia: RUT como importador · España/UE: número EORI"
             >
               <Options
-                options={["Sí", "No", "No lo sé"]}
+                options={["Sí", "Estoy en proceso", "No", "No lo sé"]}
                 value={get("habilitado")}
                 onSelect={(o) => set("habilitado", o)}
               />
             </Field>
-            <Field label="¿Tiene agente de aduanas propio?" required error={errors["agencia"]}>
+            <Field
+              label="¿Trabaja con una agencia de aduanas o representante aduanero?"
+              required
+              error={errors["agencia"]}
+            >
               <Options
-                options={["Sí", "No", "No lo sé"]}
+                options={["Sí", "No", "No sé si lo necesito"]}
                 value={get("agencia")}
-                onSelect={(o) =>
-                  set("agencia", o, o === "Sí" ? [] : ["coordinar_agencia"])
-                }
+                onSelect={(o) => set("agencia", o, o === "Sí" ? [] : ["coordinar_agencia"])}
               />
             </Field>
             {get("agencia") === "Sí" ? (
               <Field
-                label="¿Quién coordina con su agente de aduanas?"
+                label="¿Quiere que NAMAR coordine directamente con su agencia?"
                 required
                 error={errors["coordinar_agencia"]}
               >
                 <Options
-                  options={["Sí, yo me encargo", "Prefiero que NAMAR coordine con él"]}
+                  options={[
+                    "Sí",
+                    "No, NAMAR solo hasta la salida de China",
+                    "Prefiero que me recomienden otra",
+                  ]}
                   value={get("coordinar_agencia")}
                   onSelect={(o) => set("coordinar_agencia", o)}
                 />
               </Field>
+            ) : get("agencia") ? (
+              <p className="border border-border bg-background px-4 py-3 text-sm text-slate">
+                NAMAR no es una agencia de aduanas. Si lo necesita, coordinamos con agencias o
+                representantes aduaneros colaboradores en su país, que actúan con su propia
+                habilitación y tarifa.
+              </p>
             ) : null}
           </div>
         ) : null}
@@ -690,19 +711,24 @@ etiqueta: ;
         {/* ─── PASO 3 ─────────────────────────────────────────── */}
         {step === 3 ? (
           <div className="space-y-6">
-            <Field label="¿Qué producto quiere importar?" required error={errors["producto"]}>
+            <Field
+              label="Nombre del producto"
+              required
+              error={errors["producto"]}
+              hint='Por ejemplo: "máquina dispensadora de bebidas"'
+            >
               <input
                 className={inputCls}
                 value={get("producto")}
                 onChange={(e) => set("producto", e.target.value)}
-                placeholder="Por ejemplo: lámparas de mesa para hogar"
+                placeholder="Nombre del producto"
               />
             </Field>
             <Field
-              label="Descríbanos brevemente el producto"
+              label="Descríbalo"
               required
               error={errors["producto_desc"]}
-              hint="Uso, características, modelo o referencia si la conoce"
+              hint="Qué es, cómo funciona, para qué se usa y quién lo usará"
             >
               <textarea
                 rows={4}
@@ -712,7 +738,7 @@ etiqueta: ;
                 placeholder="Descripción del producto"
               />
             </Field>
-            <Field label="Categoría del producto" required error={errors["categoria"]}>
+            <Field label="Categoría" required error={errors["categoria"]}>
               <select
                 className={inputCls}
                 value={get("categoria")}
@@ -729,7 +755,7 @@ etiqueta: ;
             <Field
               label="Enlaces de referencia"
               error={errors["enlaces"]}
-              hint="Alibaba, web de la fábrica, fotos de referencia… (opcional)"
+              hint="Alibaba, 1688, Made-in-China, Amazon, web del fabricante, Instagram… (opcional)"
             >
               <textarea
                 rows={2}
@@ -740,7 +766,7 @@ etiqueta: ;
               />
             </Field>
             <Field
-              label="¿De qué materiales está hecho?"
+              label="Material principal"
               required
               error={errors["materiales"]}
               hint="Seleccione todas las que correspondan"
@@ -752,26 +778,26 @@ etiqueta: ;
               />
             </Field>
             <Field
-              label="Medidas y peso aproximados"
+              label="Medidas y peso aproximados por unidad"
               error={errors["medidas"]}
-              hint="Opcional"
+              hint='Por ejemplo: "40 × 30 × 20 cm, 3 kg" (opcional)'
             >
               <input
                 className={inputCls}
                 value={get("medidas")}
                 onChange={(e) => set("medidas", e.target.value)}
-                placeholder="Por ejemplo: 30 × 20 × 15 cm, 1,2 kg"
+                placeholder="40 × 30 × 20 cm, 3 kg"
               />
             </Field>
             <Field
-              label="Fotos, fichas técnicas o documentos"
+              label="Adjunte lo que tenga"
               error={errors["archivos"]}
-              hint={`Hasta ${MAX_FILES} archivos · ${MAX_FILE_MB} MB cada uno · JPG, PNG, WEBP, PDF, XLSX, XLS, DOCX`}
+              hint={`Fotos, ficha técnica, catálogo, cotización del proveedor, logo o diseños · hasta ${MAX_FILES} archivos, ${MAX_FILE_MB} MB cada uno · JPG, PNG, WEBP, PDF, XLSX, XLS, DOCX`}
             >
               <label className="flex cursor-pointer flex-col items-center justify-center gap-2 border border-dashed border-border bg-background px-6 py-8 text-center transition-colors hover:border-navy">
                 <Upload className="size-5 text-navy" />
                 <span className="text-sm font-medium text-navy">
-                  Haga clic para añadir archivos
+                  Haga clic o arrastre sus archivos aquí
                 </span>
                 <span className="text-xs text-slate">
                   {files.length > 0 ? `${files.length} de ${MAX_FILES} archivos añadidos` : "Opcional"}
@@ -811,11 +837,16 @@ etiqueta: ;
         {/* ─── PASO 4 ─────────────────────────────────────────── */}
         {step === 4 ? (
           <div className="space-y-8">
+            <p className="border-l-2 border-gold bg-background px-4 py-3 text-sm text-slate">
+              Un producto aparentemente sencillo puede tener requisitos técnicos o sanitarios en
+              destino. Marcar una opción no significa que no se pueda importar: solo que lo
+              revisaremos con más detalle.
+            </p>
             <Field
-              label="¿Su producto tiene alguna de estas características?"
+              label="¿Alguna de estas situaciones aplica a su producto?"
               required
               error={errors["requisitos"]}
-              hint="Seleccione todas las que correspondan. Si no aplica ninguna, marque “Ninguna de las anteriores”."
+              hint="Seleccione todas las que correspondan. Si marca “Ninguna” se desmarcan las demás, y viceversa."
             >
               <Chips
                 options={REQUISITOS}
@@ -829,10 +860,16 @@ etiqueta: ;
                 }
               />
             </Field>
-            {getArr("requisitos").includes("Tiene enchufe o cable (electricidad)") ? (
-              <Field label="¿Qué voltaje necesita?" required error={errors["voltaje"]}>
+            {getArr("requisitos").includes("Funciona con electricidad") ? (
+              <Field label="Voltaje" required error={errors["voltaje"]}>
                 <Options
-                  options={["110–120 V", "220–240 V", "Conmutable (110 / 220 V)", "No lo sé"]}
+                  options={[
+                    "110–120 V",
+                    "220–240 V",
+                    "Multivoltaje 100–240 V",
+                    "USB o baja tensión",
+                    "No lo sé",
+                  ]}
                   value={get("voltaje")}
                   onSelect={(o) => set("voltaje", o)}
                 />
@@ -840,29 +877,19 @@ etiqueta: ;
             ) : null}
             {getArr("requisitos").includes("Tiene batería") ? (
               <>
-                <Field label="¿Qué tipo de batería lleva?" required error={errors["tipo_bateria"]}>
+                <Field label="Tipo de batería" required error={errors["tipo_bateria"]}>
                   <Options
-                    options={[
-                      "Ion-litio",
-                      "Polímero de litio",
-                      "Plomo-ácido",
-                      "Otra",
-                      "No lo sé",
-                    ]}
+                    options={["Litio", "Plomo-ácido", "Alcalina", "Níquel (NiMH)", "No lo sé"]}
                     value={get("tipo_bateria")}
                     onSelect={(o) => set("tipo_bateria", o)}
                   />
                 </Field>
-                <Field
-                  label="¿Cómo viaja la batería?"
-                  required
-                  error={errors["viaje_bateria"]}
-                >
+                <Field label="¿Cómo viaja la batería?" required error={errors["viaje_bateria"]}>
                   <Options
                     options={[
-                      "Instalada en el producto",
-                      "Con el producto, sin instalar",
-                      "Envío solo las baterías",
+                      "Instalada en el equipo",
+                      "Embalada junto al equipo",
+                      "Baterías sueltas",
                       "No lo sé",
                     ]}
                     value={get("viaje_bateria")}
@@ -870,130 +897,131 @@ etiqueta: ;
                   />
                 </Field>
                 <Field
-                  label="¿Tiene documentos de la batería?"
-                  required
+                  label="Documentos de la batería"
                   error={errors["docs_bateria"]}
-                  hint="Seleccione todas las que correspondan"
+                  hint="Seleccione todas las que correspondan (opcional)"
                 >
                   <Chips
-                    options={[
-                      "Ficha de seguridad (MSDS)",
-                      "Informe UN 38.3",
-                      "Test summary",
-                      "Ninguno",
-                      "No lo sé",
-                    ]}
+                    options={["Ficha de seguridad (MSDS)", "Informe UN38.3", "Ninguno", "No lo sé"]}
                     value={getArr("docs_bateria")}
                     onToggle={(o) => toggle("docs_bateria", o)}
                   />
                 </Field>
               </>
             ) : null}
-            {getArr("requisitos").some((r) =>
-              [
-                "Contacto con alimentos o bebidas",
-                "Se aplica sobre la piel o es cosmético",
-                "Uso médico, sanitario o de protección",
-                "Para niños menores de 14 años",
-                "Contiene químicos, líquidos, gases, polvos, imanes, madera o materiales de origen animal",
-              ].includes(r),
-            ) ? (
-              <Field
-                label="¿Qué certificados necesita o tiene?"
-                required
-                error={errors["certificados"]}
-                hint="Seleccione todas las que correspondan"
-              >
-                <Chips
-                  options={["CE", "FDA", "RoHS", "Reach", "Otras", "No lo sé"]}
-                  value={getArr("certificados")}
-                  onToggle={(o) => toggle("certificados", o)}
-                />
-              </Field>
+            {getArr("requisitos").some((r) => CERTIFICADOS_COND.includes(r)) ? (
+              <>
+                <Field
+                  label="¿Qué certificados o registros tiene el producto o el fabricante?"
+                  required
+                  error={errors["certificados"]}
+                  hint="Seleccione todas las que correspondan"
+                >
+                  <Chips
+                    options={[
+                      "Marcado CE",
+                      "Ensayos de laboratorio",
+                      "Registro sanitario (INVIMA, AEMPS u otro)",
+                      "Certificado para contacto con alimentos",
+                      "Ficha de seguridad (MSDS)",
+                      "Ninguno",
+                      "No lo sé",
+                    ]}
+                    value={getArr("certificados")}
+                    onToggle={(o) => toggle("certificados", o)}
+                  />
+                </Field>
+                <Field
+                  label="Explique brevemente ese uso"
+                  error={errors["uso_especial"]}
+                  hint='Por ejemplo: "vaso para bebidas calientes", "crema facial", "mascarilla" (opcional)'
+                >
+                  <textarea
+                    rows={3}
+                    className={inputCls}
+                    value={get("uso_especial")}
+                    onChange={(e) => set("uso_especial", e.target.value)}
+                    placeholder="Cuéntenos el uso del producto"
+                  />
+                </Field>
+              </>
             ) : null}
-            <Field
-              label="¿Algo más que debamos saber sobre el producto?"
-              error={errors["uso_especial"]}
-              hint="Opcional"
-            >
-              <textarea
-                rows={3}
-                className={inputCls}
-                value={get("uso_especial")}
-                onChange={(e) => set("uso_especial", e.target.value)}
-                placeholder="Cuéntenos cualquier detalle relevante"
-              />
-            </Field>
           </div>
         ) : null}
 
         {/* ─── PASO 5 ─────────────────────────────────────────── */}
         {step === 5 ? (
           <div className="space-y-8">
-            <Field label="¿Ya tiene proveedor?" required error={errors["proveedor"]}>
+            <Field
+              label="¿Ya tiene proveedor en China para este producto?"
+              required
+              error={errors["proveedor"]}
+            >
               <Options
                 options={[
-                  "Sí, ya tengo proveedor",
+                  "Sí, ya le he comprado",
+                  "Sí, estoy negociando",
+                  "Tengo varios candidatos",
                   "No, necesito que NAMAR lo busque",
-                  "No estoy seguro",
                 ]}
                 value={get("proveedor")}
                 onSelect={(o) =>
                   set(
                     "proveedor",
                     o,
-                    o === "Sí, ya tengo proveedor" ? [] : ["proveedor_info", "tipo_proveedor", "pagado", "precio_objetivo"],
+                    o === "No, necesito que NAMAR lo busque"
+                      ? ["proveedor_info", "tipo_proveedor", "pagado"]
+                      : ["precio_objetivo"],
                   )
                 }
               />
             </Field>
-            {get("proveedor") === "Sí, ya tengo proveedor" ? (
+            {get("proveedor") && get("proveedor") !== "No, necesito que NAMAR lo busque" ? (
               <>
                 <Field
-                  label="Nombre o enlace del proveedor"
-                  required
+                  label="Nombre del proveedor, ciudad y enlace"
                   error={errors["proveedor_info"]}
+                  hint="Opcional"
                 >
                   <textarea
                     rows={2}
                     className={inputCls}
                     value={get("proveedor_info")}
                     onChange={(e) => set("proveedor_info", e.target.value)}
-                    placeholder="Nombre de la fábrica, enlace de Alibaba, ciudad…"
+                    placeholder="Nombre de la fábrica, ciudad, enlace de Alibaba…"
                   />
                 </Field>
-                <Field
-                  label="¿Con qué tipo de proveedor habla?"
-                  required
-                  error={errors["tipo_proveedor"]}
-                >
+                <Field label="¿Es fábrica o comercializadora?" required error={errors["tipo_proveedor"]}>
                   <Options
-                    options={["Fábrica directa", "Trading o intermediario", "No lo sé"]}
+                    options={["Fábrica", "Comercializadora (trading)", "No lo sé"]}
                     value={get("tipo_proveedor")}
                     onSelect={(o) => set("tipo_proveedor", o)}
+                    cols="sm:grid-cols-3"
                   />
                 </Field>
-                <Field label="¿Ha pagado algo ya?" required error={errors["pagado"]}>
+                <Field label="¿Ya le ha pagado algo?" required error={errors["pagado"]}>
                   <Options
-                    options={["No, aún no he pagado", "Sí, un anticipo", "Sí, el pago completo"]}
+                    options={["No", "Sí, un anticipo", "Sí, el pago completo"]}
                     value={get("pagado")}
                     onSelect={(o) => set("pagado", o)}
-                  />
-                </Field>
-                <Field
-                  label="¿Qué precio tiene o busca por unidad?"
-                  error={errors["precio_objetivo"]}
-                  hint="Opcional"
-                >
-                  <input
-                    className={inputCls}
-                    value={get("precio_objetivo")}
-                    onChange={(e) => set("precio_objetivo", e.target.value)}
-                    placeholder="Por ejemplo: 4,50 USD/unidad"
+                    cols="sm:grid-cols-3"
                   />
                 </Field>
               </>
-            ) : null}
+            ) : (
+              <Field
+                label="Precio objetivo por unidad, si lo tiene"
+                error={errors["precio_objetivo"]}
+                hint="Opcional"
+              >
+                <input
+                  className={inputCls}
+                  value={get("precio_objetivo")}
+                  onChange={(e) => set("precio_objetivo", e.target.value)}
+                  placeholder="Por ejemplo: 4,50 USD/unidad"
+                />
+              </Field>
+            )}
           </div>
         ) : null}
 
@@ -1001,7 +1029,11 @@ etiqueta: ;
         {step === 6 ? (
           <div className="space-y-6">
             <div className="grid gap-6 sm:grid-cols-2">
-              <Field label="¿Cuántas unidades quiere comprar?" required error={errors["cantidad"]}>
+              <Field
+                label="Cantidad del primer pedido"
+                required
+                error={errors["cantidad"]}
+              >
                 <input
                   type="number"
                   min={1}
@@ -1020,13 +1052,18 @@ etiqueta: ;
                   <option value="" disabled>
                     Seleccione
                   </option>
-                  {["Piezas", "Cajas", "Kilogramos", "Metros", "Contenedores"].map((u) => (
+                  {["piezas", "cajas", "kg", "metros", "contenedores"].map((u) => (
                     <option key={u}>{u}</option>
                   ))}
                 </select>
               </Field>
             </div>
-            <Field label="Presupuesto estimado de compra" required error={errors["presupuesto"]}>
+            <Field
+              label="Presupuesto para la mercancía del primer pedido"
+              required
+              error={errors["presupuesto"]}
+              hint="Precio en fábrica, sin transporte ni impuestos"
+            >
               <Options
                 options={[
                   "Menos de 3.000 USD",
@@ -1042,7 +1079,7 @@ etiqueta: ;
               />
             </Field>
             <Field
-              label="¿El dinero para esta compra está disponible?"
+              label="¿Ese presupuesto está disponible?"
               required
               error={errors["disponibilidad"]}
             >
@@ -1058,13 +1095,12 @@ etiqueta: ;
               />
             </Field>
             <Field
-              label="¿Cuánto ha importado en los últimos 12 meses?"
+              label="Compras previstas de este producto en los próximos 12 meses"
               required
               error={errors["compras12"]}
             >
               <Options
                 options={[
-                  "Nada",
                   "Menos de 10.000 USD",
                   "10.000–50.000 USD",
                   "50.000–150.000 USD",
@@ -1076,59 +1112,84 @@ etiqueta: ;
                 cols="sm:grid-cols-3"
               />
             </Field>
-            <div className="grid gap-6 sm:grid-cols-2">
-              <Field label="¿Cuándo quiere importar?" required error={errors["cuando"]}>
-                <Options
-                  options={[
-                    "Lo antes posible",
-                    "En 1–2 meses",
-                    "En 3–6 meses",
-                    "En más de 6 meses",
-                    "Aún sin fecha",
-                  ]}
-                  value={get("cuando")}
-                  onSelect={(o) => set("cuando", o)}
-                />
-              </Field>
-              <Field label="Fecha límite" error={errors["fecha_limite"]} hint="Opcional">
-                <input
-                  type="date"
-                  min={new Date().toISOString().slice(0, 10)}
-                  className={inputCls}
-                  value={get("fecha_limite")}
-                  onChange={(e) => set("fecha_limite", e.target.value)}
-                />
-              </Field>
-            </div>
+            <Field
+              label="¿Cuándo quiere hacer la primera importación?"
+              required
+              error={errors["cuando"]}
+            >
+              <Options
+                options={[
+                  "Lo antes posible",
+                  "En 1–2 meses",
+                  "En 3–6 meses",
+                  "En más de 6 meses",
+                  "Aún sin fecha",
+                ]}
+                value={get("cuando")}
+                onSelect={(o) => set("cuando", o)}
+              />
+            </Field>
+            <Field
+              label="Fecha límite para tener la mercancía en destino"
+              error={errors["fecha_limite"]}
+              hint="Opcional"
+            >
+              <input
+                type="date"
+                min={new Date().toISOString().slice(0, 10)}
+                className={inputCls}
+                value={get("fecha_limite")}
+                onChange={(e) => set("fecha_limite", e.target.value)}
+              />
+            </Field>
+            <Field
+              label="¿Cómo lo va a vender o usar?"
+              required
+              error={errors["venta"]}
+              hint="Seleccione todas las que correspondan"
+            >
+              <Chips
+                options={[
+                  "Tienda física",
+                  "Tienda online propia",
+                  "Amazon o Mercado Libre",
+                  "Distribuidores o mayoristas",
+                  "Proyectos B2B",
+                  "Uso interno",
+                  "Aún no lo sé",
+                ]}
+                value={getArr("venta")}
+                onToggle={(o) => toggle("venta", o)}
+              />
+            </Field>
           </div>
         ) : null}
 
         {/* ─── PASO 7 ─────────────────────────────────────────── */}
         {step === 7 ? (
           <div className="space-y-8">
-            <Field label="¿Cómo encaja su marca en este proyecto?" required error={errors["marca"]}>
+            <Field label="¿Cómo quiere el producto?" required error={errors["marca"]}>
               <Options
                 options={[
-                  "Todavía sin marca",
-                  "Tengo marca y quiero productos propios",
-                  "Tengo marca y quiero personalizar un producto existente",
-                  "Quiero comprar un producto que ya existe",
+                  "Estándar, con la marca del fabricante o sin marca",
+                  "Con mi marca (logo y packaging)",
+                  "Personalizado o diseño propio",
+                  "Aún no lo sé",
                 ]}
                 value={get("marca")}
                 onSelect={(o) =>
                   set(
                     "marca",
                     o,
-                    o === "Tengo marca y quiero productos propios" ||
-                      o === "Tengo marca y quiero personalizar un producto existente"
+                    o === "Con mi marca (logo y packaging)" || o === "Personalizado o diseño propio"
                       ? []
                       : ["personalizar"],
                   )
                 }
               />
             </Field>
-            {get("marca") === "Tengo marca y quiero productos propios" ||
-            get("marca") === "Tengo marca y quiero personalizar un producto existente" ? (
+            {get("marca") === "Con mi marca (logo y packaging)" ||
+            get("marca") === "Personalizado o diseño propio" ? (
               <Field
                 label="¿Qué quiere personalizar?"
                 required
@@ -1136,33 +1197,46 @@ etiqueta: ;
                 hint="Seleccione todas las que correspondan"
               >
                 <Chips
-                  options={["Logo", "Etiqueta y packaging", "Color o material", "Diseño propio (OEM / ODM)", "Otro"]}
+                  options={[
+                    "Logo",
+                    "Packaging",
+                    "Color",
+                    "Diseño o molde",
+                    "Especificaciones técnicas",
+                    "Manual y etiquetas en español",
+                  ]}
                   value={getArr("personalizar")}
                   onToggle={(o) => toggle("personalizar", o)}
                 />
               </Field>
             ) : null}
             <Field
-              label="Incoterm preferido"
+              label="¿En qué condiciones compra al proveedor (Incoterm)?"
               required
               error={errors["incoterm"]}
-              hint="Si no lo sabe, marque “No lo sé”: lo definimos juntos"
             >
               <Options
-                options={["No lo sé", "EXW", "FOB", "CIF", "DDP"]}
+                options={[
+                  "EXW: recojo en fábrica",
+                  "FOB: entregado en puerto de China",
+                  "CIF: incluye flete hasta mi puerto",
+                  "DDP: entregado en destino con impuestos",
+                  "Otro",
+                  "No sé qué es, que NAMAR me recomiende",
+                ]}
                 value={get("incoterm")}
                 onSelect={(o) => set("incoterm", o)}
-                cols="sm:grid-cols-5"
               />
             </Field>
             <Field label="Transporte preferido" required error={errors["transporte"]}>
               <Options
                 options={[
-                  "No lo sé",
-                  "Barco (marítimo)",
-                  "Avión (aéreo)",
-                  "Ferrocarril",
-                  "Barco rápido o courier",
+                  "Marítimo contenedor completo",
+                  "Marítimo grupaje",
+                  "Aéreo",
+                  "Courier express",
+                  "Tren (solo Europa)",
+                  "No lo sé, que NAMAR me recomiende",
                 ]}
                 value={get("transporte")}
                 onSelect={(o) => set("transporte", o)}
@@ -1174,7 +1248,7 @@ etiqueta: ;
         {/* ─── PASO 8 ─────────────────────────────────────────── */}
         {step === 8 ? (
           <div className="space-y-8">
-            <Field label="¿En qué etapa está su proyecto?" required error={errors["etapa"]}>
+            <Field label="¿En qué etapa está?" required error={errors["etapa"]}>
               <Options
                 options={[
                   "Solo tengo una idea",
@@ -1184,14 +1258,14 @@ etiqueta: ;
                   "Estoy listo para comprar",
                   "Ya compré y necesito gestionar el envío",
                   "La mercancía ya está en tránsito",
-                  "Importo regularmente y busco un partner en origen",
+                  "Importo regularmente y busco un partner en China",
                 ]}
                 value={get("etapa")}
                 onSelect={(o) => set("etapa", o)}
               />
             </Field>
             <Field
-              label="¿Con qué quiere que le ayude NAMAR?"
+              label="¿Qué necesita de NAMAR?"
               required
               error={errors["servicios"]}
               hint="Seleccione todas las que correspondan"
@@ -1203,7 +1277,7 @@ etiqueta: ;
               />
             </Field>
             <Field
-              label="¿Qué espera de este proyecto?"
+              label="Cuéntenos qué espera que NAMAR haga por usted"
               error={errors["expectativas"]}
               hint="Opcional"
             >
@@ -1212,56 +1286,63 @@ etiqueta: ;
                 className={inputCls}
                 value={get("expectativas")}
                 onChange={(e) => set("expectativas", e.target.value)}
-                placeholder="Cuéntenos en pocas palabras qué espera conseguir"
+                placeholder="Sus expectativas para este proyecto"
               />
             </Field>
             <Field label="¿Cómo conoció NAMAR?" required error={errors["como_conocio"]}>
               <Options
-                options={[
-                  "Google",
-                  "Redes sociales (Instagram / Facebook)",
-                  "WhatsApp",
-                  "Recomendación de otra persona",
-                  "Otro",
-                ]}
+                options={["Instagram", "TikTok", "LinkedIn", "Google", "Recomendación", "Feria o evento", "Otro"]}
                 value={get("como_conocio")}
                 onSelect={(o) => set("como_conocio", o)}
+                cols="sm:grid-cols-3"
               />
             </Field>
             <div className="space-y-4">
-              <label className="flex cursor-pointer items-start gap-3 text-sm text-slate">
-                <input
-                  type="checkbox"
-                  className="mt-0.5 size-4 shrink-0 accent-[oklch(0.712_0.084_82)]"
-                  checked={get("acepta1") === "sí"}
-                  onChange={(e) => set("acepta1", e.target.checked ? "sí" : "")}
-                />
-                <span>
-                  Sí, quiero la evaluación preliminar de viabilidad en 24–48 horas hábiles.
-                </span>
-              </label>
-              {errors["acepta1"] ? (
-                <p className="text-xs font-medium text-destructive">{errors["acepta1"]}</p>
-              ) : null}
-              <label className="flex cursor-pointer items-start gap-3 text-sm text-slate">
-                <input
-                  type="checkbox"
-                  className="mt-0.5 size-4 shrink-0 accent-[oklch(0.712_0.084_82)]"
-                  checked={get("acepta2") === "sí"}
-                  onChange={(e) => set("acepta2", e.target.checked ? "sí" : "")}
-                />
-                <span>
-                  Autorizo a NAMAR Global a tratar mis datos para evaluar y gestionar mi solicitud,
-                  según la{" "}
-                  <a href="/privacidad" className="font-semibold text-navy underline" target="_blank" rel="noopener noreferrer">
-                    Política de privacidad
-                  </a>
-                  .
-                </span>
-              </label>
-              {errors["acepta2"] ? (
-                <p className="text-xs font-medium text-destructive">{errors["acepta2"]}</p>
-              ) : null}
+              <div>
+                <label className="flex cursor-pointer items-start gap-3 text-sm text-slate">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 size-4 shrink-0 accent-gold"
+                    checked={get("acepta1") === "sí"}
+                    onChange={(e) => set("acepta1", e.target.checked ? "sí" : "")}
+                  />
+                  <span>
+                    Entiendo que esta es una evaluación preliminar y que NAMAR no garantiza la
+                    aprobación de la importación, costes, aranceles, impuestos, plazos,
+                    certificaciones ni despacho aduanero, que dependen de autoridades, proveedores
+                    y terceros.
+                  </span>
+                </label>
+                {errors["acepta1"] ? (
+                  <p className="mt-1.5 text-xs font-medium text-destructive">{errors["acepta1"]}</p>
+                ) : null}
+              </div>
+              <div>
+                <label className="flex cursor-pointer items-start gap-3 text-sm text-slate">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 size-4 shrink-0 accent-gold"
+                    checked={get("acepta2") === "sí"}
+                    onChange={(e) => set("acepta2", e.target.checked ? "sí" : "")}
+                  />
+                  <span>
+                    Autorizo a NAMAR GLOBAL LIMITED a tratar mis datos para evaluar mi solicitud y
+                    contactarme, según la{" "}
+                    <a
+                      href="/privacidad"
+                      className="font-semibold text-navy underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      política de privacidad
+                    </a>
+                    .
+                  </span>
+                </label>
+                {errors["acepta2"] ? (
+                  <p className="mt-1.5 text-xs font-medium text-destructive">{errors["acepta2"]}</p>
+                ) : null}
+              </div>
             </div>
             {/* Honeypot antispam: invisible para personas */}
             <div className="hidden" aria-hidden="true">

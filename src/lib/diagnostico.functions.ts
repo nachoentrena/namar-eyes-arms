@@ -75,7 +75,8 @@ const EXPERIENCIA_SCORE: Record<string, number> = {
   "Nunca he importado": 0,
 };
 
-const RIESGOS_REVISIÓN = [
+// Pregunta 20: situaciones que requieren revisión especializada.
+const RIESGOS_REVISION = [
   "Tiene batería",
   "Tiene Wi-Fi o Bluetooth",
   "Contacto con alimentos o bebidas",
@@ -116,7 +117,7 @@ function classify(answers: Record<string, Value>, points: number): string {
   if (etapa === "Solo tengo una idea" || (presupuesto === "Aún no lo he definido" && cuando === "Aún sin fecha")) {
     return "Exploratorio";
   }
-  if (pais === "Otro" || requisitos.some((r) => r === "No lo sé" || RIESGOS_REVISIÓN.includes(r))) {
+  if (pais === "Otro" || requisitos.some((r) => r === "No lo sé" || RIESGOS_REVISION.includes(r))) {
     return "Revisión especializada";
   }
   if (points >= 70) return "Alta prioridad";
@@ -149,7 +150,9 @@ export const submitDiagnostico = createServerFn({ method: "POST" })
     const clasificacion = classify(record, points);
     const pagado = str(record, "pagado");
     const alerta =
-      pagado === "Sí, un anticipo" || pagado === "Sí, el pago completo" || str(record, "etapa") === "La mercancía ya está en tránsito"
+      pagado === "Sí, un anticipo" ||
+      pagado === "Sí, el pago completo" ||
+      str(record, "etapa") === "La mercancía ya está en tránsito"
         ? "URGENTE"
         : null;
     const banderas = arr(record, "requisitos").filter((r) => r !== "Ninguna");

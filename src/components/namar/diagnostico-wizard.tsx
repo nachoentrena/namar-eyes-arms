@@ -443,7 +443,7 @@ export function DiagnosticoWizard() {
           const path = `${newCodigo}/${index}-${file.name}`;
           const { error } = await supabase.storage
             .from("diagnosticos-archivos")
-            .upload(path, file, { upsert: true });
+            .upload(path, file);
           if (!error) paths.push(path);
         }
         if (paths.length > 0) {

@@ -1,3 +1,4 @@
+import { useLocation } from "@tanstack/react-router";
 import { Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -10,14 +11,17 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
 
+  const { pathname } = useLocation();
+  const home = pathname === "/" ? "" : "/";
+
   const links = [
-    { href: "#servicios", label: t("nav.services") },
-    { href: "#costes", label: t("nav.costs") },
-    { href: "#proceso", label: t("nav.process") },
-    { href: "#equipo", label: t("nav.team") },
-    
-    { href: "#faq", label: t("nav.faq") },
-    { href: "#contacto", label: t("nav.contact") },
+    { href: `${home}#servicios`, label: t("nav.services") },
+    { href: `${home}#costes`, label: t("nav.costs") },
+    { href: `${home}#proceso`, label: t("nav.process") },
+    { href: `${home}#equipo`, label: t("nav.team") },
+
+    { href: `${home}#faq`, label: t("nav.faq") },
+    { href: `${home}#contacto`, label: t("nav.contact") },
     { href: "/diagnostico", label: t("nav.diagnostico") },
   ];
 
@@ -45,7 +49,7 @@ export function SiteHeader() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-6 lg:h-20">
-        <a href="#inicio" className="flex items-center gap-2">
+        <a href={`${home}#inicio`} className="flex items-center gap-2">
           <span className="grid size-7 place-items-center bg-navy text-xs font-bold tracking-tighter text-navy-foreground sm:size-8 sm:text-sm">
             N
           </span>

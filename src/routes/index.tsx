@@ -416,15 +416,15 @@ function Index() {
                 </Reveal>
               ))}
             </ol>
-            <Reveal className="mt-10 border border-border bg-sand p-5 sm:mt-14 sm:p-8 lg:p-10">
-              <h3 className="text-lg font-bold sm:text-2xl">{t("landing.startTitle")}</h3>
+            <Reveal className="mt-10 rounded-[24px] border border-border bg-card p-5 text-navy sm:mt-14 sm:p-8 lg:p-10">
+              <h3 className={`${h3} sm:text-2xl`}>{t("landing.startTitle")}</h3>
               <p className="mt-2 max-w-2xl text-[15px] text-muted-foreground sm:text-base">
                 {t("landing.startIntro")}
               </p>
               <ol className="mt-5 grid gap-4 sm:mt-6 sm:grid-cols-3 sm:gap-6">
                 {startSteps.map((step) => (
                   <li key={step.n} className="border-t-2 border-gold pt-3">
-                    <span className="text-xs font-bold text-gold">{step.n}</span>
+                    <span className="text-xs font-bold text-gold-deep">{step.n}</span>
                     <h4 className="mt-1 text-sm font-bold sm:text-base">{step.title}</h4>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
                   </li>
@@ -460,13 +460,13 @@ function Index() {
                         alt={person.alt}
                         className="aspect-4/5 w-full object-cover object-top sm:aspect-3/2 sm:object-top"
                       />
-                      <span className="absolute left-4 top-4 grid size-10 place-items-center bg-navy text-xs font-bold text-navy-foreground">
+                      <span className="absolute left-4 top-4 grid size-10 place-items-center rounded-full bg-navy text-xs font-bold text-navy-foreground">
                         {person.initials}
                       </span>
                     </div>
                     <div className="flex flex-1 flex-col p-5 sm:p-6">
-                      <h3 className="text-lg font-bold text-foreground sm:text-xl">{person.name}</h3>
-                      <p className="mt-1 text-[11px] font-bold uppercase tracking-widest text-gold sm:text-xs">
+                      <h3 className={`${h3} text-foreground`}>{person.name}</h3>
+                      <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-gold-deep sm:text-xs">
                         {person.role}
                       </p>
                       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -516,11 +516,11 @@ function Index() {
             <Reveal className="max-w-3xl">
               <h2 className={h2}>{t("landing.whyTitle")}</h2>
             </Reveal>
-            <div className="mt-8 grid gap-px border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-px overflow-hidden rounded-[24px] border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {differentiators.map((item, i) => (
                 <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
-                  <span className="text-sm font-bold text-gold">{`0${i + 1}`}</span>
-                  <h3 className="mt-3 text-base font-bold sm:mt-4 sm:text-lg">{item.title}</h3>
+                  <span className="text-sm font-bold text-gold-deep">{`0${i + 1}`}</span>
+                  <h3 className={`mt-3 sm:mt-4 ${h3}`}>{item.title}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{item.text}</p>
                 </Reveal>
               ))}
@@ -543,9 +543,9 @@ function Index() {
               {faqs.map((faq, i) => (
                 <Reveal key={faq.q} delay={i * 30}>
                   <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[15px] font-semibold sm:py-5 sm:text-base">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-serif text-[15px] sm:py-5 sm:text-lg">
                       {faq.q}
-                      <span className="text-xl text-gold transition-transform group-open:rotate-45">
+                      <span className="text-xl text-gold-deep transition-transform group-open:rotate-45">
                         +
                       </span>
                     </summary>
@@ -558,11 +558,19 @@ function Index() {
         </section>
 
         {/* ─── CONTACTO (CTA final) ─────────────────────────────── */}
-        <section id="contacto" className={`border-t border-border bg-sand ${section}`}>
+        <section id="contacto" className={`border-t border-navy bg-navy text-navy-foreground ${section}`}>
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2 lg:gap-16">
             <Reveal>
-              <h2 className={h2}>{t("contact.title")}</h2>
-              <p className={`mt-5 max-w-lg ${lead}`}>{t("contact.description")}</p>
+              <h2 className={h2}>
+                <Em
+                  text={t("contact.title")}
+                  em={t("contact.titleEm")}
+                  className="italic text-gold"
+                />
+              </h2>
+              <p className="mt-5 max-w-lg text-base leading-[1.65] text-on-navy-muted sm:text-[17px]">
+                {t("contact.description")}
+              </p>
               <p className="mt-4 border-l-2 border-gold pl-4 text-sm font-semibold">
                 {t("contact.promise")}
               </p>

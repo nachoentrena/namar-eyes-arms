@@ -511,14 +511,14 @@ function Index() {
         </section>
 
         {/* ─── POR QUÉ NAMAR ────────────────────────────────────── */}
-        <section id="nosotros" className={`bg-sand ${section}`}>
+        <section id="nosotros" className={`bg-background ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <h2 className={h2}>{t("landing.whyTitle")}</h2>
             </Reveal>
             <div className="mt-8 grid gap-px overflow-hidden rounded-[24px] border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {differentiators.map((item, i) => (
-                <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
+                <Reveal key={item.title} delay={i * 60} className="bg-card p-5 sm:p-7 lg:p-9">
                   <span className="text-sm font-bold text-gold-deep">{`0${i + 1}`}</span>
                   <h3 className={`mt-3 sm:mt-4 ${h3}`}>{item.title}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{item.text}</p>

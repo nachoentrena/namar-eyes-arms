@@ -230,7 +230,7 @@ function Index() {
         </section>
 
         {/* ─── AUTORIDAD: 8 AÑOS ────────────────────────────────── */}
-        <section className={`border-y border-border bg-sand ${section}`}>
+        <section className={`border-y border-border bg-background ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="grid gap-6 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-5">
@@ -251,7 +251,7 @@ function Index() {
 
             <div className="mt-8 grid gap-px border border-border bg-border sm:mt-12 md:grid-cols-3">
               {authorityPoints.map((item, i) => (
-                <Reveal key={item.label} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
+                <Reveal key={item.label} delay={i * 60} className="bg-card p-5 sm:p-7 lg:p-9">
                   <p className={eyebrow}>{item.label}</p>
                   <p className="mt-2.5 text-[15px] leading-relaxed text-muted-foreground sm:text-base">
                     {item.text}
@@ -418,7 +418,7 @@ function Index() {
         </section>
 
         {/* ─── OBJECIONES ───────────────────────────────────────── */}
-        <section className={`bg-sand ${section}`}>
+        <section className={`bg-background ${section}`}>
           <div className="mx-auto max-w-4xl">
             <Reveal>
               <h2 className={h2}>{t("landing.objectionsTitle")}</h2>
@@ -543,14 +543,14 @@ function Index() {
         </section>
 
         {/* ─── POR QUÉ NAMAR ────────────────────────────────────── */}
-        <section id="nosotros" className={`bg-sand ${section}`}>
+        <section id="nosotros" className={`bg-background ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <h2 className={h2}>{t("landing.whyTitle")}</h2>
             </Reveal>
             <div className="mt-8 grid gap-px border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-3">
               {differentiators.map((item, i) => (
-                <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
+                <Reveal key={item.title} delay={i * 60} className="bg-card p-5 sm:p-7 lg:p-9">
                   <h3 className="text-base font-bold sm:text-lg">{item.title}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{item.text}</p>
                 </Reveal>
@@ -566,7 +566,7 @@ function Index() {
 
 
         {/* ─── PRUEBA OPERATIVA (sustituye testimonios) ─────────── */}
-        <section className={`bg-sand ${section}`}>
+        <section className={`bg-background ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <p className={eyebrow}>{t("landing.proofLabel")}</p>
@@ -575,7 +575,7 @@ function Index() {
             </Reveal>
             <div className="mt-8 grid gap-px border border-border bg-border sm:mt-10 md:grid-cols-2 lg:grid-cols-4">
               {proof.map((item, i) => (
-                <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
+                <Reveal key={item.title} delay={i * 60} className="bg-card p-5 sm:p-7 lg:p-9">
                   <span className="text-sm font-bold text-gold-deep">{`0${i + 1}`}</span>
                   <h3 className="mt-3 text-base font-bold sm:mt-4 sm:text-lg">{item.title}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{item.text}</p>

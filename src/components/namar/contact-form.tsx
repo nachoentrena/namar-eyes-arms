@@ -21,7 +21,7 @@ export function ContactForm() {
   function handleCountryChange(event: ChangeEvent<HTMLSelectElement>) {
     const selected = event.target.value;
     setCountry(selected);
-    const match = countries.find((c) => c.name === selected);
+    const match = destinations.find((c) => c.name === selected);
     setDialCode(match?.dial ?? "");
   }
 
@@ -129,7 +129,7 @@ export function ContactForm() {
           <option value="" disabled>
             Selecciona un país
           </option>
-          {countries.map((c) => (
+          {destinations.map((c) => (
             <option key={c.name} value={c.name}>
               {c.name}
             </option>

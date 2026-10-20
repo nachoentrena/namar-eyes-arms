@@ -139,11 +139,24 @@ export const submitDiagnostico = createServerFn({ method: "POST" })
     const record: Record<string, Value> = { ...parsed };
     delete record["empresa_web"];
 
+    const PAISES = ["España", "Colombia", "Otro país de la UE", "Otro país de Latinoamérica", "Otro"];
+    const CAMPOS_CORTOS = ["nombre", "email", "whatsapp", "pais", "ciudad", "empresa_cargo", "producto", "categoria"];
+
     const email = str(record, "email");
     const nombre = str(record, "nombre");
     const producto = str(record, "producto");
-    if (!nombre || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !producto) {
+    const pais = str(record, "pais");
+    if (!nombre || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !producto || !PAISES.includes(pais)) {
       throw new Error("Datos incompletos");
+    }
+    // Longitudes: campos cortos máx. 200, cualquier otro texto máx. 2.000
+    for (const [key, value] of Object.entries(record)) {
+      const texts = Array.isArray(value) ? value : [value];
+      for (const text of texts) {
+        if (typeof text !== "string") continue;
+        const max = CAMPOS_CORTOS.includes(key) ? 200 : 2000;
+        if (text.length > max) throw new Error("Datos demasiado largos");
+      }
     }
 
     const points = score(record);
@@ -192,19 +205,23 @@ export const submitDiagnostico = createServerFn({ method: "POST" })
 
 const attachSchema = z.object({
   codigo: z.string().regex(/^NAM-\d{4}-\d{4}$/),
-  archivos: z.array(z.string().min(1)).max(10),
+  archivos: z.array(z.string().min(1)).max(5),
 });
 
 export const attachDiagnosticoArchivos = createServerFn({ method: "POST" })
   .inputValidator((input) => attachSchema.parse(input))
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin
+    // Solo se pueden adjuntar archivos una vez: si el diagnóstico ya tiene
+    // archivos registrados, no se permite sobrescribirlos.
+    const { data: updated, error } = await supabaseAdmin
       .from("diagnosticos")
       .update({ archivos: data.archivos })
-      .eq("codigo", data.codigo);
+      .eq("codigo", data.codigo)
+      .eq("archivos", "[]")
+      .select("codigo");
 
-    if (error) {
+    if (error || !updated || updated.length === 0) {
       console.error("Error adjuntando archivos", error);
       throw new Error("No se pudieron registrar los archivos");
     }

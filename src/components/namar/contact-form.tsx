@@ -193,6 +193,23 @@ export function ContactForm() {
           Ocurrió un error al enviar el mensaje. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.
         </p>
       )}
+      <div className="flex items-start gap-3 md:col-span-2">
+        <input
+          id="acepta_privacidad"
+          name="acepta_privacidad"
+          type="checkbox"
+          required
+          value="Sí"
+          className="mt-0.5 size-4 shrink-0 accent-navy"
+        />
+        <label htmlFor="acepta_privacidad" className="text-xs leading-relaxed text-slate">
+          He leído y acepto la{" "}
+          <Link to="/politica-privacidad" target="_blank" className="font-semibold text-navy underline">
+            política de privacidad
+          </Link>
+          .
+        </label>
+      </div>
       <button
         type="submit"
         disabled={status === "sending"}
@@ -200,6 +217,9 @@ export function ContactForm() {
       >
         {status === "sending" ? "Enviando..." : t("contact.form.submit")}
       </button>
+      <p className="text-xs text-slate/70 md:col-span-2">
+        Respondemos en un máximo de 24 horas laborables.
+      </p>
     </form>
   );
 }

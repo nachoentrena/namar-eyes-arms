@@ -45,7 +45,7 @@ const resources = {
           namePlaceholder: "Tu nombre",
           companyPlaceholder: "Nombre de tu empresa o proyecto",
           emailPlaceholder: "email@empresa.com",
-          phonePlaceholder: "Tu número",
+          phonePlaceholder: "+34 600 000 000",
           productPlaceholder: "Ej: maquinaria, textil, componentes",
           volumePlaceholder: "Ej: 1 contenedor / 500 unidades",
           messagePlaceholder:
@@ -318,7 +318,7 @@ const resources = {
           namePlaceholder: "Your name",
           companyPlaceholder: "Your company or project name",
           emailPlaceholder: "name@company.com",
-          phonePlaceholder: "Your number",
+          phonePlaceholder: "+34 600 000 000",
           productPlaceholder: "e.g. machinery, textiles, components",
           volumePlaceholder: "e.g. 1 container / 500 units",
           messagePlaceholder:

@@ -13,6 +13,7 @@ import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
 import { ServicesCarousel } from "@/components/namar/services-carousel";
+import { SiteFooter } from "@/components/namar/site-footer";
 import { SiteHeader } from "@/components/namar/site-header";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 
@@ -139,7 +140,6 @@ function Index() {
     q: string;
     a: string;
   }>;
-  const footerCountries = t("landing.footerCountries", { returnObjects: true }) as string[];
 
   const waHref = whatsappHref(t("whatsapp.message"));
 
@@ -182,7 +182,7 @@ function Index() {
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
-                  href="#contacto"
+                  href="/diagnostico"
                   className="inline-flex items-center justify-center gap-2 bg-gold px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8 sm:py-4"
                 >
                   {t("landing.heroPrimaryCta")}
@@ -435,7 +435,7 @@ function Index() {
               <p className="font-serif text-xl italic text-slate sm:text-2xl lg:text-3xl">
                 {t("landing.processQuote")}
               </p>
-              <a href="#contacto" className={`${primaryBtn} mt-6 sm:mt-8`}>
+              <a href="/diagnostico" className={`${primaryBtn} mt-6 sm:mt-8`}>
                 {t("landing.processCta")}
               </a>
             </Reveal>
@@ -460,7 +460,7 @@ function Index() {
                 <p className="mt-4 text-base text-navy-foreground/70 sm:text-lg">
                   {t("landing.onTheGroundText")}
                 </p>
-                <a href="#contacto" className={`${goldBtn} mt-6 sm:mt-8`}>
+                <a href="/diagnostico" className={`${goldBtn} mt-6 sm:mt-8`}>
                   {t("landing.onTheGroundCta")}
                 </a>
               </div>
@@ -615,6 +615,13 @@ function Index() {
                   {t("contact.chat")}
                   <ArrowRight className="size-5" />
                 </a>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="mt-3 inline-flex items-center gap-3 text-base font-semibold transition-colors hover:text-gold sm:text-lg"
+                >
+                  {siteConfig.email}
+                  <ArrowRight className="size-5" />
+                </a>
               </div>
             </Reveal>
             <Reveal delay={120} className="border border-border bg-background p-5 sm:p-8 lg:p-10">
@@ -624,29 +631,7 @@ function Index() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-sand-strong px-5 py-10 pb-24 sm:px-6 sm:py-12 sm:pb-12">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
-          <div>
-            <div className="flex items-center justify-center gap-2 md:justify-start">
-              <span className="grid size-6 place-items-center bg-navy text-[10px] font-bold tracking-tighter text-navy-foreground">
-                N
-              </span>
-              <span className="text-sm font-bold uppercase tracking-tight">
-                Namar <span className="text-gold">Global</span>
-              </span>
-            </div>
-            <p className="mt-2 text-xs text-slate">{t("landing.footerTagline")}</p>
-          </div>
-          <div className="flex gap-6 text-xs font-bold uppercase tracking-widest text-slate sm:gap-8">
-            {footerCountries.map((country) => (
-              <span key={country}>{country}</span>
-            ))}
-          </div>
-          <div className="text-xs text-slate/60">
-            {t("landing.footerText", { year: new Date().getFullYear() })}
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

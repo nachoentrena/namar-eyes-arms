@@ -49,7 +49,7 @@ function Field({
 }: {
   label: string;
   required?: boolean;
-  error?: string;
+  error?: string | undefined;
   hint?: string;
   children: React.ReactNode;
 }) {

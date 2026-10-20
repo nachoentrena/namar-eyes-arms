@@ -18,6 +18,7 @@ export function SiteHeader() {
     
     { href: "#faq", label: t("nav.faq") },
     { href: "#contacto", label: t("nav.contact") },
+    { href: "/diagnostico", label: t("nav.diagnostico") },
   ];
 
   // Switch to the visitor's preferred language only after the page has
@@ -94,7 +95,7 @@ export function SiteHeader() {
           </div>
 
           <a
-            href="#contacto"
+            href="/diagnostico"
             className="hidden bg-navy px-5 py-3 text-xs font-semibold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground md:inline-block"
           >
             {t("header.cta")}
@@ -163,7 +164,7 @@ export function SiteHeader() {
             </li>
             <li>
               <a
-                href="#contacto"
+                href="/diagnostico"
                 onClick={() => setOpen(false)}
                 className="mt-1 block bg-navy px-6 py-3.5 text-center text-xs font-semibold uppercase tracking-widest text-navy-foreground"
               >

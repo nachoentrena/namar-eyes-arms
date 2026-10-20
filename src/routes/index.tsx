@@ -174,7 +174,7 @@ function Index() {
           className="relative flex min-h-[650px] overflow-hidden px-5 pb-12 pt-24 sm:min-h-[680px] sm:px-6 sm:pb-16 sm:pt-32 lg:min-h-[700px] lg:items-center lg:py-32"
         >
           <div className="absolute inset-0 bg-navy" />
-          <picture className="absolute inset-0 lg:left-[32%] lg:[mask-image:linear-gradient(to_right,transparent,black_12%)]">
+          <picture className="absolute inset-0 lg:left-[38%] lg:[mask-image:linear-gradient(to_right,transparent,black_12%)]">
             <source media="(min-width: 1024px)" srcSet={heroShip.url} />
             <img
               src={heroShipMobile.url}

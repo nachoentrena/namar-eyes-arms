@@ -309,20 +309,20 @@ function Index() {
             </Reveal>
 
             <Reveal className="mt-8 sm:mt-10">
-              <ol className="flex flex-wrap gap-2 lg:grid lg:grid-cols-5 lg:gap-px lg:border lg:border-border lg:bg-border">
+              <ol className="flex flex-wrap gap-2 lg:grid lg:grid-cols-5 lg:gap-px lg:overflow-hidden lg:rounded-[24px] lg:border lg:border-border lg:bg-border">
                 {phases.map((phase, i) => (
                   <li
                     key={phase.key}
                     className="relative flex flex-1 items-center gap-2.5 border border-border bg-background px-3 py-2.5 lg:border-0 lg:px-6 lg:py-5"
                   >
-                    <span className="grid size-6 shrink-0 place-items-center bg-navy text-[11px] font-bold text-navy-foreground lg:size-8 lg:text-xs">
+                    <span className="grid size-6 shrink-0 place-items-center rounded-full bg-navy text-[11px] font-bold text-navy-foreground lg:size-8 lg:text-xs">
                       {i + 1}
                     </span>
                     <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-widest lg:text-sm">
                       {phase.label}
                     </span>
                     {i < phases.length - 1 ? (
-                      <ArrowRight className="absolute -right-2.5 top-1/2 z-10 hidden size-5 -translate-y-1/2 bg-background text-gold lg:block" />
+                      <ArrowRight className="absolute -right-2.5 top-1/2 z-10 hidden size-5 -translate-y-1/2 bg-background text-gold-deep lg:block" />
                     ) : null}
                   </li>
                 ))}
@@ -337,12 +337,18 @@ function Index() {
 
         {/* ─── SIMULACIÓN DE COSTES ─────────────────────────────── */}
         <section id="costes" className="px-5 pb-14 sm:px-6 sm:pb-20 lg:pb-28">
-          <Reveal className="relative mx-auto max-w-7xl overflow-hidden border border-navy bg-navy text-navy-foreground">
+          <Reveal className="relative mx-auto max-w-7xl overflow-hidden rounded-[28px] border border-navy bg-navy text-navy-foreground sm:rounded-[32px]">
             <div className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-gold/10" />
             <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-12 lg:gap-16 lg:p-16">
               <div className="lg:col-span-7">
-                <p className={eyebrow}>{t("landing.costLabel")}</p>
-                <h2 className={`mt-3 ${h2}`}>{t("landing.costTitle")}</h2>
+                <p className={eyebrowOnNavy}>{t("landing.costLabel")}</p>
+                <h2 className={`mt-3 ${h2}`}>
+                  <Em
+                    text={t("landing.costTitle")}
+                    em={t("landing.costTitleEm")}
+                    className="italic text-gold"
+                  />
+                </h2>
                 <p className="mt-4 max-w-xl text-base text-navy-foreground/70 sm:text-lg">
                   {t("landing.costText")}
                 </p>
@@ -362,9 +368,7 @@ function Index() {
               </div>
               <div className="lg:col-span-5">
                 <div className="border border-navy-foreground/15 bg-navy-foreground/5 p-5 sm:p-8">
-                  <p className="text-[11px] font-bold uppercase tracking-widest text-navy-foreground/50">
-                    24 h
-                  </p>
+                  <p className="font-serif text-3xl text-gold">24 h</p>
                   <p className="mt-1 text-sm font-bold text-gold">{t("landing.costFree")}</p>
                   <ul className="mt-4 space-y-3">
                     {costItems.map((item) => (
@@ -385,20 +389,29 @@ function Index() {
 
 
         {/* ─── PROCESO ──────────────────────────────────────────── */}
-        <section id="proceso" className={section}>
+        <section id="proceso" className={`bg-navy text-navy-foreground ${section}`}>
           <div className="mx-auto max-w-4xl">
             <Reveal>
-              <h2 className={`text-center ${h2}`}>{t("landing.processTitle")}</h2>
+              <h2 className={`text-center ${h2}`}>
+                <Em
+                  text={t("landing.processTitle")}
+                  em={t("landing.processTitleEm")}
+                  className="italic text-gold"
+                />
+              </h2>
             </Reveal>
-            <ol className="relative mt-10 space-y-7 before:absolute before:bottom-2 before:left-5 before:top-2 before:w-px before:bg-border sm:mt-14 sm:space-y-10 sm:before:left-6">
+            <ol className="relative mt-10 space-y-7 before:absolute before:bottom-2 before:left-[7px] before:top-2 before:w-px before:bg-navy-foreground/20 sm:mt-14 sm:space-y-10">
               {steps.map((step, i) => (
                 <Reveal as="li" key={step.n} delay={i * 60} className="relative flex gap-4 sm:gap-8">
-                  <span className="z-10 grid size-10 shrink-0 place-items-center border border-navy bg-background text-xs font-bold sm:size-12 sm:text-sm">
-                    {step.n}
-                  </span>
-                  <div className="pt-1.5 sm:pt-2">
-                    <h3 className="text-lg font-bold sm:text-xl">{step.title}</h3>
-                    <p className="mt-1.5 text-[15px] text-muted-foreground sm:text-base">{step.text}</p>
+                  <span
+                    className={`z-10 mt-2 size-3.5 shrink-0 rounded-full ${
+                      ["bg-gold", "bg-navy-foreground", "bg-terracotta", "bg-dot-blue"][i % 4]
+                    }`}
+                  />
+                  <div className="pt-0.5">
+                    <span className="text-[13px] font-bold text-gold">{step.n}</span>
+                    <h3 className={`mt-1 ${h3}`}>{step.title}</h3>
+                    <p className="mt-1.5 text-[15px] text-on-navy-muted sm:text-base">{step.text}</p>
                   </div>
                 </Reveal>
               ))}

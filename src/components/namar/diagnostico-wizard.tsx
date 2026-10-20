@@ -319,6 +319,21 @@ export function DiagnosticoWizard() {
 
   const validateStep = (target: number): boolean => {
     const e: Record<string, string> = {};
+    // Longitudes máximas: campos cortos 200 caracteres, textos largos 2.000
+    const CAMPOS_CORTOS = new Set([
+      "nombre", "email", "whatsapp", "pais", "ciudad", "empresa_cargo",
+      "producto", "categoria", "unidad", "etapa", "presupuesto",
+    ]);
+    for (const [key, value] of Object.entries(answers)) {
+      const texts = Array.isArray(value) ? value : [value];
+      for (const text of texts) {
+        if (typeof text !== "string") continue;
+        const max = CAMPOS_CORTOS.has(key) ? 200 : 2000;
+        if (text.length > max) {
+          e[key] = `El texto es demasiado largo (máximo ${max} caracteres).`;
+        }
+      }
+    }
     const req = (key: string, message: string) => {
       const value = answers[key];
       const empty =
@@ -790,7 +805,7 @@ export function DiagnosticoWizard() {
             <Field
               label="Adjunte lo que tenga"
               error={errors["archivos"]}
-              hint={`Fotos, ficha técnica, catálogo, cotización del proveedor, logo o diseños · hasta ${MAX_FILES} archivos, ${MAX_FILE_MB} MB cada uno · JPG, PNG, WEBP, PDF, XLSX, XLS, DOCX`}
+              hint={`Fotos, ficha técnica, catálogo, cotización del proveedor, logo o diseños · hasta ${MAX_FILES} archivos, ${MAX_FILE_MB} MB cada uno · JPG, PNG, PDF, XLSX, DOCX`}
             >
               <label className="flex cursor-pointer flex-col items-center justify-center gap-2 border border-dashed border-border bg-background px-6 py-8 text-center transition-colors hover:border-navy">
                 <Upload className="size-5 text-navy" />

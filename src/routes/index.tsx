@@ -418,7 +418,7 @@ function Index() {
                         height={1920}
                         loading="lazy"
                         alt={person.alt}
-                        className="aspect-4/5 w-full object-cover object-[50%_14%] sm:aspect-3/2 sm:object-[50%_10%]"
+                        className="aspect-4/5 w-full object-cover object-top sm:aspect-3/2 sm:object-top"
                       />
                       <span className="absolute left-4 top-4 grid size-10 place-items-center bg-navy text-xs font-bold text-navy-foreground">
                         {person.initials}

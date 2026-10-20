@@ -53,6 +53,7 @@
   --color-terracotta: var(--terracotta);
   --color-terracotta-deep: var(--terracotta-deep);
   --color-slate: var(--slate);
+  --color-slate-deep: var(--slate-deep);
   --color-sand: var(--sand);
   --color-sand-strong: var(--sand-strong);
   --color-on-navy-muted: var(--on-navy-muted);
@@ -89,6 +90,7 @@
   --terracotta: oklch(0.706 0.088 33.6); /* #D18C7C — solo decorativo */
   --terracotta-deep: oklch(0.521 0.1 33.6); /* #9A5242 — destacados sobre claro */
   --slate: oklch(0.556 0.036 236.9); /* #607786 — solo bloques y fondos */
+  --slate-deep: oklch(0.491 0.035 236.3); /* #4E6472 — bloque "Durante la operación" */
   --on-navy-muted: oklch(0.856 0.012 239.9); /* #C9D1D7 — secundario sobre azul */
   --dot-blue: oklch(0.748 0.026 238.5); /* #9FB0BC — puntos sobre azul */
 

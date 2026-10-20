@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
+import logoIvory from "@/assets/logo-ivory.png.asset.json";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 export function SiteFooter() {
@@ -13,14 +14,13 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-3">
           {/* Marca */}
           <div>
-            <div className="flex items-center gap-2">
-              <span className="grid size-6 place-items-center rounded-md bg-gold text-[10px] font-bold tracking-tighter text-gold-foreground">
-                N
-              </span>
-              <span className="text-sm font-bold uppercase tracking-tight">
-                Namar <span className="text-gold">Global</span>
-              </span>
-            </div>
+            <img
+              src={logoIvory.url}
+              alt="NAMAR Global"
+              width={876}
+              height={899}
+              className="h-auto w-[110px]"
+            />
             <p className="mt-3 max-w-xs text-xs leading-relaxed text-on-navy-muted">
               {t("landing.footerTagline")}
             </p>

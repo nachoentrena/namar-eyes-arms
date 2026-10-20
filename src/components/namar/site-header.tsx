@@ -47,20 +47,20 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-6 lg:h-20">
+    <header className="fixed inset-x-3 top-3 z-50 sm:inset-x-5 sm:top-4">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 rounded-[18px] border border-border bg-background/95 px-4 backdrop-blur-md sm:h-16 sm:px-5">
         <a href={`${home}#inicio`} className="flex items-center gap-2">
-          <span className="grid size-7 place-items-center bg-navy text-xs font-bold tracking-tighter text-navy-foreground sm:size-8 sm:text-sm">
+          <span className="grid size-7 place-items-center rounded-lg bg-navy text-xs font-bold tracking-tighter text-navy-foreground sm:size-8 sm:text-sm">
             N
           </span>
           <span className="text-base font-bold uppercase tracking-tight sm:text-xl">
-            Namar <span className="text-gold">Global</span>
+            Namar <span className="text-gold-deep">Global</span>
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium text-slate lg:flex">
+        <nav className="hidden items-center gap-8 text-sm font-medium text-navy lg:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="transition-colors hover:text-navy">
+            <a key={link.href} href={link.href} className="transition-colors hover:text-gold-deep">
               {link.label}
             </a>
           ))}
@@ -72,14 +72,14 @@ export function SiteHeader() {
               type="button"
               aria-label={t("header.language")}
               onClick={() => setLanguageOpen((value) => !value)}
-              className="inline-flex items-center gap-2 border border-border bg-background px-3 py-2 text-xs font-semibold uppercase tracking-widest text-navy"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-2 text-xs font-semibold uppercase tracking-widest text-navy"
             >
               <Globe className="size-4" />
               {i18n.language.startsWith("en") ? "EN" : "ES"}
             </button>
 
             {languageOpen ? (
-              <div className="absolute right-0 top-full z-10 mt-2 min-w-32 border border-border bg-background shadow-panel">
+              <div className="absolute right-0 top-full z-10 mt-2 min-w-32 overflow-hidden rounded-xl border border-border bg-background shadow-panel">
                 <button
                   type="button"
                   onClick={() => handleChangeLanguage("es")}
@@ -100,7 +100,7 @@ export function SiteHeader() {
 
           <a
             href="/diagnostico"
-            className="hidden bg-navy px-5 py-3 text-xs font-semibold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground md:inline-block"
+            className="hidden min-h-12 items-center rounded-full bg-navy px-6 text-[15px] font-semibold text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground md:inline-flex"
           >
             {t("header.cta")}
           </a>
@@ -109,7 +109,7 @@ export function SiteHeader() {
             aria-label={open ? t("header.menuClose") : t("header.menuOpen")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex size-10 flex-col items-center justify-center gap-1.5 border border-border lg:hidden"
+            className="flex size-10 flex-col items-center justify-center gap-1.5 rounded-full border border-border lg:hidden"
           >
             <span
               className={cn(
@@ -128,27 +128,29 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <nav className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background px-5 py-5 sm:px-6 lg:hidden">
+        <nav className="mx-auto mt-2 max-h-[calc(100dvh-5rem)] max-w-7xl overflow-y-auto rounded-[18px] border border-border bg-background px-5 py-5 shadow-panel sm:px-6 lg:hidden">
           <ul className="flex flex-col gap-3.5">
             {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block py-0.5 text-base font-medium text-slate transition-colors hover:text-navy"
+                  className="block py-0.5 text-base font-medium text-navy transition-colors hover:text-gold-deep"
                 >
                   {link.label}
                 </a>
               </li>
             ))}
             <li className="flex items-center justify-between gap-3 border-t border-border pt-4">
-              <span className="text-sm font-medium text-slate">{t("header.language")}</span>
+              <span className="text-sm font-medium text-muted-foreground">
+                {t("header.language")}
+              </span>
               <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => handleChangeLanguage("es")}
                   className={cn(
-                    "border px-3 py-2 text-xs font-semibold uppercase tracking-widest",
+                    "rounded-full border px-3 py-2 text-xs font-semibold uppercase tracking-widest",
                     i18n.language === "es" ? "border-navy bg-navy text-navy-foreground" : "border-border",
                   )}
                 >
@@ -158,7 +160,7 @@ export function SiteHeader() {
                   type="button"
                   onClick={() => handleChangeLanguage("en")}
                   className={cn(
-                    "border px-3 py-2 text-xs font-semibold uppercase tracking-widest",
+                    "rounded-full border px-3 py-2 text-xs font-semibold uppercase tracking-widest",
                     i18n.language === "en" ? "border-navy bg-navy text-navy-foreground" : "border-border",
                   )}
                 >
@@ -170,7 +172,7 @@ export function SiteHeader() {
               <a
                 href="/diagnostico"
                 onClick={() => setOpen(false)}
-                className="mt-1 block bg-navy px-6 py-3.5 text-center text-xs font-semibold uppercase tracking-widest text-navy-foreground"
+                className="mt-1 block min-h-12 rounded-full bg-navy px-6 py-3.5 text-center text-[15px] font-semibold text-navy-foreground"
               >
                 {t("header.cta")}
               </a>

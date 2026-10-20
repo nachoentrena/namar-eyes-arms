@@ -27,7 +27,7 @@ const ACCEPTED = [
 ];
 
 const inputCls =
-  "w-full border border-input bg-background px-4 py-3 text-sm text-foreground outline-none placeholder:text-slate/50 focus:border-navy focus:ring-1 focus:ring-gold";
+  "w-full border border-input bg-background px-4 py-3 text-sm text-foreground outline-none placeholder:text-muted-foreground/50 focus:border-navy focus:ring-1 focus:ring-gold";
 
 const STEPS = [
   "Sus datos",
@@ -59,7 +59,7 @@ function Field({
         {label}
         {required ? <span className="ml-1 text-gold">*</span> : null}
       </label>
-      {hint ? <p className="mt-1 text-xs text-slate">{hint}</p> : null}
+      {hint ? <p className="mt-1 text-xs text-muted-foreground">{hint}</p> : null}
       <div className="mt-2">{children}</div>
       {error ? <p className="mt-1.5 text-xs font-medium text-destructive">{error}</p> : null}
     </div>
@@ -88,7 +88,7 @@ function Options({
             "border px-4 py-3 text-left text-sm transition-colors",
             value === option
               ? "border-navy bg-navy font-medium text-navy-foreground"
-              : "border-border bg-background text-slate hover:border-navy hover:text-navy",
+              : "border-border bg-background text-muted-foreground hover:border-navy hover:text-navy",
           )}
         >
           {option}
@@ -120,7 +120,7 @@ function Chips({
               "border px-4 py-2 text-sm transition-colors",
               selected
                 ? "border-navy bg-navy font-medium text-navy-foreground"
-                : "border-border bg-background text-slate hover:border-navy hover:text-navy",
+                : "border-border bg-background text-muted-foreground hover:border-navy hover:text-navy",
             )}
           >
             {option}
@@ -484,11 +484,11 @@ export function DiagnosticoWizard() {
           ) : null}
           .
         </h2>
-        <p className="mt-4 text-base text-slate">
+        <p className="mt-4 text-base text-muted-foreground">
           El equipo de NAMAR GLOBAL revisará su proyecto y le contactará en 24–48 horas hábiles con
           los siguientes pasos.
         </p>
-        <p className="mt-3 text-sm text-slate">
+        <p className="mt-3 text-sm text-muted-foreground">
           Importante: esta es una evaluación preliminar. La viabilidad, los costes, aranceles,
           impuestos, plazos, certificaciones y el despacho aduanero dependen de autoridades,
           proveedores y terceros especialistas, y solo pueden confirmarse tras un análisis
@@ -517,7 +517,7 @@ export function DiagnosticoWizard() {
           <p className="text-xs font-semibold uppercase tracking-widest text-navy">
             Paso {step} de 8
           </p>
-          <p className="text-right text-xs font-medium uppercase tracking-widest text-slate">
+          <p className="text-right text-xs font-medium uppercase tracking-widest text-muted-foreground">
             {STEPS[step - 1]}
           </p>
         </div>
@@ -699,7 +699,7 @@ export function DiagnosticoWizard() {
                 />
               </Field>
             ) : get("agencia") ? (
-              <p className="border border-border bg-background px-4 py-3 text-sm text-slate">
+              <p className="border border-border bg-background px-4 py-3 text-sm text-muted-foreground">
                 NAMAR no es una agencia de aduanas. Si lo necesita, coordinamos con agencias o
                 representantes aduaneros colaboradores en su país, que actúan con su propia
                 habilitación y tarifa.
@@ -799,7 +799,7 @@ export function DiagnosticoWizard() {
                 <span className="text-sm font-medium text-navy">
                   Haga clic o arrastre sus archivos aquí
                 </span>
-                <span className="text-xs text-slate">
+                <span className="text-xs text-muted-foreground">
                   {files.length > 0 ? `${files.length} de ${MAX_FILES} archivos añadidos` : "Opcional"}
                 </span>
                 <input
@@ -817,12 +817,12 @@ export function DiagnosticoWizard() {
                       key={`${file.name}-${index}`}
                       className="flex items-center justify-between gap-3 border border-border bg-background px-4 py-2"
                     >
-                      <span className="truncate text-sm text-slate">{file.name}</span>
+                      <span className="truncate text-sm text-muted-foreground">{file.name}</span>
                       <button
                         type="button"
                         aria-label={`Quitar ${file.name}`}
                         onClick={() => setFiles((prev) => prev.filter((_, i) => i !== index))}
-                        className="shrink-0 text-slate hover:text-destructive"
+                        className="shrink-0 text-muted-foreground hover:text-destructive"
                       >
                         <X className="size-4" />
                       </button>
@@ -837,7 +837,7 @@ export function DiagnosticoWizard() {
         {/* ─── PASO 4 ─────────────────────────────────────────── */}
         {step === 4 ? (
           <div className="space-y-8">
-            <p className="border-l-2 border-gold bg-background px-4 py-3 text-sm text-slate">
+            <p className="border-l-2 border-gold bg-background px-4 py-3 text-sm text-muted-foreground">
               Un producto aparentemente sencillo puede tener requisitos técnicos o sanitarios en
               destino. Marcar una opción no significa que no se pueda importar: solo que lo
               revisaremos con más detalle.
@@ -1299,7 +1299,7 @@ export function DiagnosticoWizard() {
             </Field>
             <div className="space-y-4">
               <div>
-                <label className="flex cursor-pointer items-start gap-3 text-sm text-slate">
+                <label className="flex cursor-pointer items-start gap-3 text-sm text-muted-foreground">
                   <input
                     type="checkbox"
                     className="mt-0.5 size-4 shrink-0 accent-gold"
@@ -1318,7 +1318,7 @@ export function DiagnosticoWizard() {
                 ) : null}
               </div>
               <div>
-                <label className="flex cursor-pointer items-start gap-3 text-sm text-slate">
+                <label className="flex cursor-pointer items-start gap-3 text-sm text-muted-foreground">
                   <input
                     type="checkbox"
                     className="mt-0.5 size-4 shrink-0 accent-gold"

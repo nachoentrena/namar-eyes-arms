@@ -5,9 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * NAMAR Global design system — "Marítimo ejecutivo".
- * Navy + gold + slate over white. Inter (sans) + Instrument Serif (display).
- * All colors are oklch semantic tokens. Never hardcode colors in components.
+ * NAMAR Global design system — Manual de identidad visual.
+ * Navy #0B1D2A + marfil #F5F2EA + dorado #C3A15B + terracota #D18C7C.
+ * Libre Baskerville (títulos) + Work Sans (texto). Sin negro puro,
+ * sin degradados, sin sombras fuertes. Nunca hardcodear colores en componentes.
  */
 
 @theme inline {
@@ -19,8 +20,8 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Libre Baskerville", ui-serif, Georgia, serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -45,14 +46,22 @@
 
   --color-navy: var(--navy);
   --color-navy-foreground: var(--navy-foreground);
+  --color-navy-deep: var(--navy-deep);
   --color-gold: var(--gold);
   --color-gold-foreground: var(--gold-foreground);
+  --color-gold-deep: var(--gold-deep);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-deep: var(--terracotta-deep);
   --color-slate: var(--slate);
+  --color-slate-deep: var(--slate-deep);
   --color-sand: var(--sand);
   --color-sand-strong: var(--sand-strong);
+  --color-on-navy-muted: var(--on-navy-muted);
+  --color-dot-blue: var(--dot-blue);
 
-  --shadow-elevated: 0 24px 60px -24px color-mix(in oklab, var(--navy) 40%, transparent);
-  --shadow-panel: 0 12px 32px -18px color-mix(in oklab, var(--navy) 35%, transparent);
+  /* Sombras suaves: el manual prohíbe sombras fuertes */
+  --shadow-elevated: 0 8px 24px -16px color-mix(in oklab, var(--navy) 25%, transparent);
+  --shadow-panel: 0 4px 16px -10px color-mix(in oklab, var(--navy) 20%, transparent);
 
   --animate-fade-up: fade-up 0.7s cubic-bezier(0.19, 1, 0.22, 1) both;
 }
@@ -69,34 +78,44 @@
 }
 
 :root {
-  --radius: 0rem;
+  --radius: 0.75rem;
 
-  --navy: oklch(0.171 0.047 268);
-  --navy-foreground: oklch(1 0 0);
-  --gold: oklch(0.712 0.084 82);
-  --gold-foreground: oklch(0.171 0.047 268);
-  --slate: oklch(0.554 0.041 257.4);
-  --sand: oklch(0.985 0.002 106);
-  --sand-strong: oklch(0.962 0.004 106);
+  /* Paleta NAMAR (manual de identidad) */
+  --navy: oklch(0.222 0.035 242); /* #0B1D2A */
+  --navy-foreground: oklch(0.961 0.011 89.7); /* #F5F2EA marfil sobre azul */
+  --navy-deep: oklch(0.189 0.028 242.9); /* #08151F footer */
+  --gold: oklch(0.725 0.098 84.1); /* #C3A15B — botones/detalles sobre azul */
+  --gold-foreground: oklch(0.222 0.035 242);
+  --gold-deep: oklch(0.505 0.082 80.1); /* #7D5F28 — texto dorado sobre claro */
+  --terracotta: oklch(0.706 0.088 33.6); /* #D18C7C — solo decorativo */
+  --terracotta-deep: oklch(0.521 0.1 33.6); /* #9A5242 — destacados sobre claro */
+  --slate: oklch(0.556 0.036 236.9); /* #607786 — solo bloques y fondos */
+  --slate-deep: oklch(0.491 0.035 236.3); /* #4E6472 — bloque "Durante la operación" */
+  --on-navy-muted: oklch(0.856 0.012 239.9); /* #C9D1D7 — secundario sobre azul */
+  --dot-blue: oklch(0.748 0.026 238.5); /* #9FB0BC — puntos sobre azul */
 
-  --background: oklch(1 0 0);
+  /* sand se mantiene como alias: tarjetas blancas sobre fondo marfil */
+  --sand: oklch(1 0 0);
+  --sand-strong: oklch(0.961 0.011 89.7);
+
+  --background: oklch(0.961 0.011 89.7); /* #F5F2EA marfil */
   --foreground: var(--navy);
   --card: oklch(1 0 0);
   --card-foreground: var(--navy);
   --popover: oklch(1 0 0);
   --popover-foreground: var(--navy);
   --primary: var(--navy);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: var(--sand-strong);
+  --primary-foreground: var(--navy-foreground);
+  --secondary: oklch(0.904 0.017 88);
   --secondary-foreground: var(--navy);
-  --muted: var(--sand);
-  --muted-foreground: var(--slate);
+  --muted: oklch(0.904 0.017 88);
+  --muted-foreground: oklch(0.491 0.035 236.3); /* #4E6472 */
   --accent: var(--gold);
   --accent-foreground: var(--navy);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: color-mix(in oklab, var(--navy) 12%, transparent);
-  --input: color-mix(in oklab, var(--navy) 14%, transparent);
+  --destructive: var(--terracotta-deep);
+  --destructive-foreground: var(--navy-foreground);
+  --border: oklch(0.904 0.017 88); /* #E4DFD3 líneas sobre claro */
+  --input: oklch(0.815 0.023 87.2); /* #C9C2B2 borde de inputs */
   --ring: var(--gold);
 }
 
@@ -110,6 +129,17 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Foco visible con contorno dorado (manual) */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
   }
 
   ::selection {

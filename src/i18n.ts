@@ -27,6 +27,7 @@ const resources = {
       },
       contact: {
         title: "Cuéntanos qué quieres importar.",
+        titleEm: "importar.",
         description:
           "El primer paso es entender tres cosas: qué producto, en qué cantidades y hacia dónde (España o Colombia). Con eso valoramos la operación y te decimos con claridad qué es viable, qué riesgos hay y cómo lo abordaríamos.",
         prefer: "¿Prefieres hablar directamente?",
@@ -73,6 +74,7 @@ const resources = {
 
 
         problemTitle: "Importar no debería ser una cuestión de suerte.",
+        problemTitleEm: "suerte.",
         problemIntro:
           "No gestionamos tu importación desde un despacho en Europa. Estamos físicamente aquí: hablando con los proveedores en su idioma, visitando fábricas, revisando producción y resolviendo incidencias en el momento en que ocurren, no semanas después por correo.",
         problemAudience:
@@ -146,6 +148,7 @@ const resources = {
 
         costLabel: "Simulación de costes",
         costTitle: "¿Cuánto te costará realmente importar desde China?",
+        costTitleEm: "realmente",
         costText:
           "Antes de comprar, calcula el coste real de llevar tu mercancía hasta España o Colombia. Te ayudamos a estimarlo en 24 horas.",
         costItems: [
@@ -163,6 +166,7 @@ const resources = {
 
 
         processTitle: "Así convertimos una importación compleja en un proceso controlado.",
+        processTitleEm: "proceso controlado.",
         processCta: "Quiero analizar mi importación",
         steps: [
           { n: "01", title: "Entendemos tu proyecto", text: "Analizamos qué quieres comprar, cantidades, presupuesto, destino y en qué punto estás." },
@@ -340,6 +344,7 @@ const resources = {
       },
       contact: {
         title: "Tell us what you want to import.",
+        titleEm: "import.",
         description:
           "The first step is understanding three things: which product, in what quantities, and where to (Spain or Colombia). With that we assess the operation and tell you clearly what is viable, what risks exist, and how we would approach it.",
         prefer: "Do you prefer to talk directly?",
@@ -386,6 +391,7 @@ const resources = {
 
 
         problemTitle: "Importing should not be a matter of luck.",
+        problemTitleEm: "luck.",
         problemIntro:
           "We don't manage your import from an office in Europe. We are physically here: speaking with suppliers in their language, visiting factories, reviewing production, and solving issues the moment they happen, not weeks later by email.",
         problemAudience:
@@ -439,6 +445,7 @@ const resources = {
 
         costLabel: "Cost simulation",
         costTitle: "What will importing from China really cost you?",
+        costTitleEm: "really",
         costText:
           "Before you buy, calculate the real cost of bringing your goods to Spain or Colombia. We help you estimate it within 24 hours.",
         costItems: [
@@ -456,6 +463,7 @@ const resources = {
 
 
         processTitle: "This is how we turn a complex import into a controlled process.",
+        processTitleEm: "controlled process.",
         processCta: "Analyze my import",
         steps: [
           { n: "01", title: "We understand your project", text: "We analyze what you want to buy, quantities, budget, destination, and where you stand." },

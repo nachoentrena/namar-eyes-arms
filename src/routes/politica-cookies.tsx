@@ -32,7 +32,7 @@ function PoliticaCookiesPage() {
           <h1 className="font-serif text-4xl italic leading-tight text-navy sm:text-5xl">
             Política de cookies
           </h1>
-          <div className="mt-8 space-y-8 text-base leading-relaxed text-slate">
+          <div className="mt-8 space-y-8 text-base leading-relaxed text-muted-foreground">
             <section className="space-y-3">
               <h2 className="font-serif text-2xl italic text-navy">1. Qué son las cookies</h2>
               <p>
@@ -89,7 +89,7 @@ function PoliticaCookiesPage() {
                 </a>
                 . Responsable: NAMAR GLOBAL LIMITED (Hong Kong, Nº 81199545).
               </p>
-              <p className="text-sm text-slate/70">Última actualización: octubre de 2026.</p>
+              <p className="text-sm text-muted-foreground/70">Última actualización: octubre de 2026.</p>
             </section>
           </div>
         </div>

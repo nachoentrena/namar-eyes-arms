@@ -84,10 +84,7 @@ const lead = "text-base leading-relaxed text-slate sm:text-lg";
 function Index() {
   const { t } = useTranslation();
 
-  const authorityPoints = t("landing.authorityPoints", { returnObjects: true }) as Array<{
-    label: string;
-    text: string;
-  }>;
+  const heroTrust = t("landing.heroTrust", { returnObjects: true }) as string[];
   const problems = t("landing.problems", { returnObjects: true }) as Array<{
     risk: string;
     action: string;
@@ -109,10 +106,6 @@ function Index() {
     text: string;
   }>;
   const costItems = t("landing.costItems", { returnObjects: true }) as string[];
-  const objections = t("landing.objections", { returnObjects: true }) as Array<{
-    q: string;
-    a: string;
-  }>;
   const steps = t("landing.steps", { returnObjects: true }) as Array<{
     n: string;
     title: string;
@@ -124,10 +117,6 @@ function Index() {
     initials: string;
   }>;
   const differentiators = t("landing.differentiators", { returnObjects: true }) as Array<{
-    title: string;
-    text: string;
-  }>;
-  const proof = t("landing.proof", { returnObjects: true }) as Array<{
     title: string;
     text: string;
   }>;
@@ -204,47 +193,18 @@ function Index() {
                 <span className="min-w-0">{t("landing.heroMicro")}</span>
                 <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
               </a>
-              <div className="max-w-sm border-l border-gold/70 pl-4 sm:pl-5">
-                <p className="font-serif text-sm italic leading-relaxed text-navy-foreground/75 sm:text-base">
-                  {t("landing.heroQuote")}
-                </p>
+              <div className="flex flex-col gap-2 border-t border-navy-foreground/25 pt-4 text-[11px] font-bold uppercase tracking-widest text-navy-foreground/70 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:pt-5">
+                {heroTrust.map((item, i) => (
+                  <span key={item} className="flex items-center gap-4">
+                    {i > 0 ? <span className="hidden text-gold sm:inline">·</span> : null}
+                    {item}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* ─── AUTORIDAD: 8 AÑOS ────────────────────────────────── */}
-        <section className={`border-y border-border bg-sand ${section}`}>
-          <div className="mx-auto max-w-7xl">
-            <Reveal className="grid gap-6 lg:grid-cols-12 lg:gap-16">
-              <div className="lg:col-span-5">
-                <p className={eyebrow}>{t("landing.authorityLabel")}</p>
-                <h2 className={`mt-3 ${h2Serif}`}>{t("landing.authorityTitle")}</h2>
-              </div>
-              <div className="lg:col-span-7 lg:pt-10">
-                <p className={`${lead} lg:text-xl`}>{t("landing.authorityText")}</p>
-                <a
-                  href="#proceso"
-                  className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors hover:text-gold"
-                >
-                  {t("landing.authorityLink")}
-                  <ArrowRight className="size-4" />
-                </a>
-              </div>
-            </Reveal>
-
-            <div className="mt-8 grid gap-px border border-border bg-border sm:mt-12 md:grid-cols-3">
-              {authorityPoints.map((item, i) => (
-                <Reveal key={item.label} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
-                  <p className={eyebrow}>{item.label}</p>
-                  <p className="mt-2.5 text-[15px] leading-relaxed text-slate sm:text-base">
-                    {item.text}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
         <section className="overflow-hidden bg-navy px-5 py-14 text-navy-foreground sm:px-6 sm:py-18 lg:py-24">
@@ -253,6 +213,9 @@ function Index() {
               <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
               <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
                 {t("landing.problemIntro")}
+              </p>
+              <p className="mt-4 max-w-2xl border-l-2 border-gold pl-4 text-sm font-semibold text-navy-foreground/85 sm:text-base">
+                {t("landing.problemAudience")}
               </p>
             </Reveal>
 
@@ -387,30 +350,6 @@ function Index() {
           </Reveal>
         </section>
 
-        {/* ─── OBJECIONES ───────────────────────────────────────── */}
-        <section className={`bg-sand ${section}`}>
-          <div className="mx-auto max-w-4xl">
-            <Reveal>
-              <h2 className={h2Sans}>{t("landing.objectionsTitle")}</h2>
-              <p className={`mt-3 ${lead}`}>{t("landing.objectionsIntro")}</p>
-            </Reveal>
-            <div className="mt-8 divide-y divide-border border-y border-border sm:mt-10">
-              {objections.map((item, i) => (
-                <Reveal key={item.q} delay={i * 40}>
-                  <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold sm:py-5 sm:text-lg">
-                      {item.q}
-                      <span className="text-xl text-gold transition-transform group-open:rotate-45">
-                        +
-                      </span>
-                    </summary>
-                    <p className="pb-5 text-[15px] leading-relaxed text-slate sm:text-base">{item.a}</p>
-                  </details>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ─── PROCESO ──────────────────────────────────────────── */}
         <section id="proceso" className={section}>
@@ -431,10 +370,20 @@ function Index() {
                 </Reveal>
               ))}
             </ol>
-            <Reveal className="mt-10 text-center sm:mt-14">
-              <p className="font-serif text-xl italic text-slate sm:text-2xl lg:text-3xl">
-                {t("landing.processQuote")}
+            <Reveal className="mt-10 border border-border bg-sand p-5 sm:mt-14 sm:p-8 lg:p-10">
+              <h3 className="text-lg font-bold sm:text-2xl">{t("landing.startTitle")}</h3>
+              <p className="mt-2 max-w-2xl text-[15px] text-slate sm:text-base">
+                {t("landing.startIntro")}
               </p>
+              <ol className="mt-5 grid gap-4 sm:mt-6 sm:grid-cols-3 sm:gap-6">
+                {startSteps.map((step) => (
+                  <li key={step.n} className="border-t-2 border-gold pt-3">
+                    <span className="text-xs font-bold text-gold">{step.n}</span>
+                    <h4 className="mt-1 text-sm font-bold sm:text-base">{step.title}</h4>
+                    <p className="mt-1 text-sm leading-relaxed text-slate">{step.text}</p>
+                  </li>
+                ))}
+              </ol>
               <a href="/diagnostico" className={`${primaryBtn} mt-6 sm:mt-8`}>
                 {t("landing.processCta")}
               </a>
@@ -442,31 +391,6 @@ function Index() {
           </div>
         </section>
 
-        {/* ─── SOBRE EL TERRENO ─────────────────────────────────── */}
-        <section className="relative bg-navy lg:grid lg:grid-cols-2">
-          <img
-            src={onTheGround}
-            width={886}
-            height={1575}
-            loading="lazy"
-            alt="Nacho, de NAMAR Global, revisando productos con un proveedor en una feria en China"
-            className="absolute inset-0 h-full w-full object-cover object-[50%_10%] lg:static lg:order-2 lg:h-[600px] lg:object-top"
-          />
-          <div className="absolute inset-0 bg-navy/75 lg:hidden" />
-          <div className="relative flex min-h-[400px] items-center px-5 py-14 sm:min-h-[460px] sm:px-6 lg:order-1 lg:min-h-0 lg:py-0">
-            <div className="ml-auto w-full max-w-[40rem] lg:pr-12">
-              <div className="max-w-2xl text-navy-foreground">
-                <h2 className={h2Sans}>{t("landing.onTheGroundTitle")}</h2>
-                <p className="mt-4 text-base text-navy-foreground/70 sm:text-lg">
-                  {t("landing.onTheGroundText")}
-                </p>
-                <a href="/diagnostico" className={`${goldBtn} mt-6 sm:mt-8`}>
-                  {t("landing.onTheGroundCta")}
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* ─── PERSONAS ─────────────────────────────────────────── */}
         <section id="equipo" className={section}>
@@ -488,15 +412,27 @@ function Index() {
               </ul>
             </Reveal>
             <Reveal delay={100} className="group lg:order-1 lg:col-span-6">
-              <div className="relative overflow-hidden border border-border bg-sand">
-                <img
-                  src={teamPhoto}
-                  width={1600}
-                  height={2133}
-                  loading="lazy"
-                  alt="Nacho y Ana María, de NAMAR Global, en la entrada de la Feria de Cantón (China Import and Export Fair)"
-                  className="aspect-4/5 w-full object-cover object-[50%_45%] sm:aspect-square lg:aspect-4/5"
-                />
+              <div className="relative grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="overflow-hidden border border-border bg-sand">
+                  <img
+                    src={teamPhoto}
+                    width={1600}
+                    height={2133}
+                    loading="lazy"
+                    alt="Nacho y Ana María, de NAMAR Global, en la entrada de la Feria de Cantón (China Import and Export Fair)"
+                    className="aspect-4/5 w-full object-cover object-[50%_45%]"
+                  />
+                </div>
+                <div className="overflow-hidden border border-border bg-sand">
+                  <img
+                    src={onTheGround}
+                    width={886}
+                    height={1575}
+                    loading="lazy"
+                    alt="Nacho, de NAMAR Global, revisando productos con un proveedor en una feria en China"
+                    className="aspect-4/5 w-full object-cover object-[50%_10%]"
+                  />
+                </div>
                 <div className="absolute bottom-0 left-0 h-1 w-0 bg-gold transition-all duration-500 group-hover:w-full" />
               </div>
             </Reveal>
@@ -509,33 +445,8 @@ function Index() {
             <Reveal className="max-w-3xl">
               <h2 className={h2Sans}>{t("landing.whyTitle")}</h2>
             </Reveal>
-            <div className="mt-8 grid gap-px border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid gap-px border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {differentiators.map((item, i) => (
-                <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
-                  <h3 className="text-base font-bold sm:text-lg">{item.title}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-slate sm:text-base">{item.text}</p>
-                </Reveal>
-              ))}
-            </div>
-            <Reveal className="mt-10 text-center sm:mt-14">
-              <p className="font-serif text-3xl italic sm:text-4xl lg:text-6xl">{t("landing.quote")}</p>
-            </Reveal>
-          </div>
-        </section>
-
-
-
-
-        {/* ─── PRUEBA OPERATIVA (sustituye testimonios) ─────────── */}
-        <section className={`bg-sand ${section}`}>
-          <div className="mx-auto max-w-7xl">
-            <Reveal className="max-w-3xl">
-              <p className={eyebrow}>{t("landing.proofLabel")}</p>
-              <h2 className={`mt-3 ${h2Sans}`}>{t("landing.proofTitle")}</h2>
-              <p className={`mt-4 ${lead}`}>{t("landing.proofIntro")}</p>
-            </Reveal>
-            <div className="mt-8 grid gap-px border border-border bg-border sm:mt-10 md:grid-cols-2 lg:grid-cols-4">
-              {proof.map((item, i) => (
                 <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
                   <span className="text-sm font-bold text-gold">{`0${i + 1}`}</span>
                   <h3 className="mt-3 text-base font-bold sm:mt-4 sm:text-lg">{item.title}</h3>
@@ -546,28 +457,10 @@ function Index() {
           </div>
         </section>
 
-        {/* ─── EMPEZAR ──────────────────────────────────────────── */}
-        <section className={`bg-navy text-navy-foreground ${section}`}>
-          <div className="mx-auto max-w-7xl">
-            <Reveal>
-              <h2 className={h2Sans}>{t("landing.startTitle")}</h2>
-              <p className="mt-3 max-w-2xl text-base text-navy-foreground/60 sm:text-lg">
-                {t("landing.startIntro")}
-              </p>
-            </Reveal>
-            <div className="mt-8 grid gap-px border border-navy-foreground/15 bg-navy-foreground/15 sm:mt-12 md:grid-cols-3">
-              {startSteps.map((step, i) => (
-                <Reveal key={step.n} delay={i * 60} className="bg-navy p-5 sm:p-7 lg:p-9">
-                  <span className="text-sm font-bold text-gold">{step.n}</span>
-                  <h3 className="mt-3 text-xl font-bold sm:mt-5 sm:text-2xl">{step.title}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-navy-foreground/65 sm:mt-3 sm:text-base">
-                    {step.text}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
+
+
+
+
 
         {/* ─── FAQ ──────────────────────────────────────────────── */}
         <section id="faq" className={section}>

@@ -8,23 +8,23 @@ export function SiteFooter() {
   const countries = t("landing.footerCountries", { returnObjects: true }) as string[];
 
   return (
-    <footer className="border-t border-border bg-sand-strong px-5 py-10 pb-24 sm:px-6 sm:py-12 sm:pb-12">
+    <footer className="bg-navy-deep px-5 py-10 pb-24 text-navy-foreground sm:px-6 sm:py-12 sm:pb-12">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 md:grid-cols-3">
           {/* Marca */}
           <div>
             <div className="flex items-center gap-2">
-              <span className="grid size-6 place-items-center bg-navy text-[10px] font-bold tracking-tighter text-navy-foreground">
+              <span className="grid size-6 place-items-center rounded-md bg-gold text-[10px] font-bold tracking-tighter text-gold-foreground">
                 N
               </span>
               <span className="text-sm font-bold uppercase tracking-tight">
                 Namar <span className="text-gold">Global</span>
               </span>
             </div>
-            <p className="mt-3 max-w-xs text-xs leading-relaxed text-muted-foreground">
+            <p className="mt-3 max-w-xs text-xs leading-relaxed text-on-navy-muted">
               {t("landing.footerTagline")}
             </p>
-            <div className="mt-4 flex gap-5 text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
+            <div className="mt-4 flex gap-5 text-[11px] font-bold uppercase tracking-[0.14em] text-on-navy-muted">
               {countries.map((country) => (
                 <span key={country}>{country}</span>
               ))}
@@ -33,16 +33,16 @@ export function SiteFooter() {
 
           {/* Contacto */}
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-navy">
+            <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-gold">
               {t("landing.footerContactTitle")}
             </p>
-            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+            <ul className="mt-3 space-y-2 text-sm text-on-navy-muted">
               <li>
                 <a
                   href={whatsappHref(t("whatsapp.message"))}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors hover:text-navy"
+                  className="transition-colors hover:text-gold"
                 >
                   WhatsApp +34 609 64 31 34
                 </a>
@@ -50,7 +50,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="transition-colors hover:text-navy"
+                  className="transition-colors hover:text-gold"
                 >
                   {siteConfig.email}
                 </a>
@@ -60,22 +60,22 @@ export function SiteFooter() {
 
           {/* Legal */}
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-navy">
+            <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-gold">
               {t("landing.footerLegalTitle")}
             </p>
-            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+            <ul className="mt-3 space-y-2 text-sm text-on-navy-muted">
               <li>
-                <Link to="/aviso-legal" className="transition-colors hover:text-navy">
+                <Link to="/aviso-legal" className="transition-colors hover:text-gold">
                   {t("landing.footerLegalNotice")}
                 </Link>
               </li>
               <li>
-                <Link to="/politica-privacidad" className="transition-colors hover:text-navy">
+                <Link to="/politica-privacidad" className="transition-colors hover:text-gold">
                   {t("landing.footerPrivacy")}
                 </Link>
               </li>
               <li>
-                <Link to="/politica-cookies" className="transition-colors hover:text-navy">
+                <Link to="/politica-cookies" className="transition-colors hover:text-gold">
                   {t("landing.footerCookies")}
                 </Link>
               </li>
@@ -83,7 +83,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <p className="mt-10 border-t border-border pt-6 text-center text-xs leading-relaxed text-muted-foreground/70">
+        <p className="mt-10 border-t border-navy-foreground/15 pt-6 text-center text-xs leading-relaxed text-on-navy-muted/70">
           {t("landing.footerLegalLine", { year: new Date().getFullYear() })}
         </p>
       </div>

@@ -68,18 +68,40 @@ export const Route = createFileRoute("/")({
 });
 
 const primaryBtn =
-  "inline-flex items-center justify-center gap-2 bg-navy px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:px-8 sm:py-4";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-navy px-7 py-3 text-[15px] font-semibold text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:px-8";
 const secondaryBtn =
-  "inline-flex items-center justify-center gap-2 border border-border px-6 py-3.5 text-xs font-bold uppercase tracking-widest transition-colors hover:bg-navy hover:text-navy-foreground sm:px-8 sm:py-4";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-[1.5px] border-navy px-7 py-3 text-[15px] font-semibold text-navy transition-colors hover:bg-navy hover:text-navy-foreground sm:px-8";
 const goldBtn =
-  "inline-flex items-center justify-center gap-2 bg-gold px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8 sm:py-4";
-const eyebrow = "text-[11px] font-bold uppercase tracking-widest text-gold";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gold px-7 py-3 text-[15px] font-semibold text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8";
+const eyebrow = "text-[13px] font-bold uppercase tracking-[0.14em] text-gold-deep";
+const eyebrowOnNavy = "text-[13px] font-bold uppercase tracking-[0.14em] text-gold";
 
 /* Shared responsive rhythm */
 const section = "px-5 py-14 sm:px-6 sm:py-20 lg:py-28";
-const h2Sans = "text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl";
-const h2Serif = "font-serif text-4xl italic leading-[1.02] sm:text-5xl lg:text-6xl";
-const lead = "text-base leading-relaxed text-muted-foreground sm:text-lg";
+const h2 = "font-serif text-[28px] leading-[1.18] sm:text-4xl lg:text-[42px]";
+const h3 = "font-serif text-[19px] leading-snug sm:text-[21px]";
+const lead = "text-base leading-[1.65] text-muted-foreground sm:text-[17px]";
+
+/* Resalta en cursiva una parte del título sin modificar el texto */
+function Em({
+  text,
+  em,
+  className,
+}: {
+  text: string;
+  em: string;
+  className: string;
+}) {
+  const i = text.indexOf(em);
+  if (i === -1) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, i)}
+      <em className={className}>{em}</em>
+      {text.slice(i + em.length)}
+    </>
+  );
+}
 
 function Index() {
   const { t } = useTranslation();

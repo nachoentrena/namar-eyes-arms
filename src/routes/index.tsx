@@ -574,8 +574,8 @@ function Index() {
               <p className="mt-4 border-l-2 border-gold pl-4 text-sm font-semibold">
                 {t("contact.promise")}
               </p>
-              <div className="mt-6 border-t border-border pt-5 sm:mt-10 sm:pt-8">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
+              <div className="mt-6 border-t border-navy-foreground/15 pt-5 sm:mt-10 sm:pt-8">
+                <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-on-navy-muted">
                   {t("contact.prefer")}
                 </p>
                 <a
@@ -596,7 +596,7 @@ function Index() {
                 </a>
               </div>
             </Reveal>
-            <Reveal delay={120} className="border border-border bg-background p-5 sm:p-8 lg:p-10">
+            <Reveal delay={120} className="rounded-[24px] border border-border bg-card p-5 text-navy sm:p-8 lg:p-10">
               <ContactForm />
             </Reveal>
           </div>

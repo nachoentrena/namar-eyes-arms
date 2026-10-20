@@ -31,7 +31,7 @@ export function ServicesBlocks({ groups }: { groups: ServiceGroup[] }) {
   return (
     <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3 lg:gap-6">
       {groups.map((group, gi) => {
-        const style = phaseStyles[gi % phaseStyles.length];
+        const style = phaseStyles[gi % phaseStyles.length]!;
         return (
           <article
             key={group.title}

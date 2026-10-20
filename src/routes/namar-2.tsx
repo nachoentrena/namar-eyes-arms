@@ -141,7 +141,6 @@ function Index() {
     q: string;
     a: string;
   }>;
-  const footerCountries = t("landing.footerCountries", { returnObjects: true }) as string[];
 
   const waHref = whatsappHref(t("whatsapp.message"));
 

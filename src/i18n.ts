@@ -179,10 +179,26 @@ const resources = {
         teamText:
           "Detrás de NAMAR Global hay personas con nombre que llevan años viviendo y trabajando sobre el terreno. Quien negocia con el proveedor y sigue tu operación de cerca es la misma persona que te responde.",
         team: [
-          { name: "Nacho", role: "NAMAR Global · Operaciones en origen", initials: "N" },
-          { name: "María", role: "NAMAR Global · Operaciones en origen", initials: "M" },
+          {
+            initials: "AM",
+            name: "Ana María González Gómez",
+            role: "Cofundadora · Directora de Operaciones de Importación",
+            text: "Dirige la ejecución de cada importación: proveedores, muestras, control de calidad, logística y documentación.",
+            photo: "ana",
+            alt: "Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica",
+            linkedin: "",
+          },
+          {
+            initials: "IE",
+            name: "Ignacio Entrena Iturbe",
+            role: "Cofundador · Director Ejecutivo y de Marketing",
+            text: "Dirige la empresa, el marketing y la comunicación con los clientes, y es tu primer contacto con NAMAR.",
+            photo: "nacho",
+            alt: "Ignacio (Nacho) Entrena, de NAMAR Global, revisando productos con un proveedor en una feria en China",
+            linkedin: "",
+          },
         ],
-        teamPhotoPlaceholder: "Foto real en fábrica",
+        teamPhotoCaption: "En la Feria de Cantón (China Import and Export Fair)",
         teamNote: "Hablas directamente con nosotros. Sin call centers ni intermediarios.",
 
         whyTitle: "Por qué NAMAR Global.",
@@ -458,10 +474,26 @@ const resources = {
         teamText:
           "Behind NAMAR Global are people with names who have spent years living and working on the ground. The person who negotiates with the supplier and follows your operation closely is the same one who answers you.",
         team: [
-          { name: "Nacho", role: "NAMAR Global · Operations at origin", initials: "N" },
-          { name: "María", role: "NAMAR Global · Operations at origin", initials: "M" },
+          {
+            initials: "AM",
+            name: "Ana María González Gómez",
+            role: "Co-founder · Director of Import Operations",
+            text: "She runs the execution of every import: suppliers, samples, quality control, logistics, and documentation.",
+            photo: "ana",
+            alt: "Ana María, of NAMAR Global, reviewing a product next to a factory manager",
+            linkedin: "",
+          },
+          {
+            initials: "IE",
+            name: "Ignacio Entrena Iturbe",
+            role: "Co-founder · Chief Executive and Marketing",
+            text: "He leads the company, marketing, and client communication, and is your first point of contact with NAMAR.",
+            photo: "nacho",
+            alt: "Ignacio (Nacho) Entrena, of NAMAR Global, reviewing products with a supplier at a trade fair in China",
+            linkedin: "",
+          },
         ],
-        teamPhotoPlaceholder: "Real factory photo",
+        teamPhotoCaption: "At the Canton Fair (China Import and Export Fair)",
         teamNote: "You speak directly with us. No call centers, no intermediaries.",
 
         whyTitle: "Why NAMAR Global.",

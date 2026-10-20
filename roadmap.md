@@ -12,3 +12,7 @@
 - [ ] Añadir email info@namar-global.com (mailto:) en sección contacto junto al botón WhatsApp y en footer
 - [ ] Rehacer footer: 3 columnas (marca / Contacto / Legal) + línea inferior © 2026 NAMAR GLOBAL LIMITED · Hong Kong · Nº 81199545 · dirección; mantener "España · China · Colombia"
 - [ ] SEO: canonical y og:url a https://www.namar-global.com/, eliminar referencias a namar-eyes-arms.lovable.app; og:image igual
+
+## Nuevo pedido (sección de equipo)
+- [ ] Rehacer "Cuando nos escribes, hablas con quien va a la fábrica": dos fichas con foto (Ana María González Gómez / Ignacio Entrena Iturbe), foto de la Feria de Cantón debajo con pie, frase "Hablas directamente con nosotros…", nombre "Ana María" coherente en toda la web y en los alt
+- [ ] Añadir enlaces de LinkedIn a las fichas (faltan las URLs del usuario)

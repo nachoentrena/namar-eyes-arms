@@ -13,6 +13,7 @@ import { ContactForm } from "@/components/namar2/contact-form";
 import { MobileCta } from "@/components/namar2/mobile-cta";
 import { Reveal } from "@/components/namar2/reveal";
 import { ServicesCarousel } from "@/components/namar2/services-carousel";
+import { SiteFooter } from "@/components/namar/site-footer";
 import { SiteHeader } from "@/components/namar2/site-header";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 

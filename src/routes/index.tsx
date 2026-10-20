@@ -174,35 +174,30 @@ function Index() {
             alt="Puerto de contenedores en China al atardecer con grúas portuarias"
             className="absolute inset-0 size-full object-cover object-[62%_center] sm:object-center"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-navy via-navy/75 to-navy/20 lg:bg-linear-to-r lg:from-navy lg:via-navy/80 lg:to-navy/10" />
+          <div className="absolute inset-0 bg-navy/72" />
           <div className="relative mx-auto flex w-full max-w-7xl flex-col justify-between gap-10">
             <div className="max-w-3xl space-y-5 text-navy-foreground sm:space-y-7">
-              <div className="inline-flex items-center gap-3 border border-gold/50 bg-navy/55 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-gold backdrop-blur-sm sm:px-4 sm:py-2 sm:text-[11px]">
+              <div className="inline-flex items-center gap-3 rounded-full border border-gold/50 bg-navy/55 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-gold backdrop-blur-sm sm:px-4 sm:py-2 sm:text-[13px]">
                 <span className="relative flex size-2">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-gold opacity-75" />
                   <span className="relative inline-flex size-2 rounded-full bg-gold" />
                 </span>
                 {t("landing.heroBadge")}
               </div>
-              <h1 className="font-serif text-[2.625rem] italic leading-[1] sm:text-6xl lg:text-7xl xl:text-8xl">
-                {t("landing.heroTitle")}
-                <span className="mt-2 block font-sans text-[1.625rem] font-bold not-italic leading-tight sm:mt-3 sm:text-4xl lg:text-5xl xl:text-6xl">
-                  {t("landing.heroSubtitle")}
-                </span>
+              <h1 className="font-serif text-4xl leading-[1.15] sm:text-5xl lg:text-[58px]">
+                {t("landing.heroTitle")}{" "}
+                <em className="italic text-gold">{t("landing.heroSubtitle")}</em>
               </h1>
               <p className="max-w-xl text-base leading-relaxed text-navy-foreground/80 sm:text-lg lg:text-xl">
                 {t("landing.heroDescription")}
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-                <a
-                  href="/diagnostico"
-                  className="inline-flex items-center justify-center gap-2 bg-gold px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8 sm:py-4"
-                >
+                <a href="/diagnostico" className={goldBtn}>
                   {t("landing.heroPrimaryCta")}
                 </a>
                 <a
                   href="#proceso"
-                  className="inline-flex items-center justify-center gap-2 border border-navy-foreground/55 bg-navy/25 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-navy-foreground backdrop-blur-sm transition-colors hover:border-gold hover:text-gold sm:px-8 sm:py-4"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-[1.5px] border-navy-foreground/50 px-7 py-3 text-[15px] font-semibold text-navy-foreground transition-colors hover:border-gold hover:text-gold sm:px-8"
                 >
                   {t("landing.heroSecondaryCta")}
                 </a>
@@ -211,16 +206,20 @@ function Index() {
                 href="#costes"
                 className="group inline-flex items-center gap-3 border-l-2 border-gold pl-4 text-sm font-semibold text-navy-foreground transition-colors hover:text-gold"
               >
-                <span className="grid size-6 shrink-0 place-items-center bg-gold/15 text-gold">
+                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-gold/15 text-gold">
                   <Check className="size-3.5" strokeWidth={3} />
                 </span>
                 <span className="min-w-0">{t("landing.heroMicro")}</span>
                 <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
               </a>
-              <div className="flex flex-col gap-2 border-t border-navy-foreground/25 pt-4 text-[11px] font-bold uppercase tracking-widest text-navy-foreground/70 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:pt-5">
+              <div className="flex flex-col gap-2 border-t border-navy-foreground/25 pt-4 text-[11px] font-bold uppercase tracking-[0.14em] text-navy-foreground/70 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:pt-5">
                 {heroTrust.map((item, i) => (
-                  <span key={item} className="flex items-center gap-4">
-                    {i > 0 ? <span className="hidden text-gold sm:inline">·</span> : null}
+                  <span key={item} className="flex items-center gap-2.5">
+                    <span
+                      className={`size-1.5 shrink-0 rounded-full ${
+                        ["bg-gold", "bg-terracotta", "bg-slate"][i % 3]
+                      }`}
+                    />
                     {item}
                   </span>
                 ))}
@@ -234,7 +233,13 @@ function Index() {
         <section className="overflow-hidden bg-navy px-5 py-14 text-navy-foreground sm:px-6 sm:py-18 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
-              <h2 className={h2}>{t("landing.problemTitle")}</h2>
+              <h2 className={h2}>
+                <Em
+                  text={t("landing.problemTitle")}
+                  em={t("landing.problemTitleEm")}
+                  className="italic text-gold"
+                />
+              </h2>
               <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
                 {t("landing.problemIntro")}
               </p>
@@ -271,7 +276,7 @@ function Index() {
                     >
                       <div className="flex items-baseline gap-3 md:col-span-3">
                         <span className="text-xs font-bold text-gold">{`0${i + 1}`}</span>
-                        <h3 className="text-base font-bold leading-snug sm:text-lg">{row.risk}</h3>
+                        <h3 className={h3}>{row.risk}</h3>
                       </div>
                       <p className="pl-7 text-[15px] leading-relaxed text-navy-foreground/75 sm:text-base md:col-span-6 md:pl-0">
                         <span className="mr-2 text-[10px] font-bold uppercase tracking-widest text-gold md:hidden">

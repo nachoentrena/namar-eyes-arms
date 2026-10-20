@@ -234,7 +234,7 @@ function Index() {
         <section className="overflow-hidden bg-navy px-5 py-14 text-navy-foreground sm:px-6 sm:py-18 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
-              <h2 className={h2Sans}>{t("landing.problemTitle")}</h2>
+              <h2 className={h2}>{t("landing.problemTitle")}</h2>
               <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
                 {t("landing.problemIntro")}
               </p>
@@ -299,7 +299,7 @@ function Index() {
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <p className={eyebrow}>{t("landing.servicesLabel")}</p>
-              <h2 className={`mt-3 ${h2Sans}`}>{t("landing.servicesTitle")}</h2>
+              <h2 className={`mt-3 ${h2}`}>{t("landing.servicesTitle")}</h2>
               <p className={`mt-4 ${lead}`}>{t("landing.servicesIntro")}</p>
             </Reveal>
 
@@ -337,7 +337,7 @@ function Index() {
             <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-12 lg:gap-16 lg:p-16">
               <div className="lg:col-span-7">
                 <p className={eyebrow}>{t("landing.costLabel")}</p>
-                <h2 className={`mt-3 ${h2Serif}`}>{t("landing.costTitle")}</h2>
+                <h2 className={`mt-3 ${h2}`}>{t("landing.costTitle")}</h2>
                 <p className="mt-4 max-w-xl text-base text-navy-foreground/70 sm:text-lg">
                   {t("landing.costText")}
                 </p>
@@ -383,7 +383,7 @@ function Index() {
         <section id="proceso" className={section}>
           <div className="mx-auto max-w-4xl">
             <Reveal>
-              <h2 className={`text-center ${h2Sans}`}>{t("landing.processTitle")}</h2>
+              <h2 className={`text-center ${h2}`}>{t("landing.processTitle")}</h2>
             </Reveal>
             <ol className="relative mt-10 space-y-7 before:absolute before:bottom-2 before:left-5 before:top-2 before:w-px before:bg-border sm:mt-14 sm:space-y-10 sm:before:left-6">
               {steps.map((step, i) => (
@@ -425,7 +425,7 @@ function Index() {
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <p className={eyebrow}>{t("landing.teamLabel")}</p>
-              <h2 className={`mt-3 ${h2Serif}`}>{t("landing.teamTitle")}</h2>
+              <h2 className={`mt-3 ${h2}`}>{t("landing.teamTitle")}</h2>
               <p className={`mt-4 ${lead}`}>{t("landing.teamText")}</p>
             </Reveal>
 
@@ -496,7 +496,7 @@ function Index() {
         <section id="nosotros" className={`bg-sand ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
-              <h2 className={h2Sans}>{t("landing.whyTitle")}</h2>
+              <h2 className={h2}>{t("landing.whyTitle")}</h2>
             </Reveal>
             <div className="mt-8 grid gap-px border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {differentiators.map((item, i) => (
@@ -519,7 +519,7 @@ function Index() {
         <section id="faq" className={section}>
           <div className="mx-auto max-w-3xl">
             <Reveal>
-              <h2 className={`text-center ${h2Sans}`}>{t("landing.faqTitle")}</h2>
+              <h2 className={`text-center ${h2}`}>{t("landing.faqTitle")}</h2>
             </Reveal>
             <div className="mt-8 divide-y divide-border border-y border-border sm:mt-12">
               {faqs.map((faq, i) => (
@@ -543,7 +543,7 @@ function Index() {
         <section id="contacto" className={`border-t border-border bg-sand ${section}`}>
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2 lg:gap-16">
             <Reveal>
-              <h2 className={h2Serif}>{t("contact.title")}</h2>
+              <h2 className={h2}>{t("contact.title")}</h2>
               <p className={`mt-5 max-w-lg ${lead}`}>{t("contact.description")}</p>
               <p className="mt-4 border-l-2 border-gold pl-4 text-sm font-semibold">
                 {t("contact.promise")}

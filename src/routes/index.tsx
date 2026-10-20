@@ -37,6 +37,11 @@ export const Route = createFileRoute("/")({
       { property: "og:locale", content: "es_ES" },
       { property: "og:url", content: `${siteConfig.siteUrl}/` },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: `${siteConfig.siteUrl}/og-image.png` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "NAMAR Global" },
+      { name: "twitter:image", content: `${siteConfig.siteUrl}/og-image.png` },
     ],
     links: [{ rel: "canonical", href: `${siteConfig.siteUrl}/` }],
     scripts: [

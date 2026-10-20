@@ -137,7 +137,7 @@ export const submitDiagnostico = createServerFn({ method: "POST" })
 
     const parsed = answersSchema.parse(answers);
     const record: Record<string, Value> = { ...parsed };
-    delete record.empresa_web;
+    delete record["empresa_web"];
 
     const email = str(record, "email");
     const nombre = str(record, "nombre");

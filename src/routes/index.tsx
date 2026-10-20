@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Check, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import heroPort from "@/assets/hero-port.jpg";
+import heroShip from "@/assets/namar-hero-barco.webp.asset.json";
+import heroShipMobile from "@/assets/namar-hero-barco-mobile.webp.asset.json";
 import onTheGroundAsset from "@/assets/nacho-feria.jpg.asset.json";
 import qualityControlAsset from "@/assets/ana-maria-fabrica.jpg.asset.json";
 import teamPhotoAsset from "@/assets/equipo-canton-fair.jpg.asset.json";
@@ -172,14 +173,21 @@ function Index() {
           id="inicio"
           className="relative flex min-h-[650px] overflow-hidden px-5 pb-12 pt-24 sm:min-h-[680px] sm:px-6 sm:pb-16 sm:pt-32 lg:min-h-[700px] lg:items-center lg:py-32"
         >
-          <img
-            src={heroPort}
-            width={1200}
-            height={1504}
-            alt="Puerto de contenedores en China al atardecer con grúas portuarias"
-            className="absolute inset-0 size-full object-cover object-[62%_center] sm:object-center"
-          />
-          <div className="absolute inset-0 bg-navy/72" />
+          <div className="absolute inset-0 bg-navy" />
+          <picture className="absolute inset-0 lg:left-[32%] lg:[mask-image:linear-gradient(to_right,transparent,black_12%)]">
+            <source media="(min-width: 1024px)" srcSet={heroShip.url} />
+            <img
+              src={heroShipMobile.url}
+              width={1920}
+              height={1279}
+              alt="Barco portacontenedores navegando en mar abierto"
+              fetchPriority="high"
+              className="size-full object-cover object-[45%_center] lg:object-left"
+            />
+          </picture>
+          <div className="absolute inset-0 bg-navy/75 lg:hidden" />
+          <div className="absolute inset-0 hidden lg:block bg-[linear-gradient(to_right,color-mix(in_oklab,var(--navy)_95%,transparent)_0%,color-mix(in_oklab,var(--navy)_85%,transparent)_35%,color-mix(in_oklab,var(--navy)_30%,transparent)_60%,color-mix(in_oklab,var(--navy)_5%,transparent)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 hidden h-[200px] lg:block bg-[linear-gradient(to_top,color-mix(in_oklab,var(--navy)_90%,transparent),transparent)]" />
           <div className="relative mx-auto flex w-full max-w-7xl flex-col justify-between gap-10">
             <div className="max-w-3xl space-y-5 text-navy-foreground sm:space-y-7">
               <div className="inline-flex items-center gap-3 rounded-full border border-gold/50 bg-navy/55 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-gold backdrop-blur-sm sm:px-4 sm:py-2 sm:text-[13px]">

@@ -183,7 +183,7 @@ function Index() {
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
-                  href="#contacto"
+                  href="/diagnostico"
                   className="inline-flex items-center justify-center gap-2 bg-gold px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8 sm:py-4"
                 >
                   {t("landing.heroPrimaryCta")}
@@ -436,7 +436,7 @@ function Index() {
               <p className="font-serif text-xl italic text-slate sm:text-2xl lg:text-3xl">
                 {t("landing.processQuote")}
               </p>
-              <a href="#contacto" className={`${primaryBtn} mt-6 sm:mt-8`}>
+              <a href="/diagnostico" className={`${primaryBtn} mt-6 sm:mt-8`}>
                 {t("landing.processCta")}
               </a>
             </Reveal>
@@ -461,7 +461,7 @@ function Index() {
                 <p className="mt-4 text-base text-navy-foreground/70 sm:text-lg">
                   {t("landing.onTheGroundText")}
                 </p>
-                <a href="#contacto" className={`${goldBtn} mt-6 sm:mt-8`}>
+                <a href="/diagnostico" className={`${goldBtn} mt-6 sm:mt-8`}>
                   {t("landing.onTheGroundCta")}
                 </a>
               </div>
@@ -614,6 +614,13 @@ function Index() {
                   className="mt-3 inline-flex items-center gap-3 text-base font-semibold transition-colors hover:text-gold sm:text-lg"
                 >
                   {t("contact.chat")}
+                  <ArrowRight className="size-5" />
+                </a>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="mt-3 inline-flex items-center gap-3 text-base font-semibold transition-colors hover:text-gold sm:text-lg"
+                >
+                  {siteConfig.email}
                   <ArrowRight className="size-5" />
                 </a>
               </div>

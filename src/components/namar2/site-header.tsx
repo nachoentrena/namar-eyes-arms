@@ -45,13 +45,14 @@ export function SiteHeader() {
   return (
     <header className="fixed inset-x-3 top-3 z-50 sm:inset-x-5 sm:top-4">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 rounded-[18px] border border-border bg-background/95 px-4 backdrop-blur-md sm:h-16 sm:px-5">
-        <a href="#inicio" className="flex items-center gap-2">
-          <span className="grid size-7 place-items-center rounded-lg bg-navy text-xs font-bold tracking-tighter text-navy-foreground sm:size-8 sm:text-sm">
-            N
-          </span>
-          <span className="text-base font-bold uppercase tracking-tight sm:text-xl">
-            Namar <span className="text-gold-deep">Global</span>
-          </span>
+        <a href="#inicio" className="flex items-center">
+          <img
+            src={wordmarkNavy.url}
+            alt="NAMAR Global"
+            width={876}
+            height={297}
+            className="h-9 w-auto sm:h-10"
+          />
         </a>
 
         <nav className="hidden items-center gap-8 text-sm font-medium text-navy lg:flex">

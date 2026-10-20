@@ -14,5 +14,5 @@
 - [ ] SEO: canonical y og:url a https://www.namar-global.com/, eliminar referencias a namar-eyes-arms.lovable.app; og:image igual
 
 ## Nuevo pedido (sección de equipo)
-- [ ] Rehacer "Cuando nos escribes, hablas con quien va a la fábrica": dos fichas con foto (Ana María González Gómez / Ignacio Entrena Iturbe), foto de la Feria de Cantón debajo con pie, frase "Hablas directamente con nosotros…", nombre "Ana María" coherente en toda la web y en los alt
+- [x] Rehacer "Cuando nos escribes, hablas con quien va a la fábrica": dos fichas con foto (Ana María González Gómez / Ignacio Entrena Iturbe), foto de la Feria de Cantón debajo con pie, frase "Hablas directamente con nosotros…", nombre "Ana María" coherente en toda la web y en los alt
 - [ ] Añadir enlaces de LinkedIn a las fichas (faltan las URLs del usuario)

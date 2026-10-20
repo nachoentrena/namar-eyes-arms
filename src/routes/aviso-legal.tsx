@@ -32,7 +32,7 @@ function AvisoLegalPage() {
           <h1 className="font-serif text-4xl italic leading-tight text-navy sm:text-5xl">
             Aviso legal
           </h1>
-          <div className="mt-8 space-y-8 text-base leading-relaxed text-slate">
+          <div className="mt-8 space-y-8 text-base leading-relaxed text-muted-foreground">
             <section className="space-y-3">
               <h2 className="font-serif text-2xl italic text-navy">1. Titular de la web</h2>
               <p>
@@ -115,7 +115,7 @@ function AvisoLegalPage() {
                 las partes se someterán a los juzgados y tribunales que correspondan conforme a
                 derecho.
               </p>
-              <p className="text-sm text-slate/70">Última actualización: octubre de 2026.</p>
+              <p className="text-sm text-muted-foreground/70">Última actualización: octubre de 2026.</p>
             </section>
           </div>
         </div>

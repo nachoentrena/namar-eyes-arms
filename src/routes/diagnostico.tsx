@@ -39,7 +39,7 @@ function DiagnosticoPage() {
           <h1 className="mt-3 font-serif text-4xl italic leading-tight text-navy sm:text-5xl">
             Diagnóstico de viabilidad de importación
           </h1>
-          <p className="mt-5 text-base leading-relaxed text-slate sm:text-lg">
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             Cuéntenos su proyecto y el equipo de NAMAR GLOBAL le enviará una evaluación preliminar
             de viabilidad en 24–48 horas hábiles. Si no conoce algún dato técnico, marque «No lo
             sé»: para eso estamos. Tiempo estimado: 8–10 minutos.

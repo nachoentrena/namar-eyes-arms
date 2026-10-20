@@ -38,7 +38,7 @@ function PoliticaPrivacidadPage() {
           <h1 className="font-serif text-4xl italic leading-tight text-navy sm:text-5xl">
             Política de privacidad
           </h1>
-          <div className="mt-8 space-y-8 text-base leading-relaxed text-slate">
+          <div className="mt-8 space-y-8 text-base leading-relaxed text-muted-foreground">
             <section className="space-y-3">
               <h2 className="font-serif text-2xl italic text-navy">1. Responsable del tratamiento</h2>
               <p>

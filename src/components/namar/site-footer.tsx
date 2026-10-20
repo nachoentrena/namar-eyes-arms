@@ -21,10 +21,10 @@ export function SiteFooter() {
                 Namar <span className="text-gold">Global</span>
               </span>
             </div>
-            <p className="mt-3 max-w-xs text-xs leading-relaxed text-slate">
+            <p className="mt-3 max-w-xs text-xs leading-relaxed text-muted-foreground">
               {t("landing.footerTagline")}
             </p>
-            <div className="mt-4 flex gap-5 text-[11px] font-bold uppercase tracking-widest text-slate">
+            <div className="mt-4 flex gap-5 text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
               {countries.map((country) => (
                 <span key={country}>{country}</span>
               ))}
@@ -36,7 +36,7 @@ export function SiteFooter() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-navy">
               {t("landing.footerContactTitle")}
             </p>
-            <ul className="mt-3 space-y-2 text-sm text-slate">
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
               <li>
                 <a
                   href={whatsappHref(t("whatsapp.message"))}
@@ -63,7 +63,7 @@ export function SiteFooter() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-navy">
               {t("landing.footerLegalTitle")}
             </p>
-            <ul className="mt-3 space-y-2 text-sm text-slate">
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link to="/aviso-legal" className="transition-colors hover:text-navy">
                   {t("landing.footerLegalNotice")}
@@ -83,7 +83,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <p className="mt-10 border-t border-border pt-6 text-center text-xs leading-relaxed text-slate/70">
+        <p className="mt-10 border-t border-border pt-6 text-center text-xs leading-relaxed text-muted-foreground/70">
           {t("landing.footerLegalLine", { year: new Date().getFullYear() })}
         </p>
       </div>

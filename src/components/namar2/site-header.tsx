@@ -54,7 +54,7 @@ export function SiteHeader() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium text-slate lg:flex">
+        <nav className="hidden items-center gap-8 text-sm font-medium text-muted-foreground lg:flex">
           {links.map((link) => (
             <a key={link.href} href={link.href} className="transition-colors hover:text-navy">
               {link.label}
@@ -131,14 +131,14 @@ export function SiteHeader() {
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block py-0.5 text-base font-medium text-slate transition-colors hover:text-navy"
+                  className="block py-0.5 text-base font-medium text-muted-foreground transition-colors hover:text-navy"
                 >
                   {link.label}
                 </a>
               </li>
             ))}
             <li className="flex items-center justify-between gap-3 border-t border-border pt-4">
-              <span className="text-sm font-medium text-slate">{t("header.language")}</span>
+              <span className="text-sm font-medium text-muted-foreground">{t("header.language")}</span>
               <div className="flex gap-2">
                 <button
                   type="button"

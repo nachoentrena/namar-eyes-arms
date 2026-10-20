@@ -10,7 +10,7 @@ const destinations = [
 ] as const;
 
 const fieldClass =
-  "w-full border border-border bg-sand px-4 py-3 text-sm text-navy outline-none transition-colors placeholder:text-slate/70 focus:border-gold";
+  "w-full border border-border bg-sand px-4 py-3 text-sm text-navy outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-gold";
 
 export function ContactForm() {
   const { t } = useTranslation();
@@ -60,7 +60,7 @@ export function ContactForm() {
     return (
       <div className="border border-border bg-sand p-10 text-center">
         <p className="font-serif text-3xl italic text-navy">{t("contact.form.sentTitle")}</p>
-        <p className="mt-4 text-sm leading-relaxed text-slate">
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
           ¡Gracias! Hemos recibido tu solicitud de importación y te contactaremos pronto.
         </p>
         <button
@@ -80,7 +80,7 @@ export function ContactForm() {
       <input type="hidden" name="subject" value="Nueva solicitud de importación — NAMAR Global" />
       <input type="hidden" name="from_name" value="Web NAMAR Global" />
       <div className="flex flex-col gap-2">
-        <label htmlFor="nombre" className="text-[11px] font-bold uppercase tracking-widest text-slate">
+        <label htmlFor="nombre" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
           {t("contact.form.name")}
         </label>
         <input
@@ -92,7 +92,7 @@ export function ContactForm() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="empresa" className="text-[11px] font-bold uppercase tracking-widest text-slate">
+        <label htmlFor="empresa" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
           {t("contact.form.company")}
         </label>
         <input
@@ -103,7 +103,7 @@ export function ContactForm() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-[11px] font-bold uppercase tracking-widest text-slate">
+        <label htmlFor="email" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
           {t("contact.form.email")}
         </label>
         <input
@@ -116,7 +116,7 @@ export function ContactForm() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="pais" className="text-[11px] font-bold uppercase tracking-widest text-slate">
+        <label htmlFor="pais" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
           {t("contact.form.country")}
         </label>
         <select
@@ -137,7 +137,7 @@ export function ContactForm() {
         </select>
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="telefono" className="text-[11px] font-bold uppercase tracking-widest text-slate">
+        <label htmlFor="telefono" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
           {t("contact.form.phone")}
         </label>
         <div className="flex gap-2">
@@ -154,7 +154,7 @@ export function ContactForm() {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="producto" className="text-[11px] font-bold uppercase tracking-widest text-slate">
+        <label htmlFor="producto" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
           {t("contact.form.product")}
         </label>
         <input
@@ -166,7 +166,7 @@ export function ContactForm() {
         />
       </div>
       <div className="flex flex-col gap-2 md:col-span-2">
-        <label htmlFor="volumen" className="text-[11px] font-bold uppercase tracking-widest text-slate">
+        <label htmlFor="volumen" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
           {t("contact.form.volume")}
         </label>
         <input
@@ -177,7 +177,7 @@ export function ContactForm() {
         />
       </div>
       <div className="flex flex-col gap-2 md:col-span-2">
-        <label htmlFor="mensaje" className="text-[11px] font-bold uppercase tracking-widest text-slate">
+        <label htmlFor="mensaje" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
           {t("contact.form.message")}
         </label>
         <textarea
@@ -189,7 +189,7 @@ export function ContactForm() {
         />
       </div>
       {status === "error" && (
-        <p className="text-sm font-medium text-red-700 md:col-span-2">
+        <p className="text-sm font-medium text-terracotta-deep md:col-span-2">
           Ocurrió un error al enviar el mensaje. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.
         </p>
       )}
@@ -202,7 +202,7 @@ export function ContactForm() {
           value="Sí"
           className="mt-0.5 size-4 shrink-0 accent-navy"
         />
-        <label htmlFor="acepta_privacidad" className="text-xs leading-relaxed text-slate">
+        <label htmlFor="acepta_privacidad" className="text-xs leading-relaxed text-muted-foreground">
           He leído y acepto la{" "}
           <Link to="/politica-privacidad" target="_blank" className="font-semibold text-navy underline">
             política de privacidad
@@ -217,7 +217,7 @@ export function ContactForm() {
       >
         {status === "sending" ? "Enviando..." : t("contact.form.submit")}
       </button>
-      <p className="text-xs text-slate/70 md:col-span-2">
+      <p className="text-xs text-muted-foreground/70 md:col-span-2">
         Respondemos en un máximo de 24 horas laborables.
       </p>
     </form>

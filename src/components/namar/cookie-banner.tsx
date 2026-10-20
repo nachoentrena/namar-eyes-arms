@@ -35,9 +35,9 @@ export function CookieBanner() {
     <div
       role="dialog"
       aria-label="Aviso de cookies"
-      className="fixed inset-x-3 bottom-20 z-[60] border border-border bg-background p-4 shadow-xl sm:inset-x-auto sm:bottom-6 sm:left-6 sm:max-w-md sm:p-5"
+      className="fixed inset-x-3 bottom-20 z-[60] border border-border bg-background p-4 shadow-panel sm:inset-x-auto sm:bottom-6 sm:left-6 sm:max-w-md sm:p-5"
     >
-      <p className="text-sm leading-relaxed text-slate">
+      <p className="text-sm leading-relaxed text-muted-foreground">
         Utilizamos almacenamiento técnico necesario y, con su consentimiento, un chat de asistencia
         de terceros. Puede aceptar o rechazar. Más información en nuestra{" "}
         <Link to="/politica-cookies" className="font-semibold text-navy underline">

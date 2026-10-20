@@ -79,7 +79,7 @@ const eyebrow = "text-[11px] font-bold uppercase tracking-widest text-gold";
 const section = "px-5 py-14 sm:px-6 sm:py-20 lg:py-28";
 const h2Sans = "text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl";
 const h2Serif = "font-serif text-4xl italic leading-[1.02] sm:text-5xl lg:text-6xl";
-const lead = "text-base leading-relaxed text-slate sm:text-lg";
+const lead = "text-base leading-relaxed text-muted-foreground sm:text-lg";
 
 function Index() {
   const { t } = useTranslation();
@@ -371,14 +371,14 @@ function Index() {
                   </span>
                   <div className="pt-1.5 sm:pt-2">
                     <h3 className="text-lg font-bold sm:text-xl">{step.title}</h3>
-                    <p className="mt-1.5 text-[15px] text-slate sm:text-base">{step.text}</p>
+                    <p className="mt-1.5 text-[15px] text-muted-foreground sm:text-base">{step.text}</p>
                   </div>
                 </Reveal>
               ))}
             </ol>
             <Reveal className="mt-10 border border-border bg-sand p-5 sm:mt-14 sm:p-8 lg:p-10">
               <h3 className="text-lg font-bold sm:text-2xl">{t("landing.startTitle")}</h3>
-              <p className="mt-2 max-w-2xl text-[15px] text-slate sm:text-base">
+              <p className="mt-2 max-w-2xl text-[15px] text-muted-foreground sm:text-base">
                 {t("landing.startIntro")}
               </p>
               <ol className="mt-5 grid gap-4 sm:mt-6 sm:grid-cols-3 sm:gap-6">
@@ -386,7 +386,7 @@ function Index() {
                   <li key={step.n} className="border-t-2 border-gold pt-3">
                     <span className="text-xs font-bold text-gold">{step.n}</span>
                     <h4 className="mt-1 text-sm font-bold sm:text-base">{step.title}</h4>
-                    <p className="mt-1 text-sm leading-relaxed text-slate">{step.text}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
                   </li>
                 ))}
               </ol>
@@ -410,7 +410,7 @@ function Index() {
             <div className="mt-8 grid gap-5 sm:mt-10 md:grid-cols-2 lg:gap-6">
               {team.map((person, i) => (
                 <Reveal key={person.name} delay={i * 80}>
-                  <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-panel">
+                  <article className="flex h-full flex-col overflow-hidden rounded-[24px] border border-border bg-card shadow-panel">
                     <div className="relative bg-sand">
                       <img
                         src={person.photo === "ana" ? qualityControl : onTheGround}
@@ -449,7 +449,7 @@ function Index() {
             </div>
 
             <Reveal delay={100} className="mx-auto mt-6 max-w-lg sm:mt-8">
-              <figure className="overflow-hidden rounded-2xl border border-border bg-sand shadow-panel">
+              <figure className="overflow-hidden rounded-[24px] border border-border bg-sand shadow-panel">
                 <img
                   src={teamPhoto}
                   width={1600}
@@ -481,7 +481,7 @@ function Index() {
                 <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
                   <span className="text-sm font-bold text-gold">{`0${i + 1}`}</span>
                   <h3 className="mt-3 text-base font-bold sm:mt-4 sm:text-lg">{item.title}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-slate sm:text-base">{item.text}</p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{item.text}</p>
                 </Reveal>
               ))}
             </div>
@@ -509,7 +509,7 @@ function Index() {
                         +
                       </span>
                     </summary>
-                    <p className="pb-5 text-[15px] leading-relaxed text-slate sm:text-base">{faq.a}</p>
+                    <p className="pb-5 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{faq.a}</p>
                   </details>
                 </Reveal>
               ))}
@@ -527,7 +527,7 @@ function Index() {
                 {t("contact.promise")}
               </p>
               <div className="mt-6 border-t border-border pt-5 sm:mt-10 sm:pt-8">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-slate">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
                   {t("contact.prefer")}
                 </p>
                 <a

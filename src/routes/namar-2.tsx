@@ -80,7 +80,7 @@ const eyebrow = "text-[11px] font-bold uppercase tracking-widest text-gold";
 const section = "px-5 py-14 sm:px-6 sm:py-20 lg:py-28";
 const h2Sans = "text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl";
 const h2Serif = "font-serif text-4xl italic leading-[1.02] sm:text-5xl lg:text-6xl";
-const lead = "text-base leading-relaxed text-slate sm:text-lg";
+const lead = "text-base leading-relaxed text-muted-foreground sm:text-lg";
 
 function Index() {
   const { t } = useTranslation();
@@ -236,7 +236,7 @@ function Index() {
               {authorityPoints.map((item, i) => (
                 <Reveal key={item.label} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
                   <p className={eyebrow}>{item.label}</p>
-                  <p className="mt-2.5 text-[15px] leading-relaxed text-slate sm:text-base">
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-muted-foreground sm:text-base">
                     {item.text}
                   </p>
                 </Reveal>
@@ -407,7 +407,7 @@ function Index() {
                         +
                       </span>
                     </summary>
-                    <p className="pb-5 text-[15px] leading-relaxed text-slate sm:text-base">{item.a}</p>
+                    <p className="pb-5 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{item.a}</p>
                   </details>
                 </Reveal>
               ))}
@@ -429,13 +429,13 @@ function Index() {
                   </span>
                   <div className="pt-1.5 sm:pt-2">
                     <h3 className="text-lg font-bold sm:text-xl">{step.title}</h3>
-                    <p className="mt-1.5 text-[15px] text-slate sm:text-base">{step.text}</p>
+                    <p className="mt-1.5 text-[15px] text-muted-foreground sm:text-base">{step.text}</p>
                   </div>
                 </Reveal>
               ))}
             </ol>
             <Reveal className="mt-10 text-center sm:mt-14">
-              <p className="font-serif text-xl italic text-slate sm:text-2xl lg:text-3xl">
+              <p className="font-serif text-xl italic text-muted-foreground sm:text-2xl lg:text-3xl">
                 {t("landing.processQuote")}
               </p>
               <a href="/diagnostico" className={`${primaryBtn} mt-6 sm:mt-8`}>
@@ -485,7 +485,7 @@ function Index() {
                 {team.map((person) => (
                   <li key={person.name}>
                     <h3 className="text-lg font-bold sm:text-xl">{person.name}</h3>
-                    <p className="mt-1 text-xs text-slate sm:text-sm">{person.role}</p>
+                    <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{person.role}</p>
                   </li>
                 ))}
               </ul>
@@ -516,7 +516,7 @@ function Index() {
               {differentiators.map((item, i) => (
                 <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
                   <h3 className="text-base font-bold sm:text-lg">{item.title}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-slate sm:text-base">{item.text}</p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{item.text}</p>
                 </Reveal>
               ))}
             </div>
@@ -542,7 +542,7 @@ function Index() {
                 <Reveal key={item.title} delay={i * 60} className="bg-background p-5 sm:p-7 lg:p-9">
                   <span className="text-sm font-bold text-gold">{`0${i + 1}`}</span>
                   <h3 className="mt-3 text-base font-bold sm:mt-4 sm:text-lg">{item.title}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-slate sm:text-base">{item.text}</p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{item.text}</p>
                 </Reveal>
               ))}
             </div>
@@ -588,7 +588,7 @@ function Index() {
                         +
                       </span>
                     </summary>
-                    <p className="pb-5 text-[15px] leading-relaxed text-slate sm:text-base">{faq.a}</p>
+                    <p className="pb-5 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{faq.a}</p>
                   </details>
                 </Reveal>
               ))}
@@ -606,7 +606,7 @@ function Index() {
                 {t("contact.promise")}
               </p>
               <div className="mt-6 border-t border-border pt-5 sm:mt-10 sm:pt-8">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-slate">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
                   {t("contact.prefer")}
                 </p>
                 <a

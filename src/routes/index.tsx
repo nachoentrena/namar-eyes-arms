@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import heroPort from "@/assets/hero-port.jpg";
@@ -110,9 +110,13 @@ function Index() {
     text: string;
   }>;
   const team = t("landing.team", { returnObjects: true }) as Array<{
+    initials: string;
     name: string;
     role: string;
-    initials: string;
+    text: string;
+    photo: string;
+    alt: string;
+    linkedin: string;
   }>;
   const differentiators = t("landing.differentiators", { returnObjects: true }) as Array<{
     title: string;
@@ -396,48 +400,73 @@ function Index() {
 
         {/* ─── PERSONAS ─────────────────────────────────────────── */}
         <section id="equipo" className={section}>
-          <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-12 lg:items-center lg:gap-16">
-            <Reveal className="lg:order-2 lg:col-span-6">
+          <div className="mx-auto max-w-7xl">
+            <Reveal className="max-w-3xl">
               <p className={eyebrow}>{t("landing.teamLabel")}</p>
               <h2 className={`mt-3 ${h2Serif}`}>{t("landing.teamTitle")}</h2>
               <p className={`mt-4 ${lead}`}>{t("landing.teamText")}</p>
-              <p className="mt-5 border-l-2 border-gold pl-4 text-sm font-semibold">
-                {t("landing.teamNote")}
-              </p>
-              <ul className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-5 sm:mt-8 sm:gap-6">
-                {team.map((person) => (
-                  <li key={person.name}>
-                    <h3 className="text-lg font-bold sm:text-xl">{person.name}</h3>
-                    <p className="mt-1 text-xs text-slate sm:text-sm">{person.role}</p>
-                  </li>
-                ))}
-              </ul>
             </Reveal>
-            <Reveal delay={100} className="group lg:order-1 lg:col-span-6">
-              <div className="relative grid grid-cols-2 gap-3 sm:gap-4">
-                <div className="overflow-hidden border border-border bg-sand">
-                  <img
-                    src={teamPhoto}
-                    width={1600}
-                    height={2133}
-                    loading="lazy"
-                    alt="Nacho y Ana María, de NAMAR Global, en la entrada de la Feria de Cantón (China Import and Export Fair)"
-                    className="aspect-4/5 w-full object-cover object-[50%_45%]"
-                  />
-                </div>
-                <div className="overflow-hidden border border-border bg-sand">
-                  <img
-                    src={onTheGround}
-                    width={886}
-                    height={1575}
-                    loading="lazy"
-                    alt="Nacho, de NAMAR Global, revisando productos con un proveedor en una feria en China"
-                    className="aspect-4/5 w-full object-cover object-[50%_10%]"
-                  />
-                </div>
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gold transition-all duration-500 group-hover:w-full" />
-              </div>
+
+            <div className="mt-8 grid gap-5 sm:mt-10 md:grid-cols-2 lg:gap-6">
+              {team.map((person, i) => (
+                <Reveal key={person.name} delay={i * 80}>
+                  <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-panel">
+                    <div className="relative bg-sand">
+                      <img
+                        src={person.photo === "ana" ? qualityControl : onTheGround}
+                        width={886}
+                        height={1920}
+                        loading="lazy"
+                        alt={person.alt}
+                        className="aspect-4/5 w-full object-cover object-top sm:aspect-3/2 sm:object-top"
+                      />
+                      <span className="absolute left-4 top-4 grid size-10 place-items-center bg-navy text-xs font-bold text-navy-foreground">
+                        {person.initials}
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col p-5 sm:p-6">
+                      <h3 className="text-lg font-bold text-foreground sm:text-xl">{person.name}</h3>
+                      <p className="mt-1 text-[11px] font-bold uppercase tracking-widest text-gold sm:text-xs">
+                        {person.role}
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                        {person.text}
+                      </p>
+                      {person.linkedin ? (
+                        <a
+                          href={person.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-navy hover:underline"
+                        >
+                          <Linkedin className="size-4" /> LinkedIn
+                        </a>
+                      ) : null}
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+
+            <Reveal delay={100} className="mx-auto mt-6 max-w-lg sm:mt-8">
+              <figure className="overflow-hidden rounded-2xl border border-border bg-sand shadow-panel">
+                <img
+                  src={teamPhoto}
+                  width={1600}
+                  height={2133}
+                  loading="lazy"
+                  alt="Nacho y Ana María, de NAMAR Global, en la entrada de la Feria de Cantón (China Import and Export Fair)"
+                  className="aspect-4/5 w-full object-cover object-[50%_42%]"
+                />
+                <figcaption className="border-t border-border bg-card px-4 py-3 text-xs text-muted-foreground sm:text-sm">
+                  {t("landing.teamPhotoCaption")}
+                </figcaption>
+              </figure>
             </Reveal>
+
+            <p className="mt-6 border-l-2 border-gold pl-4 text-sm font-semibold">
+              {t("landing.teamNote")}
+            </p>
           </div>
         </section>
 

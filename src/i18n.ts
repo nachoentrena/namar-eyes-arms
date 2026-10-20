@@ -331,17 +331,17 @@ const resources = {
         problemColumns: { risk: "Risk", action: "What we do", result: "Result" },
         problems: [
           { risk: "Unknown supplier", action: "We verify the factory, its background, and whether it really manufactures or resells.", result: "You buy with greater confidence." },
-          { risk: "Uncertain quality", action: "We control samples and production before shipment, while it can still be corrected.", result: "You receive what was agreed." },
-          { risk: "Hidden costs", action: "We calculate the real landed cost: duties, freight, taxes, and clearance.", result: "You know what importing will cost." },
+          { risk: "Uncertain quality", action: "We control samples and production before shipment, while it can still be corrected.", result: "You detect defects before shipment." },
+          { risk: "Hidden costs", action: "We calculate the real landed cost: duties, freight, taxes, and clearance.", result: "You know the estimated cost before you buy." },
           { risk: "Problems at origin", action: "We are on the ground to go, look, speak with the manager, and solve it.", result: "Someone acts when you cannot." },
-          { risk: "Customs and certifications", action: "We review documentation and entry requirements for Spain or Colombia before you buy.", result: "Your goods do not get stuck." },
+          { risk: "Customs and certifications", action: "We review documentation and entry requirements for Spain or Colombia before you buy.", result: "You reduce the risk of customs holds." },
         ],
         problemQuote: "This is where NAMAR Global comes in.",
 
         servicesLabel: "Our services",
         servicesTitle: "One single control process, from the factory to your warehouse.",
         servicesIntro:
-          "We do not sell isolated services. Each phase protects the next, and you have a single point of contact throughout the operation.",
+          "Each phase protects the next, and you have a single point of contact throughout the operation.",
         phases: [
           { key: "find", label: "We find" },
           { key: "verify", label: "We verify" },
@@ -349,15 +349,30 @@ const resources = {
           { key: "control", label: "We control" },
           { key: "ship", label: "We ship" },
         ],
-        services: [
-          { n: "01", phase: "We find", title: "Supplier sourcing in China", text: "We locate and analyze suppliers that fit your product, volume, and budget. We don't give you a list: we give you vetted options." },
-          { n: "02", phase: "We verify", title: "Factory verification and audit", text: "We check who is really behind the supplier, whether it is a manufacturer or intermediary, and assess capacity and reliability. If needed, we go to the factory." },
-          { n: "03", phase: "We negotiate", title: "Supplier negotiation", text: "We negotiate prices, quantities, lead times, payment terms, and specifications in the language and codes of the local market." },
-          { n: "04", phase: "We control", title: "Quality control at origin", text: "We supervise samples and production so the goods meet what was agreed before leaving China, while it can still be corrected." },
-          { n: "05", phase: "We ship", title: "International logistics", text: "We coordinate transport from the factory to Spain or Colombia, choosing the operation and incoterm that best fit your product." },
-          { n: "06", phase: "We ship", title: "Customs and certifications", text: "We manage or coordinate documentation, customs clearance, and the certifications needed so your product enters without surprises." },
-          { n: "07", phase: "We control", title: "Operations tracking", text: "We accompany the entire process to detect issues and resolve them at origin before they become costs for you." },
-          { n: "08", phase: "We find", title: "Import cost calculation", text: "Within 24 hours we deliver a report simulating the total cost: product, duties, VAT, freight, clearance, documentation, insurance, and delivery. You know the real landed price before committing a single euro." },
+        serviceGroups: [
+          {
+            title: "Before you buy",
+            items: [
+              { title: "Supplier sourcing", text: "We locate and analyze suppliers that fit your product, volume, and budget. We don't give you a list: we give you vetted options." },
+              { title: "Factory verification and audit", text: "We check who is behind the supplier, whether it is a manufacturer or intermediary, and its capacity and reliability. If needed, we go to the factory." },
+              { title: "Cost and requirements calculation", text: "We estimate the landed cost and review the documentation and certifications your product needs." },
+            ],
+          },
+          {
+            title: "During the operation",
+            items: [
+              { title: "Negotiation", text: "Prices, quantities, lead times, payment terms, and specifications, in the language and codes of the local market." },
+              { title: "Quality control", text: "We supervise samples and production before shipment, while it can still be corrected." },
+              { title: "Tracking", text: "We follow the operation to detect issues and resolve them at origin." },
+            ],
+          },
+          {
+            title: "Through to destination",
+            items: [
+              { title: "International logistics", text: "We coordinate transport to Spain or Colombia with the operation and incoterm that best fit your product." },
+              { title: "Customs and certifications", text: "We coordinate documentation with customs agents at destination and certifications with the supplier." },
+            ],
+          },
         ],
 
         costLabel: "Cost simulation",
@@ -373,6 +388,9 @@ const resources = {
         ],
         costCta: "Calculate my import",
         costNote: "You receive a clear report with the estimated landed cost.",
+        costFree: "Free of charge",
+        costDisclaimer:
+          "Timeframe counted from when we receive your product data (price, quantity, dimensions, and destination). The simulation is an indicative estimate.",
 
 
         processTitle: "This is how we turn a complex import into a controlled process.",
@@ -383,7 +401,7 @@ const resources = {
           { n: "03", title: "We verify and negotiate", text: "We check the supplier on the ground and negotiate the terms." },
           { n: "04", title: "We control production", text: "We monitor quality and compliance with what was agreed before shipment." },
           { n: "05", title: "We manage logistics", text: "We coordinate transport, documentation, and customs to Spain or Colombia." },
-          { n: "06", title: "You receive your goods", text: "Your product arrives at destination with the process controlled from start to finish." },
+          { n: "06", title: "You receive your goods", text: "Your product arrives at destination after a process supervised at every phase." },
         ],
 
 
@@ -445,7 +463,7 @@ const resources = {
           { q: "How does quality control work?", a: "We agree clear specifications with the supplier and verify them at origin on samples and production, before shipment. That way a defect is corrected in China and not discovered at your warehouse." },
           { q: "How much does importing from China cost?", a: "It depends on product, volume, transport, and destination. That is why we simulate your total import cost within 24 hours: product, duties, taxes, freight, clearance, and delivery, so you decide with the real number." },
           { q: "Which transport option suits me?", a: "Sea, air, or multimodal: the answer changes with product, volume, weight, and urgency. We propose the operation and incoterm that fit your case, not the default." },
-          { q: "Do you handle customs?", a: "We manage or coordinate documentation and customs clearance in Spain or Colombia, and review entry requirements before you buy to avoid held goods." },
+          { q: "Do you handle customs?", a: "We coordinate documentation and customs clearance with customs agents in Spain or Colombia, and review entry requirements before you buy to avoid held goods." },
           { q: "What about the certifications my product requires?", a: "We identify in advance which certifications your product needs to enter Spain or Colombia and coordinate them with the supplier before production." },
           { q: "How long does an import from China take?", a: "It depends on the supplier's production time, the type of transport, and customs clearance. When we analyze your case we give you a realistic estimate for your product and route, without generic promises." },
           { q: "What happens if something goes wrong?", a: "We are on the ground to act: we talk to the supplier, go to the factory if necessary, and look for the solution at origin. You have a single point of contact who informs you and proposes options, not an unanswered email." },

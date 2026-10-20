@@ -13,6 +13,7 @@ import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
 import { ServicesCarousel } from "@/components/namar/services-carousel";
+import { SiteFooter } from "@/components/namar/site-footer";
 import { SiteHeader } from "@/components/namar/site-header";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 
@@ -631,29 +632,7 @@ function Index() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-sand-strong px-5 py-10 pb-24 sm:px-6 sm:py-12 sm:pb-12">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
-          <div>
-            <div className="flex items-center justify-center gap-2 md:justify-start">
-              <span className="grid size-6 place-items-center bg-navy text-[10px] font-bold tracking-tighter text-navy-foreground">
-                N
-              </span>
-              <span className="text-sm font-bold uppercase tracking-tight">
-                Namar <span className="text-gold">Global</span>
-              </span>
-            </div>
-            <p className="mt-2 text-xs text-slate">{t("landing.footerTagline")}</p>
-          </div>
-          <div className="flex gap-6 text-xs font-bold uppercase tracking-widest text-slate sm:gap-8">
-            {footerCountries.map((country) => (
-              <span key={country}>{country}</span>
-            ))}
-          </div>
-          <div className="text-xs text-slate/60">
-            {t("landing.footerText", { year: new Date().getFullYear() })}
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

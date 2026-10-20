@@ -212,12 +212,16 @@ export const attachDiagnosticoArchivos = createServerFn({ method: "POST" })
   .inputValidator((input) => attachSchema.parse(input))
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin
+    // Solo se pueden adjuntar archivos una vez: si el diagnóstico ya tiene
+    // archivos registrados, no se permite sobrescribirlos.
+    const { data: updated, error } = await supabaseAdmin
       .from("diagnosticos")
       .update({ archivos: data.archivos })
-      .eq("codigo", data.codigo);
+      .eq("codigo", data.codigo)
+      .eq("archivos", "[]")
+      .select("codigo");
 
-    if (error) {
+    if (error || !updated || updated.length === 0) {
       console.error("Error adjuntando archivos", error);
       throw new Error("No se pudieron registrar los archivos");
     }

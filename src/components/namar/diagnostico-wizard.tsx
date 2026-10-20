@@ -14,15 +14,13 @@ type Answers = Record<string, Value>;
 
 const STORAGE_KEY = "namar-diagnostico-v1";
 
-const MAX_FILES = 10;
+const MAX_FILES = 5;
 const MAX_FILE_MB = 10;
 const ACCEPTED = [
   "image/jpeg",
   "image/png",
-  "image/webp",
   "application/pdf",
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  "application/vnd.ms-excel",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ];
 

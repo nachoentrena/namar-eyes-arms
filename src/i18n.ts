@@ -87,12 +87,12 @@ const resources = {
           {
             risk: "Calidad incierta",
             action: "Controlamos muestras y producción antes del embarque, cuando aún se puede corregir.",
-            result: "Recibes lo acordado.",
+            result: "Detectas los defectos antes del embarque.",
           },
           {
             risk: "Costes ocultos",
             action: "Calculamos el coste real puesto en tu almacén: arancel, transporte, impuestos y despacho.",
-            result: "Sabes cuánto te costará importar.",
+            result: "Conoces el coste estimado antes de comprar.",
           },
           {
             risk: "Problemas en origen",
@@ -102,7 +102,7 @@ const resources = {
           {
             risk: "Aduanas y certificaciones",
             action: "Revisamos documentación y requisitos de entrada en España o Colombia antes de comprar.",
-            result: "Tu mercancía no se queda parada.",
+            result: "Reduces el riesgo de retenciones en aduana.",
           },
         ],
         problemQuote: "Ahí es donde entra NAMAR Global.",
@@ -110,7 +110,7 @@ const resources = {
         servicesLabel: "Nuestros servicios",
         servicesTitle: "Un único proceso de control, de la fábrica a tu almacén.",
         servicesIntro:
-          "No ofrecemos servicios sueltos. Cada fase protege la siguiente, y tú tienes un único interlocutor durante toda la operación.",
+          "Cada fase protege la siguiente, y tú tienes un único interlocutor durante toda la operación.",
         phases: [
           { key: "find", label: "Encontramos" },
           { key: "verify", label: "Verificamos" },
@@ -118,15 +118,30 @@ const resources = {
           { key: "control", label: "Controlamos" },
           { key: "ship", label: "Enviamos" },
         ],
-        services: [
-          { n: "01", phase: "Encontramos", title: "Búsqueda de proveedores en China", text: "Localizamos y analizamos proveedores adaptados a tu producto, tu volumen y tu presupuesto. No te damos una lista: te damos opciones contrastadas." },
-          { n: "02", phase: "Verificamos", title: "Verificación y auditoría de fábricas", text: "Comprobamos quién está realmente detrás del proveedor, si es fabricante o intermediario, y evaluamos su capacidad y fiabilidad. Si hace falta, vamos a la fábrica." },
-          { n: "03", phase: "Negociamos", title: "Negociación con el proveedor", text: "Negociamos precios, cantidades, plazos, condiciones de pago y especificaciones en el idioma y los códigos del mercado local." },
-          { n: "04", phase: "Controlamos", title: "Control de calidad en origen", text: "Supervisamos muestras y producción para que la mercancía cumpla lo acordado antes de salir de China, cuando todavía se puede corregir." },
-          { n: "05", phase: "Enviamos", title: "Logística internacional", text: "Coordinamos el transporte desde la fábrica hasta España o Colombia, eligiendo la operativa e incoterm que mejor encajan con tu producto." },
-          { n: "06", phase: "Enviamos", title: "Aduanas y certificaciones", text: "Gestionamos o coordinamos documentación, despacho aduanero y las certificaciones necesarias para que tu producto entre sin sorpresas." },
-          { n: "07", phase: "Controlamos", title: "Seguimiento de la operación", text: "Acompañamos el proceso completo para detectar incidencias y resolverlas en origen antes de que se conviertan en costes para ti." },
-          { n: "08", phase: "Encontramos", title: "Cálculo de costes de importación", text: "En 24 horas te entregamos un informe con la simulación del coste total: producto, arancel, IVA, transporte, despacho, documentación, seguro y entrega. Sabrás el precio real en tu almacén antes de comprometer un solo euro." },
+        serviceGroups: [
+          {
+            title: "Antes de comprar",
+            items: [
+              { title: "Búsqueda de proveedores", text: "Localizamos y analizamos proveedores adaptados a tu producto, volumen y presupuesto. No te damos una lista: te damos opciones contrastadas." },
+              { title: "Verificación y auditoría de fábricas", text: "Comprobamos quién está detrás, si es fabricante o intermediario, y su capacidad y fiabilidad. Si hace falta, vamos a la fábrica." },
+              { title: "Cálculo de costes y requisitos", text: "Estimamos el coste puesto en destino y revisamos qué documentación y certificaciones necesita tu producto." },
+            ],
+          },
+          {
+            title: "Durante la operación",
+            items: [
+              { title: "Negociación", text: "Precios, cantidades, plazos, condiciones de pago y especificaciones, en el idioma y los códigos del mercado local." },
+              { title: "Control de calidad", text: "Supervisamos muestras y producción antes del embarque, cuando todavía se puede corregir." },
+              { title: "Seguimiento", text: "Acompañamos la operación para detectar incidencias y resolverlas en origen." },
+            ],
+          },
+          {
+            title: "Hasta destino",
+            items: [
+              { title: "Logística internacional", text: "Coordinamos el transporte hasta España o Colombia con la operativa e incoterm que mejor encajan con tu producto." },
+              { title: "Aduanas y certificaciones", text: "Coordinamos la documentación con agentes de aduanas en destino y las certificaciones con el proveedor." },
+            ],
+          },
         ],
 
         costLabel: "Simulación de costes",
@@ -142,6 +157,9 @@ const resources = {
         ],
         costCta: "Quiero calcular mi importación",
         costNote: "Recibes un informe claro con el coste estimado puesto en destino.",
+        costFree: "Sin coste",
+        costDisclaimer:
+          "Plazo contado desde que recibimos los datos de tu producto (precio, cantidad, medidas y destino). La simulación es una estimación orientativa.",
 
 
         processTitle: "Así convertimos una importación compleja en un proceso controlado.",
@@ -152,7 +170,7 @@ const resources = {
           { n: "03", title: "Verificamos y negociamos", text: "Comprobamos el proveedor sobre el terreno y negociamos las condiciones." },
           { n: "04", title: "Controlamos la producción", text: "Supervisamos la calidad y el cumplimiento de lo acordado antes del embarque." },
           { n: "05", title: "Gestionamos la logística", text: "Coordinamos transporte, documentación y proceso aduanero hasta España o Colombia." },
-          { n: "06", title: "Recibes tu mercancía", text: "Tu producto llega a destino con el proceso controlado de principio a fin." },
+          { n: "06", title: "Recibes tu mercancía", text: "Tu producto llega a destino tras un proceso supervisado en cada fase." },
         ],
 
 
@@ -214,7 +232,7 @@ const resources = {
           { q: "¿Cómo funciona el control de calidad?", a: "Acordamos con el proveedor unas especificaciones claras y las comprobamos en origen sobre muestras y producción, antes del embarque. Así un defecto se corrige en China y no se descubre en tu almacén." },
           { q: "¿Cuánto cuesta importar desde China?", a: "Depende del producto, el volumen, el transporte y el destino. Por eso simulamos el coste total de tu importación en 24 horas: producto, arancel, impuestos, transporte, despacho y entrega, para que decidas con el número real." },
           { q: "¿Qué opción de transporte me conviene?", a: "Marítimo, aéreo o multimodal: la respuesta cambia según producto, volumen, peso y urgencia. Te proponemos la operativa y el incoterm que encajan con tu caso, no el estándar." },
-          { q: "¿Os encargáis de las aduanas?", a: "Gestionamos o coordinamos la documentación y el despacho aduanero en España o Colombia, y revisamos los requisitos de entrada antes de comprar para evitar mercancía retenida." },
+          { q: "¿Os encargáis de las aduanas?", a: "Coordinamos la documentación y el despacho aduanero con agentes de aduanas en España o Colombia, y revisamos los requisitos de entrada antes de comprar para evitar mercancía retenida." },
           { q: "¿Y las certificaciones que exige mi producto?", a: "Identificamos con antelación qué certificaciones necesita tu producto para entrar en España o Colombia y las coordinamos con el proveedor antes de producir." },
           { q: "¿Cuánto tarda una importación desde China?", a: "Depende del tiempo de producción del proveedor, del tipo de transporte y del despacho aduanero. Al analizar tu caso te damos una estimación realista para tu producto y ruta, sin promesas genéricas." },
           { q: "¿Qué ocurre si algo sale mal?", a: "Estamos sobre el terreno para actuar: hablamos con el proveedor, vamos a la fábrica si es necesario y buscamos la solución en origen. Tienes un único interlocutor que te informa y te propone opciones, no un correo sin respuesta." },

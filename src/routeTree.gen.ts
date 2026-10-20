@@ -14,6 +14,7 @@ import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as Namar2RouteImport } from './routes/namar-2'
 import { Route as PoliticaCookiesRouteImport } from './routes/politica-cookies'
+import { Route as PoliticaPrivacidadRouteImport } from './routes/politica-privacidad'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const PoliticaCookiesRoute = PoliticaCookiesRouteImport.update({
   path: '/politica-cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PoliticaPrivacidadRoute = PoliticaPrivacidadRouteImport.update({
+  id: '/politica-privacidad',
+  path: '/politica-privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacidadRoute = PrivacidadRouteImport.update({
   id: '/privacidad',
   path: '/privacidad',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/diagnostico': typeof DiagnosticoRoute
   '/namar-2': typeof Namar2Route
   '/politica-cookies': typeof PoliticaCookiesRoute
+  '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/privacidad': typeof PrivacidadRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/diagnostico': typeof DiagnosticoRoute
   '/namar-2': typeof Namar2Route
   '/politica-cookies': typeof PoliticaCookiesRoute
+  '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/privacidad': typeof PrivacidadRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/diagnostico': typeof DiagnosticoRoute
   '/namar-2': typeof Namar2Route
   '/politica-cookies': typeof PoliticaCookiesRoute
+  '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/privacidad': typeof PrivacidadRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/namar-2'
     | '/politica-cookies'
+    | '/politica-privacidad'
     | '/privacidad'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/namar-2'
     | '/politica-cookies'
+    | '/politica-privacidad'
     | '/privacidad'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/namar-2'
     | '/politica-cookies'
+    | '/politica-privacidad'
     | '/privacidad'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   DiagnosticoRoute: typeof DiagnosticoRoute
   Namar2Route: typeof Namar2Route
   PoliticaCookiesRoute: typeof PoliticaCookiesRoute
+  PoliticaPrivacidadRoute: typeof PoliticaPrivacidadRoute
   PrivacidadRoute: typeof PrivacidadRoute
 }
 
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PoliticaCookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/politica-privacidad': {
+      id: '/politica-privacidad'
+      path: '/politica-privacidad'
+      fullPath: '/politica-privacidad'
+      preLoaderRoute: typeof PoliticaPrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacidad': {
       id: '/privacidad'
       path: '/privacidad'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiagnosticoRoute: DiagnosticoRoute,
   Namar2Route: Namar2Route,
   PoliticaCookiesRoute: PoliticaCookiesRoute,
+  PoliticaPrivacidadRoute: PoliticaPrivacidadRoute,
   PrivacidadRoute: PrivacidadRoute,
 }
 export const routeTree = rootRouteImport

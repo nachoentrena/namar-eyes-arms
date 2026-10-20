@@ -1329,7 +1329,7 @@ export function DiagnosticoWizard() {
                     Autorizo a NAMAR GLOBAL LIMITED a tratar mis datos para evaluar mi solicitud y
                     contactarme, según la{" "}
                     <a
-                      href="/privacidad"
+                      href="/politica-privacidad"
                       className="font-semibold text-navy underline"
                       target="_blank"
                       rel="noopener noreferrer"

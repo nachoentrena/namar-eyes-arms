@@ -1,7 +1,13 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { siteConfig } from "@/lib/site-config";
-import { countries } from "@/lib/countries";
+import { Link } from "@tanstack/react-router";
+
+const destinations = [
+  { name: "España", dial: "+34" },
+  { name: "Colombia", dial: "+57" },
+  { name: "Otro", dial: "" },
+] as const;
 
 const fieldClass =
   "w-full border border-border bg-sand px-4 py-3 text-sm text-navy outline-none transition-colors placeholder:text-slate/70 focus:border-gold";
@@ -15,7 +21,7 @@ export function ContactForm() {
   function handleCountryChange(event: ChangeEvent<HTMLSelectElement>) {
     const selected = event.target.value;
     setCountry(selected);
-    const match = countries.find((c) => c.name === selected);
+    const match = destinations.find((c) => c.name === selected);
     setDialCode(match?.dial ?? "");
   }
 
@@ -123,7 +129,7 @@ export function ContactForm() {
           <option value="" disabled>
             Selecciona un país
           </option>
-          {countries.map((c) => (
+          {destinations.map((c) => (
             <option key={c.name} value={c.name}>
               {c.name}
             </option>
@@ -187,6 +193,23 @@ export function ContactForm() {
           Ocurrió un error al enviar el mensaje. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.
         </p>
       )}
+      <div className="flex items-start gap-3 md:col-span-2">
+        <input
+          id="acepta_privacidad"
+          name="acepta_privacidad"
+          type="checkbox"
+          required
+          value="Sí"
+          className="mt-0.5 size-4 shrink-0 accent-navy"
+        />
+        <label htmlFor="acepta_privacidad" className="text-xs leading-relaxed text-slate">
+          He leído y acepto la{" "}
+          <Link to="/politica-privacidad" target="_blank" className="font-semibold text-navy underline">
+            política de privacidad
+          </Link>
+          .
+        </label>
+      </div>
       <button
         type="submit"
         disabled={status === "sending"}
@@ -194,6 +217,9 @@ export function ContactForm() {
       >
         {status === "sending" ? "Enviando..." : t("contact.form.submit")}
       </button>
+      <p className="text-xs text-slate/70 md:col-span-2">
+        Respondemos en un máximo de 24 horas laborables.
+      </p>
     </form>
   );
 }

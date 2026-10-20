@@ -70,7 +70,7 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link to="/privacidad" className="transition-colors hover:text-navy">
+                <Link to="/politica-privacidad" className="transition-colors hover:text-navy">
                   {t("landing.footerPrivacy")}
                 </Link>
               </li>

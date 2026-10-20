@@ -182,10 +182,10 @@ function Index() {
               height={1279}
               alt="Barco portacontenedores navegando en mar abierto"
               fetchPriority="high"
-              className="size-full object-cover object-[45%_center] lg:object-left"
+              className="size-full object-cover object-[45%_center] saturate-[1.22] brightness-[1.06] lg:object-left"
             />
           </picture>
-          <div className="absolute inset-0 bg-navy/75 lg:hidden" />
+          <div className="absolute inset-0 bg-navy/70 lg:hidden" />
           <div className="absolute inset-0 hidden lg:block bg-[linear-gradient(to_right,color-mix(in_oklab,var(--navy)_95%,transparent)_0%,color-mix(in_oklab,var(--navy)_85%,transparent)_35%,color-mix(in_oklab,var(--navy)_30%,transparent)_60%,color-mix(in_oklab,var(--navy)_5%,transparent)_100%)]" />
           <div className="absolute inset-x-0 bottom-0 hidden h-[200px] lg:block bg-[linear-gradient(to_top,color-mix(in_oklab,var(--navy)_90%,transparent),transparent)]" />
           <div className="relative mx-auto flex w-full max-w-7xl flex-col justify-between gap-10">

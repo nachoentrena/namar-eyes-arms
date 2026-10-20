@@ -250,6 +250,54 @@ const resources = {
         footerLegalLine:
           "© {{year}} NAMAR GLOBAL LIMITED · Sociedad registrada en Hong Kong · Nº 81199545 · Room D5, 5/F, King Yip Factory Building, No. 59 King Yip Street, Kwun Tong, Hong Kong",
         mobileCta: "Analizar mi importación",
+
+        // Textos de la versión anterior de la home, usados por /namar-2
+        heroQuote:
+          "“Somos los ojos y brazos de nuestros clientes en China. Protegemos su compra y reducimos el riesgo de importar.”",
+        authorityLabel: "Por qué NAMAR es distinto",
+        authorityTitle: "8 años sobre el terreno cambian la forma de importar.",
+        authorityText:
+          "NAMAR no gestiona China desde un despacho en Europa. Estamos físicamente aquí: hablando con proveedores en su idioma, visitando fábricas, revisando producción y resolviendo incidencias en el momento en que ocurren, no semanas después por correo.",
+        authorityPoints: [
+          {
+            label: "Qué hacemos",
+            text: "Gestionamos tu importación desde China de principio a fin: buscamos y verificamos la fábrica, negociamos, controlamos la calidad y coordinamos el envío hasta España o Colombia.",
+          },
+          {
+            label: "Para quién",
+            text: "Para PYMEs, emprendedores y empresas de España y Colombia que compran en China, ya sea por primera vez o desde hace años y quieren dejar de improvisar.",
+          },
+          {
+            label: "Cómo lo hacemos",
+            text: "Con presencia física en China. Vamos a la fábrica, hablamos el idioma y resolvemos en origen, antes de que el problema viaje en el contenedor.",
+          },
+        ],
+        authorityLink: "Descubre cómo trabajamos",
+        objectionsTitle: "Importar desde China, simple.",
+        objectionsIntro: "Estas son las dudas que nos llegan cada semana. Así las resolvemos.",
+        objections: [
+          { q: "“He encontrado un proveedor, pero no sé si fiarme.”", a: "Verificamos quién es realmente: si fabrica o subcontrata, qué capacidad tiene y con qué clientes trabaja. Si hace falta, vamos a la fábrica y te contamos lo que hemos visto." },
+          { q: "“No sé qué documentación necesita mi producto.”", a: "Revisamos contigo los requisitos de tu producto antes de comprar: documentación comercial, certificaciones y requisitos de entrada en España o Colombia. Es mucho más barato saberlo antes que con la mercancía parada." },
+          { q: "“Tengo miedo a que la calidad no sea la acordada.”", a: "Definimos con el proveedor unas especificaciones claras y las comprobamos en origen. Un defecto detectado en China se corrige; detectado en tu almacén, se paga." },
+          { q: "“No sé qué opción de transporte me conviene.”", a: "Según producto, volumen, peso y urgencia, la operativa cambia y el margen también. Te proponemos la ruta y el incoterm que tienen sentido para tu caso, no el estándar." },
+          { q: "“Ya importo, pero quiero dejar de improvisar.”", a: "Revisamos tu operativa actual, tus proveedores y tus costes, y profesionalizamos el proceso con un único interlocutor en origen." },
+        ],
+        processQuote: "Tú te ocupas de hacer crecer tu negocio. Nosotros nos ocupamos de China.",
+        onTheGroundTitle: "No necesitas viajar a China. Nosotros ya estamos allí.",
+        onTheGroundText:
+          "Ir a la fábrica, mirar la producción, hablar con el responsable y decir que algo no está bien. Eso no se hace por correo: se hace estando.",
+        onTheGroundCta: "Quiero analizar mi importación",
+        quote: "“Somos tus ojos y brazos en China.”",
+        proofLabel: "Prueba operativa",
+        proofTitle: "Lo que puedes esperar de trabajar con NAMAR.",
+        proofIntro:
+          "Publicaremos aquí testimonios reales de clientes cuando podamos hacerlo con nombre y empresa. Mientras tanto, esto es lo que sí podemos prometerte.",
+        proof: [
+          { title: "Presencia real sobre el terreno", text: "8 años viviendo y trabajando en China. Visitamos fábricas y hablamos con proveedores en persona, no solo por correo." },
+          { title: "Proceso definido y documentado", text: "Cada operación sigue las mismas fases: encontrar, verificar, negociar, controlar y enviar. Sabes en qué punto está tu importación." },
+          { title: "Cobertura España y Colombia", text: "Conocemos los requisitos, la documentación y la operativa logística de las dos rutas en las que trabajamos." },
+          { title: "Acompañamiento de principio a fin", text: "No desaparecemos tras presentarte un proveedor. Seguimos la operación hasta que la mercancía llega a tu almacén." },
+        ],
       },
     },
   },
@@ -481,6 +529,54 @@ const resources = {
         footerLegalLine:
           "© {{year}} NAMAR GLOBAL LIMITED · Company registered in Hong Kong · No. 81199545 · Room D5, 5/F, King Yip Factory Building, No. 59 King Yip Street, Kwun Tong, Hong Kong",
         mobileCta: "Analyze my import",
+
+        // Copy from the previous home version, used by /namar-2
+        heroQuote:
+          "“We are our clients' eyes and arms in China. We protect their purchase and reduce the risk of importing.”",
+        authorityLabel: "Why NAMAR is different",
+        authorityTitle: "8 years on the ground change the way you import.",
+        authorityText:
+          "NAMAR does not manage China from an office in Europe. We are physically here: speaking with suppliers in their language, visiting factories, reviewing production, and solving issues the moment they happen, not weeks later by email.",
+        authorityPoints: [
+          {
+            label: "What we do",
+            text: "We manage your import from China end to end: we find and verify the factory, negotiate, control quality, and coordinate shipping to Spain or Colombia.",
+          },
+          {
+            label: "For whom",
+            text: "For SMEs, entrepreneurs, and companies in Spain and Colombia buying from China, whether for the first time or for years and ready to stop improvising.",
+          },
+          {
+            label: "How we do it",
+            text: "With a physical presence in China. We go to the factory, speak the language, and solve issues at the source before the problem travels in the container.",
+          },
+        ],
+        authorityLink: "See how we work",
+        objectionsTitle: "Importing from China, simplified.",
+        objectionsIntro: "These are the doubts we receive every week. This is how we solve them.",
+        objections: [
+          { q: "“I found a supplier, but I don't know whether to trust them.”", a: "We verify who they truly are: whether they manufacture or subcontract, what capacity they have, and which clients they work with. If necessary, we go to the factory and tell you what we saw." },
+          { q: "“I don't know what documentation my product needs.”", a: "We review your product requirements with you before buying: commercial documentation, certifications, and entry requirements for Spain or Colombia. It is much cheaper to know beforehand than with goods stuck in customs." },
+          { q: "“I'm afraid the quality won't match what was agreed.”", a: "We define clear specifications with the supplier and verify them at the source. A defect detected in China is corrected; one detected at your warehouse is paid for." },
+          { q: "“I don't know which shipping option suits me.”", a: "Depending on product, volume, weight, and urgency, the operation changes and so does the margin. We propose the route and incoterm that make sense for your case, not the default." },
+          { q: "“I already import, but I want to stop improvising.”", a: "We review your current operations, suppliers, and costs and professionalize the process with a single point of contact at origin." },
+        ],
+        processQuote: "You focus on growing your business. We take care of China.",
+        onTheGroundTitle: "You don't need to travel to China. We are already there.",
+        onTheGroundText:
+          "Going to the factory, looking at production, speaking with the manager, and saying something is wrong. That is not done by email: it is done in person.",
+        onTheGroundCta: "Analyze my import",
+        quote: "“We are your eyes and arms in China.”",
+        proofLabel: "Operational proof",
+        proofTitle: "What you can expect from working with NAMAR.",
+        proofIntro:
+          "We will publish real client testimonials here once we can do so with name and company. In the meantime, this is what we can promise you.",
+        proof: [
+          { title: "Real presence on the ground", text: "8 years living and working in China. We visit factories and speak with suppliers in person, not only by email." },
+          { title: "Defined, documented process", text: "Every operation follows the same phases: find, verify, negotiate, control, and ship. You know where your import stands." },
+          { title: "Spain and Colombia coverage", text: "We know the requirements, documentation, and logistics of the two routes we work." },
+          { title: "Support from start to finish", text: "We don't disappear after introducing a supplier. We follow the operation until the goods reach your warehouse." },
+        ],
       },
     },
   },

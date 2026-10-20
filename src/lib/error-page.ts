@@ -9,11 +9,11 @@ export function renderErrorPage(): string {
       body { font: 15px/1.5 "Work Sans", system-ui, -apple-system, sans-serif; background: #F5F2EA; color: #0B1D2A; display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 1.5rem; }
       .card { max-width: 28rem; width: 100%; text-align: center; padding: 2rem; }
       h1 { font-size: 1.25rem; margin: 0 0 0.5rem; }
-      p { color: #4b5563; margin: 0 0 1.5rem; }
+      p { color: #4E6472; margin: 0 0 1.5rem; }
       .actions { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
-      a, button { padding: 0.5rem 1rem; border-radius: 0.375rem; font: inherit; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
-      .primary { background: #111; color: #fff; }
-      .secondary { background: #fff; color: #111; border-color: #d1d5db; }
+      a, button { padding: 0.5rem 1rem; border-radius: 999px; font: inherit; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
+      .primary { background: #0B1D2A; color: #F5F2EA; }
+      .secondary { background: #fff; color: #0B1D2A; border-color: #C9C2B2; }
     </style>
   </head>
   <body>

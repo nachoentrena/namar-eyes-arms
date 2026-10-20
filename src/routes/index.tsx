@@ -12,7 +12,7 @@ const teamPhoto = teamPhotoAsset.url;
 import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
-import { ServicesCarousel } from "@/components/namar/services-carousel";
+import { ServicesBlocks } from "@/components/namar/services-blocks";
 import { SiteFooter } from "@/components/namar/site-footer";
 import { SiteHeader } from "@/components/namar/site-header";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
@@ -99,11 +99,9 @@ function Index() {
     key: string;
     label: string;
   }>;
-  const services = t("landing.services", { returnObjects: true }) as Array<{
-    n: string;
-    phase: string;
+  const serviceGroups = t("landing.serviceGroups", { returnObjects: true }) as Array<{
     title: string;
-    text: string;
+    items: Array<{ title: string; text: string }>;
   }>;
   const costItems = t("landing.costItems", { returnObjects: true }) as string[];
   const steps = t("landing.steps", { returnObjects: true }) as Array<{
@@ -302,7 +300,7 @@ function Index() {
           </div>
 
           <Reveal className="mt-8 sm:mt-10">
-            <ServicesCarousel items={services} />
+            <ServicesBlocks groups={serviceGroups} />
           </Reveal>
         </section>
 
@@ -336,6 +334,7 @@ function Index() {
                   <p className="text-[11px] font-bold uppercase tracking-widest text-navy-foreground/50">
                     24 h
                   </p>
+                  <p className="mt-1 text-sm font-bold text-gold">{t("landing.costFree")}</p>
                   <ul className="mt-4 space-y-3">
                     {costItems.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm">
@@ -344,6 +343,9 @@ function Index() {
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-5 text-xs leading-relaxed text-navy-foreground/50">
+                    {t("landing.costDisclaimer")}
+                  </p>
                 </div>
               </div>
             </div>

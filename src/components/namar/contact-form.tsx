@@ -1,7 +1,13 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { siteConfig } from "@/lib/site-config";
-import { countries } from "@/lib/countries";
+import { Link } from "@tanstack/react-router";
+
+const destinations = [
+  { name: "España", dial: "+34" },
+  { name: "Colombia", dial: "+57" },
+  { name: "Otro", dial: "" },
+] as const;
 
 const fieldClass =
   "w-full border border-border bg-sand px-4 py-3 text-sm text-navy outline-none transition-colors placeholder:text-slate/70 focus:border-gold";

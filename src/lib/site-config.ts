@@ -6,8 +6,9 @@
  * follow it without touching the page.
  */
 export const siteConfig = {
-  siteUrl: "https://namar-eyes-arms.lovable.app",
-  whatsappNumber: "8618217760619",
+  siteUrl: "https://www.namar-global.com",
+  whatsappNumber: "34609643134",
+  email: "info@namar-global.com",
   costCalculatorHref: "#contacto",
   costCalculatorExternal: false,
   web3formsAccessKey: "14b22182-6dd9-4808-a579-71d8adbbc4ed",

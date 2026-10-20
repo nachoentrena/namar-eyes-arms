@@ -12,6 +12,7 @@ const resources = {
         routes: "Rutas",
         faq: "FAQ",
         contact: "Contacto",
+        diagnostico: "Diagnóstico gratuito",
       },
       header: {
         cta: "Quiero analizar mi importación",
@@ -263,6 +264,13 @@ const resources = {
         footerTagline: "Tu equipo en China. Importación desde China a España y Colombia.",
         footerCountries: ["España", "China", "Colombia"],
         footerText: "© {{year}} NAMAR Global. Gestión de importaciones desde China.",
+        footerContactTitle: "Contacto",
+        footerLegalTitle: "Legal",
+        footerLegalNotice: "Aviso legal",
+        footerPrivacy: "Política de privacidad",
+        footerCookies: "Política de cookies",
+        footerLegalLine:
+          "© {{year}} NAMAR GLOBAL LIMITED · Sociedad registrada en Hong Kong · Nº 81199545 · Room D5, 5/F, King Yip Factory Building, No. 59 King Yip Street, Kwun Tong, Hong Kong",
         mobileCta: "Analizar mi importación",
       },
     },
@@ -277,6 +285,7 @@ const resources = {
         routes: "Routes",
         faq: "FAQ",
         contact: "Contact",
+        diagnostico: "Free diagnosis",
       },
       header: {
         cta: "Analyze my import",
@@ -508,6 +517,13 @@ const resources = {
         footerTagline: "Your team in China. Imports from China to Spain and Colombia.",
         footerCountries: ["Spain", "China", "Colombia"],
         footerText: "© {{year}} NAMAR Global. Import management from China.",
+        footerContactTitle: "Contact",
+        footerLegalTitle: "Legal",
+        footerLegalNotice: "Legal notice",
+        footerPrivacy: "Privacy policy",
+        footerCookies: "Cookie policy",
+        footerLegalLine:
+          "© {{year}} NAMAR GLOBAL LIMITED · Company registered in Hong Kong · No. 81199545 · Room D5, 5/F, King Yip Factory Building, No. 59 King Yip Street, Kwun Tong, Hong Kong",
         mobileCta: "Analyze my import",
       },
     },

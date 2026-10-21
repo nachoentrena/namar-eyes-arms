@@ -306,7 +306,7 @@ function Index() {
                     height={1125}
                     loading="lazy"
                     alt="Nacho, de NAMAR Global, revisando muestras de tornillos con una proveedora en una feria en China"
-                    className="aspect-[16/10] w-full object-cover object-[50%_40%] grayscale transition-all duration-700 hover:grayscale-0 sm:aspect-[2/1] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+                    className="h-[420px] w-full object-cover object-[50%_40%] grayscale transition-all duration-700 hover:grayscale-0 sm:h-[460px] lg:absolute lg:inset-0 lg:h-full"
                   />
                   <figcaption className="absolute inset-x-0 bottom-0 m-3 rounded-[16px] bg-navy px-4 py-3 text-sm font-semibold text-navy-foreground">
                     {t("landing.problemPhotoCaption")}

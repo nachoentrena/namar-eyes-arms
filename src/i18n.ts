@@ -108,6 +108,7 @@ const resources = {
           },
         ],
         problemQuote: "Ahí es donde entra NAMAR Global.",
+        problemPhotoCaption: "Revisando muestras directamente con el proveedor",
 
         servicesLabel: "Nuestros servicios",
         servicesTitle: "Un único proceso de control, de la fábrica a tu almacén.",
@@ -405,6 +406,7 @@ const resources = {
           { risk: "Customs and certifications", action: "We review documentation and entry requirements for Spain or Colombia before you buy.", result: "You reduce the risk of customs holds." },
         ],
         problemQuote: "This is where NAMAR Global comes in.",
+        problemPhotoCaption: "Checking samples directly with the supplier",
 
         servicesLabel: "Our services",
         servicesTitle: "One single control process, from the factory to your warehouse.",

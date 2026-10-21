@@ -7,9 +7,11 @@ import heroShipMobile from "@/assets/namar-hero-barco-mobile.webp.asset.json";
 import onTheGroundAsset from "@/assets/nacho-feria.jpg.asset.json";
 import qualityControlAsset from "@/assets/ana-maria-fabrica.jpg.asset.json";
 import teamPhotoAsset from "@/assets/equipo-canton-fair.jpg.asset.json";
+import supplierSamplesAsset from "@/assets/nacho-proveedor-tornillos.webp.asset.json";
 const onTheGround = onTheGroundAsset.url;
 const qualityControl = qualityControlAsset.url;
 const teamPhoto = teamPhotoAsset.url;
+const supplierSamples = supplierSamplesAsset.url;
 import { ContactForm } from "@/components/namar/contact-form";
 import { MobileCta } from "@/components/namar/mobile-cta";
 import { Reveal } from "@/components/namar/reveal";
@@ -262,19 +264,6 @@ function Index() {
             </Reveal>
 
             <div className="mt-5 grid gap-5 sm:mt-6 lg:grid-cols-12 lg:gap-10">
-              <Reveal delay={80} className="lg:order-2 lg:col-span-4">
-                <div className="relative overflow-hidden lg:h-full lg:min-h-[420px]">
-                  <img
-                    src={qualityControl}
-                    width={886}
-                    height={1575}
-                    loading="lazy"
-                    alt="Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica"
-                    className="aspect-[16/10] w-full object-cover object-[50%_28%] grayscale transition-all duration-700 hover:grayscale-0 sm:aspect-[2/1] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
-                  />
-                </div>
-              </Reveal>
-
               <Reveal className="lg:order-1 lg:col-span-8">
                 <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-2 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
                   <span className="col-span-3">{problemColumns.risk}</span>
@@ -307,6 +296,22 @@ function Index() {
                 <p className="mt-4 font-serif text-xl italic text-gold sm:mt-5 sm:text-2xl lg:text-3xl">
                   {t("landing.problemQuote")}
                 </p>
+              </Reveal>
+
+              <Reveal delay={80} className="lg:order-2 lg:col-span-4">
+                <figure className="relative overflow-hidden rounded-[24px] lg:h-full lg:min-h-[420px]">
+                  <img
+                    src={supplierSamples}
+                    width={900}
+                    height={1125}
+                    loading="lazy"
+                    alt="Nacho, de NAMAR Global, revisando muestras de tornillos con una proveedora en una feria en China"
+                    className="h-[420px] w-full object-cover object-[50%_40%] grayscale transition-all duration-700 hover:grayscale-0 sm:h-[460px] lg:absolute lg:inset-0 lg:h-full"
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 m-3 rounded-[16px] bg-navy px-4 py-3 text-sm font-semibold text-navy-foreground">
+                    {t("landing.problemPhotoCaption")}
+                  </figcaption>
+                </figure>
               </Reveal>
             </div>
           </div>

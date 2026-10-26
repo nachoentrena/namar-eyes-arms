@@ -506,7 +506,7 @@ function Index() {
               {differentiators.map((item, i) => (
                 <Reveal key={item.title} delay={i * 60} className="bg-card p-5 sm:p-7 lg:p-9">
                   {(() => {
-                    const Icon = [MapPin, UserRound, Calculator, RouteIcon][i % 4];
+                    const Icon = [MapPin, UserRound, Calculator, RouteIcon][i % 4] ?? MapPin;
                     return <Icon aria-hidden className="size-7 text-navy" strokeWidth={1.25} />;
                   })()}
                   <h3 className={`mt-3 sm:mt-4 ${h3}`}>{item.title}</h3>

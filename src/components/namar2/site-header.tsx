@@ -2,7 +2,6 @@ import { Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import wordmarkNavy from "@/assets/wordmark-navy.png.asset.json";
 import { getPreferredLanguage } from "@/i18n";
 import { cn } from "@/lib/utils";
 
@@ -48,10 +47,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 rounded-[18px] border border-border bg-background/95 px-4 backdrop-blur-md sm:h-16 sm:px-5">
         <a href="#inicio" className="flex items-center">
           <img
-            src={wordmarkNavy.url}
+            src="/brand/logotipo-azul.png"
             alt="NAMAR Global"
-            width={876}
-            height={297}
+            width={1012}
+            height={350}
             className="h-9 w-auto sm:h-10"
           />
         </a>

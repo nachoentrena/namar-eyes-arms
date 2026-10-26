@@ -1,5 +1,9 @@
 # Roadmap
 
+## Nuevas fotos del equipo
+- [x] Renovar únicamente las fichas y la foto conjunta de la home, conservar la foto de Cantón.
+- [x] Comprobar escritorio y móvil; fotos cargadas, sin desbordes ni errores, publicación solicitada.
+
 ## Logos definitivos
 - [x] Sustituir logos del menú y footer, iconos y compartir con los archivos definitivos.
 - [x] Verificar archivos, referencias y visualización; solicitar publicación.

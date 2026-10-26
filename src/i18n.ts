@@ -203,6 +203,11 @@ const resources = {
             linkedin: "",
           },
         ],
+        teamUpdated: [
+          { name: "Ignacio (Nacho) Entrena Iturbe", role: "Cofundador · Director Ejecutivo y de Marketing", location: "Español · vive en China", text: "Dirige la estrategia y el marketing de NAMAR y acompaña a cada cliente desde el primer contacto.", photo: "nacho", alt: "Nacho, de NAMAR Global, hablando con una proveedora en una feria en China", linkedin: "" },
+          { name: "Ana María González Gómez", role: "Cofundadora · Directora de Operaciones de Importación", location: "Colombiana · vive en China", text: "Coordina las operaciones de importación: proveedores, muestras, control de calidad y logística hasta destino.", photo: "ana", alt: "Ana María, de NAMAR Global, conversando con una proveedora en una feria en China", linkedin: "" },
+        ],
+        teamUpdatedCaption: "Nacho y Ana María con una proveedora en una feria en China",
         teamPhotoCaption: "En la Feria de Cantón (China Import and Export Fair)",
         teamNote: "Hablas directamente con nosotros. Sin call centers ni intermediarios.",
 
@@ -501,6 +506,11 @@ const resources = {
             linkedin: "",
           },
         ],
+        teamUpdated: [
+          { name: "Ignacio (Nacho) Entrena Iturbe", role: "Co-founder · Chief Executive and Marketing", location: "Spanish · lives in China", text: "He leads NAMAR’s strategy and marketing and supports every client from the first contact.", photo: "nacho", alt: "Nacho, of NAMAR Global, speaking with a supplier at a trade fair in China", linkedin: "" },
+          { name: "Ana María González Gómez", role: "Co-founder · Director of Import Operations", location: "Colombian · lives in China", text: "She coordinates import operations: suppliers, samples, quality control and logistics to destination.", photo: "ana", alt: "Ana María, of NAMAR Global, speaking with a supplier at a trade fair in China", linkedin: "" },
+        ],
+        teamUpdatedCaption: "Nacho and Ana María with a supplier at a trade fair in China",
         teamPhotoCaption: "At the Canton Fair (China Import and Export Fair)",
         teamNote: "You speak directly with us. No call centers, no intermediaries.",
 

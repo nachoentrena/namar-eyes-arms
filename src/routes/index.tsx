@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 
 import heroShip from "@/assets/namar-hero-barco.webp.asset.json";
 import heroShipMobile from "@/assets/namar-hero-barco-mobile.webp.asset.json";
-import onTheGroundAsset from "@/assets/nacho-feria.jpg.asset.json";
-import qualityControlAsset from "@/assets/ana-maria-fabrica.jpg.asset.json";
-import teamPhotoAsset from "@/assets/equipo-canton-fair.jpg.asset.json";
+import onTheGroundAsset from "@/assets/nacho-1.webp.asset.json";
+import qualityControlAsset from "@/assets/ana-3.webp.asset.json";
+import teamPhotoAsset from "@/assets/equipo-F-horizontal.webp.asset.json";
 import supplierSamplesAsset from "@/assets/nacho-proveedor-tornillos.webp.asset.json";
 const onTheGround = onTheGroundAsset.url;
 const qualityControl = qualityControlAsset.url;
@@ -139,10 +139,11 @@ function Index() {
     title: string;
     text: string;
   }>;
-  const team = t("landing.team", { returnObjects: true }) as Array<{
+  const team = t("landing.teamUpdated", { returnObjects: true }) as Array<{
     initials: string;
     name: string;
     role: string;
+    location: string;
     text: string;
     photo: string;
     alt: string;
@@ -465,29 +466,27 @@ function Index() {
               <p className={`mt-4 ${lead}`}>{t("landing.teamText")}</p>
             </Reveal>
 
-            <div className="mt-8 grid gap-5 sm:mt-10 md:grid-cols-2 lg:gap-6">
+            <div className="mt-8 grid gap-5 sm:mt-10 lg:grid-cols-2 lg:gap-6">
               {team.map((person, i) => (
                 <Reveal key={person.name} delay={i * 80}>
-                  <article className="flex h-full flex-col overflow-hidden rounded-[24px] border border-border bg-card shadow-panel">
-                    <div className="relative bg-sand">
+                  <article className="grid h-full grid-cols-1 items-center gap-5 rounded-[24px] bg-card p-5 sm:grid-cols-[minmax(0,260px)_minmax(0,1fr)] sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+                    <div className="overflow-hidden rounded-[18px]">
                       <img
                         src={person.photo === "ana" ? qualityControl : onTheGround}
-                        width={886}
-                        height={1920}
+                        width={1000}
+                        height={1251}
                         loading="lazy"
                         alt={person.alt}
-                        className="aspect-4/5 w-full object-cover object-top sm:aspect-3/2 sm:object-top"
+                        className="aspect-4/5 w-full object-cover object-center"
                       />
-                      <span className="absolute left-4 top-4 grid size-10 place-items-center rounded-full bg-navy text-xs font-bold text-navy-foreground">
-                        {person.initials}
-                      </span>
                     </div>
-                    <div className="flex flex-1 flex-col p-5 sm:p-6">
-                      <h3 className={`${h3} text-foreground`}>{person.name}</h3>
-                      <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-gold-deep sm:text-xs">
+                    <div className="flex min-w-0 flex-col">
+                      <h3 className="font-serif text-[22px] leading-snug text-foreground">{person.name}</h3>
+                      <p className="mt-3 text-xs font-bold uppercase text-gold-deep">
                         {person.role}
                       </p>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      <p className="mt-2 text-[13px] text-muted-foreground">{person.location}</p>
+                      <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
                         {person.text}
                       </p>
                       {person.linkedin ? (
@@ -506,18 +505,18 @@ function Index() {
               ))}
             </div>
 
-            <Reveal delay={100} className="mx-auto mt-6 max-w-lg sm:mt-8">
-              <figure className="overflow-hidden rounded-[24px] border border-border bg-sand shadow-panel">
+            <Reveal delay={100} className="mt-6 sm:mt-8">
+              <figure className="relative overflow-hidden rounded-[28px]">
                 <img
                   src={teamPhoto}
                   width={1600}
-                  height={2133}
+                  height={1066}
                   loading="lazy"
-                  alt="Nacho y Ana María, de NAMAR Global, en la entrada de la Feria de Cantón (China Import and Export Fair)"
-                  className="aspect-4/5 w-full object-cover object-[50%_42%]"
+                  alt="Nacho y Ana María, de NAMAR Global, con una proveedora en su stand en una feria en China"
+                  className="aspect-3/2 w-full object-cover object-[50%_30%]"
                 />
-                <figcaption className="border-t border-border bg-card px-4 py-3 text-xs text-muted-foreground sm:text-sm">
-                  {t("landing.teamPhotoCaption")}
+                <figcaption className="absolute bottom-3 left-3 right-3 rounded-[12px] bg-navy px-4 py-3 text-xs text-navy-foreground sm:bottom-5 sm:left-5 sm:right-auto sm:max-w-[80%] sm:text-sm">
+                  {t("landing.teamUpdatedCaption")}
                 </figcaption>
               </figure>
             </Reveal>

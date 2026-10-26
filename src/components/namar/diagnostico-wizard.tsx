@@ -498,7 +498,7 @@ export function DiagnosticoWizard() {
           .
         </h2>
         <p className="mt-4 text-base text-muted-foreground">
-          El equipo de NAMAR GLOBAL revisará su proyecto y le contactará en 24–48 horas hábiles con
+          El equipo de NAMAR GLOBAL revisará su proyecto y le contactará en 24 h laborables con
           los siguientes pasos.
         </p>
         <p className="mt-3 text-sm text-muted-foreground">

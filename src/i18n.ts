@@ -15,7 +15,7 @@ const resources = {
         diagnostico: "Diagnóstico gratuito",
       },
       header: {
-        cta: "Quiero analizar mi importación",
+        cta: "Diagnóstico gratuito",
         menuOpen: "Abrir menú",
         menuClose: "Cerrar menú",
         language: "Idioma",
@@ -63,9 +63,9 @@ const resources = {
         heroSubtitle: "Tu tranquilidad también.",
         heroDescription:
           "NAMAR Global representa tus intereses directamente sobre el terreno. Encontramos proveedores, negociamos, verificamos, controlamos y coordinamos tu importación hasta España o Colombia.",
-        heroPrimaryCta: "Quiero analizar mi importación",
+        heroPrimaryCta: "Diagnóstico gratuito",
         heroSecondaryCta: "Cómo trabajamos",
-        heroMicro: "Simulamos los costes de tu importación en 24 horas.",
+        heroMicro: "Simulamos los costes de tu importación en 24 h laborables.",
         heroTrust: [
           "Empresa registrada en Hong Kong",
           "8 años trabajando en China",
@@ -98,7 +98,7 @@ const resources = {
           },
           {
             risk: "Problemas en origen",
-            action: "Estamos sobre el terreno para ir, mirar, hablar con el responsable y resolver.",
+            action: "Actuamos rápido: hablamos con el responsable, vamos a la fábrica si hace falta y resolvemos.",
             result: "Alguien actúa cuando tú no puedes.",
           },
           {
@@ -113,7 +113,7 @@ const resources = {
         servicesLabel: "Nuestros servicios",
         servicesTitle: "Un único proceso de control, de la fábrica a tu almacén.",
         servicesIntro:
-          "Cada fase protege la siguiente, y tú tienes un único interlocutor durante toda la operación.",
+          "Cada fase protege la siguiente, desde la búsqueda del proveedor hasta la entrega en destino.",
         phases: [
           { key: "find", label: "Encontramos" },
           { key: "verify", label: "Verificamos" },
@@ -135,7 +135,7 @@ const resources = {
             items: [
               { title: "Negociación", text: "Precios, cantidades, plazos, condiciones de pago y especificaciones, en el idioma y los códigos del mercado local." },
               { title: "Control de calidad", text: "Supervisamos muestras y producción antes del embarque, cuando todavía se puede corregir." },
-              { title: "Seguimiento", text: "Acompañamos la operación para detectar incidencias y resolverlas en origen." },
+              { title: "Seguimiento", text: "Acompañamos la operación para detectar incidencias y resolverlas a tiempo." },
             ],
           },
           {
@@ -151,7 +151,7 @@ const resources = {
         costTitle: "¿Cuánto te costará realmente importar desde China?",
         costTitleEm: "realmente",
         costText:
-          "Antes de comprar, calcula el coste real de llevar tu mercancía hasta España o Colombia. Te ayudamos a estimarlo en 24 horas.",
+          "Antes de comprar, calcula el coste real de llevar tu mercancía hasta España o Colombia. Te ayudamos a estimarlo en 24 h laborables.",
         costItems: [
           "Precio del producto y condiciones de compra",
           "Arancel e impuestos de importación",
@@ -159,7 +159,7 @@ const resources = {
           "Despacho aduanero y documentación",
           "Entrega final hasta tu almacén",
         ],
-        costCta: "Quiero calcular mi importación",
+        costCta: "Diagnóstico gratuito",
         costNote: "Recibes un informe claro con el coste estimado puesto en destino.",
         costFree: "Sin coste",
         costDisclaimer:
@@ -168,11 +168,11 @@ const resources = {
 
         processTitle: "Así convertimos una importación compleja en un proceso controlado.",
         processTitleEm: "proceso controlado.",
-        processCta: "Quiero analizar mi importación",
+        processCta: "Diagnóstico gratuito",
         steps: [
           { n: "01", title: "Entendemos tu proyecto", text: "Analizamos qué quieres comprar, cantidades, presupuesto, destino y en qué punto estás." },
-          { n: "02", title: "Buscamos proveedores", text: "Localizamos fabricantes adecuados en origen y descartamos los que no encajan." },
-          { n: "03", title: "Verificamos y negociamos", text: "Comprobamos el proveedor sobre el terreno y negociamos las condiciones." },
+          { n: "02", title: "Buscamos proveedores", text: "Localizamos fabricantes adecuados y descartamos los que no encajan." },
+          { n: "03", title: "Verificamos y negociamos", text: "Comprobamos el proveedor y negociamos las condiciones." },
           { n: "04", title: "Controlamos la producción", text: "Supervisamos la calidad y el cumplimiento de lo acordado antes del embarque." },
           { n: "05", title: "Gestionamos la logística", text: "Coordinamos transporte, documentación y proceso aduanero hasta España o Colombia." },
           { n: "06", title: "Recibes tu mercancía", text: "Tu producto llega a destino tras un proceso supervisado en cada fase." },
@@ -182,7 +182,7 @@ const resources = {
         teamLabel: "Las personas detrás de NAMAR",
         teamTitle: "Cuando nos escribes, hablas con quien va a la fábrica.",
         teamText:
-          "Detrás de NAMAR Global hay personas con nombre que llevan años viviendo y trabajando sobre el terreno. Quien negocia con el proveedor y sigue tu operación de cerca es la misma persona que te responde.",
+          "Detrás de NAMAR Global hay personas con nombre. Quien negocia con el proveedor y sigue tu operación de cerca es la misma persona que te responde.",
         team: [
           {
             initials: "AM",
@@ -248,19 +248,19 @@ const resources = {
         startSteps: [
           { n: "01", title: "Nos cuentas qué quieres importar", text: "Producto, cantidad aproximada y destino. Por formulario o por WhatsApp." },
           { n: "02", title: "Analizamos tu caso", text: "Revisamos tu proyecto y te decimos con claridad qué es viable, qué riesgos hay y cuánto te costaría." },
-          { n: "03", title: "Empezamos a operar", text: "Definimos el alcance del trabajo y arrancamos en China. Tú sigues la operación con un único interlocutor." },
+          { n: "03", title: "Empezamos a operar", text: "Definimos el alcance del trabajo y arrancamos. Te informamos en cada fase de la operación." },
         ],
 
         faqTitle: "Preguntas frecuentes al importar desde China",
         faqs: [
           { q: "¿Hay un pedido mínimo para trabajar con NAMAR?", a: "No fijamos un mínimo cerrado: el pedido mínimo suele marcarlo el fabricante y varía según producto y sector. Lo que sí hacemos es valorar contigo si la operación tiene sentido económico antes de empezar." },
           { q: "He encontrado un proveedor, ¿cómo sé si puedo fiarme?", a: "Verificamos su identidad legal, si fabrica o subcontrata, su capacidad productiva y sus referencias. Cuando la operación lo requiere, visitamos la fábrica y te contamos lo que hemos visto." },
-          { q: "¿Cómo funciona el control de calidad?", a: "Acordamos con el proveedor especificaciones claras y las comprobamos en origen sobre muestras y producción, antes del embarque. Un defecto detectado en fábrica se corrige; detectado en tu almacén, se paga." },
+          { q: "¿Cómo funciona el control de calidad?", a: "Acordamos con el proveedor especificaciones claras y las comprobamos sobre muestras y producción, antes del embarque. Un defecto detectado en fábrica se corrige; detectado en tu almacén, se paga." },
           { q: "¿Cuánto cuesta importar desde China?", a: "Depende del producto, el volumen, el transporte y el destino. Por eso simulamos el coste estimado de tu importación: producto, arancel, impuestos, transporte, despacho y entrega, para que decidas con números antes de comprar." },
           { q: "¿Qué transporte me conviene?", a: "Marítimo, aéreo o multimodal: depende del producto, volumen, peso y urgencia. Te proponemos la operativa y el incoterm que encajan con tu caso." },
           { q: "¿Os encargáis de las aduanas y las certificaciones?", a: "Revisamos antes de comprar qué documentación y certificaciones necesita tu producto para entrar en España o Colombia, las coordinamos con el proveedor y trabajamos con agentes de aduanas en destino para el despacho." },
           { q: "¿Cuánto tarda una importación?", a: "Depende del tiempo de producción, el tipo de transporte y el despacho aduanero. Al analizar tu caso te damos una estimación realista para tu producto y ruta." },
-          { q: "¿Qué ocurre si algo sale mal?", a: "Estamos sobre el terreno para actuar: hablamos con el proveedor, vamos a la fábrica si es necesario y buscamos la solución en origen. Tienes un único interlocutor que te informa y te propone opciones." },
+          { q: "¿Qué ocurre si algo sale mal?", a: "Actuamos rápido: hablamos con el proveedor, vamos a la fábrica si es necesario y buscamos la solución. Te informamos en todo momento y te proponemos opciones." },
         ],
 
         footerTagline: "Tu equipo en China. Importación desde China a España y Colombia.",
@@ -273,7 +273,7 @@ const resources = {
         footerCookies: "Política de cookies",
         footerLegalLine:
           "© {{year}} NAMAR GLOBAL LIMITED · Sociedad registrada en Hong Kong · Nº 81199545 · Room D5, 5/F, King Yip Factory Building, No. 59 King Yip Street, Kwun Tong, Hong Kong",
-        mobileCta: "Analizar mi importación",
+        mobileCta: "Diagnóstico gratuito",
 
         // Textos de la versión anterior de la home, usados por /namar-2
         heroQuote:

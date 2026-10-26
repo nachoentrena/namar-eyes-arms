@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+Brand assets are served from public/brand, with browser and sharing icons duplicated in public/; this preserves the supplied filenames and stable public URLs.

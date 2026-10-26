@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
-import logoIvory from "@/assets/logo-ivory.png.asset.json";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 export function SiteFooter() {
@@ -15,10 +14,10 @@ export function SiteFooter() {
           {/* Marca */}
           <div>
             <img
-              src={logoIvory.url}
+              src="/brand/imagotipo-blanco.png"
               alt="NAMAR Global"
-              width={876}
-              height={899}
+              width={1012}
+              height={1037}
               className="h-auto w-[110px]"
             />
             <p className="mt-3 max-w-xs text-xs leading-relaxed text-on-navy-muted">

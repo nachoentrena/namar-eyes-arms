@@ -1,5 +1,9 @@
 # Roadmap
 
+## Logos definitivos
+- [x] Sustituir logos del menú y footer, iconos y compartir con los archivos definitivos.
+- [x] Verificar archivos, referencias y visualización; solicitar publicación.
+
 ## En curso
 - [x] Ajustar prefijo vacío de WhatsApp a "+" (formularios namar y namar2)
 - [x] Lovable Cloud: tabla `diagnosticos`, bucket privado `diagnosticos-archivos`, clasificación automática en servidor

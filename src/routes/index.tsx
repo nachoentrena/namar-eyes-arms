@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Check, Linkedin } from "lucide-react";
+import { ArrowRight, Calculator, Check, Linkedin, MapPin, Route as RouteIcon, UserRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import heroShip from "@/assets/namar-hero-barco.webp.asset.json";
@@ -85,10 +85,10 @@ const eyebrow = "text-[13px] font-bold uppercase tracking-[0.14em] text-gold-dee
 const eyebrowOnNavy = "text-[13px] font-bold uppercase tracking-[0.14em] text-gold";
 
 /* Shared responsive rhythm */
-const section = "px-5 py-14 sm:px-6 sm:py-20 lg:py-28";
+const section = "px-5 py-16 sm:px-6 lg:py-28";
 const h2 = "font-serif text-[28px] leading-[1.18] sm:text-4xl lg:text-[42px]";
 const h3 = "font-serif text-[19px] leading-snug sm:text-[21px]";
-const lead = "text-base leading-[1.65] text-muted-foreground sm:text-[17px]";
+const lead = "max-w-[65ch] text-base leading-[1.65] text-muted-foreground sm:text-[17px]";
 
 /* Resalta en cursiva una parte del título sin modificar el texto */
 function Em({
@@ -125,10 +125,6 @@ function Index() {
     action: string;
     result: string;
   };
-  const phases = t("landing.phases", { returnObjects: true }) as Array<{
-    key: string;
-    label: string;
-  }>;
   const serviceGroups = t("landing.serviceGroups", { returnObjects: true }) as Array<{
     title: string;
     items: Array<{ title: string; text: string }>;
@@ -218,16 +214,10 @@ function Index() {
                   {t("landing.heroSecondaryCta")}
                 </a>
               </div>
-              <a
-                href="#costes"
-                className="group inline-flex items-center gap-3 border-l-2 border-gold pl-4 text-sm font-semibold text-navy-foreground transition-colors hover:text-gold"
-              >
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-gold/15 text-gold">
-                  <Check className="size-3.5" strokeWidth={3} />
-                </span>
+              <p className="flex items-center gap-3 border-l-2 border-gold pl-4 text-sm font-semibold text-navy-foreground">
+                <Check className="size-4 shrink-0 text-gold" strokeWidth={3} />
                 <span className="min-w-0">{t("landing.heroMicro")}</span>
-                <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
-              </a>
+              </p>
               <div className="flex flex-col gap-2 border-t border-navy-foreground/25 pt-4 text-[11px] font-bold uppercase tracking-[0.14em] text-navy-foreground/70 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:pt-5">
                 {heroTrust.map((item, i) => (
                   <span key={item} className="flex items-center gap-2.5">
@@ -246,55 +236,55 @@ function Index() {
 
 
         {/* ─── PROBLEMA: RIESGO → QUÉ HACEMOS → RESULTADO ───────── */}
-        <section className="overflow-hidden bg-navy px-5 py-14 text-navy-foreground sm:px-6 sm:py-18 lg:py-24">
+        <section className={`overflow-hidden bg-background ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <h2 className={h2}>
                 <Em
                   text={t("landing.problemTitle")}
                   em={t("landing.problemTitleEm")}
-                  className="italic text-gold"
+                  className="italic text-gold-deep"
                 />
               </h2>
-              <p className="mt-2 max-w-2xl text-base text-navy-foreground/60 sm:mt-3 sm:text-lg">
+              <p className="mt-2 max-w-[65ch] text-base text-muted-foreground sm:mt-3 sm:text-lg">
                 {t("landing.problemIntro")}
               </p>
-              <p className="mt-4 max-w-2xl border-l-2 border-gold pl-4 text-sm font-semibold text-navy-foreground/85 sm:text-base">
+              <p className="mt-4 max-w-[65ch] border-l-2 border-gold pl-4 text-sm font-semibold sm:text-base">
                 {t("landing.problemAudience")}
               </p>
             </Reveal>
 
             <div className="mt-5 grid gap-5 sm:mt-6 lg:grid-cols-12 lg:gap-10">
               <Reveal className="lg:order-1 lg:col-span-8">
-                <div className="hidden grid-cols-12 gap-6 border-b border-navy-foreground/15 pb-2 text-[11px] font-bold uppercase tracking-widest text-gold md:grid">
+                <div className="hidden grid-cols-12 gap-6 border-b border-border pb-2 text-[11px] font-bold uppercase tracking-widest text-gold-deep md:grid">
                   <span className="col-span-3">{problemColumns.risk}</span>
                   <span className="col-span-6">{problemColumns.action}</span>
                   <span className="col-span-3">{problemColumns.result}</span>
                 </div>
-                <ul className="divide-y divide-navy-foreground/10 border-t border-navy-foreground/15 md:border-t-0">
+                <ul className="divide-y divide-border border-t border-border md:border-t-0">
                   {problems.map((row, i) => (
                     <li
                       key={row.risk}
                       className="grid gap-1 py-3 md:grid-cols-12 md:items-start md:gap-6 md:py-4"
                     >
                       <div className="flex items-baseline gap-3 md:col-span-3">
-                        <span className="text-xs font-bold text-gold">{`0${i + 1}`}</span>
+                        <span className="text-xs font-bold text-gold-deep">{`0${i + 1}`}</span>
                         <h3 className={h3}>{row.risk}</h3>
                       </div>
-                      <p className="pl-7 text-[15px] leading-relaxed text-navy-foreground/75 sm:text-base md:col-span-6 md:pl-0">
-                        <span className="mr-2 text-[10px] font-bold uppercase tracking-widest text-gold md:hidden">
+                      <p className="pl-7 text-[15px] leading-relaxed text-muted-foreground sm:text-base md:col-span-6 md:pl-0">
+                        <span className="mr-2 text-[10px] font-bold uppercase tracking-widest text-gold-deep md:hidden">
                           {problemColumns.action} →
                         </span>
                         {row.action}
                       </p>
-                      <p className="flex items-start gap-2 pl-7 text-[15px] font-semibold text-navy-foreground sm:text-base md:col-span-3 md:pl-0">
-                        <Check className="mt-1 size-4 shrink-0 text-gold" strokeWidth={3} />
+                      <p className="flex items-start gap-2 pl-7 text-[15px] font-semibold sm:text-base md:col-span-3 md:pl-0">
+                        <Check className="mt-1 size-4 shrink-0 text-gold-deep" strokeWidth={3} />
                         {row.result}
                       </p>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-4 font-serif text-xl italic text-gold sm:mt-5 sm:text-2xl lg:text-3xl">
+                <p className="mt-4 font-serif text-xl italic text-gold-deep sm:mt-5 sm:text-2xl lg:text-3xl">
                   {t("landing.problemQuote")}
                 </p>
               </Reveal>
@@ -319,7 +309,7 @@ function Index() {
         </section>
 
         {/* ─── SERVICIOS COMO PROCESO DE CONTROL ────────────────── */}
-        <section id="servicios" className={section}>
+        <section id="servicios" className={`bg-sand ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <p className={eyebrow}>{t("landing.servicesLabel")}</p>
@@ -327,26 +317,6 @@ function Index() {
               <p className={`mt-4 ${lead}`}>{t("landing.servicesIntro")}</p>
             </Reveal>
 
-            <Reveal className="mt-8 sm:mt-10">
-              <ol className="flex flex-wrap gap-2 lg:grid lg:grid-cols-5 lg:gap-px lg:overflow-hidden lg:rounded-[24px] lg:border lg:border-border lg:bg-border">
-                {phases.map((phase, i) => (
-                  <li
-                    key={phase.key}
-                    className="relative flex flex-1 items-center gap-2.5 border border-border bg-background px-3 py-2.5 lg:border-0 lg:px-6 lg:py-5"
-                  >
-                    <span className="grid size-6 shrink-0 place-items-center rounded-full bg-navy text-[11px] font-bold text-navy-foreground lg:size-8 lg:text-xs">
-                      {i + 1}
-                    </span>
-                    <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-widest lg:text-sm">
-                      {phase.label}
-                    </span>
-                    {i < phases.length - 1 ? (
-                      <ArrowRight className="absolute -right-2.5 top-1/2 z-10 hidden size-5 -translate-y-1/2 bg-background text-gold-deep lg:block" />
-                    ) : null}
-                  </li>
-                ))}
-              </ol>
-            </Reveal>
           </div>
 
           <Reveal className="mt-8 sm:mt-10">
@@ -355,7 +325,7 @@ function Index() {
         </section>
 
         {/* ─── SIMULACIÓN DE COSTES ─────────────────────────────── */}
-        <section id="costes" className="px-5 pb-14 sm:px-6 sm:pb-20 lg:pb-28">
+        <section id="costes" className={`bg-background ${section}`}>
           <Reveal className="relative mx-auto max-w-7xl overflow-hidden rounded-[28px] border border-navy bg-navy text-navy-foreground sm:rounded-[32px]">
             <div className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-gold/10" />
             <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-12 lg:gap-16 lg:p-16">
@@ -368,15 +338,12 @@ function Index() {
                     className="italic text-gold"
                   />
                 </h2>
-                <p className="mt-4 max-w-xl text-base text-navy-foreground/70 sm:text-lg">
+                <p className="mt-4 max-w-[65ch] text-base text-navy-foreground/70 sm:text-lg">
                   {t("landing.costText")}
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-4">
                   <a
-                    href={siteConfig.costCalculatorHref}
-                    {...(siteConfig.costCalculatorExternal
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
+                    href="/diagnostico"
                     className={goldBtn}
                   >
                     {t("landing.costCta")}
@@ -387,7 +354,7 @@ function Index() {
               </div>
               <div className="lg:col-span-5">
                 <div className="border border-navy-foreground/15 bg-navy-foreground/5 p-5 sm:p-8">
-                  <p className="font-serif text-3xl text-gold">24 h</p>
+                  <p className="font-serif text-3xl text-gold">24 h <span className="font-sans text-base">laborables</span></p>
                   <p className="mt-1 text-sm font-bold text-gold">{t("landing.costFree")}</p>
                   <ul className="mt-4 space-y-3">
                     {costItems.map((item) => (
@@ -458,7 +425,7 @@ function Index() {
 
 
         {/* ─── PERSONAS ─────────────────────────────────────────── */}
-        <section id="equipo" className={section}>
+        <section id="equipo" className={`bg-background ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <p className={eyebrow}>{t("landing.teamLabel")}</p>
@@ -530,7 +497,7 @@ function Index() {
         </section>
 
         {/* ─── POR QUÉ NAMAR ────────────────────────────────────── */}
-        <section id="nosotros" className={`bg-background ${section}`}>
+        <section id="nosotros" className={`bg-sand ${section}`}>
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
               <h2 className={h2}>{t("landing.whyTitle")}</h2>
@@ -538,7 +505,10 @@ function Index() {
             <div className="mt-8 grid gap-px overflow-hidden rounded-[24px] border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {differentiators.map((item, i) => (
                 <Reveal key={item.title} delay={i * 60} className="bg-card p-5 sm:p-7 lg:p-9">
-                  <span className="text-sm font-bold text-gold-deep">{`0${i + 1}`}</span>
+                  {(() => {
+                    const Icon = [MapPin, UserRound, Calculator, RouteIcon][i % 4];
+                    return <Icon aria-hidden className="size-7 text-navy" strokeWidth={1.25} />;
+                  })()}
                   <h3 className={`mt-3 sm:mt-4 ${h3}`}>{item.title}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground sm:text-base">{item.text}</p>
                 </Reveal>
@@ -553,7 +523,7 @@ function Index() {
 
 
         {/* ─── FAQ ──────────────────────────────────────────────── */}
-        <section id="faq" className={section}>
+        <section id="faq" className={`bg-background ${section}`}>
           <div className="mx-auto max-w-3xl">
             <Reveal>
               <h2 className={`text-center ${h2}`}>{t("landing.faqTitle")}</h2>
@@ -587,7 +557,7 @@ function Index() {
                   className="italic text-gold"
                 />
               </h2>
-              <p className="mt-5 max-w-lg text-base leading-[1.65] text-on-navy-muted sm:text-[17px]">
+              <p className="mt-5 max-w-[65ch] text-base leading-[1.65] text-on-navy-muted sm:text-[17px]">
                 {t("contact.description")}
               </p>
               <p className="mt-4 border-l-2 border-gold pl-4 text-sm font-semibold">

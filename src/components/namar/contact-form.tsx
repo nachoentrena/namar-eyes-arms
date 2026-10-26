@@ -1,13 +1,8 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { siteConfig } from "@/lib/site-config";
 import { Link } from "@tanstack/react-router";
 
-const destinations = [
-  { name: "España", dial: "+34" },
-  { name: "Colombia", dial: "+57" },
-  { name: "Otro", dial: "" },
-] as const;
 
 const fieldClass =
   "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-navy outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-gold";
@@ -15,26 +10,12 @@ const fieldClass =
 export function ContactForm() {
   const { t } = useTranslation();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [country, setCountry] = useState("");
-  const [dialCode, setDialCode] = useState("");
-
-  function handleCountryChange(event: ChangeEvent<HTMLSelectElement>) {
-    const selected = event.target.value;
-    setCountry(selected);
-    const match = destinations.find((c) => c.name === selected);
-    setDialCode(match?.dial ?? "");
-  }
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     setStatus("sending");
 
     const data = Object.fromEntries(new FormData(form));
-    const digits = String(data["whatsapp"] ?? "").trim();
-    if (digits) {
-      data["whatsapp"] = `${dialCode} ${digits}`;
-    }
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -45,8 +26,6 @@ export function ContactForm() {
       const result = (await response.json()) as { success?: boolean };
       if (response.ok && result.success) {
         form.reset();
-        setCountry("");
-        setDialCode("");
         setStatus("sent");
       } else {
         setStatus("error");
@@ -76,6 +55,12 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+      <p className="text-sm text-muted-foreground md:col-span-2">
+        ¿Quieres una valoración completa?{" "}
+        <Link to="/diagnostico" className="font-semibold text-navy underline underline-offset-4 decoration-gold">
+          Haz el diagnóstico gratuito
+        </Link>
+      </p>
       <input type="hidden" name="access_key" value={siteConfig.web3formsAccessKey} />
       <input type="hidden" name="subject" value="Nueva solicitud de importación — NAMAR Global" />
       <input type="hidden" name="from_name" value="Web NAMAR Global" />
@@ -92,17 +77,6 @@ export function ContactForm() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="empresa" className="text-[13px] font-semibold text-muted-foreground">
-          {t("contact.form.company")}
-        </label>
-        <input
-          id="empresa"
-          name="empresa"
-          className={fieldClass}
-          placeholder={t("contact.form.companyPlaceholder")}
-        />
-      </div>
-      <div className="flex flex-col gap-2">
         <label htmlFor="email" className="text-[13px] font-semibold text-muted-foreground">
           {t("contact.form.email")}
         </label>
@@ -116,65 +90,16 @@ export function ContactForm() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="pais" className="text-[13px] font-semibold text-muted-foreground">
-          {t("contact.form.country")}
-        </label>
-        <select
-          id="pais"
-          name="pais_destino"
-          className={fieldClass}
-          value={country}
-          onChange={handleCountryChange}
-        >
-          <option value="" disabled>
-            Selecciona un país
-          </option>
-          {destinations.map((c) => (
-            <option key={c.name} value={c.name}>
-              {c.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="flex flex-col gap-2">
         <label htmlFor="telefono" className="text-[13px] font-semibold text-muted-foreground">
           {t("contact.form.phone")}
         </label>
-        <div className="flex gap-2">
-          <span className="flex w-20 shrink-0 items-center justify-center rounded-xl border border-input bg-card px-2 text-sm font-semibold text-navy">
-            {dialCode || "+"}
-          </span>
-          <input
+        <input
             id="telefono"
             name="whatsapp"
             type="tel"
             className={fieldClass}
             placeholder={t("contact.form.phonePlaceholder")}
           />
-        </div>
-      </div>
-      <div className="flex flex-col gap-2">
-        <label htmlFor="producto" className="text-[13px] font-semibold text-muted-foreground">
-          {t("contact.form.product")}
-        </label>
-        <input
-          id="producto"
-          name="producto"
-          required
-          className={fieldClass}
-          placeholder={t("contact.form.productPlaceholder")}
-        />
-      </div>
-      <div className="flex flex-col gap-2 md:col-span-2">
-        <label htmlFor="volumen" className="text-[13px] font-semibold text-muted-foreground">
-          {t("contact.form.volume")}
-        </label>
-        <input
-          id="volumen"
-          name="cantidad_aproximada"
-          className={fieldClass}
-          placeholder={t("contact.form.volumePlaceholder")}
-        />
       </div>
       <div className="flex flex-col gap-2 md:col-span-2">
         <label htmlFor="mensaje" className="text-[13px] font-semibold text-muted-foreground">
@@ -218,7 +143,7 @@ export function ContactForm() {
         {status === "sending" ? "Enviando..." : t("contact.form.submit")}
       </button>
       <p className="text-xs text-muted-foreground/70 md:col-span-2">
-        Respondemos en un máximo de 24 horas laborables.
+        Respondemos en un máximo de 24 h laborables.
       </p>
     </form>
   );

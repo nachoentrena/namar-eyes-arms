@@ -10,7 +10,7 @@ const fieldClass =
 export function ContactForm() {
   const { t } = useTranslation();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
- function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     setStatus("sending");

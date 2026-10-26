@@ -2,7 +2,7 @@
 
 ## Nuevas fotos del equipo
 - [x] Renovar únicamente las fichas y la foto conjunta de la home, conservar la foto de Cantón.
-- [ ] Comprobar escritorio y móvil y publicar.
+- [x] Comprobar escritorio y móvil; fotos cargadas, sin desbordes ni errores, publicación solicitada.
 
 ## Logos definitivos
 - [x] Sustituir logos del menú y footer, iconos y compartir con los archivos definitivos.

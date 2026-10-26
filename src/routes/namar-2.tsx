@@ -287,7 +287,7 @@ function Index() {
                     height={1575}
                     loading="lazy"
                     alt="Ana María, de NAMAR Global, revisando un producto junto al responsable de una fábrica"
-                    className="aspect-[16/10] w-full object-cover object-[50%_28%] grayscale transition-all duration-700 hover:grayscale-0 sm:aspect-[2/1] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+                    className="aspect-[16/10] w-full object-cover object-[50%_28%] sm:aspect-[2/1] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
                   />
                 </div>
               </Reveal>

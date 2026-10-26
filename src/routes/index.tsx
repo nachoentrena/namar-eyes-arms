@@ -307,7 +307,7 @@ function Index() {
                     height={1125}
                     loading="lazy"
                     alt="Nacho, de NAMAR Global, revisando muestras de tornillos con una proveedora en una feria en China"
-                    className="h-[420px] w-full object-cover object-[50%_40%] grayscale transition-all duration-700 hover:grayscale-0 sm:h-[460px] lg:absolute lg:inset-0 lg:h-full"
+                    className="h-[420px] w-full object-cover object-[50%_40%] sm:h-[460px] lg:absolute lg:inset-0 lg:h-full"
                   />
                   <figcaption className="absolute inset-x-0 bottom-0 m-3 rounded-[16px] bg-navy px-4 py-3 text-sm font-semibold text-navy-foreground">
                     {t("landing.problemPhotoCaption")}
@@ -505,17 +505,19 @@ function Index() {
               ))}
             </div>
 
-            <Reveal delay={100} className="mt-6 sm:mt-8">
-              <figure className="relative overflow-hidden rounded-[28px]">
-                <img
-                  src={teamPhoto}
-                  width={1600}
-                  height={1066}
-                  loading="lazy"
-                  alt="Nacho y Ana María, de NAMAR Global, con una proveedora en su stand en una feria en China"
-                  className="aspect-3/2 w-full object-cover object-[50%_30%]"
-                />
-                <figcaption className="absolute bottom-3 left-3 right-3 rounded-[12px] bg-navy px-4 py-3 text-xs text-navy-foreground sm:bottom-5 sm:left-5 sm:right-auto sm:max-w-[80%] sm:text-sm">
+            <Reveal delay={100} className="mt-14">
+              <figure className="mx-auto w-full max-w-[720px]">
+                <div className="overflow-hidden rounded-[24px]">
+                  <img
+                    src={teamPhoto}
+                    width={1600}
+                    height={1066}
+                    loading="lazy"
+                    alt="Nacho y Ana María, de NAMAR Global, con una proveedora en su stand en una feria en China"
+                    className="aspect-3/2 w-full object-cover object-[50%_30%]"
+                  />
+                </div>
+                <figcaption className="mt-3 text-center font-sans text-sm text-slate-deep">
                   {t("landing.teamUpdatedCaption")}
                 </figcaption>
               </figure>

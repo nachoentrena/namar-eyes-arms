@@ -76,11 +76,11 @@ export const Route = createFileRoute("/")({
 });
 
 const primaryBtn =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-navy px-7 py-3 text-[15px] font-semibold text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:px-8";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-navy px-7 py-3 text-[15px] font-semibold text-navy-foreground transition-colors whitespace-nowrap hover:bg-gold hover:text-gold-foreground sm:px-8";
 const secondaryBtn =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-[1.5px] border-navy px-7 py-3 text-[15px] font-semibold text-navy transition-colors hover:bg-navy hover:text-navy-foreground sm:px-8";
+  "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full border-[1.5px] border-navy px-7 py-3 text-[15px] font-semibold text-navy transition-colors hover:bg-navy hover:text-navy-foreground sm:px-8";
 const goldBtn =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gold px-7 py-3 text-[15px] font-semibold text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8";
+  "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-gold px-7 py-3 text-[15px] font-semibold text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8";
 const eyebrow = "text-[13px] font-bold uppercase tracking-[0.14em] text-gold-deep";
 const eyebrowOnNavy = "text-[13px] font-bold uppercase tracking-[0.14em] text-gold";
 
@@ -196,9 +196,9 @@ function Index() {
                 </span>
                 {t("landing.heroBadge")}
               </div>
-              <h1 className="font-serif text-4xl leading-[1.15] sm:text-5xl lg:text-[58px]">
-                {t("landing.heroTitle")}{" "}
-                <em className="italic text-gold">{t("landing.heroSubtitle")}</em>
+              <h1 className="font-serif text-[32px] leading-[1.15] [text-wrap:balance] sm:text-[42px] lg:text-[52px]">
+                <span className="block">{t("landing.heroTitle")}</span>
+                <em className="block italic text-gold">{t("landing.heroSubtitle").replace(/ /g, "\u00a0")}</em>
               </h1>
               <p className="max-w-xl text-base leading-relaxed text-navy-foreground/80 sm:text-lg lg:text-xl">
                 {t("landing.heroDescription")}

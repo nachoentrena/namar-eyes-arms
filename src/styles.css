@@ -173,3 +173,11 @@
   opacity: 1;
   transform: none;
 }
+
+@layer base {
+  button,
+  a.rounded-full,
+  input[type="submit"] {
+    white-space: nowrap;
+  }
+}

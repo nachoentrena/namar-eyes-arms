@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site-config";
 
 const title = "Diagnóstico de viabilidad de importación | NAMAR Global";
 const description =
-  "Cuéntenos su proyecto y el equipo de NAMAR GLOBAL le enviará una evaluación preliminar de viabilidad de su importación desde China en 24 h laborables.";
+  "Cuéntenos su proyecto y el equipo de NAMAR GLOBAL le enviará una evaluación preliminar de viabilidad de su importación desde China en 24h laborables.";
 
 export const Route = createFileRoute("/diagnostico")({
   head: () => ({
@@ -41,7 +41,7 @@ function DiagnosticoPage() {
           </h1>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             Cuéntenos su proyecto y el equipo de NAMAR GLOBAL le enviará una evaluación preliminar
-            de viabilidad en 24 h laborables. Si no conoce algún dato técnico, marque «No lo
+            de viabilidad en 24h laborables. Si no conoce algún dato técnico, marque «No lo
             sé»: para eso estamos. Tiempo estimado: 8–10 minutos.
           </p>
           <div className="mt-10">

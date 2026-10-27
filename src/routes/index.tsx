@@ -22,7 +22,7 @@ import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 const title = "Importar desde China a España y Colombia | NAMAR Global";
 const description =
-  "Tu equipo en China: búsqueda y verificación de proveedores, negociación, control de calidad, logística y aduanas. 8 años sobre el terreno. Simulamos los costes de tu importación en 24 h.";
+  "Tu equipo en China: búsqueda y verificación de proveedores, negociación, control de calidad, logística y aduanas. 8 años sobre el terreno. Simulamos los costes de tu importación en 24h.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -354,7 +354,7 @@ function Index() {
               </div>
               <div className="lg:col-span-5">
                 <div className="border border-navy-foreground/15 bg-navy-foreground/5 p-5 sm:p-8">
-                  <p className="font-serif text-3xl text-gold">24 h <span className="font-sans text-base">laborables</span></p>
+                  <p className="font-serif text-3xl text-gold">24h <span className="font-sans text-base">laborables</span></p>
                   <p className="mt-1 text-sm font-bold text-gold">{t("landing.costFree")}</p>
                   <ul className="mt-4 space-y-3">
                     {costItems.map((item) => (

@@ -65,7 +65,7 @@ const resources = {
           "NAMAR Global representa tus intereses directamente sobre el terreno. Encontramos proveedores, negociamos, verificamos, controlamos y coordinamos tu importación hasta España o Colombia.",
         heroPrimaryCta: "Diagnóstico gratuito",
         heroSecondaryCta: "Cómo trabajamos",
-        heroMicro: "Simulamos los costes de tu importación en 24 h laborables.",
+        heroMicro: "Simulamos los costes de tu importación en 24h laborables.",
         heroTrust: [
           "Empresa registrada en Hong Kong",
           "8 años trabajando en China",
@@ -151,7 +151,7 @@ const resources = {
         costTitle: "¿Cuánto te costará realmente importar desde China?",
         costTitleEm: "realmente",
         costText:
-          "Antes de comprar, calcula el coste real de llevar tu mercancía hasta España o Colombia. Te ayudamos a estimarlo en 24 h laborables.",
+          "Antes de comprar, calcula el coste real de llevar tu mercancía hasta España o Colombia. Te ayudamos a estimarlo en 24h laborables.",
         costItems: [
           "Precio del producto y condiciones de compra",
           "Arancel e impuestos de importación",

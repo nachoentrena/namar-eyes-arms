@@ -1,5 +1,10 @@
 # Roadmap
 
+## Contacto en menú
+- [x] Usar solo enlaces normales de WhatsApp/email, sin conectores ni inicio de sesión.
+- [x] Añadir Contáctanos y ventana accesible con WhatsApp/email; mantener controles flotantes.
+- [x] Verificar escritorio y móvil y solicitar publicación.
+
 ## Nuevas fotos del equipo
 - [x] Renovar únicamente las fichas y la foto conjunta de la home, conservar la foto de Cantón.
 - [x] Comprobar escritorio y móvil; fotos cargadas, sin desbordes ni errores, publicación solicitada.

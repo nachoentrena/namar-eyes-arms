@@ -143,7 +143,7 @@ export function ContactForm() {
         {status === "sending" ? "Enviando..." : t("contact.form.submit")}
       </button>
       <p className="text-xs text-muted-foreground/70 md:col-span-2">
-        Respondemos en un máximo de 24 h laborables.
+        Respondemos en un máximo de 24h laborables.
       </p>
     </form>
   );

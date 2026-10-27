@@ -19,7 +19,7 @@ import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 const title = "NAMAR 2 | Versión alternativa | NAMAR Global";
 const description =
-  "Tu equipo en China: búsqueda y verificación de proveedores, negociación, control de calidad, logística y aduanas. 8 años sobre el terreno. Simulamos los costes de tu importación en 24 h.";
+  "Tu equipo en China: búsqueda y verificación de proveedores, negociación, control de calidad, logística y aduanas. 8 años sobre el terreno. Simulamos los costes de tu importación en 24h.";
 
 export const Route = createFileRoute("/namar-2")({
   head: () => ({
@@ -398,7 +398,7 @@ function Index() {
               </div>
               <div className="lg:col-span-5">
                 <div className="rounded-[24px] border border-navy-foreground/15 bg-navy-foreground/5 p-5 sm:p-8">
-                  <p className="font-serif text-3xl text-gold">24 h</p>
+                  <p className="font-serif text-3xl text-gold">24h</p>
                   <p className="mt-1 text-sm font-bold text-gold">{t("landing.costFree")}</p>
                   <ul className="mt-4 space-y-3">
                     {costItems.map((item) => (

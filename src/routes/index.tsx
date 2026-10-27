@@ -22,7 +22,7 @@ import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 const title = "Importar desde China a España y Colombia | NAMAR Global";
 const description =
-  "Tu equipo en China: búsqueda y verificación de proveedores, negociación, control de calidad, logística y aduanas. 8 años sobre el terreno. Simulamos los costes de tu importación en 24 h.";
+  "Tu equipo en China: búsqueda y verificación de proveedores, negociación, control de calidad, logística y aduanas. 8 años sobre el terreno. Simulamos los costes de tu importación en 24h.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -76,11 +76,11 @@ export const Route = createFileRoute("/")({
 });
 
 const primaryBtn =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-navy px-7 py-3 text-[15px] font-semibold text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground sm:px-8";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-navy px-7 py-3 text-[15px] font-semibold text-navy-foreground transition-colors whitespace-nowrap hover:bg-gold hover:text-gold-foreground sm:px-8";
 const secondaryBtn =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-[1.5px] border-navy px-7 py-3 text-[15px] font-semibold text-navy transition-colors hover:bg-navy hover:text-navy-foreground sm:px-8";
+  "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full border-[1.5px] border-navy px-7 py-3 text-[15px] font-semibold text-navy transition-colors hover:bg-navy hover:text-navy-foreground sm:px-8";
 const goldBtn =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gold px-7 py-3 text-[15px] font-semibold text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8";
+  "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-gold px-7 py-3 text-[15px] font-semibold text-gold-foreground transition-colors hover:bg-navy-foreground sm:px-8";
 const eyebrow = "text-[13px] font-bold uppercase tracking-[0.14em] text-gold-deep";
 const eyebrowOnNavy = "text-[13px] font-bold uppercase tracking-[0.14em] text-gold";
 
@@ -196,9 +196,9 @@ function Index() {
                 </span>
                 {t("landing.heroBadge")}
               </div>
-              <h1 className="font-serif text-4xl leading-[1.15] sm:text-5xl lg:text-[58px]">
-                {t("landing.heroTitle")}{" "}
-                <em className="italic text-gold">{t("landing.heroSubtitle")}</em>
+              <h1 className="font-serif text-[clamp(24px,7.6vw,32px)] leading-[1.15] [text-wrap:balance] sm:text-[42px] lg:text-[52px]">
+                <span className="block">{t("landing.heroTitle")}</span>
+                <em className="block italic text-gold">{t("landing.heroSubtitle").replace(/ /g, "\u00a0")}</em>
               </h1>
               <p className="max-w-xl text-base leading-relaxed text-navy-foreground/80 sm:text-lg lg:text-xl">
                 {t("landing.heroDescription")}
@@ -354,7 +354,7 @@ function Index() {
               </div>
               <div className="lg:col-span-5">
                 <div className="border border-navy-foreground/15 bg-navy-foreground/5 p-5 sm:p-8">
-                  <p className="font-serif text-3xl text-gold">24 h <span className="font-sans text-base">laborables</span></p>
+                  <p className="font-serif text-3xl text-gold">24h <span className="font-sans text-base">laborables</span></p>
                   <p className="mt-1 text-sm font-bold text-gold">{t("landing.costFree")}</p>
                   <ul className="mt-4 space-y-3">
                     {costItems.map((item) => (

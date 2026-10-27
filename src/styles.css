@@ -173,3 +173,12 @@
   opacity: 1;
   transform: none;
 }
+
+@layer base {
+  a.rounded-full,
+  button[type="submit"],
+  header button,
+  button.rounded-full:not([aria-pressed]):not([role="radio"]):not([role="checkbox"]) {
+    white-space: nowrap;
+  }
+}

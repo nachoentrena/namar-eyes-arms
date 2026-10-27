@@ -175,9 +175,10 @@
 }
 
 @layer base {
-  button,
   a.rounded-full,
-  input[type="submit"] {
+  button[type="submit"],
+  header button,
+  button.rounded-full:not([aria-pressed]):not([role="radio"]):not([role="checkbox"]) {
     white-space: nowrap;
   }
 }

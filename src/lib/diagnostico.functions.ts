@@ -135,8 +135,15 @@ export const submitDiagnostico = createServerFn({ method: "POST" })
       return { ok: true, codigo: null as string | null };
     }
 
+    const { cleanText, checkRateLimit, requestPage, sendFormEmails } = await import("./forms.server");
+    if (!(await checkRateLimit("diagnostico"))) {
+      throw new Error("Demasiados envíos. Inténtelo más tarde.");
+    }
     const parsed = answersSchema.parse(answers);
-    const record: Record<string, Value> = { ...parsed };
+    const record: Record<string, Value> = {};
+    for (const [k, v] of Object.entries(parsed)) {
+      record[k] = typeof v === "string" ? cleanText(v) : Array.isArray(v) ? v.map(cleanText) : v;
+    }
     delete record["empresa_web"];
 
     const PAISES = ["España", "Colombia", "Otro país de la UE", "Otro país de Latinoamérica", "Otro"];
@@ -192,13 +199,35 @@ export const submitDiagnostico = createServerFn({ method: "POST" })
         banderas,
         paquete_sugerido: paquete,
       })
-      .select("codigo")
+      .select("id, codigo")
       .single();
 
     if (error || !row) {
       console.error("Error guardando diagnóstico", error);
       throw new Error("No se pudo guardar el diagnóstico");
     }
+
+    const humanize = (k: string) => (k.charAt(0).toUpperCase() + k.slice(1)).replace(/_/g, " ");
+    const filas = [
+      { campo: "Referencia", valor: row.codigo as string },
+      ...Object.entries(record).map(([k, v]) => ({
+        campo: humanize(k),
+        valor: Array.isArray(v) ? v.join(", ") : v == null ? "" : String(v),
+      })),
+      { campo: "Puntuación", valor: String(points) },
+      { campo: "Clasificación", valor: clasificacion },
+      { campo: "Alerta", valor: alerta ?? "" },
+      { campo: "Paquete sugerido", valor: paquete },
+    ];
+    await sendFormEmails({
+      id: row.id as string,
+      tipo: "diagnostico",
+      nombre,
+      email,
+      producto,
+      filas,
+      pagina: requestPage(),
+    });
 
     return { ok: true, codigo: row.codigo as string };
   });

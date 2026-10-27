@@ -58,7 +58,7 @@ export function ContactForm() {
       <p className="text-sm text-muted-foreground md:col-span-2">
         ¿Quieres una valoración completa?{" "}
         <Link to="/diagnostico" className="font-semibold text-navy underline underline-offset-4 decoration-gold">
-          Haz el diagnóstico gratuito
+          Analiza tu importación aquí
         </Link>
       </p>
       <input type="hidden" name="access_key" value={siteConfig.web3formsAccessKey} />

@@ -196,7 +196,7 @@ function Index() {
                 </span>
                 {t("landing.heroBadge")}
               </div>
-              <h1 className="font-serif text-[32px] leading-[1.15] [text-wrap:balance] sm:text-[42px] lg:text-[52px]">
+              <h1 className="font-serif text-[clamp(24px,7.6vw,32px)] leading-[1.15] [text-wrap:balance] sm:text-[42px] lg:text-[52px]">
                 <span className="block">{t("landing.heroTitle")}</span>
                 <em className="block italic text-gold">{t("landing.heroSubtitle").replace(/ /g, "\u00a0")}</em>
               </h1>

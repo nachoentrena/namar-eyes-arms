@@ -55,7 +55,7 @@ export function ContactDialog({ children }: { children: ReactNode }) {
       {children}
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className="fixed inset-0 z-[60] bg-navy/60 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:animate-none" />
-        <DialogPrimitive.Content className="fixed inset-x-0 bottom-0 z-[61] max-h-[90dvh] overflow-y-auto rounded-t-[24px] border border-border bg-background p-6 text-navy shadow-panel data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom-4 motion-reduce:animate-none sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:w-[480px] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[24px] sm:p-8 sm:data-[state=open]:slide-in-from-bottom-0 sm:data-[state=open]:fade-in-0">
+        <DialogPrimitive.Content className="fixed inset-x-0 bottom-0 z-[61] max-h-[90dvh] overflow-y-auto rounded-t-[24px] border border-border bg-background p-6 pb-28 text-navy shadow-panel data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom-4 motion-reduce:animate-none sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:w-[480px] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[24px] sm:p-8 sm:data-[state=open]:slide-in-from-bottom-0 sm:data-[state=open]:fade-in-0">
           <DialogPrimitive.Close asChild>
             <Button variant="ghost" size="icon" aria-label="Cerrar contacto" className="absolute right-3 top-3 rounded-full"><X /></Button>
           </DialogPrimitive.Close>

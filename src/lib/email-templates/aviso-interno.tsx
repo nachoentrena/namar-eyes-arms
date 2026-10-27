@@ -39,9 +39,9 @@ const AvisoInterno = ({ tipo = 'contacto', nombre = '', filas = [], fecha, pagin
 export const template = {
   component: AvisoInterno,
   subject: (d: Record<string, any>) =>
-    d.tipo === 'diagnostico'
-      ? `Nuevo diagnóstico web: ${d.nombre ?? ''} – ${d.producto ?? ''}`
-      : `Nuevo contacto web: ${d.nombre ?? ''}`,
+    d['tipo'] === 'diagnostico'
+      ? `Nuevo diagnóstico web: ${d['nombre'] ?? ''} – ${d['producto'] ?? ''}`
+      : `Nuevo contacto web: ${d['nombre'] ?? ''}`,
   displayName: 'Aviso interno de formulario',
   to: 'info@namar-global.com',
   previewData: {

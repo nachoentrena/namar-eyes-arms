@@ -15,6 +15,13 @@
       "when": 1792495481346,
       "tag": "0001_user_roles_own_select_policy",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793100612530,
+      "tag": "0002_contactos_y_limite_envios",
+      "breakpoints": true
     }
   ]
 }

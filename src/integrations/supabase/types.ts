@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      contactos: {
+        Row: {
+          cantidad_aproximada: string | null
+          created_at: string
+          datos: Json
+          email: string
+          empresa: string | null
+          id: string
+          mensaje: string | null
+          nombre: string
+          pagina: string | null
+          pais_destino: string | null
+          producto: string | null
+          whatsapp: string | null
+        }
+        Insert: {
+          cantidad_aproximada?: string | null
+          created_at?: string
+          datos?: Json
+          email: string
+          empresa?: string | null
+          id?: string
+          mensaje?: string | null
+          nombre: string
+          pagina?: string | null
+          pais_destino?: string | null
+          producto?: string | null
+          whatsapp?: string | null
+        }
+        Update: {
+          cantidad_aproximada?: string | null
+          created_at?: string
+          datos?: Json
+          email?: string
+          empresa?: string | null
+          id?: string
+          mensaje?: string | null
+          nombre?: string
+          pagina?: string | null
+          pais_destino?: string | null
+          producto?: string | null
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
       diagnosticos: {
         Row: {
           alerta: string | null
@@ -86,6 +131,27 @@ export type Database = {
           puntuacion?: number
           respuestas?: Json
           whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      envios_formulario: {
+        Row: {
+          created_at: string
+          formulario: string
+          id: string
+          ip: string
+        }
+        Insert: {
+          created_at?: string
+          formulario: string
+          id?: string
+          ip: string
+        }
+        Update: {
+          created_at?: string
+          formulario?: string
+          id?: string
+          ip?: string
         }
         Relationships: []
       }

@@ -1,6 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { siteConfig } from "@/lib/site-config";
+import { submitContacto } from "@/lib/contacto.functions";
 import { Link } from "@tanstack/react-router";
 
 const destinations = [
@@ -37,19 +37,25 @@ export function ContactForm() {
     }
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(data),
+      await submitContacto({
+        data: {
+          nombre: String(data["nombre"] ?? ""),
+          email: String(data["email"] ?? ""),
+          empresa: String(data["empresa"] ?? ""),
+          whatsapp: String(data["whatsapp"] ?? ""),
+          pais_destino: String(data["pais_destino"] ?? "") as "" | "España" | "Colombia" | "Otro",
+          producto: String(data["producto"] ?? ""),
+          cantidad_aproximada: String(data["cantidad_aproximada"] ?? ""),
+          mensaje: String(data["mensaje"] ?? ""),
+          acepta_privacidad: "Sí",
+          honeypot: String(data["web_empresa"] ?? ""),
+        },
       });
-      const result = (await response.json()) as { success?: boolean };
-      if (response.ok && result.success) {
+      {
         form.reset();
         setCountry("");
         setDialCode("");
         setStatus("sent");
-      } else {
-        setStatus("error");
       }
     } catch {
       setStatus("error");
@@ -76,9 +82,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
-      <input type="hidden" name="access_key" value={siteConfig.web3formsAccessKey} />
-      <input type="hidden" name="subject" value="Nueva solicitud de importación — NAMAR Global" />
-      <input type="hidden" name="from_name" value="Web NAMAR Global" />
+      <input type="text" name="web_empresa" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
       <div className="flex flex-col gap-2">
         <label htmlFor="nombre" className="text-[13px] font-semibold text-muted-foreground">
           {t("contact.form.name")}

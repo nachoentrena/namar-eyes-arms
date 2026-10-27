@@ -63,7 +63,7 @@ const resources = {
         heroSubtitle: "Tu tranquilidad también.",
         heroDescription:
           "NAMAR Global representa tus intereses directamente sobre el terreno. Encontramos proveedores, negociamos, verificamos, controlamos y coordinamos tu importación hasta España o Colombia.",
-        heroPrimaryCta: "Diagnóstico gratuito",
+        heroPrimaryCta: "Analiza tu importación",
         heroSecondaryCta: "Cómo trabajamos",
         heroMicro: "Simulamos los costes de tu importación en 24h laborables.",
         heroTrust: [
@@ -159,7 +159,7 @@ const resources = {
           "Despacho aduanero y documentación",
           "Entrega final hasta tu almacén",
         ],
-        costCta: "Diagnóstico gratuito",
+        costCta: "Calcula tu coste en 24h",
         costNote: "Recibes un informe claro con el coste estimado puesto en destino.",
         costFree: "Sin coste",
         costDisclaimer:
@@ -168,7 +168,7 @@ const resources = {
 
         processTitle: "Así convertimos una importación compleja en un proceso controlado.",
         processTitleEm: "proceso controlado.",
-        processCta: "Diagnóstico gratuito",
+        processCta: "Empezar ahora",
         steps: [
           { n: "01", title: "Entendemos tu proyecto", text: "Analizamos qué quieres comprar, cantidades, presupuesto, destino y en qué punto estás." },
           { n: "02", title: "Buscamos proveedores", text: "Localizamos fabricantes adecuados y descartamos los que no encajan." },
@@ -273,7 +273,7 @@ const resources = {
         footerCookies: "Política de cookies",
         footerLegalLine:
           "© {{year}} NAMAR GLOBAL LIMITED · Sociedad registrada en Hong Kong · Nº 81199545 · Room D5, 5/F, King Yip Factory Building, No. 59 King Yip Street, Kwun Tong, Hong Kong",
-        mobileCta: "Diagnóstico gratuito",
+        mobileCta: "Analiza tu importación",
 
         // Textos de la versión anterior de la home, usados por /namar-2
         heroQuote:
@@ -462,7 +462,7 @@ const resources = {
           "Customs clearance and documentation",
           "Final delivery to your warehouse",
         ],
-        costCta: "Calculate my import",
+        costCta: "Calculate your cost in 24h",
         costNote: "You receive a clear report with the estimated landed cost.",
         costFree: "Free of charge",
         costDisclaimer:
@@ -471,7 +471,7 @@ const resources = {
 
         processTitle: "This is how we turn a complex import into a controlled process.",
         processTitleEm: "controlled process.",
-        processCta: "Analyze my import",
+        processCta: "Start now",
         steps: [
           { n: "01", title: "We understand your project", text: "We analyze what you want to buy, quantities, budget, destination, and where you stand." },
           { n: "02", title: "We source suppliers", text: "We find suitable manufacturers at origin and discard those that do not fit." },

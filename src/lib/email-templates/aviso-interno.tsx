@@ -21,7 +21,7 @@ const AvisoInterno = ({ tipo = 'contacto', nombre = '', grupos = [], archivos = 
     <Preview>{tipo === 'diagnostico' ? 'Nuevo diagnóstico' : 'Nuevo contacto'} de {nombre}</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Section style={header}>
+        <Section style={header} {...({ bgcolor: '#F5F2EA' } as any)}>
           <Img src="https://www.namar-global.com/brand/logotipo-azul.png" alt="NAMAR Global" width="180" style={{ margin: '0 auto', display: 'block' }} />
         </Section>
         <Section style={card}>

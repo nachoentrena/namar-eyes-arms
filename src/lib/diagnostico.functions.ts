@@ -252,13 +252,9 @@ export const attachDiagnosticoArchivos = createServerFn({ method: "POST" })
     const row = updated[0]!;
 
     const enlaces: { nombre: string; url: string }[] = [];
+    const { crearEnlaceArchivo } = await import("./archivo-link.server");
     for (const path of archivos) {
-      const { data: signed } = await supabaseAdmin.storage
-        .from("diagnosticos-archivos")
-        .createSignedUrl(path, 60 * 60 * 24 * 30);
-      if (signed?.signedUrl) {
-        enlaces.push({ nombre: path.split("/").pop()!.replace(/^\d+-/, ""), url: signed.signedUrl });
-      }
+      enlaces.push({ nombre: path.split("/").pop()!.replace(/^\d+-/, ""), url: await crearEnlaceArchivo(path) });
     }
 
     const { sendAvisoInterno, requestPage } = await import("./forms.server");

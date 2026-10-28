@@ -16,6 +16,7 @@ import { Route as Namar2RouteImport } from './routes/namar-2'
 import { Route as PoliticaCookiesRouteImport } from './routes/politica-cookies'
 import { Route as PoliticaPrivacidadRouteImport } from './routes/politica-privacidad'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
+import { Route as ApiPublicArchivoRouteImport } from './routes/api/public/archivo'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +54,11 @@ const PrivacidadRoute = PrivacidadRouteImport.update({
   path: '/privacidad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicArchivoRoute = ApiPublicArchivoRouteImport.update({
+  id: '/api/public/archivo',
+  path: '/api/public/archivo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailTransactionalPreviewRoute =
   LovableEmailTransactionalPreviewRouteImport.update({
     id: '/lovable/email/transactional/preview',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/politica-cookies': typeof PoliticaCookiesRoute
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/privacidad': typeof PrivacidadRoute
+  '/api/public/archivo': typeof ApiPublicArchivoRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/politica-cookies': typeof PoliticaCookiesRoute
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/privacidad': typeof PrivacidadRoute
+  '/api/public/archivo': typeof ApiPublicArchivoRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/politica-cookies': typeof PoliticaCookiesRoute
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/privacidad': typeof PrivacidadRoute
+  '/api/public/archivo': typeof ApiPublicArchivoRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/politica-cookies'
     | '/politica-privacidad'
     | '/privacidad'
+    | '/api/public/archivo'
     | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/politica-cookies'
     | '/politica-privacidad'
     | '/privacidad'
+    | '/api/public/archivo'
     | '/lovable/email/transactional/preview'
   id:
     | '__root__'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/politica-cookies'
     | '/politica-privacidad'
     | '/privacidad'
+    | '/api/public/archivo'
     | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   PoliticaCookiesRoute: typeof PoliticaCookiesRoute
   PoliticaPrivacidadRoute: typeof PoliticaPrivacidadRoute
   PrivacidadRoute: typeof PrivacidadRoute
+  ApiPublicArchivoRoute: typeof ApiPublicArchivoRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
@@ -186,6 +199,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/archivo': {
+      id: '/api/public/archivo'
+      path: '/api/public/archivo'
+      fullPath: '/api/public/archivo'
+      preLoaderRoute: typeof ApiPublicArchivoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/transactional/preview': {
       id: '/lovable/email/transactional/preview'
       path: '/lovable/email/transactional/preview'
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   PoliticaCookiesRoute: PoliticaCookiesRoute,
   PoliticaPrivacidadRoute: PoliticaPrivacidadRoute,
   PrivacidadRoute: PrivacidadRoute,
+  ApiPublicArchivoRoute: ApiPublicArchivoRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport

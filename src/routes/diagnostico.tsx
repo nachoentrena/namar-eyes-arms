@@ -18,6 +18,8 @@ export const Route = createFileRoute("/diagnostico")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: `${siteConfig.siteUrl}/og-image.png` },
+      { name: "twitter:image", content: `${siteConfig.siteUrl}/og-image.png` },
       { property: "og:locale", content: "es_ES" },
       { property: "og:url", content: `${siteConfig.siteUrl}/diagnostico` },
       { name: "twitter:card", content: "summary_large_image" },

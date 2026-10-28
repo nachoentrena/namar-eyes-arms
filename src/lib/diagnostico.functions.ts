@@ -249,7 +249,7 @@ export const attachDiagnosticoArchivos = createServerFn({ method: "POST" })
       console.error("Error adjuntando archivos", error);
       throw new Error("No se pudieron registrar los archivos");
     }
-    const row = updated[0];
+    const row = updated[0]!;
 
     const enlaces: { nombre: string; url: string }[] = [];
     for (const path of archivos) {

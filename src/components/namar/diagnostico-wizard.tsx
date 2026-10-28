@@ -450,7 +450,7 @@ export function DiagnosticoWizard() {
       });
       const newCodigo = res.codigo;
 
-      if (newCodigo && files.length > 0) {
+      if (newCodigo && res.token && files.length > 0) {
         const paths: string[] = [];
         for (const [index, file] of files.entries()) {
           const path = `${newCodigo}/${index}-${file.name}`;
@@ -460,7 +460,7 @@ export function DiagnosticoWizard() {
           if (!error) paths.push(path);
         }
         // Siempre se registra (aunque falle la subida) para que salga el aviso interno.
-        await attachDiagnosticoArchivos({ data: { codigo: newCodigo, archivos: paths } });
+        await attachDiagnosticoArchivos({ data: { codigo: newCodigo, token: res.token, archivos: paths } });
       }
 
       try {

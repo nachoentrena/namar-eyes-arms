@@ -19,3 +19,15 @@ export async function verificarEnlace(path: string, exp: string, sig: string): P
   if (!path || !/^\d+$/.test(exp) || Number(exp) < Date.now() / 1000) return false;
   return (await hmac(`${path}|${exp}`)) === sig;
 }
+
+// Token que solo recibe quien acaba de enviar el diagnóstico (válido 2 h).
+export async function crearTokenAdjuntos(codigo: string): Promise<string> {
+  const exp = Math.floor(Date.now() / 1000) + 2 * 3600;
+  return `${exp}.${await hmac(`adjuntos|${codigo}|${exp}`)}`;
+}
+
+export async function verificarTokenAdjuntos(codigo: string, token: string): Promise<boolean> {
+  const [exp, sig] = token.split(".");
+  if (!exp || !sig || !/^\d+$/.test(exp) || Number(exp) < Date.now() / 1000) return false;
+  return (await hmac(`adjuntos|${codigo}|${exp}`)) === sig;
+}

@@ -223,21 +223,37 @@ export const submitDiagnostico = createServerFn({ method: "POST" })
     }
     await sendConfirmacionCliente({ id: row.id as string, nombre, email });
 
-    return { ok: true, codigo: row.codigo as string };
+    let token: string | null = null;
+    if (conArchivos) {
+      const { crearTokenAdjuntos } = await import("./archivo-link.server");
+      token = await crearTokenAdjuntos(row.codigo as string);
+    }
+    return { ok: true, codigo: row.codigo as string, token };
   });
 
 const attachSchema = z.object({
   codigo: z.string().regex(/^NAM-\d{4}-\d{4}$/),
-  archivos: z.array(z.string().min(1)).max(5),
+  token: z.string().min(1).max(200),
+  archivos: z.array(z.string().min(1).max(300)).max(5),
 });
 
 export const attachDiagnosticoArchivos = createServerFn({ method: "POST" })
   .inputValidator((input) => attachSchema.parse(input))
   .handler(async ({ data }) => {
+    const { verificarTokenAdjuntos } = await import("./archivo-link.server");
+    if (!(await verificarTokenAdjuntos(data.codigo, data.token))) {
+      throw new Error("No autorizado");
+    }
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     // Solo se pueden adjuntar archivos una vez: si el diagnóstico ya tiene
     // archivos registrados, no se permite sobrescribirlos.
-    const archivos = data.archivos.filter((p) => p.startsWith(`${data.codigo}/`));
+    const nombres = data.archivos
+      .filter((p) => p.startsWith(`${data.codigo}/`) && !p.slice(data.codigo.length + 1).includes("/"))
+      .map((p) => p.slice(data.codigo.length + 1));
+    // Solo rutas de archivos que existen realmente en la carpeta del envío.
+    const { data: listado } = await supabaseAdmin.storage.from("diagnosticos-archivos").list(data.codigo, { limit: 20 });
+    const existentes = new Set((listado ?? []).map((f) => f.name));
+    const archivos = nombres.filter((n) => existentes.has(n)).map((n) => `${data.codigo}/${n}`);
     const { data: updated, error } = await supabaseAdmin
       .from("diagnosticos")
       .update({ archivos })

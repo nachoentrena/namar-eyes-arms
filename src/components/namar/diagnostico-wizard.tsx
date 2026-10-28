@@ -28,14 +28,14 @@ const inputCls =
   "w-full border border-input bg-background px-4 py-3 text-sm text-foreground outline-none placeholder:text-muted-foreground/50 focus:border-navy focus:ring-1 focus:ring-gold";
 
 const STEPS = [
-  "Sus datos",
-  "Su experiencia",
+  "Tus datos",
+  "Tu experiencia",
   "El producto",
   "Requisitos especiales",
   "Proveedor",
   "Cantidad y plazos",
   "Marca y logística",
-  "Su proyecto con NAMAR",
+  "Tu proyecto con NAMAR",
 ];
 
 function Field({
@@ -342,79 +342,79 @@ export function DiagnosticoWizard() {
     };
 
     if (target === 1) {
-      req("nombre", "Por favor indíquenos su nombre.");
-      if (!emailRe.test(get("email"))) e["email"] = "Por favor indíquenos un correo válido.";
+      req("nombre", "Por favor indícanos su nombre.");
+      if (!emailRe.test(get("email"))) e["email"] = "Por favor indícanos un correo válido.";
       if (get("whatsapp").replace(/\D/g, "").length < 6)
-        e["whatsapp"] = "Por favor indíquenos un número de WhatsApp válido.";
-      req("pais", "Por favor seleccione el país de importación.");
-      if (!get("ciudad").trim()) e["ciudad"] = "Por favor indíquenos la ciudad donde recibirá la mercancía.";
-      req("perfil", "Por favor seleccione una opción.");
+        e["whatsapp"] = "Por favor indícanos un número de WhatsApp válido.";
+      req("pais", "Por favor selecciona el país de importación.");
+      if (!get("ciudad").trim()) e["ciudad"] = "Por favor indícanos la ciudad donde recibirás la mercancía.";
+      req("perfil", "Por favor selecciona una opción.");
       if (get("perfil") && get("perfil") !== "Emprendedor, aún sin empresa") {
         if (!get("empresa_cargo").trim())
-          e["empresa_cargo"] = "Por favor indíquenos el nombre de la empresa y su cargo.";
+          e["empresa_cargo"] = "Por favor indícanos el nombre de la empresa y tu cargo.";
       }
     }
     if (target === 2) {
-      req("experiencia", "Por favor seleccione una opción.");
-      req("habilitado", "Por favor seleccione una opción.");
-      req("agencia", "Por favor seleccione una opción.");
-      if (get("agencia") === "Sí") req("coordinar_agencia", "Por favor seleccione una opción.");
+      req("experiencia", "Por favor selecciona una opción.");
+      req("habilitado", "Por favor selecciona una opción.");
+      req("agencia", "Por favor selecciona una opción.");
+      if (get("agencia") === "Sí") req("coordinar_agencia", "Por favor selecciona una opción.");
     }
     if (target === 3) {
-      if (!get("producto").trim()) e["producto"] = "Por favor indíquenos el nombre del producto.";
+      if (!get("producto").trim()) e["producto"] = "Por favor indícanos el nombre del producto.";
       if (!get("producto_desc").trim()) e["producto_desc"] = "Por favor descríbanos el producto.";
-      req("categoria", "Por favor seleccione una categoría.");
+      req("categoria", "Por favor selecciona una categoría.");
       if (getArr("materiales").length === 0)
-        e["materiales"] = "Por favor seleccione al menos un material.";
+        e["materiales"] = "Por favor selecciona al menos un material.";
     }
     if (target === 4) {
       if (getArr("requisitos").length === 0)
-        e["requisitos"] = "Por favor seleccione una opción (si no aplica ninguna, marque “Ninguna”).";
+        e["requisitos"] = "Por favor selecciona una opción (si no aplica ninguna, marca “Ninguna”).";
       const r = getArr("requisitos");
-      if (r.includes("Funciona con electricidad")) req("voltaje", "Por favor seleccione el voltaje.");
+      if (r.includes("Funciona con electricidad")) req("voltaje", "Por favor selecciona el voltaje.");
       if (r.includes("Tiene batería")) {
-        req("tipo_bateria", "Por favor seleccione el tipo de batería.");
-        req("viaje_bateria", "Por favor indíquenos cómo viaja la batería.");
+        req("tipo_bateria", "Por favor selecciona el tipo de batería.");
+        req("viaje_bateria", "Por favor indícanos cómo viaja la batería.");
       }
       if (r.some((x) => CERTIFICADOS_COND.includes(x)) && getArr("certificados").length === 0) {
-        e["certificados"] = "Por favor seleccione al menos una opción.";
+        e["certificados"] = "Por favor selecciona al menos una opción.";
       }
     }
     if (target === 5) {
-      req("proveedor", "Por favor seleccione una opción.");
+      req("proveedor", "Por favor selecciona una opción.");
       if (get("proveedor") && get("proveedor") !== "No, necesito que NAMAR lo busque") {
-        req("tipo_proveedor", "Por favor seleccione una opción.");
-        req("pagado", "Por favor seleccione una opción.");
+        req("tipo_proveedor", "Por favor selecciona una opción.");
+        req("pagado", "Por favor selecciona una opción.");
       }
     }
     if (target === 6) {
       const cantidad = Number(get("cantidad"));
       if (!get("cantidad") || Number.isNaN(cantidad) || cantidad <= 0)
-        e["cantidad"] = "Por favor indíquenos una cantidad válida.";
-      req("unidad", "Por favor seleccione la unidad.");
-      req("presupuesto", "Por favor seleccione un presupuesto.");
-      req("disponibilidad", "Por favor seleccione una opción.");
-      req("compras12", "Por favor seleccione una opción.");
-      req("cuando", "Por favor seleccione una opción.");
+        e["cantidad"] = "Por favor indícanos una cantidad válida.";
+      req("unidad", "Por favor selecciona la unidad.");
+      req("presupuesto", "Por favor selecciona un presupuesto.");
+      req("disponibilidad", "Por favor selecciona una opción.");
+      req("compras12", "Por favor selecciona una opción.");
+      req("cuando", "Por favor selecciona una opción.");
       if (getArr("venta").length === 0)
-        e["venta"] = "Por favor seleccione al menos una opción.";
+        e["venta"] = "Por favor selecciona al menos una opción.";
     }
     if (target === 7) {
-      req("marca", "Por favor seleccione una opción.");
+      req("marca", "Por favor selecciona una opción.");
       if (get("marca") === "Con mi marca (logo y packaging)" || get("marca") === "Personalizado o diseño propio") {
         if (getArr("personalizar").length === 0)
-          e["personalizar"] = "Por favor seleccione al menos una opción.";
+          e["personalizar"] = "Por favor selecciona al menos una opción.";
       }
-      req("incoterm", "Por favor seleccione una opción.");
-      req("transporte", "Por favor seleccione una opción.");
+      req("incoterm", "Por favor selecciona una opción.");
+      req("transporte", "Por favor selecciona una opción.");
     }
     if (target === 8) {
-      req("etapa", "Por favor seleccione la etapa de su proyecto.");
+      req("etapa", "Por favor selecciona la etapa de tu proyecto.");
       if (getArr("servicios").length === 0)
-        e["servicios"] = "Por favor seleccione al menos una opción.";
-      req("como_conocio", "Por favor seleccione una opción.");
-      if (!get("acepta1")) e["acepta1"] = "Debe marcar esta casilla para enviar el diagnóstico.";
-      if (!get("acepta2")) e["acepta2"] = "Debe autorizar el tratamiento de sus datos.";
+        e["servicios"] = "Por favor selecciona al menos una opción.";
+      req("como_conocio", "Por favor selecciona una opción.");
+      if (!get("acepta1")) e["acepta1"] = "Debes marcar esta casilla para enviar el diagnóstico.";
+      if (!get("acepta2")) e["acepta2"] = "Debes autorizar el tratamiento de tus datos.";
     }
 
     setErrors(e);
@@ -487,7 +487,7 @@ export function DiagnosticoWizard() {
           Diagnóstico enviado
         </p>
         <h2 className="mt-3 font-serif text-3xl text-navy sm:text-4xl">
-          Gracias. Hemos recibido su diagnóstico
+          Gracias. Hemos recibido tu diagnóstico
           {codigo ? (
             <>
               {" "}
@@ -497,7 +497,7 @@ export function DiagnosticoWizard() {
           .
         </h2>
         <p className="mt-4 text-base text-muted-foreground">
-          El equipo de NAMAR GLOBAL revisará su proyecto y le contactará en 24h laborables con
+          El equipo de NAMAR Global revisará tu proyecto y te contactará en 24h laborables con
           los siguientes pasos.
         </p>
         <p className="mt-3 text-sm text-muted-foreground">
@@ -505,7 +505,7 @@ export function DiagnosticoWizard() {
           impuestos, plazos, certificaciones y el despacho aduanero dependen de autoridades,
           proveedores y terceros especialistas, y solo pueden confirmarse tras un análisis
           detallado. NAMAR no actúa como agencia de aduanas: coordinamos con agencias y
-          representantes aduaneros colaboradores en su país.
+          representantes aduaneros colaboradores en tu país.
         </p>
         <a
           href={whatsappHref(`Hola, acabo de enviar el diagnóstico ${codigo ?? ""}`.trim())}
@@ -557,7 +557,7 @@ export function DiagnosticoWizard() {
                   className={inputCls}
                   value={get("nombre")}
                   onChange={(e) => set("nombre", e.target.value)}
-                  placeholder="Su nombre"
+                  placeholder="Tu nombre"
                 />
               </Field>
               <Field label="Correo electrónico" required error={errors["email"]}>
@@ -566,7 +566,7 @@ export function DiagnosticoWizard() {
                   className={inputCls}
                   value={get("email")}
                   onChange={(e) => set("email", e.target.value)}
-                  placeholder="usted@empresa.com"
+                  placeholder="tu@empresa.com"
                 />
               </Field>
             </div>
@@ -575,7 +575,7 @@ export function DiagnosticoWizard() {
                 label="WhatsApp / Teléfono"
                 required
                 error={errors["whatsapp"]}
-                hint="Con su prefijo, por ejemplo +57 o +34"
+                hint="Con el prefijo, por ejemplo +57 o +34"
               >
                 <input
                   type="tel"
@@ -600,7 +600,7 @@ export function DiagnosticoWizard() {
               </Field>
             </div>
             <Field
-              label="Ciudad donde recibirá la mercancía"
+              label="Ciudad donde recibirás la mercancía"
               required
               error={errors["ciudad"]}
             >
@@ -608,7 +608,7 @@ export function DiagnosticoWizard() {
                 className={inputCls}
                 value={get("ciudad")}
                 onChange={(e) => set("ciudad", e.target.value)}
-                placeholder="Su ciudad"
+                placeholder="Tu ciudad"
               />
             </Field>
             <Field label="¿Cómo va a importar?" required error={errors["perfil"]}>
@@ -630,7 +630,7 @@ export function DiagnosticoWizard() {
             </Field>
             {get("perfil") && get("perfil") !== "Emprendedor, aún sin empresa" ? (
               <Field
-                label="Nombre de la empresa y su cargo"
+                label="Nombre de la empresa y tu cargo"
                 required
                 error={errors["empresa_cargo"]}
               >
@@ -638,7 +638,7 @@ export function DiagnosticoWizard() {
                   className={inputCls}
                   value={get("empresa_cargo")}
                   onChange={(e) => set("empresa_cargo", e.target.value)}
-                  placeholder="Nombre de la empresa y su cargo"
+                  placeholder="Nombre de la empresa y tu cargo"
                 />
               </Field>
             ) : null}
@@ -659,7 +659,7 @@ export function DiagnosticoWizard() {
         {/* ─── PASO 2 ─────────────────────────────────────────── */}
         {step === 2 ? (
           <div className="space-y-8">
-            <Field label="¿Ha importado anteriormente?" required error={errors["experiencia"]}>
+            <Field label="¿Has importado anteriormente?" required error={errors["experiencia"]}>
               <Options
                 options={[
                   "Nunca he importado",
@@ -672,7 +672,7 @@ export function DiagnosticoWizard() {
               />
             </Field>
             <Field
-              label="¿Está habilitado como importador en su país?"
+              label="¿Estás habilitado como importador en tu país?"
               required
               error={errors["habilitado"]}
               hint="Colombia: RUT como importador · España/UE: número EORI"
@@ -696,7 +696,7 @@ export function DiagnosticoWizard() {
             </Field>
             {get("agencia") === "Sí" ? (
               <Field
-                label="¿Quiere que NAMAR coordine directamente con su agencia?"
+                label="¿Quieres que NAMAR coordine directamente con tu agencia?"
                 required
                 error={errors["coordinar_agencia"]}
               >
@@ -713,7 +713,7 @@ export function DiagnosticoWizard() {
             ) : get("agencia") ? (
               <p className="border border-border bg-background px-4 py-3 text-sm text-muted-foreground">
                 NAMAR no es una agencia de aduanas. Si lo necesita, coordinamos con agencias o
-                representantes aduaneros colaboradores en su país, que actúan con su propia
+                representantes aduaneros colaboradores en tu país, que actúan con su propia
                 habilitación y tarifa.
               </p>
             ) : null}
@@ -809,7 +809,7 @@ export function DiagnosticoWizard() {
               <label className="flex cursor-pointer flex-col items-center justify-center gap-2 border border-dashed border-border bg-background px-6 py-8 text-center transition-colors hover:border-navy">
                 <Upload className="size-5 text-navy" />
                 <span className="text-sm font-medium text-navy">
-                  Haga clic o arrastre sus archivos aquí
+                  Haz clic o arrastra tus archivos aquí
                 </span>
                 <span className="text-xs text-muted-foreground">
                   {files.length > 0 ? `${files.length} de ${MAX_FILES} archivos añadidos` : "Opcional"}
@@ -855,7 +855,7 @@ export function DiagnosticoWizard() {
               revisaremos con más detalle.
             </p>
             <Field
-              label="¿Alguna de estas situaciones aplica a su producto?"
+              label="¿Alguna de estas situaciones aplica a tu producto?"
               required
               error={errors["requisitos"]}
               hint="Seleccione todas las que correspondan. Si marca “Ninguna” se desmarcan las demás, y viceversa."
@@ -953,7 +953,7 @@ export function DiagnosticoWizard() {
                     className={inputCls}
                     value={get("uso_especial")}
                     onChange={(e) => set("uso_especial", e.target.value)}
-                    placeholder="Cuéntenos el uso del producto"
+                    placeholder="Cuéntanos el uso del producto"
                   />
                 </Field>
               </>
@@ -1289,7 +1289,7 @@ export function DiagnosticoWizard() {
               />
             </Field>
             <Field
-              label="Cuéntenos qué espera que NAMAR haga por usted"
+              label="Cuéntanos qué esperas que NAMAR haga por ti"
               error={errors["expectativas"]}
               hint="Opcional"
             >
@@ -1298,7 +1298,7 @@ export function DiagnosticoWizard() {
                 className={inputCls}
                 value={get("expectativas")}
                 onChange={(e) => set("expectativas", e.target.value)}
-                placeholder="Sus expectativas para este proyecto"
+                placeholder="Tus expectativas para este proyecto"
               />
             </Field>
             <Field label="¿Cómo conoció NAMAR?" required error={errors["como_conocio"]}>

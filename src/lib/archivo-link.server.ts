@@ -2,7 +2,7 @@
 const enc = new TextEncoder();
 
 async function hmac(data: string): Promise<string> {
-  const secret = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
+  const secret = process.env['SUPABASE_SERVICE_ROLE_KEY'] ?? "";
   const key = await crypto.subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
   const sig = await crypto.subtle.sign("HMAC", key, enc.encode(data));
   return btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");

@@ -22,7 +22,7 @@ import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 const title = "Importar desde China a España y Colombia | NAMAR Global";
 const description =
-  "Tu equipo en China: proveedores verificados, negociación, control de calidad, logística y aduanas. Simulamos los costes de tu importación en 24h.";
+  "Tu equipo en China: proveedores verificados, negociación, control de calidad y coordinación logística y aduanera. Simulamos los costes de tu importación en 24h.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

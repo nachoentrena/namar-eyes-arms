@@ -33,6 +33,14 @@ const resources = {
         prefer: "¿Prefieres hablar directamente?",
         chat: "Escríbenos por WhatsApp",
         promise: "Respondemos con una valoración clara, sin compromiso.",
+        bookTitle: "¿Prefieres hablarlo por videollamada?",
+        bookText:
+          "Reserva 30 minutos gratis con nuestro equipo. Revisamos tu proyecto de importación y te decimos cómo avanzar. Sin compromiso. Los horarios se muestran en tu hora local.",
+        bookNow: "Agendar una llamada",
+        bookingTitle: "Agendar una llamada",
+        bookingText:
+          "Elige día y hora para una videollamada gratuita de 30 minutos con Nacho y Ana María.",
+        bookingCta: "Ver horarios disponibles",
         form: {
           name: "Nombre",
           company: "Empresa / Particular",
@@ -356,6 +364,14 @@ const resources = {
         prefer: "Do you prefer to talk directly?",
         chat: "Chat on WhatsApp",
         promise: "We reply with a clear assessment, no strings attached.",
+        bookTitle: "Would you rather talk it over on a video call?",
+        bookText:
+          "Book 30 free minutes with our team. We review your import project and tell you how to move forward. No commitment. Times are shown in your local time zone.",
+        bookNow: "Book a call",
+        bookingTitle: "Book a call",
+        bookingText:
+          "Pick a day and time for a free 30-minute video call with Nacho and Ana María.",
+        bookingCta: "See available times",
         form: {
           name: "Name",
           company: "Company / Individual",

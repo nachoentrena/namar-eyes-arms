@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site-config";
 
 const title = "Diagnóstico de viabilidad de importación | NAMAR Global";
 const description =
-  "Cuéntenos su proyecto y el equipo de NAMAR GLOBAL le enviará una evaluación preliminar de viabilidad de su importación desde China en 24h laborables.";
+  "Cuéntanos tu proyecto y el equipo de NAMAR Global te enviará una evaluación preliminar de viabilidad de tu importación desde China en 24h laborables.";
 
 export const Route = createFileRoute("/diagnostico")({
   head: () => ({

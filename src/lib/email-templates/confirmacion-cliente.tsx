@@ -22,7 +22,7 @@ const ConfirmacionCliente = ({ nombre }: Props) => (
         </Section>
         <Section style={card}>
           <Text style={text}>Hola{cap(nombre) ? `, ${cap(nombre)}` : ''}:</Text>
-          <Text style={text}>Hemos recibido tu solicitud. La revisaremos y te responderemos personalmente lo antes posible.</Text>
+          <Text style={text}>Hemos recibido tu solicitud. La revisaremos y te responderemos personalmente en un plazo de 24 horas laborables.</Text>
           <Text style={text}>Si quieres añadir fotos, fichas técnicas o enlaces del producto, responde a este email.</Text>
           <Text style={text}>
             Un saludo,

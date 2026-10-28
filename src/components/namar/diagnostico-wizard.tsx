@@ -446,7 +446,7 @@ export function DiagnosticoWizard() {
     setServerError(null);
     try {
       const res = await submitDiagnostico({
-        data: { answers: { ...answers, empresa_web: honeypot }, honeypot },
+        data: { answers: { ...answers, empresa_web: honeypot }, honeypot, conArchivos: files.length > 0 },
       });
       const newCodigo = res.codigo;
 
@@ -459,9 +459,8 @@ export function DiagnosticoWizard() {
             .upload(path, file);
           if (!error) paths.push(path);
         }
-        if (paths.length > 0) {
-          await attachDiagnosticoArchivos({ data: { codigo: newCodigo, archivos: paths } });
-        }
+        // Siempre se registra (aunque falle la subida) para que salga el aviso interno.
+        await attachDiagnosticoArchivos({ data: { codigo: newCodigo, archivos: paths } });
       }
 
       try {

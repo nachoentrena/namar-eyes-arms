@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Calculator, Check, Linkedin, MapPin, Route as RouteIcon, UserRound } from "lucide-react";
+import { ArrowRight, Calculator, CalendarDays, Check, Linkedin, MapPin, Route as RouteIcon, UserRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import heroShip from "@/assets/namar-hero-barco.webp.asset.json";
@@ -546,6 +546,29 @@ function Index() {
           </div>
         </section>
 
+        {/* ─── VIDEOLLAMADA (bloque corto) ────────────────────────── */}
+        <section className="bg-background px-5 pb-4 pt-12 sm:px-6 sm:pb-6 sm:pt-16">
+          <div className="mx-auto max-w-7xl">
+            <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-4 rounded-[24px] border border-border bg-background p-6 text-center sm:p-8">
+              <h2 className="font-serif text-[22px] leading-[1.2] sm:text-[28px]">
+                {t("contact.bookTitle")}
+              </h2>
+              <p className="max-w-[62ch] text-[15px] leading-[1.65] text-muted-foreground sm:text-[17px]">
+                {t("contact.bookText")}
+              </p>
+              <a
+                href={siteConfig.bookingHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${secondaryBtn} w-full sm:w-auto`}
+              >
+                <CalendarDays className="size-4" aria-hidden />
+                {t("contact.bookNow")}
+              </a>
+            </Reveal>
+          </div>
+        </section>
+
         {/* ─── CONTACTO (CTA final) ─────────────────────────────── */}
         <section id="contacto" className={`border-t border-navy bg-navy text-navy-foreground ${section}`}>
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2 lg:gap-16">
@@ -581,6 +604,15 @@ function Index() {
                   className="mt-3 inline-flex items-center gap-3 text-base font-semibold transition-colors hover:text-gold sm:text-lg"
                 >
                   {siteConfig.email}
+                  <ArrowRight className="size-5" />
+                </a>
+                <a
+                  href={siteConfig.bookingHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-3 text-base font-semibold transition-colors hover:text-gold sm:text-lg"
+                >
+                  {t("contact.bookNow")}
                   <ArrowRight className="size-5" />
                 </a>
               </div>

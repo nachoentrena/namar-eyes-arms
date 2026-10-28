@@ -12,6 +12,8 @@ export const siteConfig = {
   costCalculatorHref: "/diagnostico",
   costCalculatorExternal: false,
   web3formsAccessKey: "14b22182-6dd9-4808-a579-71d8adbbc4ed",
+  /* Zoho Bookings: reserva de videollamada gratuita de 30 minutos */
+  bookingHref: "https://zbooking.us/R0iOz",
 } as const;
 
 export function whatsappHref(message: string) {

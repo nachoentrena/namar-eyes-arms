@@ -1,7 +1,8 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Check, Copy, ExternalLink, Mail, X } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, Copy, ExternalLink, Mail, X } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/lib/site-config";
 
 const EMAIL = "info@namar-global.com";
 const MAILTO_HREF = "mailto:info@namar-global.com?subject=Consulta%20desde%20la%20web%20NAMAR%20Global";
@@ -86,6 +87,26 @@ export function ContactDialog({ children }: { children: ReactNode }) {
                   <ExternalLink className="size-3.5" aria-hidden="true" />
                 </a>
               </div>
+            </div>
+            <div className="rounded-[16px] border border-input p-5 transition-colors hover:bg-secondary">
+              <div className="flex items-start gap-4">
+                <CalendarDays className="size-7 shrink-0" aria-hidden="true" />
+                <span className="min-w-0">
+                  <span className="block font-semibold">Agendar una llamada</span>
+                  <span className="mt-1 block text-sm leading-relaxed">
+                    Elige día y hora para una videollamada gratuita de 30 minutos con Nacho y Ana María.
+                  </span>
+                </span>
+              </div>
+              <a
+                href={siteConfig.bookingHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border-[1.5px] border-navy px-6 text-[15px] font-semibold text-navy transition-colors hover:bg-navy hover:text-navy-foreground sm:w-auto"
+              >
+                Ver horarios disponibles
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </a>
             </div>
           </div>
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">

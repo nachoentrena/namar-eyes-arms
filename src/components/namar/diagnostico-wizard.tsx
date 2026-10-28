@@ -342,7 +342,7 @@ export function DiagnosticoWizard() {
     };
 
     if (target === 1) {
-      req("nombre", "Por favor indícanos su nombre.");
+      req("nombre", "Por favor indícanos tu nombre.");
       if (!emailRe.test(get("email"))) e["email"] = "Por favor indícanos un correo válido.";
       if (get("whatsapp").replace(/\D/g, "").length < 6)
         e["whatsapp"] = "Por favor indícanos un número de WhatsApp válido.";

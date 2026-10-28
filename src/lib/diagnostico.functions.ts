@@ -8,6 +8,7 @@ const answersSchema = z.record(z.string(), z.union([z.string(), z.array(z.string
 const submitSchema = z.object({
   answers: answersSchema,
   honeypot: z.string().optional().default(""),
+  conArchivos: z.boolean().optional().default(false),
 });
 
 function str(answers: Record<string, Value>, key: string): string {
@@ -128,14 +129,14 @@ function classify(answers: Record<string, Value>, points: number): string {
 export const submitDiagnostico = createServerFn({ method: "POST" })
   .inputValidator((input) => submitSchema.parse(input))
   .handler(async ({ data }) => {
-    const { answers, honeypot } = data;
+    const { answers, honeypot, conArchivos } = data;
 
     // Antispam: honeypot relleno → no se guarda nada.
     if (honeypot.trim().length > 0) {
       return { ok: true, codigo: null as string | null };
     }
 
-    const { cleanText, checkRateLimit, requestPage, sendFormEmails } = await import("./forms.server");
+    const { cleanText, checkRateLimit, requestPage, sendAvisoInterno, sendConfirmacionCliente } = await import("./forms.server");
     if (!(await checkRateLimit("diagnostico"))) {
       throw new Error("Demasiados envíos. Inténtelo más tarde.");
     }
@@ -207,27 +208,20 @@ export const submitDiagnostico = createServerFn({ method: "POST" })
       throw new Error("No se pudo guardar el diagnóstico");
     }
 
-    const humanize = (k: string) => (k.charAt(0).toUpperCase() + k.slice(1)).replace(/_/g, " ");
-    const filas = [
-      { campo: "Referencia", valor: row.codigo as string },
-      ...Object.entries(record).map(([k, v]) => ({
-        campo: humanize(k),
-        valor: Array.isArray(v) ? v.join(", ") : v == null ? "" : String(v),
-      })),
-      { campo: "Puntuación", valor: String(points) },
-      { campo: "Clasificación", valor: clasificacion },
-      { campo: "Alerta", valor: alerta ?? "" },
-      { campo: "Paquete sugerido", valor: paquete },
-    ];
-    await sendFormEmails({
-      id: row.id as string,
-      tipo: "diagnostico",
-      nombre,
-      email,
-      producto,
-      filas,
-      pagina: requestPage(),
-    });
+    // Con archivos, el aviso interno se envía al registrarlos (para incluir enlaces).
+    if (!conArchivos) {
+      const { buildDiagnosticoGrupos } = await import("./aviso-format");
+      await sendAvisoInterno({
+        id: row.id as string,
+        tipo: "diagnostico",
+        nombre,
+        email,
+        producto,
+        grupos: buildDiagnosticoGrupos(record, { codigo: row.codigo as string, puntuacion: points, clasificacion, alerta, paquete }),
+        pagina: requestPage(),
+      });
+    }
+    await sendConfirmacionCliente({ id: row.id as string, nombre, email });
 
     return { ok: true, codigo: row.codigo as string };
   });
@@ -243,17 +237,48 @@ export const attachDiagnosticoArchivos = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     // Solo se pueden adjuntar archivos una vez: si el diagnóstico ya tiene
     // archivos registrados, no se permite sobrescribirlos.
+    const archivos = data.archivos.filter((p) => p.startsWith(`${data.codigo}/`));
     const { data: updated, error } = await supabaseAdmin
       .from("diagnosticos")
-      .update({ archivos: data.archivos })
+      .update({ archivos })
       .eq("codigo", data.codigo)
       .eq("archivos", "[]")
-      .select("codigo");
+      .select("id, codigo, nombre, email, producto, respuestas, puntuacion, clasificacion, alerta, paquete_sugerido");
 
     if (error || !updated || updated.length === 0) {
       console.error("Error adjuntando archivos", error);
       throw new Error("No se pudieron registrar los archivos");
     }
+    const row = updated[0]!;
+
+    const enlaces: { nombre: string; url: string }[] = [];
+    for (const path of archivos) {
+      const { data: signed } = await supabaseAdmin.storage
+        .from("diagnosticos-archivos")
+        .createSignedUrl(path, 60 * 60 * 24 * 30);
+      if (signed?.signedUrl) {
+        enlaces.push({ nombre: path.split("/").pop()!.replace(/^\d+-/, ""), url: signed.signedUrl });
+      }
+    }
+
+    const { sendAvisoInterno, requestPage } = await import("./forms.server");
+    const { buildDiagnosticoGrupos } = await import("./aviso-format");
+    await sendAvisoInterno({
+      id: row.id as string,
+      tipo: "diagnostico",
+      nombre: row.nombre as string,
+      email: row.email as string,
+      producto: (row.producto as string) ?? "",
+      grupos: buildDiagnosticoGrupos((row.respuestas ?? {}) as Record<string, unknown>, {
+        codigo: row.codigo as string,
+        puntuacion: (row.puntuacion as number) ?? 0,
+        clasificacion: (row.clasificacion as string) ?? "",
+        alerta: (row.alerta as string | null) ?? null,
+        paquete: (row.paquete_sugerido as string) ?? "",
+      }),
+      archivos: enlaces,
+      pagina: requestPage(),
+    });
 
     return { ok: true };
   });

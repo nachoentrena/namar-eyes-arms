@@ -31,22 +31,35 @@ export async function checkRateLimit(formulario: string): Promise<boolean> {
   return true;
 }
 
-/** Sends internal notice + client confirmation. Never throws. */
-export async function sendFormEmails(opts: {
+type Grupo = { titulo: string; filas: { campo: string; valor: string }[] };
+
+/** Sends the internal notice. Never throws. */
+export async function sendAvisoInterno(opts: {
   id: string;
   tipo: "diagnostico" | "contacto";
   nombre: string;
   email: string;
   producto?: string;
-  filas: { campo: string; valor: string }[];
+  grupos: Grupo[];
+  archivos?: { nombre: string; url: string }[];
   pagina: string;
 }) {
   const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
-  const fecha = new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" }) + " (hora de Madrid)";
-  const filas = opts.filas.filter((f) => f.valor.trim().length > 0);
+  const { fechaChina } = await import("./aviso-format");
+  const grupos = opts.grupos
+    .map((g) => ({ ...g, filas: g.filas.filter((f) => f.valor.trim().length > 0) }))
+    .filter((g) => g.filas.length > 0);
   try {
     await sendTemplateEmail("aviso-interno", "info@namar-global.com", {
-      templateData: { tipo: opts.tipo, nombre: opts.nombre, producto: opts.producto, filas, fecha, pagina: opts.pagina },
+      templateData: {
+        tipo: opts.tipo,
+        nombre: opts.nombre,
+        producto: opts.producto,
+        grupos,
+        archivos: opts.archivos ?? [],
+        fecha: fechaChina(),
+        pagina: opts.pagina,
+      },
       idempotencyKey: `aviso-interno-${opts.id}`,
       replyTo: opts.email,
       fromName: "NAMAR Global Web",
@@ -55,6 +68,11 @@ export async function sendFormEmails(opts: {
   } catch (error) {
     console.error("Error enviando aviso interno", error);
   }
+}
+
+/** Sends the client confirmation. Never throws. */
+export async function sendConfirmacionCliente(opts: { id: string; nombre: string; email: string }) {
+  const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
   try {
     await sendTemplateEmail("confirmacion-cliente", opts.email, {
       templateData: { nombre: opts.nombre },

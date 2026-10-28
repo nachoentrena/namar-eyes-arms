@@ -20,7 +20,7 @@ export const submitContacto = createServerFn({ method: "POST" })
   .inputValidator((input) => contactoSchema.parse(input))
   .handler(async ({ data }) => {
     if (data.honeypot.trim()) return { ok: true };
-    const { cleanText, checkRateLimit, requestPage, sendFormEmails } = await import("./forms.server");
+    const { cleanText, checkRateLimit, requestPage, sendAvisoInterno, sendConfirmacionCliente } = await import("./forms.server");
     if (!(await checkRateLimit("contacto"))) {
       throw new Error("Demasiados envíos. Inténtalo más tarde.");
     }
@@ -52,23 +52,34 @@ export const submitContacto = createServerFn({ method: "POST" })
       console.error("Error guardando contacto", error);
       throw new Error("No se pudo guardar el contacto");
     }
-    await sendFormEmails({
+    await sendAvisoInterno({
       id: row.id,
       tipo: "contacto",
       nombre: c.nombre,
       email: c.email,
       pagina,
-      filas: [
-        { campo: "Nombre", valor: c.nombre },
-        { campo: "Email", valor: c.email },
-        { campo: "Empresa / particular", valor: c.empresa },
-        { campo: "WhatsApp / teléfono", valor: c.whatsapp },
-        { campo: "País de destino", valor: c.pais_destino },
-        { campo: "Producto", valor: c.producto },
-        { campo: "Cantidad aproximada", valor: c.cantidad_aproximada },
-        { campo: "Mensaje", valor: c.mensaje },
-        { campo: "Acepta privacidad", valor: "Sí" },
+      grupos: [
+        {
+          titulo: "Datos de contacto",
+          filas: [
+            { campo: "Nombre", valor: c.nombre },
+            { campo: "Email", valor: c.email },
+            { campo: "Empresa / particular", valor: c.empresa },
+            { campo: "WhatsApp / teléfono", valor: c.whatsapp },
+            { campo: "País de destino", valor: c.pais_destino },
+            { campo: "Acepta la política de privacidad", valor: "Sí" },
+          ],
+        },
+        {
+          titulo: "Producto",
+          filas: [
+            { campo: "Producto", valor: c.producto },
+            { campo: "Cantidad aproximada", valor: c.cantidad_aproximada },
+            { campo: "Mensaje", valor: c.mensaje },
+          ],
+        },
       ],
     });
+    await sendConfirmacionCliente({ id: row.id, nombre: c.nombre, email: c.email });
     return { ok: true };
   });

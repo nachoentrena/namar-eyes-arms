@@ -86,8 +86,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const primaryBtn =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-navy px-7 py-3 text-[15px] font-semibold text-navy-foreground transition-colors whitespace-nowrap hover:bg-gold hover:text-gold-foreground sm:px-8";
 const secondaryBtn =
   "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full border-[1.5px] border-navy px-7 py-3 text-[15px] font-semibold text-navy transition-colors hover:bg-navy hover:text-navy-foreground sm:px-8";
 const goldBtn =

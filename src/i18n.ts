@@ -50,7 +50,7 @@ const resources = {
           product: "¿Qué quieres importar?",
           volume: "Cantidad aproximada",
           message: "Mensaje",
-          submit: "Enviar y analizar mi importación",
+          submit: "Enviar y pedir mi diagnóstico",
           namePlaceholder: "Tu nombre",
           companyPlaceholder: "Nombre de tu empresa o proyecto",
           emailPlaceholder: "email@empresa.com",
@@ -71,7 +71,7 @@ const resources = {
         heroSubtitle: "Tu tranquilidad también.",
         heroDescription:
           "NAMAR Global representa tus intereses directamente sobre el terreno. Encontramos proveedores, negociamos, verificamos, controlamos y coordinamos tu importación hasta España o Colombia.",
-        heroPrimaryCta: "Analiza tu importación",
+        heroPrimaryCta: "Diagnóstico gratuito",
         heroSecondaryCta: "Cómo trabajamos",
         heroMicro: "Simulamos los costes de tu importación en 24h laborables.",
         heroTrust: [
@@ -167,7 +167,7 @@ const resources = {
           "Despacho aduanero y documentación",
           "Entrega final hasta tu almacén",
         ],
-        costCta: "Calcula tu coste en 24h",
+        costCta: "Diagnóstico gratuito",
         costNote: "Recibes un informe claro con el coste estimado puesto en destino.",
         costFree: "Sin coste",
         costDisclaimer:
@@ -176,7 +176,7 @@ const resources = {
 
         processTitle: "Así convertimos una importación compleja en un proceso controlado.",
         processTitleEm: "proceso controlado.",
-        processCta: "Empezar ahora",
+        processCta: "Diagnóstico gratuito",
         steps: [
           { n: "01", title: "Entendemos tu proyecto", text: "Analizamos qué quieres comprar, cantidades, presupuesto, destino y en qué punto estás." },
           { n: "02", title: "Buscamos proveedores", text: "Localizamos fabricantes adecuados y descartamos los que no encajan." },
@@ -212,8 +212,8 @@ const resources = {
           },
         ],
         teamUpdated: [
-          { name: "Ignacio (Nacho) Entrena Iturbe", role: "Cofundador · Director Ejecutivo y de Marketing", location: "Español · vive en China", text: "Dirige la estrategia y el marketing de NAMAR y acompaña a cada cliente desde el primer contacto.", photo: "nacho", alt: "Nacho, de NAMAR Global, hablando con una proveedora en una feria en China", linkedin: "" },
-          { name: "Ana María González Gómez", role: "Cofundadora · Directora de Operaciones de Importación", location: "Colombiana · vive en China", text: "Coordina las operaciones de importación: proveedores, muestras, control de calidad y logística hasta destino.", photo: "ana", alt: "Ana María, de NAMAR Global, conversando con una proveedora en una feria en China", linkedin: "" },
+          { name: "Ignacio (Nacho) Entrena Iturbe", role: "Cofundador · Director Ejecutivo y de Ventas", location: "Español · vive en China", text: "Dirige la estrategia comercial de NAMAR y acompaña a cada cliente desde el primer contacto.", photo: "nacho", alt: "Nacho, de NAMAR Global, hablando con una proveedora en una feria en China", linkedin: "https://www.linkedin.com/in/nacho-entrena-namar" },
+          { name: "Ana María González Gómez", role: "Cofundadora · Directora de Operaciones de Importación", location: "Colombiana · vive en China", text: "Coordina las operaciones de importación: proveedores, muestras, control de calidad y logística hasta destino.", photo: "ana", alt: "Ana María, de NAMAR Global, conversando con una proveedora en una feria en China", linkedin: "https://www.linkedin.com/in/anamaria-gonzalez-namar" },
         ],
         teamUpdatedCaption: "Nacho y Ana María con una proveedora en una feria en China",
         teamPhotoCaption: "En la Feria de Cantón (China Import and Export Fair)",
@@ -281,7 +281,7 @@ const resources = {
         footerCookies: "Política de cookies",
         footerLegalLine:
           "© {{year}} NAMAR GLOBAL LIMITED · Sociedad registrada en Hong Kong · Nº 81199545 · Room D5, 5/F, King Yip Factory Building, No. 59 King Yip Street, Kwun Tong, Hong Kong",
-        mobileCta: "Analiza tu importación",
+        mobileCta: "Diagnóstico gratuito",
 
         // Textos de la versión anterior de la home, usados por /namar-2
         heroQuote:
@@ -381,7 +381,7 @@ const resources = {
           product: "What do you want to import?",
           volume: "Approximate quantity",
           message: "Message",
-          submit: "Send and analyze my import",
+          submit: "Send and request my diagnosis",
           namePlaceholder: "Your name",
           companyPlaceholder: "Your company or project name",
           emailPlaceholder: "name@company.com",
@@ -402,7 +402,7 @@ const resources = {
         heroSubtitle: "So is your peace of mind.",
         heroDescription:
           "NAMAR Global represents your interests directly on the ground. We find suppliers, negotiate, verify, control, and coordinate your import all the way to Spain or Colombia.",
-        heroPrimaryCta: "Analyze my import",
+        heroPrimaryCta: "Free diagnosis",
         heroSecondaryCta: "How we work",
         heroMicro: "We simulate your import costs within 24 hours.",
         heroTrust: [
@@ -478,7 +478,7 @@ const resources = {
           "Customs clearance and documentation",
           "Final delivery to your warehouse",
         ],
-        costCta: "Calculate your cost in 24h",
+        costCta: "Free diagnosis",
         costNote: "You receive a clear report with the estimated landed cost.",
         costFree: "Free of charge",
         costDisclaimer:
@@ -487,7 +487,7 @@ const resources = {
 
         processTitle: "This is how we turn a complex import into a controlled process.",
         processTitleEm: "controlled process.",
-        processCta: "Start now",
+        processCta: "Free diagnosis",
         steps: [
           { n: "01", title: "We understand your project", text: "We analyze what you want to buy, quantities, budget, destination, and where you stand." },
           { n: "02", title: "We source suppliers", text: "We find suitable manufacturers at origin and discard those that do not fit." },
@@ -523,8 +523,8 @@ const resources = {
           },
         ],
         teamUpdated: [
-          { name: "Ignacio (Nacho) Entrena Iturbe", role: "Co-founder · Chief Executive and Marketing", location: "Spanish · lives in China", text: "He leads NAMAR’s strategy and marketing and supports every client from the first contact.", photo: "nacho", alt: "Nacho, of NAMAR Global, speaking with a supplier at a trade fair in China", linkedin: "" },
-          { name: "Ana María González Gómez", role: "Co-founder · Director of Import Operations", location: "Colombian · lives in China", text: "She coordinates import operations: suppliers, samples, quality control and logistics to destination.", photo: "ana", alt: "Ana María, of NAMAR Global, speaking with a supplier at a trade fair in China", linkedin: "" },
+          { name: "Ignacio (Nacho) Entrena Iturbe", role: "Co-founder · Chief Executive and Sales", location: "Spanish · lives in China", text: "He leads NAMAR’s commercial strategy and supports every client from the first contact.", photo: "nacho", alt: "Nacho, of NAMAR Global, speaking with a supplier at a trade fair in China", linkedin: "https://www.linkedin.com/in/nacho-entrena-namar" },
+          { name: "Ana María González Gómez", role: "Co-founder · Director of Import Operations", location: "Colombian · lives in China", text: "She coordinates import operations: suppliers, samples, quality control and logistics to destination.", photo: "ana", alt: "Ana María, of NAMAR Global, speaking with a supplier at a trade fair in China", linkedin: "https://www.linkedin.com/in/anamaria-gonzalez-namar" },
         ],
         teamUpdatedCaption: "Nacho and Ana María with a supplier at a trade fair in China",
         teamPhotoCaption: "At the Canton Fair (China Import and Export Fair)",
@@ -592,7 +592,7 @@ const resources = {
         footerCookies: "Cookie policy",
         footerLegalLine:
           "© {{year}} NAMAR GLOBAL LIMITED · Company registered in Hong Kong · No. 81199545 · Room D5, 5/F, King Yip Factory Building, No. 59 King Yip Street, Kwun Tong, Hong Kong",
-        mobileCta: "Analyze my import",
+        mobileCta: "Free diagnosis",
 
         // Copy from the previous home version, used by /namar-2
         heroQuote:

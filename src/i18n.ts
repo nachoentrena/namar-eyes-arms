@@ -16,6 +16,7 @@ const resources = {
       },
       header: {
         cta: "Diagnóstico gratuito",
+        contact: "Contáctanos",
         menuOpen: "Abrir menú",
         menuClose: "Cerrar menú",
         language: "Idioma",
@@ -349,6 +350,7 @@ const resources = {
       },
       header: {
         cta: "Analyze my import",
+        contact: "Contact us",
         menuOpen: "Open menu",
         menuClose: "Close menu",
         language: "Language",

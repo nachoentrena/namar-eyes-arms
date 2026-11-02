@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { DialogTrigger } from "@/components/ui/dialog";
 import { ContactDialog } from "./contact-dialog";
 
 export function SiteHeader() {
@@ -69,14 +67,11 @@ export function SiteHeader() {
         </nav>
 
         <div className="col-start-3 flex items-center justify-end gap-3">
-          <DialogTrigger asChild>
-            <Button variant="outline" className="hidden h-11 rounded-full border-[1.5px] border-navy bg-transparent px-6 font-sans text-[15px] font-semibold text-navy shadow-none min-[1200px]:inline-flex">Contáctanos</Button>
-          </DialogTrigger>
           <a
-            href="/diagnostico"
+            href={`${home}#contacto`}
             className="hidden min-h-11 items-center whitespace-nowrap rounded-full bg-navy px-6 text-[15px] font-semibold text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground min-[1200px]:inline-flex"
           >
-            {t("header.cta")}
+            {t("header.contact")}
           </a>
           <button
             type="button"
@@ -116,17 +111,12 @@ export function SiteHeader() {
               </li>
             ))}
             <li>
-              <DialogTrigger asChild>
-                <Button variant="outline" onClick={() => setOpen(false)} className="h-12 w-full rounded-full border-[1.5px] border-navy bg-transparent px-6 font-sans text-[15px] font-semibold text-navy shadow-none">Contáctanos</Button>
-              </DialogTrigger>
-            </li>
-            <li>
               <a
-                href="/diagnostico"
+                href={`${home}#contacto`}
                 onClick={() => setOpen(false)}
                 className="mt-1 block min-h-12 rounded-full bg-navy px-6 py-3.5 text-center text-[15px] font-semibold text-navy-foreground"
               >
-                {t("header.cta")}
+                {t("header.contact")}
               </a>
             </li>
           </ul>

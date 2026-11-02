@@ -89,6 +89,11 @@ export function SiteFooter() {
             </p>
             <ul className="mt-3 space-y-2 text-sm text-on-navy-muted">
               <li>
+                <Link to="/guias" className="transition-colors hover:text-gold">
+                  Guías
+                </Link>
+              </li>
+              <li>
                 <a
                   href={siteConfig.linkedinCompanyUrl}
                   target="_blank"

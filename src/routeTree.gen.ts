@@ -17,6 +17,8 @@ import { Route as PoliticaCookiesRouteImport } from './routes/politica-cookies'
 import { Route as PoliticaPrivacidadRouteImport } from './routes/politica-privacidad'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as GuiasIndexRouteImport } from './routes/guias.index'
+import { Route as GuiasSlugRouteImport } from './routes/guias.$slug'
 import { Route as ApiPublicArchivoRouteImport } from './routes/api/public/archivo'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
@@ -60,6 +62,16 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuiasIndexRoute = GuiasIndexRouteImport.update({
+  id: '/guias/',
+  path: '/guias/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuiasSlugRoute = GuiasSlugRouteImport.update({
+  id: '/guias/$slug',
+  path: '/guias/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicArchivoRoute = ApiPublicArchivoRouteImport.update({
   id: '/api/public/archivo',
   path: '/api/public/archivo',
@@ -81,6 +93,8 @@ export interface FileRoutesByFullPath {
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/privacidad': typeof PrivacidadRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/guias/$slug': typeof GuiasSlugRoute
+  '/guias/': typeof GuiasIndexRoute
   '/api/public/archivo': typeof ApiPublicArchivoRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
@@ -93,6 +107,8 @@ export interface FileRoutesByTo {
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/privacidad': typeof PrivacidadRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/guias/$slug': typeof GuiasSlugRoute
+  '/guias': typeof GuiasIndexRoute
   '/api/public/archivo': typeof ApiPublicArchivoRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
@@ -106,6 +122,8 @@ export interface FileRoutesById {
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/privacidad': typeof PrivacidadRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/guias/$slug': typeof GuiasSlugRoute
+  '/guias/': typeof GuiasIndexRoute
   '/api/public/archivo': typeof ApiPublicArchivoRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
@@ -120,6 +138,8 @@ export interface FileRouteTypes {
     | '/politica-privacidad'
     | '/privacidad'
     | '/sitemap.xml'
+    | '/guias/$slug'
+    | '/guias/'
     | '/api/public/archivo'
     | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
@@ -132,6 +152,8 @@ export interface FileRouteTypes {
     | '/politica-privacidad'
     | '/privacidad'
     | '/sitemap.xml'
+    | '/guias/$slug'
+    | '/guias'
     | '/api/public/archivo'
     | '/lovable/email/transactional/preview'
   id:
@@ -144,6 +166,8 @@ export interface FileRouteTypes {
     | '/politica-privacidad'
     | '/privacidad'
     | '/sitemap.xml'
+    | '/guias/$slug'
+    | '/guias/'
     | '/api/public/archivo'
     | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
@@ -157,6 +181,8 @@ export interface RootRouteChildren {
   PoliticaPrivacidadRoute: typeof PoliticaPrivacidadRoute
   PrivacidadRoute: typeof PrivacidadRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  GuiasSlugRoute: typeof GuiasSlugRoute
+  GuiasIndexRoute: typeof GuiasIndexRoute
   ApiPublicArchivoRoute: typeof ApiPublicArchivoRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
@@ -219,6 +245,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guias/': {
+      id: '/guias/'
+      path: '/guias'
+      fullPath: '/guias/'
+      preLoaderRoute: typeof GuiasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guias/$slug': {
+      id: '/guias/$slug'
+      path: '/guias/$slug'
+      fullPath: '/guias/$slug'
+      preLoaderRoute: typeof GuiasSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/archivo': {
       id: '/api/public/archivo'
       path: '/api/public/archivo'
@@ -245,6 +285,8 @@ const rootRouteChildren: RootRouteChildren = {
   PoliticaPrivacidadRoute: PoliticaPrivacidadRoute,
   PrivacidadRoute: PrivacidadRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  GuiasSlugRoute: GuiasSlugRoute,
+  GuiasIndexRoute: GuiasIndexRoute,
   ApiPublicArchivoRoute: ApiPublicArchivoRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }

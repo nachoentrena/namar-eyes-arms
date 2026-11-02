@@ -19,6 +19,7 @@ export function SiteHeader() {
     { href: `${home}#costes`, label: t("nav.costs") },
     { href: `${home}#equipo`, label: t("nav.team") },
     { href: `${home}#faq`, label: t("nav.faq") },
+    { href: "/guias", label: "Guías" },
   ];
 
   useEffect(() => {

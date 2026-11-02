@@ -169,6 +169,7 @@ const resources = {
         ],
         costCta: "Diagnóstico gratuito",
         costNote: "Recibes un informe claro con el coste estimado puesto en destino.",
+        costIncluded: "Incluido en tu diagnóstico gratuito, sin compromiso.",
         costFree: "Sin coste",
         costDisclaimer:
           "Plazo contado desde que recibimos los datos de tu producto (precio, cantidad, medidas y destino). La simulación es una estimación orientativa.",
@@ -481,6 +482,7 @@ const resources = {
         ],
         costCta: "Free diagnosis",
         costNote: "You receive a clear report with the estimated landed cost.",
+        costIncluded: "Included in your free diagnosis, no commitment.",
         costFree: "Free of charge",
         costDisclaimer:
           "Timeframe counted from when we receive your product data (price, quantity, dimensions, and destination). The simulation is an indicative estimate.",

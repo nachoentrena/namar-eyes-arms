@@ -352,16 +352,9 @@ function Index() {
                 <p className="mt-4 max-w-[65ch] text-base text-navy-foreground/70 sm:text-lg">
                   {t("landing.costText")}
                 </p>
-                <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-4">
-                  <a
-                    href="/diagnostico"
-                    className={goldBtn}
-                  >
-                    {t("landing.costCta")}
-                    <ArrowRight className="size-4" />
-                  </a>
-                  <p className="text-sm text-navy-foreground/60">{t("landing.costNote")}</p>
-                </div>
+                <p className="mt-6 text-sm text-navy-foreground/60 sm:mt-8">
+                  {t("landing.costIncluded")}
+                </p>
               </div>
               <div className="lg:col-span-5">
                 <div className="border border-navy-foreground/15 bg-navy-foreground/5 p-5 sm:p-8">
@@ -427,9 +420,6 @@ function Index() {
                   </li>
                 ))}
               </ol>
-              <a href="/diagnostico" className={`${primaryBtn} mt-6 sm:mt-8`}>
-                {t("landing.processCta")}
-              </a>
             </Reveal>
           </div>
         </section>

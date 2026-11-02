@@ -14,6 +14,8 @@ export const siteConfig = {
   web3formsAccessKey: "14b22182-6dd9-4808-a579-71d8adbbc4ed",
   /* Zoho Bookings: reserva de videollamada gratuita de 30 minutos */
   bookingHref: "https://zbooking.us/R0iOz",
+  linkedinCompanyUrl: "https://www.linkedin.com/company/namar-global",
+  youtubeUrl: "https://www.youtube.com/@NAMARGlobal",
 } as const;
 
 export function whatsappHref(message: string) {

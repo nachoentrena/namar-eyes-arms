@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Linkedin, Youtube } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { siteConfig, whatsappHref } from "@/lib/site-config";
@@ -10,7 +11,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-navy-deep px-5 py-10 pb-24 text-navy-foreground sm:px-6 sm:py-12 sm:pb-12">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Marca */}
           <div>
             <img
@@ -77,6 +78,37 @@ export function SiteFooter() {
                 <Link to="/politica-cookies" className="transition-colors hover:text-gold">
                   {t("landing.footerCookies")}
                 </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Síguenos */}
+          <div>
+            <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-gold">
+              {t("landing.footerFollowTitle")}
+            </p>
+            <ul className="mt-3 space-y-2 text-sm text-on-navy-muted">
+              <li>
+                <a
+                  href={siteConfig.linkedinCompanyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 transition-colors hover:text-gold"
+                >
+                  <Linkedin className="size-4" aria-hidden />
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 transition-colors hover:text-gold"
+                >
+                  <Youtube className="size-4" aria-hidden />
+                  YouTube
+                </a>
               </li>
             </ul>
           </div>

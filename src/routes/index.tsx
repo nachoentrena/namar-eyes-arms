@@ -472,9 +472,10 @@ function Index() {
                           href={person.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-navy hover:underline"
+                          aria-label={`LinkedIn de ${person.name}`}
+                          className="mt-4 inline-flex size-9 items-center justify-center self-start rounded-full border border-border text-navy transition-colors hover:border-gold hover:text-gold-deep"
                         >
-                          <Linkedin className="size-4" /> LinkedIn
+                          <Linkedin className="size-4" aria-hidden />
                         </a>
                       ) : null}
                     </div>

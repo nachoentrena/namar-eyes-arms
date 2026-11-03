@@ -74,7 +74,7 @@ const resources = {
           "NAMAR Global representa tus intereses directamente sobre el terreno. Encontramos proveedores, negociamos, verificamos, controlamos y coordinamos tu importación hasta España o Colombia.",
         heroPrimaryCta: "Diagnóstico gratuito",
         heroSecondaryCta: "Cómo trabajamos",
-        heroMicro: "Simulamos los costes de tu importación en 24h laborables.",
+        heroMicro: "Te respondemos en 24 h laborables con una valoración preliminar, sin coste.",
         heroTrust: [
           "Empresa registrada en Hong Kong",
           "8 años trabajando en China",
@@ -156,11 +156,17 @@ const resources = {
           },
         ],
 
-        costLabel: "Simulación de costes",
+        costLabel: "Estudio de viabilidad",
         costTitle: "¿Cuánto te costará realmente importar desde China?",
         costTitleEm: "realmente",
         costText:
-          "Antes de comprar, calcula el coste real de llevar tu mercancía hasta España o Colombia. Te ayudamos a estimarlo en 24h laborables.",
+          "Antes de comprar, conoce cuánto te costará llevar tu mercancía hasta España o Colombia. En la llamada gratuita te orientamos y, si necesitas los números por escrito, preparamos un estudio de viabilidad con el coste estimado puesto en destino.",
+        costTiers: [
+          "Básico: 3 días laborables",
+          "Avanzado: 5 días laborables",
+          "Se descuenta si contratas la gestión",
+        ],
+        costIncludesTitle: "Qué incluye la estimación",
         costItems: [
           "Precio del producto y condiciones de compra",
           "Arancel e impuestos de importación",
@@ -169,11 +175,9 @@ const resources = {
           "Entrega final hasta tu almacén",
         ],
         costCta: "Diagnóstico gratuito",
-        costNote: "Recibes un informe claro con el coste estimado puesto en destino.",
-        costIncluded: "Incluido en tu diagnóstico gratuito, sin compromiso.",
-        costFree: "Sin coste",
+        costIncluded: "Empieza con una llamada gratuita de 30 minutos, sin compromiso.",
         costDisclaimer:
-          "Plazo contado desde que recibimos los datos de tu producto (precio, cantidad, medidas y destino). La simulación es una estimación orientativa.",
+          "La estimación es orientativa; los aranceles e impuestos los confirma el agente de aduanas.",
 
 
         processTitle: "Así convertimos una importación compleja en un proceso controlado.",
@@ -266,7 +270,7 @@ const resources = {
           { q: "¿Hay un pedido mínimo para trabajar con NAMAR?", a: "No fijamos un mínimo cerrado: el pedido mínimo suele marcarlo el fabricante y varía según producto y sector. Lo que sí hacemos es valorar contigo si la operación tiene sentido económico antes de empezar." },
           { q: "He encontrado un proveedor, ¿cómo sé si puedo fiarme?", a: "Verificamos su identidad legal, si fabrica o subcontrata, su capacidad productiva y sus referencias. Cuando la operación lo requiere, visitamos la fábrica y te contamos lo que hemos visto." },
           { q: "¿Cómo funciona el control de calidad?", a: "Acordamos con el proveedor especificaciones claras y las comprobamos sobre muestras y producción, antes del embarque. Un defecto detectado en fábrica se corrige; detectado en tu almacén, se paga." },
-          { q: "¿Cuánto cuesta importar desde China?", a: "Depende del producto, el volumen, el transporte y el destino. Por eso simulamos el coste estimado de tu importación: producto, arancel, impuestos, transporte, despacho y entrega, para que decidas con números antes de comprar." },
+          { q: "¿Cuánto cuesta importar desde China?", a: "Depende del producto, el volumen, el transporte y el destino. En la llamada gratuita te orientamos y, si necesitas los números por escrito, preparamos un estudio de viabilidad con el coste estimado puesto en destino: producto, arancel, impuestos, transporte, despacho y entrega." },
           { q: "¿Qué transporte me conviene?", a: "Marítimo, aéreo o multimodal: depende del producto, volumen, peso y urgencia. Te proponemos la operativa y el incoterm que encajan con tu caso." },
           { q: "¿Os encargáis de las aduanas y las certificaciones?", a: "Revisamos antes de comprar qué documentación y certificaciones necesita tu producto para entrar en España o Colombia, las coordinamos con el proveedor y trabajamos con agentes de aduanas en destino para el despacho." },
           { q: "¿Cuánto tarda una importación?", a: "Depende del tiempo de producción, el tipo de transporte y el despacho aduanero. Al analizar tu caso te damos una estimación realista para tu producto y ruta." },

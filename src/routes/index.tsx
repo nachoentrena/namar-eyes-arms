@@ -22,7 +22,7 @@ import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 const title = "Importar desde China a España y Colombia | NAMAR Global";
 const description =
-  "Tu equipo en China: proveedores verificados, negociación, control de calidad y coordinación logística y aduanera. Simulamos los costes de tu importación en 24h.";
+  "Tu equipo en China: proveedores verificados, negociación, control de calidad y logística. Valoración preliminar de tu importación en 24 h laborables.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -139,6 +139,7 @@ function Index() {
     items: Array<{ title: string; text: string }>;
   }>;
   const costItems = t("landing.costItems", { returnObjects: true }) as string[];
+  const costTiers = t("landing.costTiers", { returnObjects: true }) as string[];
   const steps = t("landing.steps", { returnObjects: true }) as Array<{
     n: string;
     title: string;
@@ -356,9 +357,13 @@ function Index() {
               </div>
               <div className="lg:col-span-5">
                 <div className="border border-navy-foreground/15 bg-navy-foreground/5 p-5 sm:p-8">
-                  <p className="font-serif text-3xl text-gold">24h <span className="font-sans text-base">laborables</span></p>
-                  <p className="mt-1 text-sm font-bold text-gold">{t("landing.costFree")}</p>
-                  <ul className="mt-4 space-y-3">
+                  <ul className="space-y-1.5">
+                    {costTiers.map((tier) => (
+                      <li key={tier} className="font-serif text-xl text-gold">{tier}</li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 text-sm font-bold text-gold">{t("landing.costIncludesTitle")}</p>
+                  <ul className="mt-3 space-y-3">
                     {costItems.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm">
                         <Check className="mt-0.5 size-4 shrink-0 text-gold" strokeWidth={3} />

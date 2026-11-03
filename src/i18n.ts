@@ -74,7 +74,7 @@ const resources = {
           "NAMAR Global representa tus intereses directamente sobre el terreno. Encontramos proveedores, negociamos, verificamos, controlamos y coordinamos tu importación hasta España o Colombia.",
         heroPrimaryCta: "Diagnóstico gratuito",
         heroSecondaryCta: "Cómo trabajamos",
-        heroMicro: "Simulamos los costes de tu importación en 24h laborables.",
+        heroMicro: "Te respondemos en 24 h laborables con una valoración preliminar, sin coste.",
         heroTrust: [
           "Empresa registrada en Hong Kong",
           "8 años trabajando en China",
@@ -156,11 +156,17 @@ const resources = {
           },
         ],
 
-        costLabel: "Simulación de costes",
+        costLabel: "Estudio de viabilidad",
         costTitle: "¿Cuánto te costará realmente importar desde China?",
         costTitleEm: "realmente",
         costText:
-          "Antes de comprar, calcula el coste real de llevar tu mercancía hasta España o Colombia. Te ayudamos a estimarlo en 24h laborables.",
+          "Antes de comprar, conoce cuánto te costará llevar tu mercancía hasta España o Colombia. En la llamada gratuita te orientamos y, si necesitas los números por escrito, preparamos un estudio de viabilidad con el coste estimado puesto en destino.",
+        costTiers: [
+          "Básico: 3 días laborables",
+          "Avanzado: 5 días laborables",
+          "Se descuenta si contratas la gestión",
+        ],
+        costIncludesTitle: "Qué incluye la estimación",
         costItems: [
           "Precio del producto y condiciones de compra",
           "Arancel e impuestos de importación",
@@ -169,11 +175,12 @@ const resources = {
           "Entrega final hasta tu almacén",
         ],
         costCta: "Diagnóstico gratuito",
+        // Claves heredadas que solo usa la página antigua /namar-2
         costNote: "Recibes un informe claro con el coste estimado puesto en destino.",
-        costIncluded: "Incluido en tu diagnóstico gratuito, sin compromiso.",
         costFree: "Sin coste",
+        costIncluded: "Empieza con una llamada gratuita de 30 minutos, sin compromiso.",
         costDisclaimer:
-          "Plazo contado desde que recibimos los datos de tu producto (precio, cantidad, medidas y destino). La simulación es una estimación orientativa.",
+          "La estimación es orientativa; los aranceles e impuestos los confirma el agente de aduanas.",
 
 
         processTitle: "Así convertimos una importación compleja en un proceso controlado.",
@@ -266,7 +273,7 @@ const resources = {
           { q: "¿Hay un pedido mínimo para trabajar con NAMAR?", a: "No fijamos un mínimo cerrado: el pedido mínimo suele marcarlo el fabricante y varía según producto y sector. Lo que sí hacemos es valorar contigo si la operación tiene sentido económico antes de empezar." },
           { q: "He encontrado un proveedor, ¿cómo sé si puedo fiarme?", a: "Verificamos su identidad legal, si fabrica o subcontrata, su capacidad productiva y sus referencias. Cuando la operación lo requiere, visitamos la fábrica y te contamos lo que hemos visto." },
           { q: "¿Cómo funciona el control de calidad?", a: "Acordamos con el proveedor especificaciones claras y las comprobamos sobre muestras y producción, antes del embarque. Un defecto detectado en fábrica se corrige; detectado en tu almacén, se paga." },
-          { q: "¿Cuánto cuesta importar desde China?", a: "Depende del producto, el volumen, el transporte y el destino. Por eso simulamos el coste estimado de tu importación: producto, arancel, impuestos, transporte, despacho y entrega, para que decidas con números antes de comprar." },
+          { q: "¿Cuánto cuesta importar desde China?", a: "Depende del producto, el volumen, el transporte y el destino. En la llamada gratuita te orientamos y, si necesitas los números por escrito, preparamos un estudio de viabilidad con el coste estimado puesto en destino: producto, arancel, impuestos, transporte, despacho y entrega." },
           { q: "¿Qué transporte me conviene?", a: "Marítimo, aéreo o multimodal: depende del producto, volumen, peso y urgencia. Te proponemos la operativa y el incoterm que encajan con tu caso." },
           { q: "¿Os encargáis de las aduanas y las certificaciones?", a: "Revisamos antes de comprar qué documentación y certificaciones necesita tu producto para entrar en España o Colombia, las coordinamos con el proveedor y trabajamos con agentes de aduanas en destino para el despacho." },
           { q: "¿Cuánto tarda una importación?", a: "Depende del tiempo de producción, el tipo de transporte y el despacho aduanero. Al analizar tu caso te damos una estimación realista para tu producto y ruta." },
@@ -408,7 +415,7 @@ const resources = {
           "NAMAR Global represents your interests directly on the ground. We find suppliers, negotiate, verify, control, and coordinate your import all the way to Spain or Colombia.",
         heroPrimaryCta: "Free diagnosis",
         heroSecondaryCta: "How we work",
-        heroMicro: "We simulate your import costs within 24 hours.",
+        heroMicro: "We reply within 24 business hours with a preliminary assessment, free of charge.",
         heroTrust: [
           "Registered company in Hong Kong",
           "8 years working in China",
@@ -470,11 +477,17 @@ const resources = {
           },
         ],
 
-        costLabel: "Cost simulation",
+        costLabel: "Viability study",
         costTitle: "What will importing from China really cost you?",
         costTitleEm: "really",
         costText:
-          "Before you buy, calculate the real cost of bringing your goods to Spain or Colombia. We help you estimate it within 24 hours.",
+          "Before you buy, find out how much it will cost to bring your goods to Spain or Colombia. On the free call we guide you and, if you need the numbers in writing, we prepare a viability study with the estimated landed cost.",
+        costTiers: [
+          "Basic: 3 business days",
+          "Advanced: 5 business days",
+          "Deducted if you hire the management",
+        ],
+        costIncludesTitle: "What the estimate includes",
         costItems: [
           "Product price and purchase terms",
           "Duties and import taxes",
@@ -483,11 +496,12 @@ const resources = {
           "Final delivery to your warehouse",
         ],
         costCta: "Free diagnosis",
+        // Legacy keys only used by the old /namar-2 page
         costNote: "You receive a clear report with the estimated landed cost.",
-        costIncluded: "Included in your free diagnosis, no commitment.",
         costFree: "Free of charge",
+        costIncluded: "Start with a free 30-minute call, no commitment.",
         costDisclaimer:
-          "Timeframe counted from when we receive your product data (price, quantity, dimensions, and destination). The simulation is an indicative estimate.",
+          "The estimate is indicative; duties and taxes are confirmed by the customs agent.",
 
 
         processTitle: "This is how we turn a complex import into a controlled process.",
@@ -580,7 +594,7 @@ const resources = {
           { q: "Is there a minimum order to work with NAMAR?", a: "We don't set a fixed minimum: the minimum order is usually set by the manufacturer and varies by product and sector. What we do is assess with you whether the operation makes economic sense before starting." },
           { q: "I've found a supplier — how do I know if I can trust them?", a: "We verify their legal identity, whether they manufacture or subcontract, their production capacity, and references. When the operation requires it, we visit the factory and tell you what we saw." },
           { q: "How does quality control work?", a: "We agree clear specifications with the supplier and check them at origin on samples and production, before shipment. A defect detected at the factory gets fixed; detected at your warehouse, it gets paid." },
-          { q: "How much does importing from China cost?", a: "It depends on the product, volume, transport, and destination. That is why we simulate the estimated cost of your import: product, duties, taxes, freight, clearance, and delivery, so you decide with numbers before you buy." },
+          { q: "How much does importing from China cost?", a: "It depends on the product, volume, transport, and destination. On the free call we guide you and, if you need the numbers in writing, we prepare a viability study with the estimated landed cost: product, duties, taxes, freight, clearance, and delivery." },
           { q: "Which transport suits me?", a: "Sea, air, or multimodal: it depends on product, volume, weight, and urgency. We propose the operation and incoterm that fit your case." },
           { q: "Do you handle customs and certifications?", a: "Before you buy, we review the documentation and certifications your product needs to enter Spain or Colombia, coordinate them with the supplier, and work with customs agents at destination for clearance." },
           { q: "How long does an import take?", a: "It depends on production time, the type of transport, and customs clearance. When we analyze your case we give you a realistic estimate for your product and route." },

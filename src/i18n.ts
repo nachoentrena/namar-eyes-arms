@@ -175,6 +175,9 @@ const resources = {
           "Entrega final hasta tu almacén",
         ],
         costCta: "Diagnóstico gratuito",
+        // Claves heredadas que solo usa la página antigua /namar-2
+        costNote: "Recibes un informe claro con el coste estimado puesto en destino.",
+        costFree: "Sin coste",
         costIncluded: "Empieza con una llamada gratuita de 30 minutos, sin compromiso.",
         costDisclaimer:
           "La estimación es orientativa; los aranceles e impuestos los confirma el agente de aduanas.",
@@ -493,6 +496,9 @@ const resources = {
           "Final delivery to your warehouse",
         ],
         costCta: "Free diagnosis",
+        // Legacy keys only used by the old /namar-2 page
+        costNote: "You receive a clear report with the estimated landed cost.",
+        costFree: "Free of charge",
         costIncluded: "Start with a free 30-minute call, no commitment.",
         costDisclaimer:
           "The estimate is indicative; duties and taxes are confirmed by the customs agent.",

@@ -16,7 +16,7 @@ export type Guia = {
   author: string; authorRole: string; date: string; readingTime: string;
   image: string; imageAlt: string; metaTitle: string; metaDescription: string;
   published: boolean; body: string; faq: { question: string; answer: string }[];
-  closingTitle?: string; closingDescription?: string; closingInvitation?: string; disclaimer?: string;
+  closingTitle?: string | undefined; closingDescription?: string | undefined; closingInvitation?: string | undefined; disclaimer?: string | undefined;
 };
 const covers = import.meta.glob<{ url: string }>("../assets/*.asset.json", { eager: true, import: "default" });
 const files = import.meta.glob<string>("../content/guias/*.md", { eager: true, query: "?raw", import: "default" });

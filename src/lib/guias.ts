@@ -19,7 +19,7 @@ export type Guia = {
   closingTitle?: string | undefined; closingDescription?: string | undefined; closingInvitation?: string | undefined; disclaimer?: string | undefined;
 };
 const covers = import.meta.glob<{ url: string }>("../assets/*.asset.json", { eager: true, import: "default" });
-// Bundle guide content for both initial HTML and client navigation.
+// Eagerly bundle every Markdown guide for initial HTML and client navigation.
 const files = import.meta.glob<string>("../content/guias/*.md", { eager: true, query: "?raw", import: "default" });
 
 export function parseGuia(raw: string): Guia {

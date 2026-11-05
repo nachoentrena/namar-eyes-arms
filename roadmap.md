@@ -1,5 +1,9 @@
 # Roadmap
 
+## Guías de grupaje, pagos y MOQ
+- [x] Añadir las tres guías con sus portadas y cierres propios.
+- [x] Verificar autoría, fechas, sitemap, FAQ, reservas y móvil/escritorio.
+
 ## Guías de inspección y logística
 - [x] Añadir inspección, Año Nuevo Chino 2027 e Incoterms con sus portadas.
 - [x] Verificar autoría, fechas, sitemap, FAQ, reservas y móvil/escritorio.

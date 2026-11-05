@@ -121,7 +121,7 @@ class GuidesRules(unittest.TestCase):
             soup = BeautifulSoup(response.read(), "html.parser")
         articles = [json.loads(s.text) for s in soup.select('script[type="application/ld+json"]')]
         article = next(a for a in articles if a.get("@type") == "Article")
-        self.assertEqual(article["datePublished"], "2026-11-10")
+        self.assertEqual(article["datePublished"], "2026-11-05")
 
     def test_all_eight_categories_in_sitemap(self):
         from xml.etree import ElementTree

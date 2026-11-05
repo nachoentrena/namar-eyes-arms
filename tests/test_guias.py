@@ -6,6 +6,36 @@ from bs4 import BeautifulSoup
 
 
 class GuidesRules(unittest.TestCase):
+    logistics_slugs = ("inspeccion-antes-embarque", "ano-nuevo-chino-2027", "incoterms-fob-exw-cif")
+
+    def logistics_articles(self):
+        for slug in self.logistics_slugs:
+            with urlopen(f"http://localhost:8080/guias/{slug}") as response:
+                soup = BeautifulSoup(response.read(), "html.parser")
+            schemas = [json.loads(s.text) for s in soup.select('script[type="application/ld+json"]')]
+            yield slug, next(a for a in schemas if a.get("@type") == "Article")
+
+    def test_logistics_publication_dates(self):
+        for slug, article in self.logistics_articles():
+            with self.subTest(slug=slug):
+                self.assertEqual(article["datePublished"], "2026-11-05")
+
+    def test_logistics_authorship(self):
+        for slug, article in self.logistics_articles():
+            with self.subTest(slug=slug):
+                inspection = slug == "inspeccion-antes-embarque"
+                self.assertEqual(article["author"]["name"], "Ana María González" if inspection else "Ignacio Entrena")
+                self.assertEqual(article["author"]["jobTitle"], "Directora de Operaciones de Importación, NAMAR Global" if inspection else "Cofundador, NAMAR Global")
+
+    def test_logistics_in_sitemap(self):
+        from xml.etree import ElementTree
+        with urlopen("http://localhost:8080/sitemap.xml") as response:
+            root = ElementTree.fromstring(response.read())
+        urls = [node.text for node in root.iter("{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
+        for slug in self.logistics_slugs:
+            with self.subTest(slug=slug):
+                self.assertIn(f"https://www.namar-global.com/guias/{slug}", urls)
+
     new_slugs = ("coste-importar-china-colombia", "fabricante-o-comercializadora", "auditoria-fabrica-china")
 
     def new_articles(self):

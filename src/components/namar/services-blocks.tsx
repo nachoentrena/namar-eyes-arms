@@ -1,4 +1,12 @@
+import { Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
+
+const guideLinks: Record<string, string> = {
+  "Búsqueda de proveedores": "verificar-proveedor-chino",
+  "Control de calidad": "inspeccion-antes-embarque",
+  "Logística internacional": "incoterms-fob-exw-cif",
+  "Aduanas y certificaciones": "requisitos-importar-colombia",
+};
 
 export type ServiceGroup = {
   title: string;
@@ -52,6 +60,11 @@ export function ServicesBlocks({ groups }: { groups: ServiceGroup[] }) {
                   <div>
                     <p className="text-sm font-bold sm:text-base">{item.title}</p>
                     <p className={`mt-1 text-sm leading-[1.65] ${style.body}`}>{item.text}</p>
+                    {guideLinks[item.title] && (
+                      <Link to="/guias/$slug" params={{ slug: guideLinks[item.title]! }} className="mt-2 inline-block text-[13px] font-semibold underline-offset-4 hover:underline">
+                        Leer la guía →
+                      </Link>
+                    )}
                   </div>
                 </li>
               ))}

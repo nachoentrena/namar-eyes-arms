@@ -1,4 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { GuiaCard } from "@/components/namar/guia-card";
+import { sortedGuias } from "@/lib/guias";
 import { ArrowRight, Calculator, CalendarDays, Check, Linkedin, MapPin, Route as RouteIcon, UserRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -571,6 +573,23 @@ function Index() {
                 {t("contact.bookNow")}
               </a>
             </Reveal>
+          </div>
+        </section>
+
+        {/* ─── GUÍAS ─────────────────────────────────────────────── */}
+        <section id="guias" className={`bg-background ${section}`}>
+          <div className="mx-auto max-w-7xl">
+            <Reveal className="max-w-3xl">
+              <h2 className={h2}>Guías para importar desde China</h2>
+            </Reveal>
+            <div className="mt-8 grid gap-x-7 gap-y-10 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
+              {sortedGuias().slice(0, 3).map((g) => <GuiaCard key={g.slug} guia={g} />)}
+            </div>
+            <div className="mt-10">
+              <Link to="/guias" className={`${secondaryBtn} w-full sm:w-auto`}>
+                Ver todas las guías <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
           </div>
         </section>
 

@@ -11,6 +11,7 @@ image: "verificar-proveedor-chino.webp"
 imageAlt: "Portada de la guía Cómo verificar a un proveedor chino"
 metaTitle: "Cómo verificar un proveedor chino antes de pagar | NAMAR"
 metaDescription: "Checklist paso a paso para comprobar que un proveedor chino existe, fabrica lo que vende y es fiable antes de pagar el anticipo."
+orden: 1
 published: true
 ---
 

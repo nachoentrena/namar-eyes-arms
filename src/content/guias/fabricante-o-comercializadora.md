@@ -11,6 +11,7 @@ image: "fabricante-o-comercializadora.webp"
 imageAlt: "Portada de la guía ¿Fabricante o comercializadora?"
 metaTitle: "Fabricante o trading company en China: cómo saberlo | NAMAR"
 metaDescription: "Aprende a distinguir si tu proveedor chino es fábrica o comercializadora (trading company), qué ventajas tiene cada uno y cómo comprobarlo."
+orden: 4
 published: true
 closingTitle: "¿Quieres saber con quién estás hablando?"
 closingDescription: "En NAMAR comprobamos la documentación del proveedor y, si hace falta, vamos a la fábrica desde Shanghái."

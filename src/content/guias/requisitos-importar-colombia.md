@@ -11,6 +11,7 @@ image: "requisitos-importar-colombia.webp"
 imageAlt: "Portada de la guía Requisitos para importar a Colombia"
 metaTitle: "Requisitos para importar de China a Colombia | NAMAR"
 metaDescription: "RUT, VUCE, agencia de aduanas, documentos y permisos (INVIMA, ICA, reglamentos técnicos): lo que necesitas para importar de China a Colombia."
+orden: 6
 published: true
 closingTitle: "¿Vas a importar a Colombia?"
 closingDescription: "En NAMAR coordinamos tu importación desde China junto con tu agencia de aduanas en Colombia. Antes de comprar, te ayudamos a revisar requisitos y costes."

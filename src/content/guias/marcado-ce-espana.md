@@ -11,6 +11,7 @@ image: "marcado-ce-espana.webp"
 imageAlt: "Portada de la guía Marcado CE en España"
 metaTitle: "Marcado CE al importar de China: qué necesitas | NAMAR"
 metaDescription: "Qué productos necesitan marcado CE para venderse en España, qué documentos pedir al proveedor chino y qué responsabilidades tienes como importador."
+orden: 14
 published: true
 closingTitle: "¿Tu producto necesita marcado CE?"
 closingDescription: "En NAMAR revisamos con el proveedor la documentación de tu producto antes de comprar y te indicamos qué debe verificar un especialista o un laboratorio."

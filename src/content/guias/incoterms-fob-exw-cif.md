@@ -11,6 +11,7 @@ image: "incoterms-fob-exw-cif.webp"
 imageAlt: "Portada de la guía Incoterms FOB, EXW y CIF"
 metaTitle: "Incoterms FOB, EXW y CIF explicados | NAMAR"
 metaDescription: "Qué significan FOB, EXW, CIF y otros Incoterms al importar desde China, quién paga cada gasto y cuál conviene en tu primera importación."
+orden: 10
 published: true
 closingTitle: "¿Tienes dudas con tu cotización?"
 closingDescription: "En NAMAR revisamos la cotización y la proforma de tu proveedor y coordinamos el transporte hasta destino con tu transitario y tu agente de aduanas."

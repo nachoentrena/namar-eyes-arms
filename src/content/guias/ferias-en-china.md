@@ -11,6 +11,7 @@ image: "ferias-en-china.webp"
 imageAlt: "Portada de la guía Ferias en China"
 metaTitle: "Ferias en China: cómo prepararlas para importar | NAMAR"
 metaDescription: "Feria de Cantón, mercado de Yiwu y ferias sectoriales: cómo elegir, preparar y aprovechar una feria en China para encontrar proveedores."
+orden: 16
 published: true
 closingTitle: "¿Vas a venir a una feria en China?"
 closingDescription: "En NAMAR vivimos en Shanghái. Si estás preparando una visita a una feria o quieres que busquemos proveedores por ti, cuéntanos tu proyecto."

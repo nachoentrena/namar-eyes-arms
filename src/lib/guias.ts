@@ -18,7 +18,6 @@ export type Guia = {
   orden?: number | undefined; published: boolean; body: string; faq: { question: string; answer: string }[];
   closingTitle?: string | undefined; closingDescription?: string | undefined; closingInvitation?: string | undefined; disclaimer?: string | undefined;
 };
-const covers = import.meta.glob<{ url: string }>("../assets/*.asset.json", { eager: true, import: "default" });
 // Eager guide imports keep initial HTML and client navigation on the same content.
 const files = import.meta.glob<string>("../content/guias/*.md", { eager: true, query: "?raw", import: "default" });
 
@@ -41,7 +40,7 @@ export function parseGuia(raw: string): Guia {
   const category = get("category");
   if (!guiaCategories.some((c) => c.slug === category)) throw new Error(`Categoría desconocida: ${category}`);
   const imageName = get("image");
-  const image = covers[`../assets/${imageName}.asset.json`]?.url ?? imageName;
+  const image = /^https?:\/\//.test(imageName) ? imageName : `/images/${imageName}`;
   const body = content.trim();
   const faqBody = body.split("## Preguntas frecuentes")[1] ?? "";
   const faq = [...faqBody.matchAll(/\*\*([^\n]+[?])\*\*\s*\n([\s\S]*?)(?=\n\*\*|\n## |$)/g)].flatMap((m) => {

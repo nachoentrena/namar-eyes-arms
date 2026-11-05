@@ -14,7 +14,7 @@ export const Route = createFileRoute("/guias/")({
 function GuiasPage() {
   const latest = sortedGuias().slice(0, 3);
   return <GuiasShell>
-    <GuiasBanner title="Guías" subtitle="Navega por nuestras categorías:" />
+    <GuiasBanner title="Guías" subtitle="Navega por nuestras categorías:" clearer />
     <nav aria-label="Categorías de guías" className="mx-auto grid max-w-6xl grid-cols-1 gap-x-6 gap-y-5 px-5 py-10 min-[360px]:grid-cols-2 sm:px-6 lg:grid-cols-4">
       {guiaCategories.map((category) => <Link key={category.slug} to="/guias/categoria/$category" params={{ category: category.slug }} className="flex items-center gap-3 text-[15px] font-medium text-navy hover:text-gold-deep"><span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-gold text-gold-foreground"><Check className="size-4" aria-hidden="true" /></span><span>{category.name}</span></Link>)}
     </nav>

@@ -15,3 +15,4 @@ The shared header contact chooser uses Radix Dialog with a bottom panel on mobil
 
 Guides are Markdown files with JSON-valued front matter in src/content/guias, eagerly bundled for SSR; published entries drive categories, cards, Article/FAQ metadata and the sitemap without runtime filesystem reads.
 Guide covers resolve asset pointers by filename, or an absolute HTTPS image URL, so each new content file and uploaded cover require no registry edits.
+Guide closing copy can be supplied in optional front matter fields; the shared booking block retains one design and defaults for existing guides.

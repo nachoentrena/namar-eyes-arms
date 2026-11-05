@@ -1,5 +1,10 @@
 # Roadmap
 
+## Nueva guía de costes y ajustes de Guías
+- [x] Aclarar solo la cabecera de /guias y retirar Guías de Síguenos.
+- [x] Añadir la guía de costes con portada, cierre propio y metadatos automáticos.
+- [x] Verificar guía, sitemap, datos estructurados y vistas móvil/escritorio.
+
 ## Contacto en menú
 - [x] Usar solo enlaces normales de WhatsApp/email, sin conectores ni inicio de sesión.
 - [x] Añadir Contáctanos y ventana accesible con WhatsApp/email; mantener controles flotantes.

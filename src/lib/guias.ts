@@ -16,6 +16,7 @@ export type Guia = {
   author: string; authorRole: string; date: string; readingTime: string;
   image: string; imageAlt: string; metaTitle: string; metaDescription: string;
   published: boolean; body: string; faq: { question: string; answer: string }[];
+  closingTitle?: string; closingDescription?: string; closingInvitation?: string; disclaimer?: string;
 };
 const covers = import.meta.glob<{ url: string }>("../assets/*.asset.json", { eager: true, import: "default" });
 const files = import.meta.glob<string>("../content/guias/*.md", { eager: true, query: "?raw", import: "default" });
@@ -47,7 +48,8 @@ export function parseGuia(raw: string): Guia {
     const answer = m[2];
     return question && answer ? [{ question, answer: answer.trim() }] : [];
   });
-  return { slug: get("slug"), title: get("title"), category, summary: get("summary"), author: get("author"), authorRole: get("authorRole"), date: get("date"), readingTime: get("readingTime"), image, imageAlt: get("imageAlt"), metaTitle: get("metaTitle"), metaDescription: get("metaDescription"), published: data['published'] === true, body, faq };
+  const optional = (key: string) => typeof data[key] === "string" ? data[key] : undefined;
+  return { slug: get("slug"), title: get("title"), category, summary: get("summary"), author: get("author"), authorRole: get("authorRole"), date: get("date"), readingTime: get("readingTime"), image, imageAlt: get("imageAlt"), metaTitle: get("metaTitle"), metaDescription: get("metaDescription"), published: data['published'] === true, body, faq, closingTitle: optional("closingTitle"), closingDescription: optional("closingDescription"), closingInvitation: optional("closingInvitation"), disclaimer: optional("disclaimer") };
 }
 
 export const guias: Guia[] = Object.values(files).map(parseGuia).filter((g) => g.published);

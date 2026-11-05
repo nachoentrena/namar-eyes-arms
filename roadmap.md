@@ -33,5 +33,5 @@
 ## Blog Guías por categorías
 - [x] Crear categorías, contenido Markdown, portada optimizada y primera guía.
 - [x] Añadir SEO Article/FAQ y categorías al sitemap.
-- [ ] Verificar páginas y enlaces en móvil/escritorio y HTML inicial.
-- [ ] Mostrar ambas páginas para revisión sin publicar.
+- [x] Verificar páginas y enlaces en móvil/escritorio y HTML inicial.
+- [x] Mostrar ambas páginas para revisión sin publicar.

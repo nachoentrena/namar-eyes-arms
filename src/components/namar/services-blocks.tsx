@@ -6,6 +6,10 @@ const guideLinks: Record<string, string> = {
   "Control de calidad": "inspeccion-antes-embarque",
   "Logística internacional": "incoterms-fob-exw-cif",
   "Aduanas y certificaciones": "requisitos-importar-colombia",
+  "Verificación y auditoría de fábricas": "auditoria-fabrica-china",
+  "Cálculo de costes y requisitos": "coste-importar-china-espana",
+  "Negociación": "negociar-moq-china",
+  "Seguimiento": "muestras-desde-china",
 };
 
 export type ServiceGroup = {

@@ -1,5 +1,9 @@
 # Roadmap
 
+## Tres nuevas guías
+- [x] Añadir costes Colombia, fabricante/comercializadora y auditoría con las portadas suministradas.
+- [x] Verificar datos de autor y fecha, sitemap, FAQ, reservas y móvil/escritorio.
+
 ## Nueva guía de costes y ajustes de Guías
 - [x] Aclarar solo la cabecera de /guias y retirar Guías de Síguenos.
 - [x] Añadir la guía de costes con portada, cierre propio y metadatos automáticos.

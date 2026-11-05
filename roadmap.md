@@ -1,5 +1,9 @@
 # Roadmap
 
+## Guías de ferias y estafas
+- [ ] Añadir las dos guías con las portadas y los textos suministrados.
+- [ ] Verificar autoría, fechas, sitemap, FAQ, reservas y móvil/escritorio.
+
 ## Guías de muestras y requisitos
 - [x] Añadir muestras, requisitos Colombia y marcado CE con las portadas suministradas.
 - [x] Verificar autoría, fechas, sitemap, FAQ, reservas y móvil/escritorio.

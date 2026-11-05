@@ -22,9 +22,11 @@ const files = import.meta.glob<string>("../content/guias/*.md", { eager: true, q
 
 export function parseGuia(raw: string): Guia {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-  if (!match) throw new Error("La guía necesita un encabezado y contenido Markdown.");
+  const header = match?.[1];
+  const content = match?.[2];
+  if (header === undefined || content === undefined) throw new Error("La guía necesita un encabezado y contenido Markdown.");
   const data: Record<string, unknown> = {};
-  for (const line of match[1].split(/\r?\n/)) {
+  for (const line of header.split(/\r?\n/)) {
     const separator = line.indexOf(":");
     if (separator < 1) continue;
     data[line.slice(0, separator).trim()] = JSON.parse(line.slice(separator + 1).trim());
@@ -38,10 +40,14 @@ export function parseGuia(raw: string): Guia {
   if (!guiaCategories.some((c) => c.slug === category)) throw new Error(`Categoría desconocida: ${category}`);
   const imageName = get("image");
   const image = covers[`../assets/${imageName}.asset.json`]?.url ?? imageName;
-  const body = match[2].trim();
+  const body = content.trim();
   const faqBody = body.split("## Preguntas frecuentes")[1] ?? "";
-  const faq = [...faqBody.matchAll(/\*\*([^\n]+[?])\*\*\s*\n([\s\S]*?)(?=\n\*\*|\n## |$)/g)].map((m) => ({ question: m[1], answer: m[2].trim() }));
-  return { slug: get("slug"), title: get("title"), category, summary: get("summary"), author: get("author"), authorRole: get("authorRole"), date: get("date"), readingTime: get("readingTime"), image, imageAlt: get("imageAlt"), metaTitle: get("metaTitle"), metaDescription: get("metaDescription"), published: data.published === true, body, faq };
+  const faq = [...faqBody.matchAll(/\*\*([^\n]+[?])\*\*\s*\n([\s\S]*?)(?=\n\*\*|\n## |$)/g)].flatMap((m) => {
+    const question = m[1];
+    const answer = m[2];
+    return question && answer ? [{ question, answer: answer.trim() }] : [];
+  });
+  return { slug: get("slug"), title: get("title"), category, summary: get("summary"), author: get("author"), authorRole: get("authorRole"), date: get("date"), readingTime: get("readingTime"), image, imageAlt: get("imageAlt"), metaTitle: get("metaTitle"), metaDescription: get("metaDescription"), published: data['published'] === true, body, faq };
 }
 
 export const guias: Guia[] = Object.values(files).map(parseGuia).filter((g) => g.published);

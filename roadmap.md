@@ -1,8 +1,8 @@
 # Roadmap
 
 ## Guías de inspección y logística
-- [ ] Añadir inspección, Año Nuevo Chino 2027 e Incoterms con sus portadas.
-- [ ] Verificar autoría, fechas, sitemap, FAQ, reservas y móvil/escritorio.
+- [x] Añadir inspección, Año Nuevo Chino 2027 e Incoterms con sus portadas.
+- [x] Verificar autoría, fechas, sitemap, FAQ, reservas y móvil/escritorio.
 
 ## Tres nuevas guías
 - [x] Añadir costes Colombia, fabricante/comercializadora y auditoría con las portadas suministradas.

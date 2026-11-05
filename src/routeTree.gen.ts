@@ -20,6 +20,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as GuiasIndexRouteImport } from './routes/guias.index'
 import { Route as GuiasSlugRouteImport } from './routes/guias.$slug'
 import { Route as ApiPublicArchivoRouteImport } from './routes/api/public/archivo'
+import { Route as GuiasCategoriaCategoryRouteImport } from './routes/guias.categoria.$category'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +78,11 @@ const ApiPublicArchivoRoute = ApiPublicArchivoRouteImport.update({
   path: '/api/public/archivo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuiasCategoriaCategoryRoute = GuiasCategoriaCategoryRouteImport.update({
+  id: '/guias/categoria/$category',
+  path: '/guias/categoria/$category',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailTransactionalPreviewRoute =
   LovableEmailTransactionalPreviewRouteImport.update({
     id: '/lovable/email/transactional/preview',
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/guias/$slug': typeof GuiasSlugRoute
   '/guias/': typeof GuiasIndexRoute
   '/api/public/archivo': typeof ApiPublicArchivoRoute
+  '/guias/categoria/$category': typeof GuiasCategoriaCategoryRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
@@ -110,6 +117,7 @@ export interface FileRoutesByTo {
   '/guias/$slug': typeof GuiasSlugRoute
   '/guias': typeof GuiasIndexRoute
   '/api/public/archivo': typeof ApiPublicArchivoRoute
+  '/guias/categoria/$category': typeof GuiasCategoriaCategoryRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/guias/$slug': typeof GuiasSlugRoute
   '/guias/': typeof GuiasIndexRoute
   '/api/public/archivo': typeof ApiPublicArchivoRoute
+  '/guias/categoria/$category': typeof GuiasCategoriaCategoryRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/guias/$slug'
     | '/guias/'
     | '/api/public/archivo'
+    | '/guias/categoria/$category'
     | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/guias/$slug'
     | '/guias'
     | '/api/public/archivo'
+    | '/guias/categoria/$category'
     | '/lovable/email/transactional/preview'
   id:
     | '__root__'
@@ -169,6 +180,7 @@ export interface FileRouteTypes {
     | '/guias/$slug'
     | '/guias/'
     | '/api/public/archivo'
+    | '/guias/categoria/$category'
     | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
@@ -184,6 +196,7 @@ export interface RootRouteChildren {
   GuiasSlugRoute: typeof GuiasSlugRoute
   GuiasIndexRoute: typeof GuiasIndexRoute
   ApiPublicArchivoRoute: typeof ApiPublicArchivoRoute
+  GuiasCategoriaCategoryRoute: typeof GuiasCategoriaCategoryRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
@@ -266,6 +279,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicArchivoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guias/categoria/$category': {
+      id: '/guias/categoria/$category'
+      path: '/guias/categoria/$category'
+      fullPath: '/guias/categoria/$category'
+      preLoaderRoute: typeof GuiasCategoriaCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/transactional/preview': {
       id: '/lovable/email/transactional/preview'
       path: '/lovable/email/transactional/preview'
@@ -288,6 +308,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuiasSlugRoute: GuiasSlugRoute,
   GuiasIndexRoute: GuiasIndexRoute,
   ApiPublicArchivoRoute: ApiPublicArchivoRoute,
+  GuiasCategoriaCategoryRoute: GuiasCategoriaCategoryRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport

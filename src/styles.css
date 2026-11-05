@@ -182,3 +182,22 @@
     white-space: nowrap;
   }
 }
+
+/* Blog reading styles, scoped so the rest of the website remains unchanged. */
+.guia-prose { color: var(--muted-foreground); font-size: 1rem; line-height: 1.8; overflow-wrap: break-word; }
+.guia-prose p { margin: 1.25rem 0; }
+.guia-prose h2 { font-family: var(--font-serif); color: var(--navy); font-size: 1.5rem; line-height: 1.4; margin: 2.75rem 0 1rem; }
+.guia-prose h3 { color: var(--navy); font-size: 1.125rem; margin: 1.75rem 0 .75rem; }
+.guia-prose strong { color: var(--navy); font-weight: 600; }
+.guia-prose ul, .guia-prose ol { padding-left: 1.5rem; margin: 1.25rem 0; }
+.guia-prose ul { list-style: disc; }
+.guia-prose ol { list-style: decimal; }
+.guia-prose li { margin: .65rem 0; }
+.guia-prose .guia-summary { background: var(--sand-strong); border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.guia-table-scroll { overflow-x: auto; margin: 1.5rem 0; }
+.guia-prose table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+.guia-prose th, .guia-prose td { border: 1px solid var(--border); padding: .75rem; text-align: left; }
+.guia-prose th { color: var(--navy); background: var(--sand-strong); font-weight: 600; }
+.guia-prose td:last-child { text-align: center; }
+.guia-prose a { color: var(--gold-deep); text-decoration: underline; }
+@media (min-width: 640px) { .guia-prose { font-size: 1.0625rem; } .guia-prose h2 { font-size: 1.75rem; } }

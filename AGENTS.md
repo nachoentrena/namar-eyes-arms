@@ -12,3 +12,6 @@
 Brand assets are served from public/brand, with browser and sharing icons duplicated in public/; this preserves the supplied filenames and stable public URLs.
 Home-specific team content uses separate translation keys from the comparison page so home updates do not alter that page.
 The shared header contact chooser uses Radix Dialog with a bottom panel on mobile and centered dialog on desktop to preserve keyboard focus, Escape and outside-click dismissal.
+
+Guides are Markdown files with JSON-valued front matter in src/content/guias, eagerly bundled for SSR; published entries drive categories, cards, Article/FAQ metadata and the sitemap without runtime filesystem reads.
+Guide covers resolve asset pointers by filename, or an absolute HTTPS image URL, so each new content file and uploaded cover require no registry edits.

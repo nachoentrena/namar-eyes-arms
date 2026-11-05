@@ -1,144 +1,48 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { Button } from "@/components/ui/button";
 import { GuiaCard } from "@/components/namar/guia-card";
-import { SiteFooter } from "@/components/namar/site-footer";
-import { SiteHeader } from "@/components/namar/site-header";
-import { formatGuiaDate, guias, sortedGuias } from "@/lib/guias";
+import { GuiasShell } from "@/components/namar/guias-shell";
+import { formatGuiaDate, guias, guiaCategories, relatedGuias, guiaImageUrl } from "@/lib/guias";
 import { siteConfig } from "@/lib/site-config";
-
 export const Route = createFileRoute("/guias/$slug")({
   loader: ({ params }) => {
     const guia = guias.find((g) => g.slug === params.slug);
     if (!guia) throw notFound();
-    const related = sortedGuias()
-      .filter((g) => g.slug !== guia.slug)
-      .slice(0, 2);
-    return { guia, related };
+    const category = guiaCategories.find((c) => c.slug === guia.category);
+    return { guia, category, related: relatedGuias(guia) };
   },
-  head: ({ loaderData, params }) => {
-    if (!loaderData) {
-      return { meta: [{ title: "Guía no encontrada | NAMAR Global" }, { name: "robots", content: "noindex" }] };
-    }
+  head: ({ loaderData }) => {
+    if (!loaderData) return { meta: [{ title: "Guía no encontrada | NAMAR Global" }, { name: "description", content: "Esta guía no está disponible. Consulta las guías de importación de NAMAR Global." }, { property: "og:title", content: "Guía no encontrada | NAMAR Global" }, { property: "og:description", content: "Consulta nuestras guías para importar desde China." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { name: "robots", content: "noindex" }] };
     const { guia } = loaderData;
-    const url = `${siteConfig.siteUrl}/guias/${params.slug}`;
-    const image = guia.image.startsWith("http") ? guia.image : `${siteConfig.siteUrl}${guia.image}`;
-    return {
-      meta: [
-        { title: guia.metaTitle },
-        { name: "description", content: guia.metaDescription },
-        { property: "og:title", content: guia.metaTitle },
-        { property: "og:description", content: guia.metaDescription },
-        { property: "og:type", content: "article" },
-        { property: "og:image", content: image },
-        { name: "twitter:image", content: image },
-        { name: "twitter:card", content: "summary_large_image" },
-        { property: "og:url", content: url },
-      ],
-      links: [{ rel: "canonical", href: url }],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: guia.title,
-            datePublished: guia.date,
-            image,
-            author: { "@type": "Person", name: guia.author },
-            publisher: { "@type": "Organization", name: "NAMAR Global" },
-          }),
-        },
-      ],
-    };
+    const url = `${siteConfig.siteUrl}/guias/${guia.slug}`;
+    const image = guiaImageUrl(guia.image);
+    return { meta: [{ title: guia.metaTitle }, { name: "description", content: guia.metaDescription }, { property: "og:title", content: guia.metaTitle }, { property: "og:description", content: guia.metaDescription }, { property: "og:type", content: "article" }, { property: "og:image", content: image }, { name: "twitter:image", content: image }, { name: "twitter:card", content: "summary_large_image" }, { property: "og:url", content: url }], links: [{ rel: "canonical", href: url }], scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: guia.title, description: guia.metaDescription, datePublished: guia.date, image, mainEntityOfPage: url, author: { "@type": "Person", name: guia.author, jobTitle: guia.authorRole }, publisher: { "@type": "Organization", name: "NAMAR Global", url: siteConfig.siteUrl, logo: { "@type": "ImageObject", url: `${siteConfig.siteUrl}/brand/logotipo-azul.png` } } }) }, ...(guia.faq.length ? [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: guia.faq.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })) }) }] : [])] };
   },
   component: GuiaPage,
   notFoundComponent: GuiaMissing,
-  errorComponent: GuiaMissing,
 });
-
-function Shell({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-background pb-14 text-foreground sm:pb-0">
-      <SiteHeader />
-      <main className="px-5 pb-14 pt-24 sm:px-6 sm:pb-20 sm:pt-32">{children}</main>
-      <SiteFooter />
-    </div>
-  );
-}
-
 function GuiaMissing() {
-  return (
-    <Shell>
-      <div className="mx-auto max-w-3xl text-center">
-        <h1 className="font-serif text-4xl text-navy">Guía no encontrada</h1>
-        <Link to="/guias" className="mt-6 inline-flex font-semibold text-navy underline decoration-gold underline-offset-[6px]">
-          Ver todas las guías
-        </Link>
-      </div>
-    </Shell>
-  );
+  return <GuiasShell><div className="mx-auto max-w-3xl px-5 py-14 text-center"><h1 className="font-serif text-4xl text-navy">Guía no encontrada</h1><Link to="/guias" className="mt-6 inline-flex font-semibold text-gold-deep underline">Ver todas las guías</Link></div></GuiasShell>;
 }
-
 function GuiaPage() {
-  const { guia, related } = Route.useLoaderData();
-  return (
-    <Shell>
-      <article className="mx-auto max-w-3xl">
-        <Link to="/guias" className="text-sm font-semibold text-gold-deep hover:underline">
-          ← Guías
-        </Link>
-        <h1 className="mt-4 font-serif text-4xl leading-tight text-navy sm:text-5xl">{guia.title}</h1>
-        <p className="mt-4 text-sm text-muted-foreground">
-          <time dateTime={guia.date}>{formatGuiaDate(guia.date)}</time> · Por {guia.author}
-        </p>
-        <img
-          src={guia.image}
-          alt={guia.imageAlt}
-          className="mt-8 aspect-[3/2] w-full rounded-3xl object-cover"
-        />
-        <div className="mt-10 space-y-8 text-base leading-relaxed text-muted-foreground sm:text-lg">
-          {guia.intro?.map((p, i) => <p key={i}>{p}</p>)}
-          {guia.sections.map((s) => (
-            <section key={s.heading} className="space-y-3">
-              <h2 className="font-serif text-2xl text-navy sm:text-3xl">{s.heading}</h2>
-              {s.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </section>
-          ))}
-        </div>
-
-        <div className="mt-12 rounded-3xl bg-sand p-6 sm:p-8">
-          <p className="font-serif text-2xl text-navy">¿Quieres aplicarlo a tu importación?</p>
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-            <Link
-              to="/diagnostico"
-              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full bg-gold px-6 font-semibold text-gold-foreground transition-colors hover:bg-navy hover:text-navy-foreground"
-            >
-              Diagnóstico gratuito
-            </Link>
-            <a
-              href={siteConfig.bookingHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border-[1.5px] border-navy px-6 font-semibold text-navy transition-colors hover:bg-navy hover:text-navy-foreground"
-            >
-              Agendar una llamada
-            </a>
-          </div>
-        </div>
-      </article>
-
-      {related.length > 0 ? (
-        <section className="mx-auto mt-16 max-w-6xl">
-          <h2 className="font-serif text-3xl text-navy">Otras guías</h2>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2">
-            {related.map((g) => (
-              <GuiaCard key={g.slug} guia={g} />
-            ))}
-          </div>
-        </section>
-      ) : null}
-    </Shell>
-  );
+  const { guia, category, related } = Route.useLoaderData();
+  return <GuiasShell><div className="px-5 pb-14 pt-10 sm:px-6 sm:pb-20 sm:pt-14">
+    <article className="mx-auto max-w-[760px]">
+      <nav aria-label="Ruta de la guía" className="flex flex-wrap items-center gap-2 text-sm text-gold-deep"><Link to="/guias" className="hover:underline">Guías</Link><span aria-hidden="true">›</span>{category ? <Link to="/guias/categoria/$category" params={{ category: category.slug }} className="hover:underline">{category.name}</Link> : null}</nav>
+      <h1 className="mt-5 font-serif text-[32px] leading-snug text-navy sm:text-[42px]">{guia.title}</h1>
+      <p className="mt-5 text-sm leading-relaxed text-muted-foreground">Por {guia.author} · {guia.authorRole}<br /><time dateTime={guia.date}>{formatGuiaDate(guia.date)}</time> · {guia.readingTime} de lectura</p>
+      <img src={guia.image} alt={guia.imageAlt} loading="lazy" width={1366} height={768} className="mt-8 aspect-video w-full rounded-lg object-contain" />
+      <div className="guia-prose mt-10"><ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: ({ children }) => {
+        const childrenArray = Array.isArray(children) ? children : [children];
+        const first = childrenArray[0];
+        const summary = typeof first === "object" && first !== null && "props" in first && String((first as { props: { children?: unknown } }).props.children).startsWith("En resumen");
+        return <p className={summary ? "guia-summary" : undefined}>{children}</p>;
+      }, table: ({ children }) => <div className="guia-table-scroll"><table>{children}</table></div> }} >{guia.body}</ReactMarkdown></div>
+      <aside className="mt-12 rounded-lg bg-navy p-6 text-navy-foreground sm:p-8"><h2 className="font-serif text-2xl leading-snug sm:text-3xl">¿Quieres que lo revisemos <em className="text-gold">por ti</em>?</h2><p className="mt-5 leading-relaxed text-on-navy-muted">En NAMAR vivimos en Shanghái y somos tu equipo en China: comprobamos la documentación, confirmamos si fabrican y, si hace falta, vamos a la fábrica.</p><p className="mt-4 leading-relaxed text-on-navy-muted">Agenda una llamada gratuita de 30 minutos y cuéntanos qué proveedor estás valorando. Te respondemos en 24 h laborables.</p><Button asChild className="mt-6 min-h-12 w-full rounded-full bg-gold px-5 font-semibold text-gold-foreground shadow-none hover:bg-gold/90 sm:w-auto"><a href={siteConfig.bookingHref} target="_blank" rel="noopener noreferrer">Agendar llamada gratuita</a></Button></aside>
+      <p className="mt-6 text-sm italic leading-relaxed text-muted-foreground">Esta guía es informativa y no sustituye el asesoramiento legal, fiscal o aduanero para tu caso concreto.</p>
+    </article>
+    {related.length ? <section className="mx-auto mt-14 max-w-6xl"><h2 className="font-serif text-3xl">Entradas relacionadas</h2><div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">{related.map((g) => <GuiaCard key={g.slug} guia={g} />)}</div></section> : null}
+  </div></GuiasShell>;
 }

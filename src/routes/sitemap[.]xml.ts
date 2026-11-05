@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { guias } from "@/lib/guias";
+import { guias, guiaCategories } from "@/lib/guias";
 
 const BASE = "https://www.namar-global.com";
 const PAGES = [
   "/",
   "/diagnostico",
   "/guias",
+  ...guiaCategories.map((c) => `/guias/categoria/${c.slug}`),
   ...guias.map((g) => `/guias/${g.slug}`),
   "/aviso-legal",
   "/politica-privacidad",

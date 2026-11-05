@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
+import { DialogTrigger } from "@/components/ui/dialog";
 import { ContactDialog } from "./contact-dialog";
 
 export function SiteHeader() {
@@ -68,12 +69,14 @@ export function SiteHeader() {
         </nav>
 
         <div className="col-start-3 flex items-center justify-end gap-3">
-          <a
-            href={`${home}#contacto`}
-            className="hidden min-h-11 items-center whitespace-nowrap rounded-full bg-navy px-6 text-[15px] font-semibold text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground min-[1200px]:inline-flex"
-          >
-            {t("header.contact")}
-          </a>
+          <DialogTrigger asChild>
+            <button
+              type="button"
+              className="hidden min-h-11 cursor-pointer items-center whitespace-nowrap rounded-full bg-navy px-6 text-[15px] font-semibold text-navy-foreground transition-colors hover:bg-gold hover:text-gold-foreground min-[1200px]:inline-flex"
+            >
+              {t("header.contact")}
+            </button>
+          </DialogTrigger>
           <button
             type="button"
             aria-label={open ? t("header.menuClose") : t("header.menuOpen")}
@@ -112,13 +115,15 @@ export function SiteHeader() {
               </li>
             ))}
             <li>
-              <a
-                href={`${home}#contacto`}
-                onClick={() => setOpen(false)}
-                className="mt-1 block min-h-12 rounded-full bg-navy px-6 py-3.5 text-center text-[15px] font-semibold text-navy-foreground"
-              >
-                {t("header.contact")}
-              </a>
+              <DialogTrigger asChild>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="mt-1 block min-h-12 w-full cursor-pointer rounded-full bg-navy px-6 py-3.5 text-center text-[15px] font-semibold text-navy-foreground"
+                >
+                  {t("header.contact")}
+                </button>
+              </DialogTrigger>
             </li>
           </ul>
         </nav>

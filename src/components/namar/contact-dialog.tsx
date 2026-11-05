@@ -113,7 +113,7 @@ export function ContactDialog({ children }: { children: ReactNode }) {
             ¿No se abre tu correo? Copia nuestro email o escríbenos por WhatsApp.
           </p>
           <DialogPrimitive.Close asChild>
-            <a href="/diagnostico" className="mt-6 block text-sm leading-relaxed underline-offset-4 hover:underline">¿Prefieres una valoración completa? Haz el diagnóstico gratuito →</a>
+            <a href="/diagnostico" className="mt-6 block text-sm leading-relaxed underline-offset-4 hover:underline">¿Prefieres contarnos tu proyecto con detalle? Rellena el formulario →</a>
           </DialogPrimitive.Close>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>

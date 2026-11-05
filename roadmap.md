@@ -29,3 +29,9 @@
 ## Nuevo pedido (sección de equipo)
 - [x] Rehacer "Cuando nos escribes, hablas con quien va a la fábrica": dos fichas con foto (Ana María González Gómez / Ignacio Entrena Iturbe), foto de la Feria de Cantón debajo con pie, frase "Hablas directamente con nosotros…", nombre "Ana María" coherente en toda la web y en los alt
 - [ ] Añadir enlaces de LinkedIn a las fichas (faltan las URLs del usuario)
+
+## Blog Guías por categorías
+- [x] Crear categorías, contenido Markdown, portada optimizada y primera guía.
+- [x] Añadir SEO Article/FAQ y categorías al sitemap.
+- [ ] Verificar páginas y enlaces en móvil/escritorio y HTML inicial.
+- [ ] Mostrar ambas páginas para revisión sin publicar.

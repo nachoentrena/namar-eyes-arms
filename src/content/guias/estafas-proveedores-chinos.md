@@ -11,6 +11,7 @@ image: "estafas-proveedores-chinos.webp"
 imageAlt: "Portada de la guía Estafas con proveedores chinos"
 metaTitle: "Estafas con proveedores chinos y cómo evitarlas | NAMAR"
 metaDescription: "Las estafas más habituales al comprar en China (cuentas falsas, proveedores fantasma, cambio de calidad) y cómo protegerte antes de pagar."
+orden: 5
 published: true
 closingTitle: "¿Quieres comprar sin riesgos innecesarios?"
 closingDescription: "En NAMAR verificamos a tu proveedor desde China antes de que pagues: documentación, registro oficial y, si hace falta, visita a la fábrica."

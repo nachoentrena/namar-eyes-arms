@@ -11,6 +11,7 @@ image: "coste-importar-china-colombia.webp"
 imageAlt: "Portada de la guía Coste de importar de China a Colombia"
 metaTitle: "Cuánto cuesta importar de China a Colombia | NAMAR"
 metaDescription: "Arancel, IVA del 19 %, flete y gastos de nacionalización: calcula el coste real de importar de China a Colombia con un ejemplo paso a paso."
+orden: 3
 published: true
 closingTitle: "¿Quieres saber cuánto te costará tu producto en Colombia?"
 closingDescription: "En NAMAR preparamos una estimación del coste de importación antes de que confirmes la compra, con cada partida marcada como confirmada, estimada o pendiente."

@@ -11,6 +11,7 @@ image: "muestras-desde-china.webp"
 imageAlt: "Portada de la guía Muestras desde China"
 metaTitle: "Muestras desde China: cómo pedirlas y qué revisar | NAMAR"
 metaDescription: "Tipos de muestras, cuánto suelen costar, cómo enviarlas y qué revisar antes de aprobar una muestra de tu proveedor chino."
+orden: 12
 published: true
 closingTitle: "¿Quieres ayuda con tus muestras?"
 closingDescription: "En NAMAR coordinamos la petición y revisión de muestras con tus proveedores y te ayudamos a dejar por escrito la muestra aprobada."

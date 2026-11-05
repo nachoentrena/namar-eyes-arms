@@ -15,7 +15,7 @@ export type Guia = {
   slug: string; title: string; category: string; summary: string;
   author: string; authorRole: string; date: string; readingTime: string;
   image: string; imageAlt: string; metaTitle: string; metaDescription: string;
-  published: boolean; body: string; faq: { question: string; answer: string }[];
+  orden?: number | undefined; published: boolean; body: string; faq: { question: string; answer: string }[];
   closingTitle?: string | undefined; closingDescription?: string | undefined; closingInvitation?: string | undefined; disclaimer?: string | undefined;
 };
 const covers = import.meta.glob<{ url: string }>("../assets/*.asset.json", { eager: true, import: "default" });
@@ -50,11 +50,11 @@ export function parseGuia(raw: string): Guia {
     return question && answer ? [{ question, answer: answer.trim() }] : [];
   });
   const optional = (key: string) => typeof data[key] === "string" ? data[key] : undefined;
-  return { slug: get("slug"), title: get("title"), category, summary: get("summary"), author: get("author"), authorRole: get("authorRole"), date: get("date"), readingTime: get("readingTime"), image, imageAlt: get("imageAlt"), metaTitle: get("metaTitle"), metaDescription: get("metaDescription"), published: data['published'] === true, body, faq, closingTitle: optional("closingTitle"), closingDescription: optional("closingDescription"), closingInvitation: optional("closingInvitation"), disclaimer: optional("disclaimer") };
+  return { slug: get("slug"), title: get("title"), category, summary: get("summary"), author: get("author"), authorRole: get("authorRole"), date: get("date"), readingTime: get("readingTime"), image, imageAlt: get("imageAlt"), metaTitle: get("metaTitle"), metaDescription: get("metaDescription"), orden: typeof data["orden"] === "number" ? data["orden"] : undefined, published: data['published'] === true, body, faq, closingTitle: optional("closingTitle"), closingDescription: optional("closingDescription"), closingInvitation: optional("closingInvitation"), disclaimer: optional("disclaimer") };
 }
 
 export const guias: Guia[] = Object.values(files).map(parseGuia).filter((g) => g.published);
-export const sortedGuias = () => [...guias].sort((a, b) => b.date.localeCompare(a.date));
+export const sortedGuias = () => [...guias].sort((a, b) => b.date.localeCompare(a.date) || (a.orden ?? Infinity) - (b.orden ?? Infinity));
 export const categoryGuias = (category: string) => sortedGuias().filter((g) => g.category === category);
 export const relatedGuias = (guia: Guia) => sortedGuias().filter((g) => g.slug !== guia.slug).sort((a, b) => Number(b.category === guia.category) - Number(a.category === guia.category)).slice(0, 3);
 export const guiaImageUrl = (image: string) => image.startsWith("https://") ? image : new URL(image, siteConfig.siteUrl).href;

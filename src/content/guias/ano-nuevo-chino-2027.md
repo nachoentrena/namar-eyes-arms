@@ -11,6 +11,7 @@ image: "ano-nuevo-chino-2027.webp"
 imageAlt: "Portada de la guía Año Nuevo Chino 2027"
 metaTitle: "Año Nuevo Chino 2027: planifica tus pedidos | NAMAR"
 metaDescription: "El Año Nuevo Chino 2027 es el 6 de febrero. Descubre cómo afecta a fábricas y transporte y qué calendario seguir para no quedarte sin stock."
+orden: 15
 published: true
 closingTitle: "¿Quieres llegar a tiempo?"
 closingDescription: "En NAMAR estamos en China y podemos ayudarte a cerrar tu pedido, controlar la producción y coordinar el embarque antes del parón."

@@ -11,6 +11,7 @@ image: "pagar-proveedor-chino.webp"
 imageAlt: "Portada de la guía Cómo pagar a un proveedor chino"
 metaTitle: "Cómo pagar a un proveedor chino de forma segura | NAMAR"
 metaDescription: "Transferencia, carta de crédito, plataformas de pago y anticipos: cómo pagar a un proveedor en China de forma segura y qué estafas evitar."
+orden: 7
 published: true
 closingTitle: "¿Quieres pagar con tranquilidad?"
 closingDescription: "En NAMAR comprobamos la documentación del proveedor y la coherencia de la proforma antes de que pagues, y coordinamos la inspección antes del saldo."

@@ -11,6 +11,7 @@ image: "auditoria-fabrica-china.webp"
 imageAlt: "Portada de la guía Auditoría de fábrica en China"
 metaTitle: "Auditoría de fábrica en China: qué se revisa | NAMAR"
 metaDescription: "Qué es una auditoría de fábrica en China, qué se revisa en la visita, cuándo merece la pena y qué informe deberías recibir."
+orden: 9
 published: true
 closingTitle: "¿Necesitas que visitemos tu fábrica?"
 closingDescription: "En NAMAR vivimos en Shanghái y podemos visitar al proveedor antes de que hagas el pedido. Te entregamos un informe con fotos y una conclusión clara."

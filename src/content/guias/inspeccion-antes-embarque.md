@@ -11,6 +11,7 @@ image: "inspeccion-antes-embarque.webp"
 imageAlt: "Portada de la guía Inspección antes del embarque"
 metaTitle: "Inspección antes del embarque en China: guía | NAMAR"
 metaDescription: "Qué es la inspección final antes del embarque (PSI), qué se revisa, cómo funciona el muestreo AQL y cuándo hacerla para pagar con seguridad."
+orden: 8
 published: true
 closingTitle: "¿Quieres que revisemos tu pedido antes de pagar?"
 closingDescription: "En NAMAR coordinamos la inspección antes del embarque y te enviamos el informe con fotos para que decidas con datos."

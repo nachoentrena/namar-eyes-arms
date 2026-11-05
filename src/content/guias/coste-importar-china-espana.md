@@ -11,6 +11,7 @@ image: "coste-importar-china-espana.webp"
 imageAlt: "Portada de la guía Coste real de importar de China a España"
 metaTitle: "Cuánto cuesta importar de China a España | NAMAR"
 metaDescription: "Calcula el coste real de importar de China a España: mercancía, flete, arancel, IVA y gastos de despacho, con un ejemplo paso a paso."
+orden: 2
 published: true
 closingTitle: "¿Quieres saber cuánto te costará tu producto?"
 closingDescription: "En NAMAR preparamos una estimación del coste de importación antes de que confirmes la compra, con cada partida marcada como confirmada, estimada o pendiente."

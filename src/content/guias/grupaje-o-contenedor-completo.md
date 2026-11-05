@@ -11,6 +11,7 @@ image: "grupaje-o-contenedor-completo.webp"
 imageAlt: "Portada de la guía Grupaje o contenedor completo"
 metaTitle: "Grupaje (LCL) o contenedor completo (FCL) | NAMAR"
 metaDescription: "Diferencias entre grupaje (LCL) y contenedor completo (FCL) al importar desde China: costes, plazos, riesgos y cuándo conviene cada uno."
+orden: 11
 published: true
 closingTitle: "¿No sabes qué opción te conviene?"
 closingDescription: "En NAMAR coordinamos el transporte con el transitario y comparamos opciones según tu volumen y tus plazos."

@@ -11,6 +11,7 @@ image: "negociar-moq-china.webp"
 imageAlt: "Portada de la guía Cómo negociar el MOQ"
 metaTitle: "Cómo negociar el MOQ con una fábrica china | NAMAR"
 metaDescription: "Qué es el MOQ (pedido mínimo), por qué lo exigen las fábricas chinas y siete formas de negociarlo sin perder calidad ni precio."
+orden: 13
 published: true
 closingTitle: "¿Quieres que negociemos por ti?"
 closingDescription: "En NAMAR negociamos precio, cantidad mínima y plazos directamente con las fábricas desde China."

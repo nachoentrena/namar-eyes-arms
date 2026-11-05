@@ -1,5 +1,9 @@
 # Roadmap
 
+## Guías de muestras y requisitos
+- [x] Añadir muestras, requisitos Colombia y marcado CE con las portadas suministradas.
+- [x] Verificar autoría, fechas, sitemap, FAQ, reservas y móvil/escritorio.
+
 ## Guías de grupaje, pagos y MOQ
 - [x] Añadir las tres guías con sus portadas y cierres propios.
 - [x] Verificar autoría, fechas, sitemap, FAQ, reservas y móvil/escritorio.

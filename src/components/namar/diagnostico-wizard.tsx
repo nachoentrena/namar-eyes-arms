@@ -1,11 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Loader2, Upload, X } from "lucide-react";
 
-import { supabase } from "@/integrations/supabase/client";
-import {
-  attachDiagnosticoArchivos,
-  submitDiagnostico,
-} from "@/lib/diagnostico.functions";
+import { submitDiagnostico } from "@/lib/diagnostico.functions";
 import { whatsappHref } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -14,8 +10,21 @@ type Answers = Record<string, Value>;
 
 const STORAGE_KEY = "namar-diagnostico-v1";
 
+/** Lee un archivo y devuelve su contenido en base64 (sin el prefijo data:). */
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = String(reader.result ?? "");
+      resolve(result.slice(result.indexOf(",") + 1));
+    };
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
+
 const MAX_FILES = 5;
-const MAX_FILE_MB = 10;
+const MAX_FILE_MB = 5;
 const ACCEPTED = [
   "image/jpeg",
   "image/png",
@@ -445,23 +454,13 @@ export function DiagnosticoWizard() {
     setSubmitting(true);
     setServerError(null);
     try {
+      const archivos = await Promise.all(
+        files.map(async (file) => ({ nombre: file.name, base64: await fileToBase64(file) })),
+      );
       const res = await submitDiagnostico({
-        data: { answers: { ...answers, empresa_web: honeypot }, honeypot, conArchivos: files.length > 0 },
+        data: { answers: { ...answers, empresa_web: honeypot }, honeypot, archivos },
       });
       const newCodigo = res.codigo;
-
-      if (newCodigo && res.token && files.length > 0) {
-        const paths: string[] = [];
-        for (const [index, file] of files.entries()) {
-          const path = `${newCodigo}/${index}-${file.name}`;
-          const { error } = await supabase.storage
-            .from("diagnosticos-archivos")
-            .upload(path, file);
-          if (!error) paths.push(path);
-        }
-        // Siempre se registra (aunque falle la subida) para que salga el aviso interno.
-        await attachDiagnosticoArchivos({ data: { codigo: newCodigo, token: res.token, archivos: paths } });
-      }
 
       try {
         localStorage.removeItem(STORAGE_KEY);

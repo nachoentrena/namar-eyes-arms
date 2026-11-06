@@ -7,7 +7,7 @@ interface Props {
   nombre?: string
   producto?: string
   grupos?: { titulo: string; filas: { campo: string; valor: string }[] }[]
-  archivos?: { nombre: string; url: string }[]
+  archivos?: { nombre: string; url?: string }[]
   fecha?: string
   pagina?: string
 }
@@ -51,10 +51,16 @@ const AvisoInterno = ({ tipo = 'contacto', nombre = '', grupos = [], archivos = 
               <Text style={h2}>Archivos adjuntos</Text>
               {archivos.map((a, i) => (
                 <Text key={i} style={fileRow}>
-                  {a.nombre} · <Link href={a.url} style={link}>Descargar</Link>
+                  {a.url ? (
+                    <>
+                      {a.nombre} · <Link href={a.url} style={link}>Descargar</Link>
+                    </>
+                  ) : (
+                    <>📎 {a.nombre}</>
+                  )}
                 </Text>
               ))}
-              <Text style={meta}>Los enlaces de descarga caducan en 30 días.</Text>
+              <Text style={meta}>Los archivos van adjuntos a este correo.</Text>
             </Section>
           )}
           <Text style={meta}>Pulsa «Responder» para escribir directamente al cliente.</Text>
@@ -67,9 +73,10 @@ const AvisoInterno = ({ tipo = 'contacto', nombre = '', grupos = [], archivos = 
 export const template = {
   component: AvisoInterno,
   subject: (d: Record<string, any>) =>
-    d['tipo'] === 'diagnostico'
-      ? `Nuevo diagnóstico web: ${d['nombre'] ?? ''} – ${d['producto'] ?? ''}`
-      : `Nuevo contacto web: ${d['nombre'] ?? ''}`,
+    [
+      d['tipo'] === 'diagnostico' ? '[Diagnóstico]' : '[Contacto]',
+      [d['nombre'], d['pais'], d['producto']].filter((x) => typeof x === 'string' && x.trim()).join(' · '),
+    ].join(' '),
   displayName: 'Aviso interno de formulario',
   to: 'info@namar-global.com',
   previewData: {

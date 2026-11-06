@@ -1,5 +1,6 @@
-// Server-only helpers shared by every public form: sanitising, rate limit and emails.
+// Server-only helpers shared by every public form: sanitising, rate limit, emails and Google Sheets log.
 import { getRequestHeader, getRequestIP } from "@tanstack/react-start/server";
+import type { EmailAttachment } from "@/lib/email-templates/send-email";
 
 export const RATE_LIMIT_PER_HOUR = 5;
 
@@ -16,19 +17,46 @@ export function requestPage(): string {
   return getRequestHeader("referer") ?? "";
 }
 
+// Límite suave en memoria (por instancia del servidor). La protección principal
+// es el campo trampa del formulario y la regla de límite de peticiones de Cloudflare.
+const envios = new Map<string, number[]>();
+
 /** Returns true when the IP may submit; records the attempt. */
 export async function checkRateLimit(formulario: string): Promise<boolean> {
-  const ip = getRequestIP({ xForwardedFor: true }) ?? getRequestHeader("cf-connecting-ip") ?? "desconocida";
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-  const { count } = await supabaseAdmin
-    .from("envios_formulario")
-    .select("id", { count: "exact", head: true })
-    .eq("ip", ip)
-    .gte("created_at", since);
-  if ((count ?? 0) >= RATE_LIMIT_PER_HOUR) return false;
-  await supabaseAdmin.from("envios_formulario").insert({ ip, formulario });
+  const ip = getRequestHeader("cf-connecting-ip") ?? getRequestIP({ xForwardedFor: true }) ?? "desconocida";
+  const key = `${formulario}:${ip}`;
+  const ahora = Date.now();
+  const recientes = (envios.get(key) ?? []).filter((t) => ahora - t < 60 * 60 * 1000);
+  if (recientes.length >= RATE_LIMIT_PER_HOUR) return false;
+  recientes.push(ahora);
+  envios.set(key, recientes);
   return true;
+}
+
+/** Código de referencia legible, p. ej. NAM-20261106-4F7K. */
+export function nuevoCodigo(): string {
+  const d = new Date();
+  const fecha = `${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, "0")}${String(d.getUTCDate()).padStart(2, "0")}`;
+  const azar = crypto.randomUUID().replace(/-/g, "").slice(0, 4).toUpperCase();
+  return `NAM-${fecha}-${azar}`;
+}
+
+/**
+ * Añade una fila a la hoja de Google «Solicitudes web» mediante el webhook de Apps Script.
+ * Opcional: si no está configurado, no hace nada. Nunca lanza errores.
+ */
+export async function registrarEnHoja(fila: Record<string, string | number>) {
+  const url = process.env["SHEETS_WEBHOOK_URL"];
+  if (!url) return;
+  try {
+    await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secreto: process.env["SHEETS_WEBHOOK_SECRET"] ?? "", fila }),
+    });
+  } catch (error) {
+    console.error("Error registrando en Google Sheets", error);
+  }
 }
 
 type Grupo = { titulo: string; filas: { campo: string; valor: string }[] };
@@ -40,8 +68,9 @@ export async function sendAvisoInterno(opts: {
   nombre: string;
   email: string;
   producto?: string;
+  pais?: string;
   grupos: Grupo[];
-  archivos?: { nombre: string; url: string }[];
+  adjuntos?: EmailAttachment[];
   pagina: string;
 }) {
   const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
@@ -55,8 +84,9 @@ export async function sendAvisoInterno(opts: {
         tipo: opts.tipo,
         nombre: opts.nombre,
         producto: opts.producto,
+        pais: opts.pais,
         grupos,
-        archivos: opts.archivos ?? [],
+        archivos: (opts.adjuntos ?? []).map((a) => ({ nombre: a.filename })),
         fecha: fechaChina(),
         pagina: opts.pagina,
       },
@@ -64,6 +94,7 @@ export async function sendAvisoInterno(opts: {
       replyTo: opts.email,
       fromName: "NAMAR Global Web",
       fromLocalPart: "web",
+      attachments: opts.adjuntos,
     });
   } catch (error) {
     console.error("Error enviando aviso interno", error);

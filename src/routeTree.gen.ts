@@ -19,7 +19,6 @@ import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as GuiasIndexRouteImport } from './routes/guias.index'
 import { Route as GuiasSlugRouteImport } from './routes/guias.$slug'
-import { Route as ApiPublicArchivoRouteImport } from './routes/api/public/archivo'
 import { Route as GuiasCategoriaCategoryRouteImport } from './routes/guias.categoria.$category'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
@@ -73,11 +72,6 @@ const GuiasSlugRoute = GuiasSlugRouteImport.update({
   path: '/guias/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicArchivoRoute = ApiPublicArchivoRouteImport.update({
-  id: '/api/public/archivo',
-  path: '/api/public/archivo',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const GuiasCategoriaCategoryRoute = GuiasCategoriaCategoryRouteImport.update({
   id: '/guias/categoria/$category',
   path: '/guias/categoria/$category',
@@ -101,7 +95,6 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/guias/$slug': typeof GuiasSlugRoute
   '/guias/': typeof GuiasIndexRoute
-  '/api/public/archivo': typeof ApiPublicArchivoRoute
   '/guias/categoria/$category': typeof GuiasCategoriaCategoryRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
@@ -116,7 +109,6 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/guias/$slug': typeof GuiasSlugRoute
   '/guias': typeof GuiasIndexRoute
-  '/api/public/archivo': typeof ApiPublicArchivoRoute
   '/guias/categoria/$category': typeof GuiasCategoriaCategoryRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
@@ -132,7 +124,6 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/guias/$slug': typeof GuiasSlugRoute
   '/guias/': typeof GuiasIndexRoute
-  '/api/public/archivo': typeof ApiPublicArchivoRoute
   '/guias/categoria/$category': typeof GuiasCategoriaCategoryRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
@@ -149,7 +140,6 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/guias/$slug'
     | '/guias/'
-    | '/api/public/archivo'
     | '/guias/categoria/$category'
     | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
@@ -164,7 +154,6 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/guias/$slug'
     | '/guias'
-    | '/api/public/archivo'
     | '/guias/categoria/$category'
     | '/lovable/email/transactional/preview'
   id:
@@ -179,7 +168,6 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/guias/$slug'
     | '/guias/'
-    | '/api/public/archivo'
     | '/guias/categoria/$category'
     | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
@@ -195,7 +183,6 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   GuiasSlugRoute: typeof GuiasSlugRoute
   GuiasIndexRoute: typeof GuiasIndexRoute
-  ApiPublicArchivoRoute: typeof ApiPublicArchivoRoute
   GuiasCategoriaCategoryRoute: typeof GuiasCategoriaCategoryRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
@@ -272,13 +259,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuiasSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/archivo': {
-      id: '/api/public/archivo'
-      path: '/api/public/archivo'
-      fullPath: '/api/public/archivo'
-      preLoaderRoute: typeof ApiPublicArchivoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/guias/categoria/$category': {
       id: '/guias/categoria/$category'
       path: '/guias/categoria/$category'
@@ -307,7 +287,6 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   GuiasSlugRoute: GuiasSlugRoute,
   GuiasIndexRoute: GuiasIndexRoute,
-  ApiPublicArchivoRoute: ApiPublicArchivoRoute,
   GuiasCategoriaCategoryRoute: GuiasCategoriaCategoryRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }

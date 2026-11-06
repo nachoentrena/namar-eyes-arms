@@ -36,27 +36,15 @@ export const submitContacto = createServerFn({ method: "POST" })
     };
     if (!c.nombre) throw new Error("Datos incompletos");
     const pagina = requestPage();
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: row, error } = await supabaseAdmin
-      .from("contactos")
-      .insert({
-        ...Object.fromEntries(Object.entries(c).map(([k, v]) => [k, v || null])),
-        nombre: c.nombre,
-        email: c.email,
-        pagina,
-        datos: { ...c, acepta_privacidad: "Sí" },
-      })
-      .select("id")
-      .single();
-    if (error || !row) {
-      console.error("Error guardando contacto", error);
-      throw new Error("No se pudo guardar el contacto");
-    }
+    const { nuevoCodigo, registrarEnHoja } = await import("./forms.server");
+    const row = { id: crypto.randomUUID(), codigo: nuevoCodigo() };
     await sendAvisoInterno({
       id: row.id,
       tipo: "contacto",
       nombre: c.nombre,
       email: c.email,
+      pais: c.pais_destino,
+      producto: c.producto,
       pagina,
       grupos: [
         {
@@ -81,5 +69,19 @@ export const submitContacto = createServerFn({ method: "POST" })
       ],
     });
     await sendConfirmacionCliente({ id: row.id, nombre: c.nombre, email: c.email });
+    await registrarEnHoja({
+      tipo: "Contacto",
+      codigo: row.codigo,
+      fecha: new Date().toISOString(),
+      nombre: c.nombre,
+      email: c.email,
+      whatsapp: c.whatsapp,
+      pais: c.pais_destino,
+      empresa: c.empresa,
+      producto: c.producto,
+      cantidad: c.cantidad_aproximada,
+      mensaje: c.mensaje,
+      pagina,
+    });
     return { ok: true };
   });

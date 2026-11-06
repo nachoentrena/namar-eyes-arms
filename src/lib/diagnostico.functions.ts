@@ -5,10 +5,20 @@ type Value = string | string[] | number | undefined | null;
 
 const answersSchema = z.record(z.string(), z.union([z.string(), z.array(z.string()), z.number()]));
 
+// Archivos adjuntos: máx. 5, 5 MB cada uno (en base64 ocupan ~4/3).
+export const MAX_ARCHIVOS = 5;
+export const MAX_ARCHIVO_MB = 5;
+const EXTENSIONES = /\.(jpe?g|png|webp|pdf|xlsx?|docx)$/i;
+
+const archivoSchema = z.object({
+  nombre: z.string().min(1).max(200).regex(EXTENSIONES),
+  base64: z.string().min(1).max(Math.ceil((MAX_ARCHIVO_MB * 1024 * 1024 * 4) / 3) + 16),
+});
+
 const submitSchema = z.object({
   answers: answersSchema,
   honeypot: z.string().optional().default(""),
-  conArchivos: z.boolean().optional().default(false),
+  archivos: z.array(archivoSchema).max(MAX_ARCHIVOS).optional().default([]),
 });
 
 function str(answers: Record<string, Value>, key: string): string {
@@ -129,7 +139,7 @@ function classify(answers: Record<string, Value>, points: number): string {
 export const submitDiagnostico = createServerFn({ method: "POST" })
   .inputValidator((input) => submitSchema.parse(input))
   .handler(async ({ data }) => {
-    const { answers, honeypot, conArchivos } = data;
+    const { answers, honeypot, archivos } = data;
 
     // Antispam: honeypot relleno → no se guarda nada.
     if (honeypot.trim().length > 0) {
@@ -179,118 +189,48 @@ export const submitDiagnostico = createServerFn({ method: "POST" })
     const banderas = arr(record, "requisitos").filter((r) => r !== "Ninguna");
     const paquete = PAQUETE[str(record, "presupuesto")] ?? "Por definir";
 
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: row, error } = await supabaseAdmin
-      .from("diagnosticos")
-      .insert({
-        nombre,
-        email,
-        whatsapp: str(record, "whatsapp") || null,
-        pais: str(record, "pais") || null,
-        ciudad: str(record, "ciudad") || null,
-        empresa: str(record, "empresa_cargo") || null,
-        producto,
-        categoria: str(record, "categoria") || null,
-        etapa: str(record, "etapa") || null,
-        presupuesto: str(record, "presupuesto") || null,
-        respuestas: record,
-        puntuacion: points,
-        clasificacion,
-        alerta,
-        banderas,
-        paquete_sugerido: paquete,
-      })
-      .select("id, codigo")
-      .single();
+    const { nuevoCodigo, registrarEnHoja } = await import("./forms.server");
+    const row = { id: crypto.randomUUID(), codigo: nuevoCodigo() };
+    const adjuntos = archivos.map((f, i) => ({
+      filename: `${i + 1}-${cleanText(f.nombre).replace(/[\\/]/g, "_")}`,
+      content: f.base64,
+    }));
 
-    if (error || !row) {
-      console.error("Error guardando diagnóstico", error);
-      throw new Error("No se pudo guardar el diagnóstico");
-    }
-
-    // Con archivos, el aviso interno se envía al registrarlos (para incluir enlaces).
-    if (!conArchivos) {
-      const { buildDiagnosticoGrupos } = await import("./aviso-format");
-      await sendAvisoInterno({
-        id: row.id as string,
-        tipo: "diagnostico",
-        nombre,
-        email,
-        producto,
-        grupos: buildDiagnosticoGrupos(record, { codigo: row.codigo as string, puntuacion: points, clasificacion, alerta, paquete }),
-        pagina: requestPage(),
-      });
-    }
-    await sendConfirmacionCliente({ id: row.id as string, nombre, email });
-
-    let token: string | null = null;
-    if (conArchivos) {
-      const { crearTokenAdjuntos } = await import("./archivo-link.server");
-      token = await crearTokenAdjuntos(row.codigo as string);
-    }
-    return { ok: true, codigo: row.codigo as string, token };
-  });
-
-const attachSchema = z.object({
-  codigo: z.string().regex(/^NAM-\d{4}-\d{4}$/),
-  token: z.string().min(1).max(200),
-  archivos: z.array(z.string().min(1).max(300)).max(5),
-});
-
-export const attachDiagnosticoArchivos = createServerFn({ method: "POST" })
-  .inputValidator((input) => attachSchema.parse(input))
-  .handler(async ({ data }) => {
-    const { verificarTokenAdjuntos } = await import("./archivo-link.server");
-    if (!(await verificarTokenAdjuntos(data.codigo, data.token))) {
-      throw new Error("No autorizado");
-    }
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    // Solo se pueden adjuntar archivos una vez: si el diagnóstico ya tiene
-    // archivos registrados, no se permite sobrescribirlos.
-    const nombres = data.archivos
-      .filter((p) => p.startsWith(`${data.codigo}/`) && !p.slice(data.codigo.length + 1).includes("/"))
-      .map((p) => p.slice(data.codigo.length + 1));
-    // Solo rutas de archivos que existen realmente en la carpeta del envío.
-    const { data: listado } = await supabaseAdmin.storage.from("diagnosticos-archivos").list(data.codigo, { limit: 20 });
-    const existentes = new Set((listado ?? []).map((f) => f.name));
-    const archivos = nombres.filter((n) => existentes.has(n)).map((n) => `${data.codigo}/${n}`);
-    const { data: updated, error } = await supabaseAdmin
-      .from("diagnosticos")
-      .update({ archivos })
-      .eq("codigo", data.codigo)
-      .eq("archivos", "[]")
-      .select("id, codigo, nombre, email, producto, respuestas, puntuacion, clasificacion, alerta, paquete_sugerido");
-
-    if (error || !updated || updated.length === 0) {
-      console.error("Error adjuntando archivos", error);
-      throw new Error("No se pudieron registrar los archivos");
-    }
-    const row = updated[0]!;
-
-    const enlaces: { nombre: string; url: string }[] = [];
-    const { crearEnlaceArchivo } = await import("./archivo-link.server");
-    for (const path of archivos) {
-      enlaces.push({ nombre: path.split("/").pop()!.replace(/^\d+-/, ""), url: await crearEnlaceArchivo(path) });
-    }
-
-    const { sendAvisoInterno, requestPage } = await import("./forms.server");
     const { buildDiagnosticoGrupos } = await import("./aviso-format");
     await sendAvisoInterno({
-      id: row.id as string,
+      id: row.id,
       tipo: "diagnostico",
-      nombre: row.nombre as string,
-      email: row.email as string,
-      producto: (row.producto as string) ?? "",
-      grupos: buildDiagnosticoGrupos((row.respuestas ?? {}) as Record<string, unknown>, {
-        codigo: row.codigo as string,
-        puntuacion: (row.puntuacion as number) ?? 0,
-        clasificacion: (row.clasificacion as string) ?? "",
-        alerta: (row.alerta as string | null) ?? null,
-        paquete: (row.paquete_sugerido as string) ?? "",
-      }),
-      archivos: enlaces,
+      nombre,
+      email,
+      producto,
+      pais,
+      grupos: buildDiagnosticoGrupos(record, { codigo: row.codigo, puntuacion: points, clasificacion, alerta, paquete }),
+      adjuntos,
+      pagina: requestPage(),
+    });
+    await sendConfirmacionCliente({ id: row.id, nombre, email });
+    await registrarEnHoja({
+      tipo: "Diagnóstico",
+      codigo: row.codigo,
+      fecha: new Date().toISOString(),
+      nombre,
+      email,
+      whatsapp: str(record, "whatsapp"),
+      pais,
+      ciudad: str(record, "ciudad"),
+      empresa: str(record, "empresa_cargo"),
+      producto,
+      categoria: str(record, "categoria"),
+      etapa: str(record, "etapa"),
+      presupuesto: str(record, "presupuesto"),
+      cuando: str(record, "cuando"),
+      puntuacion: points,
+      clasificacion,
+      alerta: alerta ?? "",
+      paquete,
+      archivos: adjuntos.map((a) => a.filename).join(", "),
       pagina: requestPage(),
     });
 
-    return { ok: true };
+    return { ok: true, codigo: row.codigo as string | null };
   });

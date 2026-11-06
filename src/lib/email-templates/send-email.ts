@@ -1,47 +1,43 @@
 import * as React from 'react'
 import { render } from '@react-email/render'
-import { EmailAPIError, sendLovableEmail } from '@lovable.dev/email-js'
 import { TEMPLATES } from './registry'
 
-// Server-only: reads LOVABLE_API_KEY. Never import from client components.
+// Server-only: reads RESEND_API_KEY. Never import from client components.
+// Sends the registered React Email templates through Resend (https://resend.com).
 
-// Configuration baked in at scaffold time
 const SITE_NAME = "NAMAR Global"
-// SENDER_DOMAIN is the verified sender subdomain FQDN (e.g., "notify.example.com").
-// It MUST match the subdomain delegated to Lovable's nameservers. NEVER use the root domain.
-const SENDER_DOMAIN = "notify.namar-global.com"
-// FROM_DOMAIN is the domain shown in the From: header (e.g., "example.com").
-// Can be the root domain when display_from_root is enabled — this is cosmetic only.
-const FROM_DOMAIN = "notify.namar-global.com"
+// Dominio verificado en Resend (registros DNS en Cloudflare).
+const FROM_DOMAIN = "namar-global.com"
+const RESEND_URL = "https://api.resend.com/emails"
 
 export type SendTemplateEmailResult =
   | { sent: true }
   | { sent: false; reason: 'recipient_suppressed' }
 
+export interface EmailAttachment {
+  filename: string
+  /** Contenido del archivo en base64 (sin el prefijo data:). */
+  content: string
+}
+
 export interface SendTemplateEmailOptions {
   templateData?: Record<string, any>
-  /** Dedupes retries of the same logical send; defaults to a random UUID (no dedupe). */
+  /** Evita envíos duplicados si se reintenta la misma petición. */
   idempotencyKey?: string
   replyTo?: string
   fromName?: string
   fromLocalPart?: string
+  attachments?: EmailAttachment[] | undefined
 }
 
-/**
- * Renders a registered template and sends it through Lovable's managed email
- * API. Suppression, retries, and rate limits are enforced by Lovable
- * server-side. A suppressed recipient is an expected outcome
- * ({ sent: false }); any other failure throws — EmailAPIError exposes
- * .code and .status for branching.
- */
 export async function sendTemplateEmail(
   templateName: string,
   to: string,
   options: SendTemplateEmailOptions = {}
 ): Promise<SendTemplateEmailResult> {
-  const apiKey = process.env['LOVABLE_API_KEY']
+  const apiKey = process.env['RESEND_API_KEY']
   if (!apiKey) {
-    throw new Error('LOVABLE_API_KEY is not configured')
+    throw new Error('RESEND_API_KEY is not configured')
   }
 
   const template = TEMPLATES[templateName]
@@ -51,8 +47,7 @@ export async function sendTemplateEmail(
     )
   }
 
-  // Template-level `to` takes precedence — notification templates always
-  // send to their fixed address.
+  // La plantilla con destinatario fijo (aviso interno) tiene prioridad.
   const recipient = template.to || to
   if (!recipient) {
     throw new Error('Recipient is required (the template defines no fixed recipient)')
@@ -67,28 +62,31 @@ export async function sendTemplateEmail(
       ? template.subject(templateData)
       : template.subject
 
-  try {
-    await sendLovableEmail(
-      {
-        to: recipient,
-        from: { name: options.fromName || SITE_NAME, address: `${options.fromLocalPart || 'noreply'}@${FROM_DOMAIN}` },
-        sender_domain: SENDER_DOMAIN,
-        subject,
-        html,
-        text,
-        purpose: 'transactional',
-        label: templateName,
-        idempotency_key: options.idempotencyKey || crypto.randomUUID(),
-        ...(options.replyTo ? { reply_to: options.replyTo } : {}),
-      },
-      { apiKey, sendUrl: process.env['LOVABLE_SEND_URL'] }
-    )
-  } catch (error) {
-    if (error instanceof EmailAPIError && error.code === 'recipient_suppressed') {
-      return { sent: false, reason: 'recipient_suppressed' }
-    }
-    throw error
+  const headers: Record<string, string> = {
+    Authorization: `Bearer ${apiKey}`,
+    'Content-Type': 'application/json',
   }
+  if (options.idempotencyKey) headers['Idempotency-Key'] = options.idempotencyKey
 
+  const response = await fetch(RESEND_URL, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      from: `${options.fromName || SITE_NAME} <${options.fromLocalPart || 'web'}@${FROM_DOMAIN}>`,
+      to: [recipient],
+      subject,
+      html,
+      text,
+      ...(options.replyTo ? { reply_to: options.replyTo } : {}),
+      ...(options.attachments && options.attachments.length > 0
+        ? { attachments: options.attachments }
+        : {}),
+    }),
+  })
+
+  if (!response.ok) {
+    const detail = await response.text().catch(() => '')
+    throw new Error(`Resend ${response.status}: ${detail.slice(0, 300)}`)
+  }
   return { sent: true }
 }

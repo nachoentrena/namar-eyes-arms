@@ -48,11 +48,16 @@ export function nuevoCodigo(): string {
 export async function registrarEnHoja(fila: Record<string, string | number>) {
   const url = process.env["SHEETS_WEBHOOK_URL"];
   if (!url) return;
+  // Evita que Google Sheets interprete textos como fórmulas (p. ej. "+34 600…" o "=…").
+  const segura: Record<string, string | number> = {};
+  for (const [k, v] of Object.entries(fila)) {
+    segura[k] = typeof v === "string" && /^[=+\-@]/.test(v) ? `'${v}` : v;
+  }
   try {
     await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ secreto: process.env["SHEETS_WEBHOOK_SECRET"] ?? "", fila }),
+      body: JSON.stringify({ secreto: process.env["SHEETS_WEBHOOK_SECRET"] ?? "", fila: segura }),
     });
   } catch (error) {
     console.error("Error registrando en Google Sheets", error);
